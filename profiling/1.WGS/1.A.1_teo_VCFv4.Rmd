@@ -1,0 +1,47 @@
+---
+title: "VCFv4 teo20"
+output: html_notebook
+---
+
+## Concatenate or combine VCF/BCF files.
+
+Need to index them and then concatenate.
+
+```{bash}
+## test and then run for chr1-9
+tabix -p vcf filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz
+for i in `seq 1 9`; do tabix -p vcf filtered_JRIAL2_20samples_Chr"$i"_Feb13_2017.vcf.gz; done
+
+## run cat
+bcftools concat -a --remove-duplicates --file-list input_list.txt --threads 10 --output-type z -o filtered_JRIAL2_20samples_Chrall_Feb13_2017.vcf.gz
+
+## remove indels and keep only variant sites
+bcftools view filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz --types snps --min-ac 1 --threads 10 --output-type z -o test_chr10.vcf.gz
+
+
+# Use -m2 -M2 -v snps to only view biallelic SNPs.
+bcftools view filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz -m2 -M2 -v snps --min-ac 1 -Oz -o test3_chr10.vcf.gz
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' test2_chr10.vcf.gz > JRI20_bi_snps_annot.txt
+# bcftools query -f 'chr\tpos\tref\talt[\t%SAMPLE]\n' JRI20_bi_snps_annot.vcf.gz > JRI20_bi_snps_annot.header
+
+
+```
+
+
+## Convert to PLINK format
+
+### 1. Set SNP ID for all the data.
+```{bash, eval=FALSE}
+module load plink
+plink -vcf test2_chr10.vcf.gz --keep-allele-order --set-missing-var-ids @_#_\$1_\$2 --make-bed --out chr10
+```
+
+
+### 2. Get quantgen stat
+
+```{bash}
+plink -bfile chr10 --freq --out chr10  
+
+plink -bfile chr10 --freq --missing --pca --ibc --out chr10  
+# --ibc (ported from GCTA) calculates three inbreeding coefficients for each sample
+```
