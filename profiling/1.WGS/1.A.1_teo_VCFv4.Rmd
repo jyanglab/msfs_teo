@@ -19,7 +19,7 @@ bcftools concat -a --remove-duplicates --file-list input_list.txt --threads 10 -
 bcftools view filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz --types snps --min-ac 1 --threads 10 --output-type z -o test_chr10.vcf.gz
 
 
-# Use -m2 -M2 -v snps to only view biallelic SNPs.
+# Use -m2 -M2 -v snps to only view biallelic SNPs. keep only variant sites using --min-ac
 bcftools view filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz -m2 -M2 -v snps --min-ac 1 -Oz -o test3_chr10.vcf.gz
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' test2_chr10.vcf.gz > JRI20_bi_snps_annot.txt
 # bcftools query -f 'chr\tpos\tref\talt[\t%SAMPLE]\n' JRI20_bi_snps_annot.vcf.gz > JRI20_bi_snps_annot.header
@@ -33,7 +33,7 @@ bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' test2_chr10.vcf.gz > 
 ### 1. Set SNP ID for all the data.
 ```{bash, eval=FALSE}
 module load plink
-plink -vcf test2_chr10.vcf.gz --keep-allele-order --set-missing-var-ids @_#_\$1_\$2 --make-bed --out chr10
+plink -vcf test3_chr10.vcf.gz --keep-allele-order --set-missing-var-ids @_#_\$1_\$2 --make-bed --out chr10
 ```
 
 
