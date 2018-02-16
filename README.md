@@ -5,7 +5,8 @@
 Changed to v4 genome
 
 ### WGS data
-
+from Wenbin:
+/lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4
 
 ### QC report of WGBS
 
