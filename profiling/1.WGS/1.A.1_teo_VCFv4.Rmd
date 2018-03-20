@@ -1,13 +1,23 @@
 ---
-title: "VCFv4 teo20"
+title: "VCFv4 teo20 from Wenbin"
 output: html_notebook
 ---
+
+# download VCF AGPV4 from Wenbin:
+
+```{bash}
+#rsync -alPvz farm:/group/jrigrp4/VCF_JRIAL2_20samples/ .
+irsync -rKV VCF_JRIAL2_20samples/ i:/iplant/home/yangjl/
+irsync -rKV i:/iplant/home/yangjl/teo20_VCF_AGPv4 /lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4
+# QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0
+```
+
 
 ## Concatenate or combine VCF/BCF files.
 
 Need to index them and then concatenate.
 
-```{bash}
+```{bash, eval=FALSE}
 ## test and then run for chr1-9
 tabix -p vcf filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz
 for i in `seq 1 9`; do tabix -p vcf filtered_JRIAL2_20samples_Chr"$i"_Feb13_2017.vcf.gz; done
@@ -16,14 +26,14 @@ for i in `seq 1 9`; do tabix -p vcf filtered_JRIAL2_20samples_Chr"$i"_Feb13_2017
 bcftools concat -a --remove-duplicates --file-list input_list.txt --threads 10 --output-type z -o filtered_JRIAL2_20samples_Chrall_Feb13_2017.vcf.gz
 
 ## remove indels and keep only variant sites
-bcftools view filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz --types snps --min-ac 1 --threads 10 --output-type z -o test_chr10.vcf.gz
-
+#bcftools view filtered_JRIAL2_20samples_Chrall_Feb13_2017.vcf.gz --types snps --min-ac 1 --threads 10 --output-type z -o filtered_JRIAL_20samples_Chrall_03202018_snps.vcf.gz.gz
 
 # Use -m2 -M2 -v snps to only view biallelic SNPs. keep only variant sites using --min-ac
-bcftools view filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz -m2 -M2 -v snps --min-ac 1 -Oz -o test3_chr10.vcf.gz
-bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' test2_chr10.vcf.gz > JRI20_bi_snps_annot.txt
-# bcftools query -f 'chr\tpos\tref\talt[\t%SAMPLE]\n' JRI20_bi_snps_annot.vcf.gz > JRI20_bi_snps_annot.header
+bcftools view filtered_JRIAL_20samples_Chrall_Feb13_2017.vcf.gz -m2 -M2 -v snps --min-ac 1 -Oz -o filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz
 
+# Convert to annotation format
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz > JRI20_bisnps_annot.txt
+# bcftools query -f 'chr\tpos\tref\talt[\t%SAMPLE]\n' JRI20_bi_snps_annot.vcf.gz > JRI20_bi_snps_annot.header
 
 ```
 
