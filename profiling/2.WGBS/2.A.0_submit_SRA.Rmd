@@ -1,0 +1,99 @@
+---
+title: "Get fq from CyVerse and Submit to SRA"
+author: Jinliang Yang
+date: 09-22-2017
+output: html_notebook
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+## Get from CyVerse
+```{bash}
+# cd largedata/
+irsync -rKV i:/iplant/home/yangjl/BS_teo/WGBS_fastq .
+```
+
+
+## gzip it
+
+```{r, eval=FALSE}
+### fastq file
+### extract and gz fastq files
+# for i in *.lz4; do lz4 -d $i; done
+# for i in *.fastq; do gzip --fast $i; done
+# for i in *.lz4; do rm $i; done
+
+library("huskeR")
+files <- list.files(path="largedata/WGBS_fastq", pattern="lz4")
+for(i in 1:length(files)){
+    shid <- paste0("slurm-script/run_pigz_", i, ".sh")
+    cmd1 <- paste0("cd largedata/WGBS_fastq")
+    cmd2 <- paste("lz4 -d --rm", files[i], ">", gsub(".lz4", "", files[i]))
+    cmd3 <- paste("pigz -p 20", gsub(".lz4", "", files[i]))
+    #cmd4 <- paste("rm", files[i])
+    cat(c(cmd1, cmd2, cmd3), file=shid, sep="\n", append=FALSE)
+}
+
+set_array_job(shid = "slurm-script/run_lz4_pigz.sh",
+       shcode = "sh slurm-script/run_pigz_$SLURM_ARRAY_TASK_ID.sh", arrayjobs = "1-40", wd = NULL,
+       jobid = "pigz", email = "yangjl0930@gmail.com", runinfo = c(FALSE, "jclarke", "20", "30","8:00:00"))
+
+
+```
+
+--------------
+
+## Upload via Aspera COmmand line
+
+You may use the following command to upload files via Aspera Command-Line:
+ascp -i <path/to/key_file> -QT -l100m -k1 -d <path/to/folder/containing files> subasp@upload.ncbi.nlm.nih.gov:uploads/yangjlisu@gmail.com_3nAyK7sS
+
+Where:
+<path/to/key_file> must be an absolute path, e.g.: /home/keys/aspera.openssh
+<path/to/folder/containing files> needs to specify the local folder that contains all of the files to upload.
+
+Get the key file.
+
+If you upload your files in your root directory, you will not be able to see them or to select the folder during the submission.
+Make a new subdirectory for each new submission. Your submission subfolder is a temporary holding area and it will be removed once the whole submission is complete.
+Do not upload complex directory structures or files that do not contain sequence data.
+
+Return back to this page and select preload folder, then continue submission. 
+Please note: it takes at least 10 minutes for uploaded files to become available for selection.
+
+```{r}
+library("huskeR")
+
+cmd <- paste0("ascp -i largedata/aspera.openssh -TQ -l100m -k1 ",
+              "-d /group/jrigrp4/diallel_fq/fastq ",
+              "subasp@upload.ncbi.nlm.nih.gov:uploads/yangjl0930@gmail.com_7MfdNojq/GERP-diallel/")
+# ascp -i ~/bin/aspera.openssh -TQ -l100m -k1 -d /group/jrigrp4/diallel_fq/fastq subasp@upload.ncbi.nlm.nih.gov:uploads/yangjl0930@gmail.com_7MfdNojq/GERP-diallel/
+
+# ascp -i ~/bin/aspera.openssh -TQ -l1000m -k1 -d /lustre/work/schnablelab/jyang21/GERP-fq/fastq/* subasp@upload.ncbi.nlm.nih.gov:uploads/yangjl0930@gmail.com_7MfdNojq/GERP-diallel/
+
+
+set_farm_job(slurmsh = "slurm-script/upload_sra.sh",
+             shcode = cmd, wd = NULL, jobid = "upload",
+             email = "yangjl0930@gmail.com", runinfo = c(FALSE, "bigmemh", "1", "5G", "80:00:00"))
+
+###>>> In this path: cd /home/jolyang/Documents/Github/GERP-diallel
+###>>> RUN: sbatch -p bigmemh --mem 5G --ntasks=1 --time=80:00:00 slurm-script/upload_sra.sh
+
+## ssh farm -p 2022
+
+# rm 2920_3807_2920_Y_RIMMA0806-1_R2.fastq.gz
+# rm 2918_3807_2918_N_RIMMA0804.1_R2.fastq.gz
+
+```
+
+
+
+
+
+

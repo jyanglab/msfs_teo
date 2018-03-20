@@ -1,0 +1,37 @@
+---
+title: "PLINK to check VCFv4 stats"
+output: html_notebook
+author: Jinliang Yang
+---
+
+
+# Convert to PLINK format
+
+## 1. Set SNP ID for all the data.
+```{bash, eval=FALSE}
+module load plink/1.90
+## all the data
+plink -vcf filtered_JRIAL_20samples_Chrall_Feb13_2017.vcf.gz --keep-allele-order --set-missing-var-ids @_#_\$1_\$2 --make-bed --out filtered_JRIAL_20samples
+# bi-allelic SNPs
+plink -vcf filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz --keep-allele-order --set-missing-var-ids @_#_\$1_\$2 --make-bed --out filtered_JRIAL_20samples_bisnp
+```
+
+
+## 2. Get quantgen stat
+
+```{bash}
+
+plink -bfile filtered_JRIAL_20samples_bisnp --freq --missing --out filtered_JRIAL_20samples_bisnp  
+# --ibc (ported from GCTA) calculates three inbreeding coefficients for each sample
+```
+
+## 2. Check quantgen stat
+
+```{r, eval=FALSE}
+library("data.table")
+
+bisnp <- fread("largedata/teo20_VCF_AGPv4/filtered_JRIAL_20samples_bisnp.lmiss", header=T, data.table=FALSE)
+
+```
+
+

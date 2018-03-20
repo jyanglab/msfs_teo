@@ -12,6 +12,9 @@ Changed to v4 genome
 - location:
 /lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4
 
+
+
+
 ### QC report of WGBS
 
 [1] "http://htmlpreview.github.io/?https://github.com/yangjl/methylation/blob/master/reports/wgbs_qc_report/JRA1_CTTGTA_R1_fastqc.html"  
