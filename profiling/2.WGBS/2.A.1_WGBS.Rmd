@@ -20,6 +20,7 @@ plink -vcf filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz --keep-allele-
 ## 2. Get quantgen stat
 
 ```{bash}
+plink -bfile filtered_JRIAL_20samples-temporary --freq --missing --out filtered_JRIAL_20samples  
 
 plink -bfile filtered_JRIAL_20samples_bisnp --freq --missing --out filtered_JRIAL_20samples_bisnp  
 # --ibc (ported from GCTA) calculates three inbreeding coefficients for each sample

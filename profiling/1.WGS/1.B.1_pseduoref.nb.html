@@ -172,21 +172,36 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Cmd+Shift+Enter</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKFwibGliL3J1bl9wc2V1ZG9yZWYuUlwiKVxubGlicmFyeShmYXJtZVIpXG5pbnB1dGRmIDwtIGRhdGEuZnJhbWUoaW5wdXQudmNmPVwibGFyZ2VkYXRhL2dhdGtfdmNmL0pSSUFMMUFfam9pbnRfY2FsbC5maWx0ZXJlZF9zbnBzLnZjZlwiLFxuICAgICAgICAgICAgICAgICAgICAgIG91dC5mYT1cImxhcmdlZGF0YS9wZ2Vub21lL215c2FtcGxlLmZhXCIpXG5ydW5fcHNldWRvcmVmKGlucHV0ZGYsXG4gICAgICAgICAgICAgIHJlZi5mYT1cIiRIT01FL2RiY2VudGVyL0FHUC9BR1B2Mi9aZWFfbWF5cy5BR1B2Mi4xNC5kbmEudG9wbGV2ZWwuZmFcIixcbiAgICAgICAgICAgICAgZ2F0a3B3ZD1cIiRIT01FL2Jpbi9HZW5vbWVBbmFseXNpc1RLLTMuNS9HZW5vbWVBbmFseXNpc1RLLmphclwiLFxuICAgICAgICAgICAgICBlbWFpbD1cInlhbmdqbDA5MzBAZ21haWwuY29tXCIsIHJ1bmluZm8gPSBjKFRSVUUsIFwiYmlnbWVtaFwiLCA4KSlcblxuXG5cbiMjIyBydW4gYnNtYXBcbmxpYnJhcnkoZmFybWVSKVxuaW5wdXRkZiA8LSBkYXRhLmZyYW1lKGZxMT1cIi9ncm91cC9qcmlncnA0L0JTX3RlbzIwL2Zhc3RxL0pSQTFfQ1RUR1RBX1IxLmZhc3RxLmd6XCIsXG4gICAgICAgICAgICAgICAgICAgICAgZnEyPVwiL2dyb3VwL2pyaWdycDQvQlNfdGVvMjAvZmFzdHEvSlJBMV9DVFRHVEFfUjIuZmFzdHEuZ3pcIixcbiAgICAgICAgICAgICAgICAgICAgICBvdXQ9XCIkSE9NRS9Eb2N1bWVudHMvR2l0aHViL21ldGh5bGF0aW9uL2xhcmdlZGF0YS9ic21hcC9KUkExXCIpXG5cbnJ1bmFfYnNtYXAoaW5wdXRkZiwgcmVmLmZhPVwiJEhPTUUvRG9jdW1lbnRzL0dpdGh1Yi9tZXRoeWxhdGlvbi9sYXJnZWRhdGEvcGdlbm9tZS9teXNhbXBsZS5mYVwiLFxuICAgICAgICAgICBwaWNhcmRwd2Q9XCIkSE9NRS9iaW4vcGljYXJkLXRvb2xzLTIuMS4xL3BpY2FyZC5qYXJcIixcbiAgICAgICAgICAgZW1haWw9XCJ5YW5namwwOTMwQGdtYWlsLmNvbVwiLCBydW5pbmZvID0gYyhUUlVFLCBcImJpZ21lbW1cIiwgOCkpXG5cbmBgYCJ9 -->
+<pre class="r"><code>source(&quot;lib/run_pseudoref.R&quot;)
+library(farmeR)
+inputdf &lt;- data.frame(input.vcf=&quot;largedata/gatk_vcf/JRIAL1A_joint_call.filtered_snps.vcf&quot;,
+                      out.fa=&quot;largedata/pgenome/mysample.fa&quot;)
+run_pseudoref(inputdf,
+              ref.fa=&quot;$HOME/dbcenter/AGP/AGPv2/Zea_mays.AGPv2.14.dna.toplevel.fa&quot;,
+              gatkpwd=&quot;$HOME/bin/GenomeAnalysisTK-3.5/GenomeAnalysisTK.jar&quot;,
+              email=&quot;yangjl0930@gmail.com&quot;, runinfo = c(TRUE, &quot;bigmemh&quot;, 8))
+
+
+
+### run bsmap
+library(farmeR)
+inputdf &lt;- data.frame(fq1=&quot;/group/jrigrp4/BS_teo20/fastq/JRA1_CTTGTA_R1.fastq.gz&quot;,
+                      fq2=&quot;/group/jrigrp4/BS_teo20/fastq/JRA1_CTTGTA_R2.fastq.gz&quot;,
+                      out=&quot;$HOME/Documents/Github/methylation/largedata/bsmap/JRA1&quot;)
+
+runa_bsmap(inputdf, ref.fa=&quot;$HOME/Documents/Github/methylation/largedata/pgenome/mysample.fa&quot;,
+           picardpwd=&quot;$HOME/bin/picard-tools-2.1.1/picard.jar&quot;,
+           email=&quot;yangjl0930@gmail.com&quot;, runinfo = c(TRUE, &quot;bigmemm&quot;, 8))
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUnVuIFBzZWR1byBSZWYiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIAoKVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkNtZCtTaGlmdCtFbnRlciouIAoKYGBge3J9CnBsb3QoY2FycykKYGBgCgpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ21kK09wdGlvbitJKi4KCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ21kK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuIAoKVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUnVuIFBzZWR1byBSZWYiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7cn0Kc291cmNlKCJsaWIvcnVuX3BzZXVkb3JlZi5SIikKbGlicmFyeShmYXJtZVIpCmlucHV0ZGYgPC0gZGF0YS5mcmFtZShpbnB1dC52Y2Y9ImxhcmdlZGF0YS9nYXRrX3ZjZi9KUklBTDFBX2pvaW50X2NhbGwuZmlsdGVyZWRfc25wcy52Y2YiLAogICAgICAgICAgICAgICAgICAgICAgb3V0LmZhPSJsYXJnZWRhdGEvcGdlbm9tZS9teXNhbXBsZS5mYSIpCnJ1bl9wc2V1ZG9yZWYoaW5wdXRkZiwKICAgICAgICAgICAgICByZWYuZmE9IiRIT01FL2RiY2VudGVyL0FHUC9BR1B2Mi9aZWFfbWF5cy5BR1B2Mi4xNC5kbmEudG9wbGV2ZWwuZmEiLAogICAgICAgICAgICAgIGdhdGtwd2Q9IiRIT01FL2Jpbi9HZW5vbWVBbmFseXNpc1RLLTMuNS9HZW5vbWVBbmFseXNpc1RLLmphciIsCiAgICAgICAgICAgICAgZW1haWw9InlhbmdqbDA5MzBAZ21haWwuY29tIiwgcnVuaW5mbyA9IGMoVFJVRSwgImJpZ21lbWgiLCA4KSkKCgoKIyMjIHJ1biBic21hcApsaWJyYXJ5KGZhcm1lUikKaW5wdXRkZiA8LSBkYXRhLmZyYW1lKGZxMT0iL2dyb3VwL2pyaWdycDQvQlNfdGVvMjAvZmFzdHEvSlJBMV9DVFRHVEFfUjEuZmFzdHEuZ3oiLAogICAgICAgICAgICAgICAgICAgICAgZnEyPSIvZ3JvdXAvanJpZ3JwNC9CU190ZW8yMC9mYXN0cS9KUkExX0NUVEdUQV9SMi5mYXN0cS5neiIsCiAgICAgICAgICAgICAgICAgICAgICBvdXQ9IiRIT01FL0RvY3VtZW50cy9HaXRodWIvbWV0aHlsYXRpb24vbGFyZ2VkYXRhL2JzbWFwL0pSQTEiKQoKcnVuYV9ic21hcChpbnB1dGRmLCByZWYuZmE9IiRIT01FL0RvY3VtZW50cy9HaXRodWIvbWV0aHlsYXRpb24vbGFyZ2VkYXRhL3BnZW5vbWUvbXlzYW1wbGUuZmEiLAogICAgICAgICAgIHBpY2FyZHB3ZD0iJEhPTUUvYmluL3BpY2FyZC10b29scy0yLjEuMS9waWNhcmQuamFyIiwKICAgICAgICAgICBlbWFpbD0ieWFuZ2psMDkzMEBnbWFpbC5jb20iLCBydW5pbmZvID0gYyhUUlVFLCAiYmlnbWVtbSIsIDgpKQoKYGBgCgoK</div>
 
 
 
