@@ -31,8 +31,16 @@ plink -bfile filtered_JRIAL_20samples_bisnp --freq --missing --out filtered_JRIA
 ```{r, eval=FALSE}
 library("data.table")
 
-bisnp <- fread("largedata/teo20_VCF_AGPv4/filtered_JRIAL_20samples_bisnp.lmiss", header=T, data.table=FALSE)
+allsnp <- fread("largedata/teo20_VCF_AGPv4/filtered_JRIAL_20samples.frq", header=T, data.table=FALSE)
+# 235,121,690
+#       1        2        3        4        5        6        7        8 9       10
+# 34,730,663 27,571,221 26,483,734 28,812,163 24,546,889 18,887,225 19,998,823 19,714,663 17,816,401 16,559,908
 
+bisnp <- fread("largedata/teo20_VCF_AGPv4/filtered_JRIAL_20samples_bisnp.frq", header=T, data.table=FALSE)
+# 106690878
+
+#       1        2        3        4        5        6        7        8       9       10
+#15506459 12544637 12090037 13320432 11054242  8575710  8978189  8937735   8176076  7507361
 ```
 
 

@@ -20,7 +20,10 @@ plink -vcf filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz --keep-allele-
 ## 2. Get quantgen stat
 
 ```{bash}
+# all the data
+plink -bfile filtered_JRIAL_20samples --freq --missing --out filtered_JRIAL_20samples
 
+# no-allelic SNPs
 plink -bfile filtered_JRIAL_20samples_bisnp --freq --missing --out filtered_JRIAL_20samples_bisnp  
 # --ibc (ported from GCTA) calculates three inbreeding coefficients for each sample
 ```
@@ -29,6 +32,9 @@ plink -bfile filtered_JRIAL_20samples_bisnp --freq --missing --out filtered_JRIA
 
 ```{r, eval=FALSE}
 library("data.table")
+
+
+allsnp <- fread("largedata/teo20_VCF_AGPv4/filtered_JRIAL_20samples.frq", header=T, data.table=FALSE)
 
 bisnp <- fread("largedata/teo20_VCF_AGPv4/filtered_JRIAL_20samples_bisnp.lmiss", header=T, data.table=FALSE)
 
