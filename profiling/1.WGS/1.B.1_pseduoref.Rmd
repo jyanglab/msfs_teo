@@ -30,25 +30,32 @@ head -n 1 JRI20_bisnps_annot.header > header
 
 
 ```{r}
-devtools::install_github("yangjl/pseudoRef")
+#devtools::install_github("yangjl/pseudoRef")
 
 library("data.table")
 library("Biostrings")
 library("pseudoRef")
 
 
-snpdt <- fread()
-fa <- "/project/jyanglab/jyang21/dbcenter/AGP/AGPv4/Zea_mays.AGPv4.dna.toplevel.fa.gz"
+
+
 arules <- data.frame(from=c("M", "Y", "R", "K"), to=c("C", "C", "G", "T"))
 outdir <- "largedata/pgenome"
 
-h <- read.table("largedata/teo20_VCF_AGPv4/header", header=FALSE)
-snpdf <- fread("largedata/teo20_VCF_AGPv4/JRI20_bisnps_annot.txt", header=FALSE)
+h <- read.table("largedata/teo20_VCF_AGPv4/header", header=TRUE)
+snpdt <- fread("largedata/teo20_VCF_AGPv4/JRI20_bisnps_annot.txt", header=FALSE, nrows=10)
 
-pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules = NULL, outdir)
+teo20 <- read.csv("data/teo20_ids.csv")
+names(snpdt) <- gsub("_.*", "", names(h))
+
+# fa can be "character", "DNAStringSet" or "DNAString"
+fa <- "/project/jyanglab/jyang21/dbcenter/AGP/AGPv4/Zea_mays.AGPv4.dna.toplevel_chr1-10.fa"
+fa <- readDNAStringSet(filepath = fa, format="fasta")
+
+pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules, outdir)
 
 
-
+# Error in `[.data.frame`(x, i) : object 'SAMPLE' not found
 
 library(farmeR)
 inputdf <- data.frame(input.vcf="largedata/gatk_vcf/JRIAL1A_joint_call.filtered_snps.vcf",
