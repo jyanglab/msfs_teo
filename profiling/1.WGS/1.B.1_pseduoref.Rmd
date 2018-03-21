@@ -23,6 +23,11 @@ head -n 1 JRI20_bisnps_annot.header > header
 ```
 
 
+##
+
+
+
+
 
 ```{r}
 devtools::install_github("yangjl/pseudoRef")
@@ -30,6 +35,20 @@ devtools::install_github("yangjl/pseudoRef")
 library("data.table")
 library("Biostrings")
 library("pseudoRef")
+
+
+snpdt <- fread()
+fa <- "/project/jyanglab/jyang21/dbcenter/AGP/AGPv4/Zea_mays.AGPv4.dna.toplevel.fa.gz"
+arules <- data.frame(from=c("M", "Y", "R", "K"), to=c("C", "C", "G", "T"))
+outdir <- "largedata/pgenome"
+
+h <- read.table("largedata/teo20_VCF_AGPv4/header", header=FALSE)
+snpdf <- fread("largedata/teo20_VCF_AGPv4/JRI20_bisnps_annot.txt", header=FALSE)
+
+pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules = NULL, outdir)
+
+
+
 
 library(farmeR)
 inputdf <- data.frame(input.vcf="largedata/gatk_vcf/JRIAL1A_joint_call.filtered_snps.vcf",
