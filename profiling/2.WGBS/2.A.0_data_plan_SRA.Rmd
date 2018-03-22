@@ -19,6 +19,14 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 - /iplant/home/yangjl/BS_teo/bam_dedup
 - /iplant/home/yangjl/BS_teo/teo20_VCF_AGPv4
 
+
+```{bash, eval=FALSE}
+irsync -rKV /group/jrigrp3/jyang/methylation/largedata/wgbs_fq/ i:/iplant/home/yangjl/Github/methylation/largedata/wgbs_fq/
+irsync -rKV i:/iplant/home/yangjl/Github/methylation/largedata/wgbs_fq/ /lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4
+```
+
+
+
 ## Copy data from CyVerse
 
 ```{bash}
