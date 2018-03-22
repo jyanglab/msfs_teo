@@ -36,6 +36,9 @@ res$outpe <- gsub(".*\\)\\:", "", res$outpe)
 res$totout <- gsub(".*\\)\\:", "", res$totout)
 write.table(res, "cache/maize_bismap_trimming_stat.txt", sep="\t", row.names=FALSE, quote=FALSE)
 
+
+
+
 ######## methylation
 stat <- read.delim("cache/maize_bismap_trimming_stat.txt", header=TRUE)
 #stat$totpe <- gsub("\\s+|,|\\(.*|bp", "", stat$totpe)
