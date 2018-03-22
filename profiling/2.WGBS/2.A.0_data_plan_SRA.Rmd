@@ -13,11 +13,20 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ```
 
 
-## Get from CyVerse
+## Data Plan: CyVerse `/iplant/home/yangjl/BS_teo/`
+
+- /iplant/home/yangjl/BS_teo/WGBS_fastq_lz4
+- /iplant/home/yangjl/BS_teo/bam_dedup
+- /iplant/home/yangjl/BS_teo/teo20_VCF_AGPv4
+
+## Copy data from CyVerse
+
 ```{bash}
 # cd largedata/
 irsync -rKV i:/iplant/home/yangjl/BS_teo/WGBS_fastq .
 ```
+
+----------------------------------
 
 
 ## gzip it

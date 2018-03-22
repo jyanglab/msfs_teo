@@ -23,11 +23,7 @@ head -n 1 JRI20_bisnps_annot.header > header
 ```
 
 
-##
-
-
-
-
+## using the updated `pseudoRef` the old verion is not working.
 
 ```{r}
 #devtools::install_github("yangjl/pseudoRef")
@@ -36,14 +32,11 @@ library("data.table")
 library("Biostrings")
 library("pseudoRef")
 
-
-
-
 arules <- data.frame(from=c("M", "Y", "R", "K"), to=c("C", "C", "G", "T"))
 outdir <- "largedata/pgenome"
 
 h <- read.table("largedata/teo20_VCF_AGPv4/header", header=TRUE)
-snpdt <- fread("largedata/teo20_VCF_AGPv4/JRI20_bisnps_annot.txt", header=FALSE, nrows=10)
+snpdt <- fread("largedata/teo20_VCF_AGPv4/JRI20_bisnps_annot.txt", header=FALSE)
 
 teo20 <- read.csv("data/teo20_ids.csv")
 names(snpdt) <- gsub("_.*", "", names(h))
@@ -54,7 +47,32 @@ fa <- readDNAStringSet(filepath = fa, format="fasta")
 
 pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules, outdir)
 
+```
 
+###>>> printing fasta file for sample: [ JRIAL2A ] ...
+###>>> printing fasta file for sample: [ JRIAL2B ] ...
+###>>> printing fasta file for sample: [ JRIAL2C ] ...
+###>>> printing fasta file for sample: [ JRIAL2D ] ...
+###>>> printing fasta file for sample: [ JRIAL2E ] ...
+###>>> printing fasta file for sample: [ JRIAL2F ] ...
+###>>> printing fasta file for sample: [ JRIAL2G ] ...
+###>>> printing fasta file for sample: [ JRIAL2H ] ...
+###>>> printing fasta file for sample: [ JRIAL2I ] ...
+###>>> printing fasta file for sample: [ JRIAL2J ] ...
+###>>> printing fasta file for sample: [ JRIAL2K ] ...
+###>>> printing fasta file for sample: [ JRIAL2L ] ...
+###>>> printing fasta file for sample: [ JRIAL2M ] ...
+###>>> printing fasta file for sample: [ JRIAL2N ] ...
+###>>> printing fasta file for sample: [ JRIAL2O ] ...
+###>>> printing fasta file for sample: [ JRIAL2P ] ...
+###>>> printing fasta file for sample: [ JRIAL2Q ] ...
+###>>> printing fasta file for sample: [ JRIAL2R ] ...
+###>>> printing fasta file for sample: [ JRIAL2S ] ...
+###>>> printing fasta file for sample: [ JRIAL2T ] ...
+
+
+
+```{r, eval=FALSE}
 # Error in `[.data.frame`(x, i) : object 'SAMPLE' not found
 
 library(farmeR)
@@ -76,8 +94,6 @@ inputdf <- data.frame(fq1="/group/jrigrp4/BS_teo20/fastq/JRA1_CTTGTA_R1.fastq.gz
 runa_bsmap(inputdf, ref.fa="$HOME/Documents/Github/methylation/largedata/pgenome/mysample.fa",
            picardpwd="$HOME/bin/picard-tools-2.1.1/picard.jar",
            email="yangjl0930@gmail.com", runinfo = c(TRUE, "bigmemm", 8))
-
 ```
-
 
 
