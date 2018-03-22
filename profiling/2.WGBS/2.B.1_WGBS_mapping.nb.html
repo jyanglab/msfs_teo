@@ -178,12 +178,79 @@ $(document).ready(function () {
 <h1>Prepare bimark Genome</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjpbImlkdGFiIDwtIHJlYWQuY3N2KFwiZGF0YS90ZW8yMF9pZHMuY3N2XCIpIiwiaWR0YWIkaWRjaGFyIDwtIGdzdWIoXCItXCIsIFwiXCIsIGlkdGFiJGlkY2hhcikiLCJpZHRhYiRwaWQgPC0gcGFzdGUwKFwiSlJcIiwgaWR0YWIkcGxhdGUpIiwiIiwiIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiLCIjIHB1dCBmYXN0YSBpbnRvIHNlcGVyYXRlIGZvbGRlcnMiLCJmIDwtIGxpc3QuZmlsZXMocGF0aD1cImxhcmdlZGF0YS9wZ2Vub21lXCIsIHBhdHRlcm49XCJmYXN0YVwiLCBmdWxsLm5hbWVzID0gVFJVRSkiLCJkZiA8LSBkYXRhLmZyYW1lKGRpcj1mLCBmaWxlPWYpIiwiZGYkZGlyIDwtIGdzdWIoXCIuZmFzdGFcIiwgXCJcIiwgZGYkZGlyKSIsImRmJHRvIDwtIHBhc3RlMChkZiRkaXIsIGdzdWIoXCIuKnBnZW5vbWVcIiwgXCJcIiwgZGYkZmlsZSkpIiwiZm9yKGkgaW4gMTpucm93KGRmKSl7IiwiICBkaXIuY3JlYXRlKGRmJGRpcltpXSkiLCIgIGZpbGUucmVuYW1lKGFzLmNoYXJhY3RlcihkZiRmaWxlW2ldKSwgYXMuY2hhcmFjdGVyKGRmJHRvW2ldKSkiLCJ9IiwiIiwiIiwiIyMjIyMjIyMjIyBwcmVwYXJpbmcgZ2Vub21lIiwiZm9yKGkgaW4gMTpucm93KGlkdGFiKSl7IiwiICAgIHNoaWQgPC0gcGFzdGUwKFwic2x1cm0tc2NyaXB0L3J1bl9wZ1wiLCBpLCBcIi5zaFwiKSIsIiAgICBjbWQxIDwtIHBhc3RlMChcImJpc21hcmtfZ2Vub21lX3ByZXBhcmF0aW9uIC0tYm93dGllMiBsYXJnZWRhdGEvcGdlbm9tZS9cIiwgaWR0YWIkaWRjaGFyW2ldKSIsIiAgICBjYXQoY21kMSwgZmlsZT1zaGlkLCBzZXA9XCJcXG5cIiwgYXBwZW5kPUZBTFNFKSIsIn0gICAgIiwiIiwiIiwiIyMgbG9hZCBiaXNtYXJrLzAuMTQiLCJsaWJyYXJ5KFwiaHVza2VSXCIpIiwiY21kIDwtIGMoXCJtb2R1bGUgbG9hZCBiaXNtYXJrXCIsIFwibW9kdWxlIGxvYWQgYm93dGllLzIuMlwiLCBcInNoIHNsdXJtLXNjcmlwdC9ydW5fcGckU0xVUk1fQVJSQVlfVEFTS19JRC5zaFwiKSIsInNldF9hcnJheV9qb2Ioc2hpZD1cInNsdXJtLXNjcmlwdC9ydW5fcGcuc2hcIiwgc2hjb2RlPWNtZCwiLCIgICAgICAgICAgICAgIGFycmF5am9icz1cIjEtMjBcIiwgd2Q9TlVMTCwgam9iaWQ9XCJwZ2pvYlwiLCBlbWFpbD1cInlhbmdqbDA5MzBAZ21haWwuY29tXCIsIiwiICAgICAgICAgICAgICBydW4gPSBjKFRSVUUsIFwiamNsYXJrZVwiLCBcIjJcIiwgXCIxMEdcIiwgXCI4OjAwOjAwXCIpKSJdfQ== -->
+<pre class="r"><code>idtab &lt;- read.csv(&quot;data/teo20_ids.csv&quot;)
+idtab$idchar &lt;- gsub(&quot;-&quot;, &quot;&quot;, idtab$idchar)
+idtab$pid &lt;- paste0(&quot;JR&quot;, idtab$plate)
+
+#####################################################################################################
+# put fasta into seperate folders
+f &lt;- list.files(path=&quot;largedata/pgenome&quot;, pattern=&quot;fasta&quot;, full.names = TRUE)
+df &lt;- data.frame(dir=f, file=f)
+df$dir &lt;- gsub(&quot;.fasta&quot;, &quot;&quot;, df$dir)
+df$to &lt;- paste0(df$dir, gsub(&quot;.*pgenome&quot;, &quot;&quot;, df$file))
+for(i in 1:nrow(df)){
+  dir.create(df$dir[i])
+  file.rename(as.character(df$file[i]), as.character(df$to[i]))
+}
+
+
+########## preparing genome
+for(i in 1:nrow(idtab)){
+    shid &lt;- paste0(&quot;slurm-script/run_pg&quot;, i, &quot;.sh&quot;)
+    cmd1 &lt;- paste0(&quot;bismark_genome_preparation --bowtie2 largedata/pgenome/&quot;, idtab$idchar[i])
+    cat(cmd1, file=shid, sep=&quot;\n&quot;, append=FALSE)
+}    
+
+
+## load bismark/0.14
+library(&quot;huskeR&quot;)
+cmd &lt;- c(&quot;module load bismark&quot;, &quot;module load bowtie/2.2&quot;, &quot;sh slurm-script/run_pg$SLURM_ARRAY_TASK_ID.sh&quot;)
+set_array_job(shid=&quot;slurm-script/run_pg.sh&quot;, shcode=cmd,
+              arrayjobs=&quot;1-20&quot;, wd=NULL, jobid=&quot;pgjob&quot;, email=&quot;yangjl0930@gmail.com&quot;,
+              run = c(TRUE, &quot;jclarke&quot;, &quot;2&quot;, &quot;10G&quot;, &quot;8:00:00&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="mapping" class="section level1">
+<h1>Mapping</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmYXJtZVIpXG5cbmlkdGFiIDwtIHJlYWQuY3N2KFwiZGF0YS90ZW8yMF9pZHMuY3N2XCIpXG5pZHRhYiRpZGNoYXIgPC0gZ3N1YihcIi1cIiwgXCJcIiwgaWR0YWIkaWRjaGFyKVxuaWR0YWIkcGlkIDwtIHBhc3RlMChcIkpSXCIsIGlkdGFiJHBsYXRlKVxuXG4jIyMjIyMjIyMjIyBOb3RlLCBtb3ZlIGZxIGZpbGVzIHRvIC9ncm91cC9qcmlncnA3XG4jIyMjIyMjIyMjIyBhbGlnbm1lbnRcbmZxMSA8LSBsaXN0LmZpbGVzKHBhdGg9XCIvZ3JvdXAvanJpZ3JwMy9qeWFuZy9tZXRoeWxhdGlvbi9sYXJnZWRhdGEvd2dic19mcVwiLCBwYXR0ZXJuPVwiUjFfdHJpbW1lZC5mYXN0cS5neiRcIiwgZnVsbC5uYW1lcyA9IFRSVUUpXG5mcTIgPC0gbGlzdC5maWxlcyhwYXRoPVwiL2dyb3VwL2pyaWdycDMvanlhbmcvbWV0aHlsYXRpb24vbGFyZ2VkYXRhL3dnYnNfZnFcIiwgcGF0dGVybj1cIlIyX3RyaW1tZWQuZmFzdHEuZ3okXCIsIGZ1bGwubmFtZXMgPSBUUlVFKVxuXG4jYmFtZmlsZXMgPC0gbGlzdC5maWxlcyhwYXRoPVwiL2dyb3VwL2pyaWdycDQvQlNfdGVvMjAvV0dCUy9CU01cIiwgcGF0dGVybj1cImJhbSRcIiwgZnVsbC5uYW1lcyA9IFRSVUUpXG4jIyMgbm90ZTogZm9yIGFsaWdubWVudCwgXCJiYW1cIiBjb2wgc2hvdWxkIG5vdCBiZSBwcmVzZW50LlxuaW5wdXRkZiA8LSBkYXRhLmZyYW1lKGZxMSA9IGZxMSwgIGZxMiA9IGZxMiwgb3V0YmFzZSA9IGdzdWIoXCIuKi98Xy4qXCIsIFwiXCIsIGZxMSksIG91dDI9Z3N1YihcIi4qL3xfLipcIiwgXCJcIiwgZnEyKSlcblxuaWYoc3VtKGFzLmNoYXJhY3RlcihpbnB1dGRmJG91dGJhc2UpICE9IGFzLmNoYXJhY3RlcihpbnB1dGRmJG91dDIpKSA+IDAgICl7c3RvcChcIiEhISBQRSBub3QgcmlnaHQgISEhXCIpfVxuXG5pbnB1dGRmIDwtIG1lcmdlKGlucHV0ZGYsIGlkdGFiWywgYyhcImlkY2hhclwiLCBcInBpZFwiKV0sIGJ5Lng9XCJvdXRiYXNlXCIsIGJ5Lnk9XCJwaWRcIilcbmlucHV0ZGYkZ2Vub21lIDwtIHBhc3RlMChcIiRIT01FL0RvY3VtZW50cy9HaXRodWIvbWV0aHlsYXRpb24vbGFyZ2VkYXRhL3dnYnNfcGdlbi9cIiwgaW5wdXRkZiRpZGNoYXIpXG5cbiMjIyBBR1B2MlxucnVuX2Jpc21hcmsoaW5wdXRkZlstMSxdLCBnZW5vbWUgPSBOVUxMLFxuICAgICAgICAgICAgb3V0ZGlyID0gXCIvaG9tZS9qb2x5YW5nL0RvY3VtZW50cy9HaXRodWIvbWV0aHlsYXRpb24vbGFyZ2VkYXRhL3dnYnNfYWxpZ25cIiwgXG4gICAgICAgICAgICBOID0gMSwgYWxpZ24gPSBUUlVFLFxuICAgICAgICAgICAgZW1haWwgPSBcInlhbmdqbDA5MzBAZ21haWwuY29tXCIsIHJ1bmluZm8gPSBjKFRSVUUsIFwiYmlnbWVtbVwiLCAxNikpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(farmeR)
+
+idtab &lt;- read.csv(&quot;data/teo20_ids.csv&quot;)
+idtab$idchar &lt;- gsub(&quot;-&quot;, &quot;&quot;, idtab$idchar)
+idtab$pid &lt;- paste0(&quot;JR&quot;, idtab$plate)
+
+########### Note, move fq files to /group/jrigrp7
+########### alignment
+fq1 &lt;- list.files(path=&quot;/group/jrigrp3/jyang/methylation/largedata/wgbs_fq&quot;, pattern=&quot;R1_trimmed.fastq.gz$&quot;, full.names = TRUE)
+fq2 &lt;- list.files(path=&quot;/group/jrigrp3/jyang/methylation/largedata/wgbs_fq&quot;, pattern=&quot;R2_trimmed.fastq.gz$&quot;, full.names = TRUE)
+
+#bamfiles &lt;- list.files(path=&quot;/group/jrigrp4/BS_teo20/WGBS/BSM&quot;, pattern=&quot;bam$&quot;, full.names = TRUE)
+### note: for alignment, &quot;bam&quot; col should not be present.
+inputdf &lt;- data.frame(fq1 = fq1,  fq2 = fq2, outbase = gsub(&quot;.*/|_.*&quot;, &quot;&quot;, fq1), out2=gsub(&quot;.*/|_.*&quot;, &quot;&quot;, fq2))
+
+if(sum(as.character(inputdf$outbase) != as.character(inputdf$out2)) &gt; 0  ){stop(&quot;!!! PE not right !!!&quot;)}
+
+inputdf &lt;- merge(inputdf, idtab[, c(&quot;idchar&quot;, &quot;pid&quot;)], by.x=&quot;outbase&quot;, by.y=&quot;pid&quot;)
+inputdf$genome &lt;- paste0(&quot;$HOME/Documents/Github/methylation/largedata/wgbs_pgen/&quot;, inputdf$idchar)
+
+### AGPv2
+run_bismark(inputdf[-1,], genome = NULL,
+            outdir = &quot;/home/jolyang/Documents/Github/methylation/largedata/wgbs_align&quot;, 
+            N = 1, align = TRUE,
+            email = &quot;yangjl0930@gmail.com&quot;, runinfo = c(TRUE, &quot;bigmemm&quot;, 16))
+</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV0dCUyBNYXBwaW5nIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKYXV0aG9yOiBKaW5saWFuZyBZYW5nCi0tLQoKCiMgUHJlcGFyZSBiaW1hcmsgR2Vub21lCgoKYGBge3J9CmlkdGFiIDwtIHJlYWQuY3N2KCJkYXRhL3RlbzIwX2lkcy5jc3YiKQppZHRhYiRpZGNoYXIgPC0gZ3N1YigiLSIsICIiLCBpZHRhYiRpZGNoYXIpCmlkdGFiJHBpZCA8LSBwYXN0ZTAoIkpSIiwgaWR0YWIkcGxhdGUpCgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIHB1dCBmYXN0YSBpbnRvIHNlcGVyYXRlIGZvbGRlcnMKZiA8LSBsaXN0LmZpbGVzKHBhdGg9ImxhcmdlZGF0YS9wZ2Vub21lIiwgcGF0dGVybj0iZmFzdGEiLCBmdWxsLm5hbWVzID0gVFJVRSkKZGYgPC0gZGF0YS5mcmFtZShkaXI9ZiwgZmlsZT1mKQpkZiRkaXIgPC0gZ3N1YigiLmZhc3RhIiwgIiIsIGRmJGRpcikKZGYkdG8gPC0gcGFzdGUwKGRmJGRpciwgZ3N1YigiLipwZ2Vub21lIiwgIiIsIGRmJGZpbGUpKQpmb3IoaSBpbiAxOm5yb3coZGYpKXsKICBkaXIuY3JlYXRlKGRmJGRpcltpXSkKICBmaWxlLnJlbmFtZShhcy5jaGFyYWN0ZXIoZGYkZmlsZVtpXSksIGFzLmNoYXJhY3RlcihkZiR0b1tpXSkpCn0KCgoKIyMjIyMjIyMjIyBwcmVwYXJpbmcgZ2Vub21lCmZvcihpIGluIDE6bnJvdyhpZHRhYikpewogICAgc2hpZCA8LSBwYXN0ZTAoInNsdXJtLXNjcmlwdC9ydW5fcGciLCBpLCAiLnNoIikKICAgIGNtZDEgPC0gcGFzdGUwKCJiaXNtYXJrX2dlbm9tZV9wcmVwYXJhdGlvbiAtLWJvd3RpZTIgbGFyZ2VkYXRhL3BnZW5vbWUvIiwgaWR0YWIkaWRjaGFyW2ldKQogICAgY2F0KGNtZDEsIGZpbGU9c2hpZCwgc2VwPSJcbiIsIGFwcGVuZD1GQUxTRSkKfSAgICAKCgojIyBsb2FkIGJpc21hcmsvMC4xNApsaWJyYXJ5KCJodXNrZVIiKQpjbWQgPC0gYygibW9kdWxlIGxvYWQgYmlzbWFyayIsICJtb2R1bGUgbG9hZCBib3d0aWUvMi4yIiwgInNoIHNsdXJtLXNjcmlwdC9ydW5fcGckU0xVUk1fQVJSQVlfVEFTS19JRC5zaCIpCnNldF9hcnJheV9qb2Ioc2hpZD0ic2x1cm0tc2NyaXB0L3J1bl9wZy5zaCIsIHNoY29kZT1jbWQsCiAgICAgICAgICAgICAgYXJyYXlqb2JzPSIxLTIwIiwgd2Q9TlVMTCwgam9iaWQ9InBnam9iIiwgZW1haWw9InlhbmdqbDA5MzBAZ21haWwuY29tIiwKICAgICAgICAgICAgICBydW4gPSBjKFRSVUUsICJqY2xhcmtlIiwgIjIiLCAiMTBHIiwgIjg6MDA6MDAiKSkKCgpgYGAKCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV0dCUyBNYXBwaW5nIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKYXV0aG9yOiBKaW5saWFuZyBZYW5nCi0tLQoKCiMgUHJlcGFyZSBiaW1hcmsgR2Vub21lCgoKYGBge3IsIGV2YWw9RkFMU0V9CmlkdGFiIDwtIHJlYWQuY3N2KCJkYXRhL3RlbzIwX2lkcy5jc3YiKQppZHRhYiRpZGNoYXIgPC0gZ3N1YigiLSIsICIiLCBpZHRhYiRpZGNoYXIpCmlkdGFiJHBpZCA8LSBwYXN0ZTAoIkpSIiwgaWR0YWIkcGxhdGUpCgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIHB1dCBmYXN0YSBpbnRvIHNlcGVyYXRlIGZvbGRlcnMKZiA8LSBsaXN0LmZpbGVzKHBhdGg9ImxhcmdlZGF0YS9wZ2Vub21lIiwgcGF0dGVybj0iZmFzdGEiLCBmdWxsLm5hbWVzID0gVFJVRSkKZGYgPC0gZGF0YS5mcmFtZShkaXI9ZiwgZmlsZT1mKQpkZiRkaXIgPC0gZ3N1YigiLmZhc3RhIiwgIiIsIGRmJGRpcikKZGYkdG8gPC0gcGFzdGUwKGRmJGRpciwgZ3N1YigiLipwZ2Vub21lIiwgIiIsIGRmJGZpbGUpKQpmb3IoaSBpbiAxOm5yb3coZGYpKXsKICBkaXIuY3JlYXRlKGRmJGRpcltpXSkKICBmaWxlLnJlbmFtZShhcy5jaGFyYWN0ZXIoZGYkZmlsZVtpXSksIGFzLmNoYXJhY3RlcihkZiR0b1tpXSkpCn0KCgojIyMjIyMjIyMjIHByZXBhcmluZyBnZW5vbWUKZm9yKGkgaW4gMTpucm93KGlkdGFiKSl7CiAgICBzaGlkIDwtIHBhc3RlMCgic2x1cm0tc2NyaXB0L3J1bl9wZyIsIGksICIuc2giKQogICAgY21kMSA8LSBwYXN0ZTAoImJpc21hcmtfZ2Vub21lX3ByZXBhcmF0aW9uIC0tYm93dGllMiBsYXJnZWRhdGEvcGdlbm9tZS8iLCBpZHRhYiRpZGNoYXJbaV0pCiAgICBjYXQoY21kMSwgZmlsZT1zaGlkLCBzZXA9IlxuIiwgYXBwZW5kPUZBTFNFKQp9ICAgIAoKCiMjIGxvYWQgYmlzbWFyay8wLjE0CmxpYnJhcnkoImh1c2tlUiIpCmNtZCA8LSBjKCJtb2R1bGUgbG9hZCBiaXNtYXJrIiwgIm1vZHVsZSBsb2FkIGJvd3RpZS8yLjIiLCAic2ggc2x1cm0tc2NyaXB0L3J1bl9wZyRTTFVSTV9BUlJBWV9UQVNLX0lELnNoIikKc2V0X2FycmF5X2pvYihzaGlkPSJzbHVybS1zY3JpcHQvcnVuX3BnLnNoIiwgc2hjb2RlPWNtZCwKICAgICAgICAgICAgICBhcnJheWpvYnM9IjEtMjAiLCB3ZD1OVUxMLCBqb2JpZD0icGdqb2IiLCBlbWFpbD0ieWFuZ2psMDkzMEBnbWFpbC5jb20iLAogICAgICAgICAgICAgIHJ1biA9IGMoVFJVRSwgImpjbGFya2UiLCAiMiIsICIxMEciLCAiODowMDowMCIpKQoKCmBgYAoKCiMgTWFwcGluZwoKYGBge3J9CmxpYnJhcnkoZmFybWVSKQoKaWR0YWIgPC0gcmVhZC5jc3YoImRhdGEvdGVvMjBfaWRzLmNzdiIpCmlkdGFiJGlkY2hhciA8LSBnc3ViKCItIiwgIiIsIGlkdGFiJGlkY2hhcikKaWR0YWIkcGlkIDwtIHBhc3RlMCgiSlIiLCBpZHRhYiRwbGF0ZSkKCiMjIyMjIyMjIyMjIE5vdGUsIG1vdmUgZnEgZmlsZXMgdG8gL2dyb3VwL2pyaWdycDcKIyMjIyMjIyMjIyMgYWxpZ25tZW50CmZxMSA8LSBsaXN0LmZpbGVzKHBhdGg9Ii9ncm91cC9qcmlncnAzL2p5YW5nL21ldGh5bGF0aW9uL2xhcmdlZGF0YS93Z2JzX2ZxIiwgcGF0dGVybj0iUjFfdHJpbW1lZC5mYXN0cS5neiQiLCBmdWxsLm5hbWVzID0gVFJVRSkKZnEyIDwtIGxpc3QuZmlsZXMocGF0aD0iL2dyb3VwL2pyaWdycDMvanlhbmcvbWV0aHlsYXRpb24vbGFyZ2VkYXRhL3dnYnNfZnEiLCBwYXR0ZXJuPSJSMl90cmltbWVkLmZhc3RxLmd6JCIsIGZ1bGwubmFtZXMgPSBUUlVFKQoKI2JhbWZpbGVzIDwtIGxpc3QuZmlsZXMocGF0aD0iL2dyb3VwL2pyaWdycDQvQlNfdGVvMjAvV0dCUy9CU00iLCBwYXR0ZXJuPSJiYW0kIiwgZnVsbC5uYW1lcyA9IFRSVUUpCiMjIyBub3RlOiBmb3IgYWxpZ25tZW50LCAiYmFtIiBjb2wgc2hvdWxkIG5vdCBiZSBwcmVzZW50LgppbnB1dGRmIDwtIGRhdGEuZnJhbWUoZnExID0gZnExLCAgZnEyID0gZnEyLCBvdXRiYXNlID0gZ3N1YigiLiovfF8uKiIsICIiLCBmcTEpLCBvdXQyPWdzdWIoIi4qL3xfLioiLCAiIiwgZnEyKSkKCmlmKHN1bShhcy5jaGFyYWN0ZXIoaW5wdXRkZiRvdXRiYXNlKSAhPSBhcy5jaGFyYWN0ZXIoaW5wdXRkZiRvdXQyKSkgPiAwICApe3N0b3AoIiEhISBQRSBub3QgcmlnaHQgISEhIil9CgppbnB1dGRmIDwtIG1lcmdlKGlucHV0ZGYsIGlkdGFiWywgYygiaWRjaGFyIiwgInBpZCIpXSwgYnkueD0ib3V0YmFzZSIsIGJ5Lnk9InBpZCIpCmlucHV0ZGYkZ2Vub21lIDwtIHBhc3RlMCgiJEhPTUUvRG9jdW1lbnRzL0dpdGh1Yi9tZXRoeWxhdGlvbi9sYXJnZWRhdGEvd2dic19wZ2VuLyIsIGlucHV0ZGYkaWRjaGFyKQoKIyMjIEFHUHYyCnJ1bl9iaXNtYXJrKGlucHV0ZGZbLTEsXSwgZ2Vub21lID0gTlVMTCwKICAgICAgICAgICAgb3V0ZGlyID0gIi9ob21lL2pvbHlhbmcvRG9jdW1lbnRzL0dpdGh1Yi9tZXRoeWxhdGlvbi9sYXJnZWRhdGEvd2dic19hbGlnbiIsIAogICAgICAgICAgICBOID0gMSwgYWxpZ24gPSBUUlVFLAogICAgICAgICAgICBlbWFpbCA9ICJ5YW5namwwOTMwQGdtYWlsLmNvbSIsIHJ1bmluZm8gPSBjKFRSVUUsICJiaWdtZW1tIiwgMTYpKQoKYGBgCgoKCg==</div>
 
 
 
