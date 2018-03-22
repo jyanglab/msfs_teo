@@ -1,0 +1,49 @@
+---
+title: "WGBS Mapping"
+output: html_notebook
+author: Jinliang Yang
+---
+
+
+# Prepare bimark Genome
+
+
+```{r}
+idtab <- read.csv("data/teo20_ids.csv")
+idtab$idchar <- gsub("-", "", idtab$idchar)
+idtab$pid <- paste0("JR", idtab$plate)
+
+#####################################################################################################
+# put fasta into seperate folders
+f <- list.files(path="largedata/pgenome", pattern="fasta", full.names = TRUE)
+df <- data.frame(dir=f, file=f)
+df$dir <- gsub(".fasta", "", df$dir)
+df$to <- paste0(df$dir, gsub(".*pgenome", "", df$file))
+for(i in 1:nrow(df)){
+  dir.create(df$dir[i])
+  file.rename(as.character(df$file[i]), as.character(df$to[i]))
+}
+
+
+
+########## preparing genome
+for(i in 1:nrow(idtab)){
+    shid <- paste0("slurm-script/run_pg", i, ".sh")
+    cmd1 <- paste0("bismark_genome_preparation --bowtie2 largedata/pgenome/", idtab$idchar[i])
+    cat(cmd1, file=shid, sep="\n", append=FALSE)
+}    
+
+
+## load bismark/0.14
+library("huskeR")
+cmd <- c("module load bismark", "module load bowtie/2.2", "sh slurm-script/run_pg$SLURM_ARRAY_TASK_ID.sh")
+set_array_job(shid="slurm-script/run_pg.sh", shcode=cmd,
+              arrayjobs="1-20", wd=NULL, jobid="pgjob", email="yangjl0930@gmail.com",
+              run = c(TRUE, "jclarke", "2", "10G", "8:00:00"))
+
+
+```
+
+
+
+
