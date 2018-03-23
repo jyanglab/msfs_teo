@@ -22,8 +22,42 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 ```{bash, eval=FALSE}
 irsync -rKV /group/jrigrp3/jyang/methylation/largedata/wgbs_fq/ i:/iplant/home/yangjl/Github/methylation/largedata/wgbs_fq/
-irsync -rKV i:/iplant/home/yangjl/Github/methylation/largedata/wgbs_fq/ /lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4
+irsync -rKV i:/iplant/home/yangjl/Github/methylation/largedata/wgbs_fq/ /lustre/work/jyanglab/jyang21/hugedata/wgbs_fq/
+
+
 ```
+
+imv JRA3_CCGTCC_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRA1_CTTGTA_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRA1_CTTGTA_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRA2_TGACCA_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRA2_TGACCA_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRA3_CCGTCC_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRA3_CCGTCC_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRB1_NoIndex_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRB1_NoIndex_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRB2_NoIndex_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRB2_NoIndex_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRB3_GTCCGC_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRB3_GTCCGC_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRC1_AGTTCC_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRC1_AGTTCC_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRC2_GCCAAT_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+
+imv JRC2_GCCAAT_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRC3_GTGAAA_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRC3_GTGAAA_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRD1_ATGTCA_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRD1_ATGTCA_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRD2_CAGATC_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRD2_CAGATC_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRD3_NoIndex_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRD3_NoIndex_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRE1_CCGTCC_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRE1_CCGTCC_R2_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+imv JRE2_CTTGTA_R1_trimmed.fastq.gz /iplant/home/yangjl/BS_teo/wgbs_fq_trimmed/
+
+
 
 
 
