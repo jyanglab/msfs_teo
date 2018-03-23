@@ -1,0 +1,80 @@
+---
+title: "WGBS Mapping for B73 with multiple tissues"
+output: html_notebook
+author: Jinliang Yang
+---
+
+
+# Prepare bimark Genome AGPv4
+
+
+```{r, eval=FALSE}
+idtab <- read.csv("data/teo20_ids.csv")
+idtab$idchar <- gsub("-", "", idtab$idchar)
+idtab$pid <- paste0("JR", idtab$plate)
+
+#####################################################################################################
+# put fasta into seperate folders
+f <- list.files(path="largedata/pgenome", pattern="fasta", full.names = TRUE)
+df <- data.frame(dir=f, file=f)
+df$dir <- gsub(".fasta", "", df$dir)
+df$to <- paste0(df$dir, gsub(".*pgenome", "", df$file))
+for(i in 1:nrow(df)){
+  dir.create(df$dir[i])
+  file.rename(as.character(df$file[i]), as.character(df$to[i]))
+}
+
+
+########## preparing genome
+for(i in 1:nrow(idtab)){
+    shid <- paste0("slurm-script/run_pg", i, ".sh")
+    cmd1 <- paste0("bismark_genome_preparation --bowtie2 largedata/pgenome/", idtab$idchar[i])
+    cat(cmd1, file=shid, sep="\n", append=FALSE)
+}    
+
+
+## load bismark/0.14
+library("huskeR")
+cmd <- c("module load bismark", "module load bowtie/2.2", "sh slurm-script/run_pg$SLURM_ARRAY_TASK_ID.sh")
+set_array_job(shid="slurm-script/run_pg.sh", shcode=cmd,
+              arrayjobs="1-20", wd=NULL, jobid="pgjob", email="yangjl0930@gmail.com",
+              run = c(TRUE, "jclarke", "2", "10G", "8:00:00"))
+
+
+```
+
+
+# Mapping
+
+```{r}
+library(huskeR)
+
+idtab <- read.csv("data/teo20_ids.csv")
+idtab$idchar <- gsub("-", "", idtab$idchar)
+idtab$pid <- paste0("JR", idtab$plate)
+
+########### Note, move fq files to /group/jrigrp7
+########### alignment
+fq1 <- list.files(path="/lustre/work/jyanglab/jyang21/hugedata/wgbs_fq", pattern="R1_trimmed.fastq.gz$", full.names = TRUE)
+fq2 <- list.files(path="/lustre/work/jyanglab/jyang21/hugedata/wgbs_fq", pattern="R2_trimmed.fastq.gz$", full.names = TRUE)
+
+fq1 <- fq1[3:20]
+fq2 <- fq2[3:20]
+#bamfiles <- list.files(path="/group/jrigrp4/BS_teo20/WGBS/BSM", pattern="bam$", full.names = TRUE)
+### note: for alignment, "bam" col should not be present.
+inputdf <- data.frame(fq1 = fq1,  fq2 = fq2, outbase = gsub(".*/|_.*", "", fq1), out2=gsub(".*/|_.*", "", fq2))
+
+if(sum(as.character(inputdf$outbase) != as.character(inputdf$out2)) > 0  ){stop("!!! PE not right !!!")}
+
+inputdf <- merge(inputdf, idtab[, c("idchar", "pid")], by.x="outbase", by.y="pid")
+inputdf$genome <- paste0("/project/jyanglab/jyang21/projects/msfs_teo/largedata/pgenome/", inputdf$idchar)
+
+### AGPv4
+run_bismark(inputdf, genome = NULL,
+       outdir = "/lustre/work/jyanglab/jyang21/hugedata/wgbs_align", N = 1, align = TRUE,
+       email = "yangjl0930@gmail.com", runinfo = c(TRUE, "jclarke", 5, "20G", "8:00:00"))
+
+```
+
+
+
