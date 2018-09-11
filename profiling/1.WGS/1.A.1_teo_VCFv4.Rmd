@@ -8,8 +8,34 @@ output: html_notebook
 ```{bash}
 #rsync -alPvz farm:/group/jrigrp4/VCF_JRIAL2_20samples/ .
 irsync -rKV VCF_JRIAL2_20samples/ i:/iplant/home/yangjl/
-irsync -rKV i:/iplant/home/yangjl/teo20_VCF_AGPv4 /lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4
+irsync -rKV i:/iplant/home/yangjl/BS_teo/teo20_VCF_AGPv4 /lustre/work/jyanglab/jyang21/hugedata/teo20_VCF_AGPv4/
 # QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0
+```
+
+
+## my `bash_alias` file
+
+```{bash, eval=FALSE}
+# -----------------------
+# HPC system alias
+# ----------------------
+# our own computational resource 
+# -p jyanglab
+
+alias ll='ls -lF -h'
+alias mysq='squeue --format="%.18i %.9A %.9P %.8j %.8u %.2t %.10M %.6D %R %.9m"'
+alias srun1='srun --nodes=1 --mem 1024 --ntasks=1 --licenses=common --time=8:00:00 --pty bash'
+alias srun4='srun --nodes=1 --mem 4G --ntasks=4 --licenses=common --time=8:00:00 --pty bash'
+alias srunq4='srun --qos=short --nodes=1 --licenses=common --ntasks=4 --mem 32G --time 6:00:00 --pty bash'
+alias srunq1="srun --qos=short --nodes=1 --licenses=common --ntasks-per-node=1 --mem-per-cpu=1024 --time 6:00:00 --pty $SHELL"
+alias myjob='mysq | grep jyang21'
+alias mylab='mysq | egrep "jyang21|raghu|xie186"'
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#
+alias squeue='squeue --format="%.12i %.0P %.18j %.8u %.2t %.10M %.6D %R %C"'
+
 ```
 
 
@@ -19,6 +45,7 @@ Need to index them and then concatenate.
 
 ```{bash, eval=FALSE}
 ## test and then run for chr1-9
+module load tabix
 tabix -p vcf filtered_JRIAL2_20samples_Chr10_Feb13_2017.vcf.gz
 for i in `seq 1 9`; do tabix -p vcf filtered_JRIAL2_20samples_Chr"$i"_Feb13_2017.vcf.gz; done
 
@@ -31,7 +58,7 @@ bcftools concat -a --remove-duplicates --file-list input_list.txt --threads 10 -
 # Use -m2 -M2 -v snps to only view biallelic SNPs. keep only variant sites using --min-ac
 bcftools view filtered_JRIAL_20samples_Chrall_Feb13_2017.vcf.gz -m2 -M2 -v snps --min-ac 1 -Oz -o filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz
 
-# Convert to annotation format
+# Convert to annotation format (have to be done manually to add the header)
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' filtered_JRIAL_20samples_Chrall_03202018_bisnps.vcf.gz > JRI20_bisnps_annot.txt
 # bcftools query -f 'chr\tpos\tref\talt[\t%SAMPLE]\n' JRI20_bi_snps_annot.vcf.gz > JRI20_bi_snps_annot.header
 
