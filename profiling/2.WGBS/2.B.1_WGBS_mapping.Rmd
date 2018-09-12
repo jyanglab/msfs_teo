@@ -26,19 +26,20 @@ for(i in 1:nrow(df)){
 
 
 ########## preparing genome
-for(i in 1:nrow(idtab)){
+for(i in 1:20){
     shid <- paste0("slurm-script/run_pg", i, ".sh")
-    cmd1 <- paste0("bismark_genome_preparation --bowtie2 largedata/pgenome/", idtab$idchar[i])
+    cmd1 <- paste0("bismark_genome_preparation --bowtie2 largedata/pgenome/", i)
     cat(cmd1, file=shid, sep="\n", append=FALSE)
 }    
 
 
 ## load bismark/0.14
+
 library("huskeR")
 cmd <- c("module load bismark", "module load bowtie/2.2", "sh slurm-script/run_pg$SLURM_ARRAY_TASK_ID.sh")
 set_array_job(shid="slurm-script/run_pg.sh", shcode=cmd,
               arrayjobs="1-20", wd=NULL, jobid="pgjob", email="yangjl0930@gmail.com",
-              run = c(TRUE, "jclarke", "2", "10G", "8:00:00"))
+              run = c(FALSE, "jclarke", "2", "10G", "8:00:00"))
 
 
 ```
