@@ -1,0 +1,154 @@
+---
+title: "Get GERP score of fixed SNPs in teosinte"
+output: html_notebook
+author: Gen Xu
+---
+##Get GERP file
+```{r}
+library("data.table")
+gerp=NULL
+for(chri in 1:10)
+{
+gerpfile=paste("roast.chrom.",chri,".msa.in.rates.full",sep = "")
+chr <- fread(gerpfile, header=FALSE, data.table=FALSE)
+names(chr) <- c("N", "RS")
+chr$chrom <- chri
+chr$pos <- 1:nrow(chr)
+chr=chr[,c(3,4,1,2)]
+gerp=rbind(gerp,chr)
+cat("Chromosome length is ",nrow(chr),"\n")
+}
+write.table(chr, "Maize_GERP_file_AGPv3.txt", sep="\t", row.names=FALSE, quote=FALSE)
+
+```
+##Get fixed SNPs in teosinte
+```{r}
+library("data.table")
+freq <- fread("JRIAL2_20samples_All_sep12_2018_AGPv4.maf", header=T, data.table=FALSE)
+fix=freq[freq[,4]>=32 & freq[,9]==0,] ###set SNP missing rate <20%, 54,852,914 SNPs were retained
+write.table(fix, "20teo_fixed_snp_AGPv4.txt", sep="\t", row.names=FALSE, quote=FALSE)
+```
+
+#Get bed file for converting SNPs coordinate from V4 to V3 by Gramme website.Version of SNPs physical position of in GERP file is V3
+```{perl}
+open(T,"20teo_fixed_snp_AGPv4.txt")||die "Can't open your file!";
+open(R,">20teo_fixed_snp_bed");
+$l=<T>;
+while(<T>)
+{
+	chomp;
+@aa=split;
+$start=$aa[1]-1;
+$snp="S$aa[0]_$aa[1]";
+print R "$aa[0]	$start	$aa[1]	$snp\n";
+	
+	}
+```
+##Sample 1M SNPs from fixed SNPs, 8 replications
+```{r}
+library("data.table")
+bed <- fread("20teo_fixed_snp_bed", header=FALSE, data.table=FALSE)
+n=nrow(bed)
+
+for(i in 1:8)
+{
+  id=sort(sample(1:n,1e6))
+  bed1=bed[id,]
+  out=paste("20teo_fixed_snp_bed",i,sep="")
+  write.table(bed1, out, sep="\t", row.names=FALSE, col.na=F,quote=FALSE)
+  
+}
+```
+
+##Get GERP score of each fixed SNP
+```{perl}
+for($i=1;$i<=10;$i++)
+{
+%hash=();
+$inf="Maize_GERP_file_AGPv3_chr".$i."\.txt";
+open(T,$inf)||die "Can't open your file!";
+$l=<T>;
+while(<T>)
+{
+	chomp;
+@aa=split;
+$snp="S$aa[0]_$aa[1]";
+$hash{$snp}=$aa[3];
+	}
+print "$inf\nHash is finshed!";
+
+@bed=glob "*bed";
+foreach $f(@bed)
+{
+	$out="Teo_fix_snp_GERP_".$f."\_chr".$i."\.txt";
+open(F,"$f")||die "Can't open your file:$f!";
+open(R,">$out");
+print R "Chr	Pos	GERP\n";
+while(<F>)
+{
+	chomp;
+@bb=split;
+$p="S$bb[0]_$bb[2]";
+if(exists($hash{$p}))
+{print R "$bb[0]	$bb[2]	$hash{$p}\n";}
+
+	}
+close(R);
+}
+}
+
+```
+##1 M SNPs were sampled from Whole GERP file
+```{r}
+library(bigmemory) ##Create, store, access, and manipulate massive matrices 
+gerp=read.big.matrix("Maize_GERP_file_AGPv3.txt", type="double", sep="\t", head = TRUE,backingfile = "Maize_GERP_file_AGPv3.back.txt",backingpath = "/lustre/work/jyanglab/gxu6/msfs_teo/Basic_data/GERP", descriptorfile="Maize_GERP_file_AGPv3_des.txt") 
+
+gerp=attach.big.matrix(dget("Maize_GERP_file_AGPv3_des.txt"))
+for(i in 1:8)
+{
+  seed=sort(sample(1:2059403396,1E6))
+  d=gerp[seed,]
+  out=paste("gerp_random",i,".png",sep="")
+  png(out,width=140,height=120,res=600,units="mm")
+  par(mar=c(5,4,3,2))
+  d=d[,4]
+  hist(d,col="gray",las=1,xlab="GERP Score",main="",cex.axis=1.2,cex.lab=1.2,ylab="")
+  cat(out,"\n")
+  y="Min. 1st Qu.  Median    Mean 3rd Qu.    Max"
+  cat(y,"\n")
+  x=summary(d)
+  cat(x,"\n")
+  cat("#############################################\n")
+  dev.off()
+}
+
+```
+
+#Differences between GERP Score of two groups were significantly (Student’s t-Test)
+```{r}
+library(data.table)
+rf=list.files(path=".",patt="random")
+ff=list.files(path=".",patt="fix")
+p0=NULL
+for(i in rf)
+{
+  random=fread(i,head=T,data.table=F)
+  gerp_r=random[,4]
+  for(j in ff)
+  {
+   fix= fread(j,head=T,data.table=F)
+   gerp_f=fix[,3]
+   p=t.test(gerp_r,gerp_f)$p.value
+   p0=c(p0,p)
+  }
+}
+pp=-log10(p0)
+
+tiff("t_test_p.tiff",width=140,height=130,res=600,units="mm")
+par(mar=c(4,3,1,1))
+hist(pp,col="gray",xlab="",ylab="",main="",las=1,tck=-0.02,cex.axis=1.5)
+dev.off()
+
+```
+
+
