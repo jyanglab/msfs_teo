@@ -1,0 +1,64 @@
+---
+title: "20Teo_genotype_basic_statistic"
+output: html_notebook
+author: Gen Xu
+---
+##Concatenate VCF files.
+```{perl}
+open(R,">JRIAL2_20samples_All_sep12_2018_AGPv4.vcf1");
+for($i=1;$i<=10;$i++)
+{
+	$f="filtered_JRIAL2_20samples_Chr$i"."_Feb13_2017.vcf.gz";
+open(T,"gzip -dc $f|")||die "Can't open your file:$f!";
+
+while(<T>)
+{
+	chomp;
+if(/^#/){next;}
+@aa=split;
+$len_ref=length($aa[3]); 
+$len_alt=length($aa[4]); 
+if($len_ref>1||$len_alt>1){next;}
+print R "$_\n";
+	}	
+		}
+close(T,R);	
+	
+`cat head 	JRIAL2_20samples_All_sep12_2018_AGPv4.vcf1 > JRIAL2_20samples_All_sep12_2018_AGPv4.vcf`;
+`rm JRIAL2_20samples_All_sep12_2018_AGPv4.vcf1`;
+
+```
+
+##Basic statistic 
+```{bash}
+#Missing rate of site
+vcftools --vcf JRIAL2_20samples_All_sep12_2018_AGPv4.vcf --missing-site --out JRIAL2_20samples_All_sep12_2018
+
+#Missing rate of individuals
+vcftools --vcf JRIAL2_20samples_All_sep12_2018_AGPv4.vcf --missing-indv --out JRIAL2_20samples_All_sep12_2018
+
+#Individual heterozygosity
+vcftools --vcf JRIAL2_20samples_All_sep12_2018_AGPv4.vcf --het --out JRIAL2_20samples_All_sep12_2018
+
+##MAF
+vcftools --vcf JRIAL2_20samples_All_sep12_2018_AGPv4.vcf --freq --out JRIAL2_20samples_All_sep12_2018
+
+open(T,"JRIAL2_20samples_All_sep12_2018_vcft.frq")||die "Can't open your file!";
+open(R,">JRIAL2_20samples_All_sep12_2018_AGPv4.maf");
+print R "CHROM	POS	N_ALLELES	N_CHR	REF	freq1	ALT	freq2	maf\n";
+$l=<T>;
+while(<T>)
+{
+	chomp;
+s/\:/\	/g;
+@aa=split;
+if($aa[5]>=$aa[7])
+{print R "$aa[0]	$aa[1]	$aa[2]	$aa[3]	$aa[4]	$aa[5]	$aa[6]	$aa[7]	$aa[7]\n";}
+else{print R "$aa[0]	$aa[1]	$aa[2]	$aa[3]	$aa[4]	$aa[5]	$aa[6]	$aa[7]	$aa[5]\n";}
+	
+	}
+close(T,R);
+
+```
+
+
