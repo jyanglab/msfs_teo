@@ -182,8 +182,9 @@ $(document).ready(function () {
 <h2>Prepare bimark Genome</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYmlzbWFya19nZW5vbWVfcHJlcGFyYXRpb24gLS1wYXRoX3RvX2Jvd3RpZSAvaG9tZS9qeWFuZ2xhYi9neHU2L3NvZnR3YXJlL2Jvd3RpZTItMi4zLjQuMiAtLXZlcmJvc2UgLS1ib3d0aWUyIC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NFxuYGBgIn0= -->
-<pre class="bash"><code>bismark_genome_preparation --path_to_bowtie /home/jyanglab/gxu6/software/bowtie2-2.3.4.2 --verbose --bowtie2 /lustre/work/jyanglab/gxu6/B73_v4</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYGBgYmFzaFxuYmlzbWFya19nZW5vbWVfcHJlcGFyYXRpb24gLS1wYXRoX3RvX2Jvd3RpZSAvaG9tZS9qeWFuZ2xhYi9neHU2L3NvZnR3YXJlL2Jvd3RpZTItMi4zLjQuMiAtLXZlcmJvc2UgLS1ib3d0aWUyIC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NFxuYGBgXG5gYGAifQ== -->
+<p><code>bash</code>bash bismark_genome_preparation –path_to_bowtie /home/jyanglab/gxu6/software/bowtie2-2.3.4.2 –verbose –bowtie2 /lustre/work/jyanglab/gxu6/B73_v4</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -192,8 +193,9 @@ $(document).ready(function () {
 <h2>Alignment</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYmlzbWFyayAtLWJvd3RpZTIgLXAgMTIgLU4gMSAtTCAyNSAtbyAvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vV0dCUy9jYWNoZS9tYXBwaW5nL21haXplL3JlX3J1biAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IC0xIFNSUjg1MDMyOF8xLmZhc3RxLmd6IC0yIFNSUjg1MDMyOF8yLmZhc3RxLmd6ID4gU1JSODUwMzI4LmxvZ1xuYGBgIn0= -->
-<pre class="bash"><code>bismark --bowtie2 -p 12 -N 1 -L 25 -o /common/jyanglab/gxu6/msfs_teo/WGBS/cache/mapping/maize/re_run /common/jyanglab/gxu6/B73_v4 -1 SRR850328_1.fastq.gz -2 SRR850328_2.fastq.gz &gt; SRR850328.log</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYGBgYmFzaFxuYmlzbWFyayAtLWJvd3RpZTIgLXAgMTIgLU4gMSAtTCAyNSAtbyAvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vV0dCUy9jYWNoZS9tYXBwaW5nL21haXplL3JlX3J1biAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IC0xIFNSUjg1MDMyOF8xLmZhc3RxLmd6IC0yIFNSUjg1MDMyOF8yLmZhc3RxLmd6ID4gU1JSODUwMzI4LmxvZ1xuYGBgXG5gYGAifQ== -->
+<p><code>bash</code>bash bismark –bowtie2 -p 12 -N 1 -L 25 -o /common/jyanglab/gxu6/msfs_teo/WGBS/cache/mapping/maize/re_run /common/jyanglab/gxu6/B73_v4 -1 SRR850328_1.fastq.gz -2 SRR850328_2.fastq.gz &gt; SRR850328.log</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -202,8 +204,9 @@ $(document).ready(function () {
 <h1>Remove duplication</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuZGVkdXBsaWNhdGVfYmlzbWFyayAtLWJhbSAtcCBTUlIxNjEwOTYxXzFfYmlzbWFya19idDJfcGUuYmFtXG5gYGAifQ== -->
-<pre class="bash"><code>deduplicate_bismark --bam -p SRR1610961_1_bismark_bt2_pe.bam</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYGBgYmFzaFxuZGVkdXBsaWNhdGVfYmlzbWFyayAtLWJhbSAtcCBTUlIxNjEwOTYxXzFfYmlzbWFya19idDJfcGUuYmFtXG5gYGBcbmBgYCJ9 -->
+<p><code>bash</code>bash deduplicate_bismark –bam -p SRR1610961_1_bismark_bt2_pe.bam</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -211,8 +214,9 @@ $(document).ready(function () {
 <h2>Bismark methylation extractor</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYmlzbWFya19tZXRoeWxhdGlvbl9leHRyYWN0b3IgLS1ub19vdmVybGFwIC1wIC0tYmVkR3JhcGggLS1jb21wcmVoZW5zaXZlIC0tY291bnRzIC0tYnVmZmVyX3NpemUgMzAlIC0tY3l0b3NpbmVfcmVwb3J0IC0tZ2Vub21lX2ZvbGRlciAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IFNSUjE2MTA5NjFfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQuYmFtXG5gYGAifQ== -->
-<pre class="bash"><code>bismark_methylation_extractor --no_overlap -p --bedGraph --comprehensive --counts --buffer_size 30% --cytosine_report --genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYGBgYmFzaFxuYmlzbWFya19tZXRoeWxhdGlvbl9leHRyYWN0b3IgLS1ub19vdmVybGFwIC1wIC0tYmVkR3JhcGggLS1jb21wcmVoZW5zaXZlIC0tY291bnRzIC0tYnVmZmVyX3NpemUgMzAlIC0tY3l0b3NpbmVfcmVwb3J0IC0tZ2Vub21lX2ZvbGRlciAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IFNSUjE2MTA5NjFfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQuYmFtXG5gYGBcbmBgYCJ9 -->
+<p><code>bash</code>bash bismark_methylation_extractor –no_overlap -p –bedGraph –comprehensive –counts –buffer_size 30% –cytosine_report –genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -220,7 +224,7 @@ $(document).ready(function () {
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJ1bm5pbmcgQmlzbWFyayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiBHZW4gWHUNCi0tLQ0KDQojI1ByZXBhcmUgYmltYXJrIEdlbm9tZQ0KYGBge2Jhc2h9DQpiaXNtYXJrX2dlbm9tZV9wcmVwYXJhdGlvbiAtLXBhdGhfdG9fYm93dGllIC9ob21lL2p5YW5nbGFiL2d4dTYvc29mdHdhcmUvYm93dGllMi0yLjMuNC4yIC0tdmVyYm9zZSAtLWJvd3RpZTIgL2x1c3RyZS93b3JrL2p5YW5nbGFiL2d4dTYvQjczX3Y0DQpgYGANCg0KIyMgQWxpZ25tZW50DQpgYGB7YmFzaH0NCmJpc21hcmsgLS1ib3d0aWUyIC1wIDEyIC1OIDEgLUwgMjUgLW8gL2NvbW1vbi9qeWFuZ2xhYi9neHU2L21zZnNfdGVvL1dHQlMvY2FjaGUvbWFwcGluZy9tYWl6ZS9yZV9ydW4gL2NvbW1vbi9qeWFuZ2xhYi9neHU2L0I3M192NCAtMSBTUlI4NTAzMjhfMS5mYXN0cS5neiAtMiBTUlI4NTAzMjhfMi5mYXN0cS5neiA+IFNSUjg1MDMyOC5sb2cNCmBgYA0KDQojUmVtb3ZlIGR1cGxpY2F0aW9uDQpgYGB7YmFzaH0NCmRlZHVwbGljYXRlX2Jpc21hcmsgLS1iYW0gLXAgU1JSMTYxMDk2MV8xX2Jpc21hcmtfYnQyX3BlLmJhbQ0KYGBgDQoNCg0KIyMgQmlzbWFyayBtZXRoeWxhdGlvbiBleHRyYWN0b3INCmBgYHtiYXNofQ0KYmlzbWFya19tZXRoeWxhdGlvbl9leHRyYWN0b3IgLS1ub19vdmVybGFwIC1wIC0tYmVkR3JhcGggLS1jb21wcmVoZW5zaXZlIC0tY291bnRzIC0tYnVmZmVyX3NpemUgMzAlIC0tY3l0b3NpbmVfcmVwb3J0IC0tZ2Vub21lX2ZvbGRlciAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IFNSUjE2MTA5NjFfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQuYmFtDQpgYGANCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJ1bm5pbmcgQmlzbWFyayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiBHZW4gWHUNCi0tLQ0KDQojIyBQcmVwYXJlIGJpbWFyayBHZW5vbWUNCmBgYHtiYXNofQ0KYmlzbWFya19nZW5vbWVfcHJlcGFyYXRpb24gLS1wYXRoX3RvX2Jvd3RpZSAvaG9tZS9qeWFuZ2xhYi9neHU2L3NvZnR3YXJlL2Jvd3RpZTItMi4zLjQuMiAtLXZlcmJvc2UgLS1ib3d0aWUyIC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NA0KYGBgDQoNCiMjIEFsaWdubWVudA0KYGBge2Jhc2h9DQpiaXNtYXJrIC0tYm93dGllMiAtcCAxMiAtTiAxIC1MIDI1IC1vIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9tc2ZzX3Rlby9XR0JTL2NhY2hlL21hcHBpbmcvbWFpemUvcmVfcnVuIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfdjQgLTEgU1JSODUwMzI4XzEuZmFzdHEuZ3ogLTIgU1JSODUwMzI4XzIuZmFzdHEuZ3ogPiBTUlI4NTAzMjgubG9nDQpgYGANCg0KIyBSZW1vdmUgZHVwbGljYXRpb24NCmBgYHtiYXNofQ0KZGVkdXBsaWNhdGVfYmlzbWFyayAtLWJhbSAtcCBTUlIxNjEwOTYxXzFfYmlzbWFya19idDJfcGUuYmFtDQpgYGANCg0KDQojIyBCaXNtYXJrIG1ldGh5bGF0aW9uIGV4dHJhY3Rvcg0KYGBge2Jhc2h9DQpiaXNtYXJrX21ldGh5bGF0aW9uX2V4dHJhY3RvciAtLW5vX292ZXJsYXAgLXAgLS1iZWRHcmFwaCAtLWNvbXByZWhlbnNpdmUgLS1jb3VudHMgLS1idWZmZXJfc2l6ZSAzMCUgLS1jeXRvc2luZV9yZXBvcnQgLS1nZW5vbWVfZm9sZGVyIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfdjQgU1JSMTYxMDk2MV8xX2Jpc21hcmtfYnQyX3BlLmRlZHVwbGljYXRlZC5iYW0NCmBgYA0KDQo=</div>
 
 
 
