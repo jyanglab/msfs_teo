@@ -182,21 +182,9 @@ $(document).ready(function () {
 <h2>Get coordinates of each SNP from VCF file</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxuJGluPVwidGVvXzIwc2FtcGxlc19zZXAyMV8yMDE4X0FHUHY0X2NociRBUkdWWzBdXFwucmVjb2RlLnZjZlwiO1xub3BlbihULFwiJGluXCIpfHxkaWUgXCJDYW4ndCBvcGVuIHlvdXIgZmlsZSFcIjtcbiRvdXQ9XCJ0ZW9fMjBzYW1wbGVzLmNociRBUkdWWzBdXFwucG9zLnR4dFwiO1xub3BlbihSLFwiPiRvdXRcIik7XG5wcmludCBSIFwiQ2hyXHRwb3NcXG5cIjtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5pZigvXiMvKXtuZXh0O31cblx0QGFhPXNwbGl0O1xuXHRwcmludCBSIFwiJGFhWzBdXHQkYWFbMV1cXG5cIjtcblx0fVxuY2xvc2UoVCxSKTtcblxuYGBgIn0= -->
-<pre class="perl"><code>$in=&quot;teo_20samples_sep21_2018_AGPv4_chr$ARGV[0]\.recode.vcf&quot;;
-open(T,&quot;$in&quot;)||die &quot;Can't open your file!&quot;;
-$out=&quot;teo_20samples.chr$ARGV[0]\.pos.txt&quot;;
-open(R,&quot;&gt;$out&quot;);
-print R &quot;Chr    pos\n&quot;;
-while(&lt;T&gt;)
-{
-    chomp;
-if(/^#/){next;}
-    @aa=split;
-    print R &quot;$aa[0] $aa[1]\n&quot;;
-    }
-close(T,R);
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxuYGBgcGVybFxuJGluPVxcdGVvXzIwc2FtcGxlc19zZXAyMV8yMDE4X0FHUHY0X2NociRBUkdWWzBdXFwucmVjb2RlLnZjZlxcO1xub3BlbihULFxcJGluXFwpfHxkaWUgXFxDYW4ndCBvcGVuIHlvdXIgZmlsZSFcXDtcbiRvdXQ9XFx0ZW9fMjBzYW1wbGVzLmNociRBUkdWWzBdXFwucG9zLnR4dFxcO1xub3BlbihSLFxcPiRvdXRcXCk7XG5wcmludCBSIFxcQ2hyXHRwb3NcXG5cXDtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5pZigvXiMvKXtuZXh0O31cblx0QGFhPXNwbGl0O1xuXHRwcmludCBSIFxcJGFhWzBdXHQkYWFbMV1cXG5cXDtcblx0fVxuY2xvc2UoVCxSKTtcblxuYGBgXG5gYGAifQ== -->
+<p><code>perl</code>perl <span class="math inline">\(in=\teo_20samples_sep21_2018_AGPv4_chr\)</span>ARGV[0].recode.vcf; open(T,$in)||die ’t open your file!; <span class="math inline">\(out=\teo_20samples.chr\)</span>ARGV[0].pos.txt; open(R,&gt;$out); print R pos; while(<T>) { chomp; if(/^#/){next;} <span class="citation">@aa</span>=split; print R $aa[0] $aa[1]; } close(T,R);</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -205,46 +193,11 @@ close(T,R);
 <h2>Convert data to AGPv3 coordinates</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxub3BlbihULFwiJEFSR1ZbMF1cIil8fGRpZSBcIkNhbid0IG9wZW4geW91ciBmaWxlIVwiOyAjIyMkQVJHVlswXSBpcyBmaWxlIG5hbWUsIGVnOiB0ZW9fMjBzYW1wbGVzLmNocjEucG9zLnR4dFxuJEFSR1ZbMF09fnMvXFwudHh0Ly87XG4kbmE9JEFSR1ZbMF07XG5vcGVuKFIsXCI+JG5hLjIwMGJwLmJlZFwiKTtcbiRsPTxUPjtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5cdEBhYT1zcGxpdDtcblx0JHN0YXJ0PSRhYVsxXS0xO1xuXHQkZW5kPSRhYVsxXSsxOTg7XG5wcmludCBSIFwiJGFhWzBdXHQkc3RhcnRcdCRlbmRcXG5cIjtcblx0fVxuY2xvc2UoVCxSKTtcbnByaW50IFwiSGF2ZSBnb3QgYmVkIGZpbGVcXG5cIjtcbmBzZXF0ayBzdWJzZXEgL2NvbW1vbi9qeWFuZ2xhYi9neHU2L0I3M192NC9tYWl6ZS1nZW5vbWUtVjQuZmEgJG5hLjIwMGJwLmJlZCA+ICRuYS4yMDBicC5WNC5mYWA7XG5wcmludCBcIkhhdmUgZ290IGJlZCBmYXN0YSBmaWxlXFxuXCI7XG5gYndhIG1lbSAtdCAxMCAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX1YzL21haXplLWdlbm9tZS1WMyAkbmEuMjAwYnAuVjQuZmEgPiAkbmEuc2FtYDtcbnByaW50IFwiSGF2ZSBhZ2FsaW5lZCB0byBCNzMgb2YgVjNcXG5cIjtcbm9wZW4oVCxcIiRuYS5zYW1cIil8fGRpZSBcIkNhbid0IG9wZW4geW91ciBmaWxlIVwiO1xub3BlbihSLFwiPiRuYS52M19wb3MudHh0XCIpO1xucHJpbnQgUiBcIk1hcmtlclx0Q2hyXHRQb3NcXG5cIjtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5pZigvXkAvIG9yIC9eXFxbTS8pe25leHQ7fVxuXHRAYWE9c3BsaXQgL1xcdC8sJF87XG5cdEBiYj1zcGxpdCAvXFwtLywkYWFbMF07XG5cdEBjYz1zcGxpdCAvXFw6LywkYWFbMF07XG5cdCRiYlswXT1+cy9cXDovXFxfLztcblx0JG1rPVwiUyRiYlswXVwiO1xuXHQkbm09XCJOTTppOjBcIjtcblx0aWYoJGFhWzJdPT0kY2NbMF0gJiYgJGFhWzExXSBlcSAkbm0pXG5cdHtwcmludCBSIFwiJG1rXHQkYWFbMl1cdCRhYVszXVxcblwiO31cblx0XG5cdH1cbmNsb3NlKFQsUik7XG5gcm0gJG5hLnNhbSAkbmEuMjAwYnAuYmVkICRuYS4yMDBicC5WNC5mYWA7XG5wcmludCBcIlR1c2sgaGFzIGJlZW4gZmluc2VkXFxuXCI7XG5gYGAifQ== -->
-<pre class="perl"><code>open(T,&quot;$ARGV[0]&quot;)||die &quot;Can't open your file!&quot;; ###$ARGV[0] is file name, eg: teo_20samples.chr1.pos.txt
-$ARGV[0]=~s/\.txt//;
-$na=$ARGV[0];
-open(R,&quot;&gt;$na.200bp.bed&quot;);
-$l=&lt;T&gt;;
-while(&lt;T&gt;)
-{
-    chomp;
-    @aa=split;
-    $start=$aa[1]-1;
-    $end=$aa[1]+198;
-print R &quot;$aa[0] $start  $end\n&quot;;
-    }
-close(T,R);
-print &quot;Have got bed file\n&quot;;
-`seqtk subseq /common/jyanglab/gxu6/B73_v4/maize-genome-V4.fa $na.200bp.bed &gt; $na.200bp.V4.fa`;
-print &quot;Have got bed fasta file\n&quot;;
-`bwa mem -t 10 /common/jyanglab/gxu6/B73_V3/maize-genome-V3 $na.200bp.V4.fa &gt; $na.sam`;
-print &quot;Have agalined to B73 of V3\n&quot;;
-open(T,&quot;$na.sam&quot;)||die &quot;Can't open your file!&quot;;
-open(R,&quot;&gt;$na.v3_pos.txt&quot;);
-print R &quot;Marker Chr Pos\n&quot;;
-while(&lt;T&gt;)
-{
-    chomp;
-if(/^@/ or /^\[M/){next;}
-    @aa=split /\t/,$_;
-    @bb=split /\-/,$aa[0];
-    @cc=split /\:/,$aa[0];
-    $bb[0]=~s/\:/\_/;
-    $mk=&quot;S$bb[0]&quot;;
-    $nm=&quot;NM:i:0&quot;;
-    if($aa[2]==$cc[0] &amp;&amp; $aa[11] eq $nm)
-    {print R &quot;$mk   $aa[2]  $aa[3]\n&quot;;}
-    
-    }
-close(T,R);
-`rm $na.sam $na.200bp.bed $na.200bp.V4.fa`;
-print &quot;Tusk has been finsed\n&quot;;</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxuYGBgcGVybFxub3BlbihULFxcJEFSR1ZbMF1cXCl8fGRpZSBcXENhbid0IG9wZW4geW91ciBmaWxlIVxcOyAjIyMkQVJHVlswXSBpcyBmaWxlIG5hbWUsIGVnOiB0ZW9fMjBzYW1wbGVzLmNocjEucG9zLnR4dFxuJEFSR1ZbMF09fnMvXFwudHh0Ly87XG4kbmE9JEFSR1ZbMF07XG5vcGVuKFIsXFw+JG5hLjIwMGJwLmJlZFxcKTtcbiRsPTxUPjtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5cdEBhYT1zcGxpdDtcblx0JHN0YXJ0PSRhYVsxXS0xO1xuXHQkZW5kPSRhYVsxXSsxOTg7XG5wcmludCBSIFxcJGFhWzBdXHQkc3RhcnRcdCRlbmRcXG5cXDtcblx0fVxuY2xvc2UoVCxSKTtcbnByaW50IFxcSGF2ZSBnb3QgYmVkIGZpbGVcXG5cXDtcbmBzZXF0ayBzdWJzZXEgL2NvbW1vbi9qeWFuZ2xhYi9neHU2L0I3M192NC9tYWl6ZS1nZW5vbWUtVjQuZmEgJG5hLjIwMGJwLmJlZCA+ICRuYS4yMDBicC5WNC5mYWA7XG5wcmludCBcXEhhdmUgZ290IGJlZCBmYXN0YSBmaWxlXFxuXFw7XG5gYndhIG1lbSAtdCAxMCAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX1YzL21haXplLWdlbm9tZS1WMyAkbmEuMjAwYnAuVjQuZmEgPiAkbmEuc2FtYDtcbnByaW50IFxcSGF2ZSBhZ2FsaW5lZCB0byBCNzMgb2YgVjNcXG5cXDtcbm9wZW4oVCxcXCRuYS5zYW1cXCl8fGRpZSBcXENhbid0IG9wZW4geW91ciBmaWxlIVxcO1xub3BlbihSLFxcPiRuYS52M19wb3MudHh0XFwpO1xucHJpbnQgUiBcXE1hcmtlclx0Q2hyXHRQb3NcXG5cXDtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5pZigvXkAvIG9yIC9eXFxbTS8pe25leHQ7fVxuXHRAYWE9c3BsaXQgL1xcdC8sJF87XG5cdEBiYj1zcGxpdCAvXFwtLywkYWFbMF07XG5cdEBjYz1zcGxpdCAvXFw6LywkYWFbMF07XG5cdCRiYlswXT1+cy9cXDovXFxfLztcblx0JG1rPVxcUyRiYlswXVxcO1xuXHQkbm09XFxOTTppOjBcXDtcblx0aWYoJGFhWzJdPT0kY2NbMF0gJiYgJGFhWzExXSBlcSAkbm0pXG5cdHtwcmludCBSIFxcJG1rXHQkYWFbMl1cdCRhYVszXVxcblxcO31cblx0XG5cdH1cbmNsb3NlKFQsUik7XG5gcm0gJG5hLnNhbSAkbmEuMjAwYnAuYmVkICRuYS4yMDBicC5WNC5mYWA7XG5wcmludCBcXFR1c2sgaGFzIGJlZW4gZmluc2VkXFxuXFw7XG5gYGBcbmBgYCJ9 -->
+<p><code>perl</code>perl open(T,$ARGV[0])||die ’t open your file!; ###$ARGV[0] is file name, eg: teo_20samples.chr1.pos.txt $ARGV[0]=~s/.txt//; <span class="math inline">\(na=\)</span>ARGV[0]; open(R,&gt;$na.200bp.bed); $l=<T>; while(<T>) { chomp; <span class="citation">@aa</span>=split; <span class="math inline">\(start=\)</span>aa[1]-1; <span class="math inline">\(end=\)</span>aa[1]+198; print R $aa[0] $start $end; } close(T,R); print got bed file; <code>seqtk subseq /common/jyanglab/gxu6/B73_v4/maize-genome-V4.fa $na.200bp.bed &gt; $na.200bp.V4.fa</code>; print got bed fasta file; <code>bwa mem -t 10 /common/jyanglab/gxu6/B73_V3/maize-genome-V3 $na.200bp.V4.fa &gt; $na.sam</code>; print agalined to B73 of V3; open(T,$na.sam)||die ’t open your file!; open(R,&gt;<span class="math inline">\(na.v3_pos.txt\); print R \Marker Chr Pos\n\; while(&lt;T&gt;) {  chomp; if(/^@/ or /^\[M/){next;}  @aa=split /\t/,\)</span>_; <span class="citation">@bb</span>=split /-/,<span class="math inline">\(aa[0];  @cc=split /\:/,\)</span>aa[0]; $bb[0]=~s/:/_/; <span class="math inline">\(mk=\S\)</span>bb[0]; <span class="math inline">\(nm=\NM:i:0\;  if(\)</span>aa[2]==$cc[0] &amp;&amp; $aa[11] eq $nm) {print R $mk $aa[2] $aa[3];}</p>
+<pre><code>}</code></pre>
+<p>close(T,R); <code>rm $na.sam $na.200bp.bed $na.200bp.V4.fa</code>; print has been finsed;</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -253,26 +206,11 @@ print &quot;Tusk has been finsed\n&quot;;</code></pre>
 <h2>get GERP Score of each SNP</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxubGlicmFyeShSb3B0KVxuXG5nZXRfZ2VycD1mdW5jdGlvbihpKVxuICB7Zmk9cXEoXCJ0ZW9fMjBzYW1wbGVzLmNocntpfS5wb3MudjNfcG9zLnR4dFwiKVxucD1mcmVhZChmaSwgaGVhZGVyPVQsZGF0YS50YWJsZT1GKSBcbmY9cXEoXCIvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vQmFzaWNfZGF0YS9HRVJQL01haXplX0dFUlBfZmlsZV9BR1B2M19jaHJ7aX0udHh0XCIpXG5kPWZyZWFkKGYsIGhlYWRlcj1ULGRhdGEudGFibGU9RikgXG5kMT1kW3BbLDNdLF1cbmlmKG5yb3coZDEpPT1ucm93KHApKVxue2NhdChcIlRoZSBzYW1lIHJvdyBvZiBjaHJcIixpLFwiXFxuXCIpfVxuZDE9Y2JpbmQocCxkMVssNF0pXG5jb2xuYW1lcyhkMSlbNF09XCJHRVJQX1Njb3JlXCJcbmQxPWQxW29yZGVyKGQxWywyXSxkMVssM10pLF1cbm91dD1xcShcInRlb18yMHNhbXBsZXNfZ2VycF9jaHJ7aX0udHh0XCIpXG53cml0ZS50YWJsZShkMSxvdXQscXVvdGUgPSBGLGNvbC5uYT1ULHJvdy5uYW1lcyA9IEYsc2VwPVwiXFx0XCIpXG59XG5hcmc9Z2V0YXJnKClcbmRvLmNhbGwoZ2V0X2dlcnAsYXJnKVxuYGBgIn0= -->
-<pre class="r"><code>library(data.table)
-library(Ropt)
-
-get_gerp=function(i)
-  {fi=qq(&quot;teo_20samples.chr{i}.pos.v3_pos.txt&quot;)
-p=fread(fi, header=T,data.table=F) 
-f=qq(&quot;/common/jyanglab/gxu6/msfs_teo/Basic_data/GERP/Maize_GERP_file_AGPv3_chr{i}.txt&quot;)
-d=fread(f, header=T,data.table=F) 
-d1=d[p[,3],]
-if(nrow(d1)==nrow(p))
-{cat(&quot;The same row of chr&quot;,i,&quot;\n&quot;)}
-d1=cbind(p,d1[,4])
-colnames(d1)[4]=&quot;GERP_Score&quot;
-d1=d1[order(d1[,2],d1[,3]),]
-out=qq(&quot;teo_20samples_gerp_chr{i}.txt&quot;)
-write.table(d1,out,quote = F,col.na=T,row.names = F,sep=&quot;\t&quot;)
-}
-arg=getarg()
-do.call(get_gerp,arg)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxubGlicmFyeShSb3B0KVxuXG5nZXRfZ2VycD1mdW5jdGlvbihpKVxuICB7Zmk9cXEoXFx0ZW9fMjBzYW1wbGVzLmNocntpfS5wb3MudjNfcG9zLnR4dFxcKVxucD1mcmVhZChmaSwgaGVhZGVyPVQsZGF0YS50YWJsZT1GKSBcbmY9cXEoXFwvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vQmFzaWNfZGF0YS9HRVJQL01haXplX0dFUlBfZmlsZV9BR1B2M19jaHJ7aX0udHh0XFwpXG5kPWZyZWFkKGYsIGhlYWRlcj1ULGRhdGEudGFibGU9RikgXG5kMT1kW3BbLDNdLF1cbmlmKG5yb3coZDEpPT1ucm93KHApKVxue2NhdChcXFRoZSBzYW1lIHJvdyBvZiBjaHJcXCxpLFxcXFxuXFwpfVxuZDE9Y2JpbmQocCxkMVssNF0pXG5jb2xuYW1lcyhkMSlbNF09XFxHRVJQX1Njb3JlXFxcbmQxPWQxW29yZGVyKGQxWywyXSxkMVssM10pLF1cbm91dD1xcShcXHRlb18yMHNhbXBsZXNfZ2VycF9jaHJ7aX0udHh0XFwpXG53cml0ZS50YWJsZShkMSxvdXQscXVvdGUgPSBGLGNvbC5uYT1ULHJvdy5uYW1lcyA9IEYsc2VwPVxcXFx0XFwpXG59XG5hcmc9Z2V0YXJnKClcbmRvLmNhbGwoZ2V0X2dlcnAsYXJnKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r library(data.table) library(Ropt)</p>
+<p>get_gerp=function(i) {fi=qq(_20samples.chr{i}.pos.v3_pos.txt) p=fread(fi, header=T,data.table=F) f=qq(/common/jyanglab/gxu6/msfs_teo/Basic_data/GERP/Maize_GERP_file_AGPv3_chr{i}.txt) d=fread(f, header=T,data.table=F) d1=d[p[,3],] if(nrow(d1)==nrow(p)) {cat(same row of chr,i,\n)} d1=cbind(p,d1[,4]) colnames(d1)[4]=_Score<br />
+d1=d1[order(d1[,2],d1[,3]),] out=qq(_20samples_gerp_chr{i}.txt) write.table(d1,out,quote = F,col.na=T,row.names = F,sep=\t) } arg=getarg() do.call(get_gerp,arg)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -281,43 +219,10 @@ do.call(get_gerp,arg)</code></pre>
 <h1>get GERP Score of each SNP in the whole vcf file</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxub3BlbihULFwidGVvXzIwc2FtcGxlc19nZXJwX2NociRBUkdWWzBdXFwudHh0XCIpfHxkaWUgXCJDYW4ndCBvcGVuIHlvdXIgZmlsZSFcIjtcbm9wZW4oUixcIj50ZW9fMjBzYW1wbGVzX2NociRBUkdWWzBdXFxfX2dlcnBfU05QXFwudHh0XCIpO1xuJGw9PFQ+O3ByaW50IFIgXCIkbFwiO1xud2hpbGUoPFQ+KVxue1xuXHRjaG9tcDtcblx0QGFhPXNwbGl0O1xuaWYoJGFhWzNdPjApe3ByaW50IFIgXCIkX1xcblwiO31cblx0fVxuY2xvc2UoVCxSKTtcblxuJGY9XCJ0ZW9fMjBzYW1wbGVzX2NociRBUkdWWzBdXFxfX2dlcnBfU05QLnR4dFwiO1xub3BlbihULFwiJGZcIil8fGRpZSBcIkNhbid0IG9wZW4geW91ciBmaWxlIVwiO1xud2hpbGUoPFQ+KVxue1xuXHRjaG9tcDtcbkBhYT1zcGxpdDtcbiRoYXNoeyRhYVswXX09JGFhWzNdO1xuXHRcdH1cbnByaW50IFwiQ2hyJEFSR1ZbMF1cXCBIYXNoIGZpbmlzaGVkIVxcblwiO1xuJHZjZj1cInRlb18yMHNhbXBsZXNfc2VwMjFfMjAxOF9BR1B2NF9jaHIkQVJHVlswXVxcLnJlY29kZS52Y2ZcIjtcbm9wZW4oRixcIiR2Y2ZcIil8fGRpZSBcIkNhbid0IG9wZW4geW91ciBmaWxlIVwiO1xuJG91dD1cInRlb18yMHNhbXBsZXNfY2hyJEFSR1ZbMF1cXF93aG9sZV9nZXJwX1NOUC50eHRcIjtcbm9wZW4oUixcIj4kb3V0XCIpO1xucHJpbnQgUiBcIkNoclx0UG9zXHRHRVJQXFxuXCI7XG53aGlsZSg8Rj4pXG57XG5cdGNob21wO1xuXHRpZigvXiMvKXtuZXh0O31cbkBiYj1zcGxpdDtcbiRtaz1cIlMkYmJbMF1fJGJiWzFdXCI7XG5cdGlmKGV4aXN0cygkaGFzaHskbWt9KSlcblx0e3ByaW50IFIgXCIkYmJbMF1cdCRiYlsxXVx0JGhhc2h7JG1rfVxcblwiO31cblx0ZWxzZXtwcmludCBSIFwiJGJiWzBdXHQkYmJbMV1cdE5BXFxuXCI7fVxuXHR9XG5cbmBgYCJ9 -->
-<pre class="perl"><code>open(T,&quot;teo_20samples_gerp_chr$ARGV[0]\.txt&quot;)||die &quot;Can't open your file!&quot;;
-open(R,&quot;&gt;teo_20samples_chr$ARGV[0]\__gerp_SNP\.txt&quot;);
-$l=&lt;T&gt;;print R &quot;$l&quot;;
-while(&lt;T&gt;)
-{
-    chomp;
-    @aa=split;
-if($aa[3]&gt;0){print R &quot;$_\n&quot;;}
-    }
-close(T,R);
-
-$f=&quot;teo_20samples_chr$ARGV[0]\__gerp_SNP.txt&quot;;
-open(T,&quot;$f&quot;)||die &quot;Can't open your file!&quot;;
-while(&lt;T&gt;)
-{
-    chomp;
-@aa=split;
-$hash{$aa[0]}=$aa[3];
-        }
-print &quot;Chr$ARGV[0]\ Hash finished!\n&quot;;
-$vcf=&quot;teo_20samples_sep21_2018_AGPv4_chr$ARGV[0]\.recode.vcf&quot;;
-open(F,&quot;$vcf&quot;)||die &quot;Can't open your file!&quot;;
-$out=&quot;teo_20samples_chr$ARGV[0]\_whole_gerp_SNP.txt&quot;;
-open(R,&quot;&gt;$out&quot;);
-print R &quot;Chr    Pos GERP\n&quot;;
-while(&lt;F&gt;)
-{
-    chomp;
-    if(/^#/){next;}
-@bb=split;
-$mk=&quot;S$bb[0]_$bb[1]&quot;;
-    if(exists($hash{$mk}))
-    {print R &quot;$bb[0]    $bb[1]  $hash{$mk}\n&quot;;}
-    else{print R &quot;$bb[0]    $bb[1]  NA\n&quot;;}
-    }
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxuYGBgcGVybFxub3BlbihULFxcdGVvXzIwc2FtcGxlc19nZXJwX2NociRBUkdWWzBdXFwudHh0XFwpfHxkaWUgXFxDYW4ndCBvcGVuIHlvdXIgZmlsZSFcXDtcbm9wZW4oUixcXD50ZW9fMjBzYW1wbGVzX2NociRBUkdWWzBdXFxfX2dlcnBfU05QXFwudHh0XFwpO1xuJGw9PFQ+O3ByaW50IFIgXFwkbFxcO1xud2hpbGUoPFQ+KVxue1xuXHRjaG9tcDtcblx0QGFhPXNwbGl0O1xuaWYoJGFhWzNdPjApe3ByaW50IFIgXFwkX1xcblxcO31cblx0fVxuY2xvc2UoVCxSKTtcblxuJGY9XFx0ZW9fMjBzYW1wbGVzX2NociRBUkdWWzBdXFxfX2dlcnBfU05QLnR4dFxcO1xub3BlbihULFxcJGZcXCl8fGRpZSBcXENhbid0IG9wZW4geW91ciBmaWxlIVxcO1xud2hpbGUoPFQ+KVxue1xuXHRjaG9tcDtcbkBhYT1zcGxpdDtcbiRoYXNoeyRhYVswXX09JGFhWzNdO1xuXHRcdH1cbnByaW50IFxcQ2hyJEFSR1ZbMF1cXCBIYXNoIGZpbmlzaGVkIVxcblxcO1xuJHZjZj1cXHRlb18yMHNhbXBsZXNfc2VwMjFfMjAxOF9BR1B2NF9jaHIkQVJHVlswXVxcLnJlY29kZS52Y2ZcXDtcbm9wZW4oRixcXCR2Y2ZcXCl8fGRpZSBcXENhbid0IG9wZW4geW91ciBmaWxlIVxcO1xuJG91dD1cXHRlb18yMHNhbXBsZXNfY2hyJEFSR1ZbMF1cXF93aG9sZV9nZXJwX1NOUC50eHRcXDtcbm9wZW4oUixcXD4kb3V0XFwpO1xucHJpbnQgUiBcXENoclx0UG9zXHRHRVJQXFxuXFw7XG53aGlsZSg8Rj4pXG57XG5cdGNob21wO1xuXHRpZigvXiMvKXtuZXh0O31cbkBiYj1zcGxpdDtcbiRtaz1cXFMkYmJbMF1fJGJiWzFdXFw7XG5cdGlmKGV4aXN0cygkaGFzaHskbWt9KSlcblx0e3ByaW50IFIgXFwkYmJbMF1cdCRiYlsxXVx0JGhhc2h7JG1rfVxcblxcO31cblx0ZWxzZXtwcmludCBSIFxcJGJiWzBdXHQkYmJbMV1cdE5BXFxuXFw7fVxuXHR9XG5cbmBgYFxuYGBgIn0= -->
+<p><code>perl</code>perl open(T,_20samples_gerp_chr<span class="math inline">\(ARGV[0]\.txt\)||die \Can't open your file!\; open(R,\&gt;teo_20samples_chr\)</span>ARGV[0]_<em>gerp_SNP.txt); <span class="math inline">\(l=&lt;T&gt;;print R \$l\; while(&lt;T&gt;) {  chomp;  @aa=split; if(\)</span>aa[3]&gt;0){print R $</em>;} } close(T,R);</p>
+<p><span class="math inline">\(f=\teo_20samples_chr\)</span>ARGV[0]_<em>gerp_SNP.txt; open(T,$f)||die ’t open your file!; while(<T>) { chomp; <span class="citation">@aa</span>=split; <span class="math inline">\(hash{\)</span>aa[0]}=<span class="math inline">\(aa[3];  } print \Chr\)</span>ARGV[0] Hash finished!; <span class="math inline">\(vcf=\teo_20samples_sep21_2018_AGPv4_chr\)</span>ARGV[0].recode.vcf; open(F,$vcf)||die ’t open your file!; <span class="math inline">\(out=\teo_20samples_chr\)</span>ARGV[0]_whole_gerp_SNP.txt; open(R,&gt;$out); print R Pos GERP; while(<F>) { chomp; if(/^#/){next;} <span class="citation">@bb</span>=split; <span class="math inline">\(mk=\S\)</span>bb[0]</em><span class="math inline">\(bb[1]\;  if(exists(\)</span>hash{$mk})) {print R $bb[0] $bb[1] <span class="math inline">\(hash{\)</span>mk};} else{print R $bb[0] $bb[1] NA;} }</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -325,43 +230,10 @@ $mk=&quot;S$bb[0]_$bb[1]&quot;;
 <h2>get genetic load</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxubGlicmFyeShSb3B0KVxuZ2V0X2xvYWQ9ZnVuY3Rpb24oaSxjbylcbiAge1xuICBnZXJwX2Y9cXEoXCJ0ZW9fMjBzYW1wbGVzX2NocntpfV93aG9sZV9nZXJwX1NOUC50eHRcIilcbiAgZ19mPXFxKFwiL2NvbW1vbi9qeWFuZ2xhYi9neHU2L21zZnNfdGVvL0Jhc2ljX2RhdGEvV0dTL3Rlb18yMHNhbXBsZXNfc2VwMjFfMjAxOF9BR1B2NF9jaHJ7aX0ucmVjb2RlLnZjZlwiKVxuZ2VycD1mcmVhZChnZXJwX2YsIGhlYWRlcj1ULGRhdGEudGFibGU9RikgXG5nPWZyZWFkKGdfZixoZWFkPVQsc2tpcD01MSxzZWxlY3QgPSBjKDEsMixjbyksZGF0YS50YWJsZT1GKVxubmE9dW5saXN0KHN0cnNwbGl0KGNvbG5hbWVzKGcpWzNdLFwiX1wiKSlbMV1cbmlmKGFsbChnZXJwWywyXT09Z1ssMl0pKXtjYXQoXCJucm93IG9mIGdlcnAgZmlsZSBpcyBlcXVhbCB0byB2Y2YgZmlsZVxcblwiKX1cbmc9Y2JpbmQoZyxnZXJwJEdFUlApICBcbiBjb2xuYW1lcyhnKVs0XT1cIkdFUlBcIiBcbiBnPW5hLm9taXQoZykgXG4gZz1nWy1ncmVwKFwiXFxcXC4vXFxcXC5cIixnWywzXSksXVxuIHN0YXJ0PTE7ZW5kPXN0YXJ0Kzk5ICMjd2luZG93IHNpemUgaXMgMTAwYnBcbiByZT1OVUxMXG4gd2hpbGUoZW5kPD1tYXgoZ1ssMl0pKVxuIHtcbiAgIGQ9Z1tnJHBvcz49c3RhcnQgJiBnJHBvczw9ZW5kLF1cbiAgIGlmKG5yb3coZCk9PTApXG4gICB7cmVzPWMoaSxzdGFydCxlbmQsMCwwKX1cbiAgIGVsc2V7XG4gICAgIHJlcz1jKGksc3RhcnQsZW5kLHN1bShkWyw1XSxuYS5ybT1UKSxucm93KGQpKVxuICAgfVxuICAgcmU9cmJpbmQocmUscmVzKVxuICAgc3RhcnQ9c3RhcnQrMTAwO2VuZD1zdGFydCs5OVxuICAgY2F0KHN0YXJ0LFwiLS0tXCIsZW5kLFwiXFxuXCIpXG4gfVxuIGNvbG5hbWVzKHJlKT1jKFwiQ2hyXCIsXCJTdGFydFwiLFwiRW5kXCIsXCJTdW1fZ2VycFwiLFwiQ291bnRfZ2VycFwiKVxuIFxuIG91dD1xcShcIntuYX0uY2hye2l9LmxvYWQudHh0XCIpXG4gd3JpdGUudGFibGUocmUsb3V0LHF1b3RlID0gRixjb2wubmE9VCxyb3cubmFtZXMgPSBGLHNlcD1cIlxcdFwiKVxufVxuYXJnPWdldGFyZygpXG5kby5jYWxsKGdldF9sb2FkLGFyZylcblxuXG5gYGAifQ== -->
-<pre class="r"><code>library(data.table)
-library(Ropt)
-get_load=function(i,co)
-  {
-  gerp_f=qq(&quot;teo_20samples_chr{i}_whole_gerp_SNP.txt&quot;)
-  g_f=qq(&quot;/common/jyanglab/gxu6/msfs_teo/Basic_data/WGS/teo_20samples_sep21_2018_AGPv4_chr{i}.recode.vcf&quot;)
-gerp=fread(gerp_f, header=T,data.table=F) 
-g=fread(g_f,head=T,skip=51,select = c(1,2,co),data.table=F)
-na=unlist(strsplit(colnames(g)[3],&quot;_&quot;))[1]
-if(all(gerp[,2]==g[,2])){cat(&quot;nrow of gerp file is equal to vcf file\n&quot;)}
-g=cbind(g,gerp$GERP)  
- colnames(g)[4]=&quot;GERP&quot; 
- g=na.omit(g) 
- g=g[-grep(&quot;\\./\\.&quot;,g[,3]),]
- start=1;end=start+99 ##window size is 100bp
- re=NULL
- while(end&lt;=max(g[,2]))
- {
-   d=g[g$pos&gt;=start &amp; g$pos&lt;=end,]
-   if(nrow(d)==0)
-   {res=c(i,start,end,0,0)}
-   else{
-     res=c(i,start,end,sum(d[,5],na.rm=T),nrow(d))
-   }
-   re=rbind(re,res)
-   start=start+100;end=start+99
-   cat(start,&quot;---&quot;,end,&quot;\n&quot;)
- }
- colnames(re)=c(&quot;Chr&quot;,&quot;Start&quot;,&quot;End&quot;,&quot;Sum_gerp&quot;,&quot;Count_gerp&quot;)
- 
- out=qq(&quot;{na}.chr{i}.load.txt&quot;)
- write.table(re,out,quote = F,col.na=T,row.names = F,sep=&quot;\t&quot;)
-}
-arg=getarg()
-do.call(get_load,arg)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxubGlicmFyeShSb3B0KVxuZ2V0X2xvYWQ9ZnVuY3Rpb24oaSxjbylcbiAge1xuICBnZXJwX2Y9cXEoXFx0ZW9fMjBzYW1wbGVzX2NocntpfV93aG9sZV9nZXJwX1NOUC50eHRcXClcbiAgZ19mPXFxKFxcL2NvbW1vbi9qeWFuZ2xhYi9neHU2L21zZnNfdGVvL0Jhc2ljX2RhdGEvV0dTL3Rlb18yMHNhbXBsZXNfc2VwMjFfMjAxOF9BR1B2NF9jaHJ7aX0ucmVjb2RlLnZjZlxcKVxuZ2VycD1mcmVhZChnZXJwX2YsIGhlYWRlcj1ULGRhdGEudGFibGU9RikgXG5nPWZyZWFkKGdfZixoZWFkPVQsc2tpcD01MSxzZWxlY3QgPSBjKDEsMixjbyksZGF0YS50YWJsZT1GKVxubmE9dW5saXN0KHN0cnNwbGl0KGNvbG5hbWVzKGcpWzNdLFxcX1xcKSlbMV1cbmlmKGFsbChnZXJwWywyXT09Z1ssMl0pKXtjYXQoXFxucm93IG9mIGdlcnAgZmlsZSBpcyBlcXVhbCB0byB2Y2YgZmlsZVxcblxcKX1cbmc9Y2JpbmQoZyxnZXJwJEdFUlApICBcbiBjb2xuYW1lcyhnKVs0XT1cXEdFUlBcXCBcbiBnPW5hLm9taXQoZykgXG4gZz1nWy1ncmVwKFxcXFxcXC4vXFxcXC5cXCxnWywzXSksXVxuIHN0YXJ0PTE7ZW5kPXN0YXJ0Kzk5ICMjd2luZG93IHNpemUgaXMgMTAwYnBcbiByZT1OVUxMXG4gd2hpbGUoZW5kPD1tYXgoZ1ssMl0pKVxuIHtcbiAgIGQ9Z1tnJHBvcz49c3RhcnQgJiBnJHBvczw9ZW5kLF1cbiAgIGlmKG5yb3coZCk9PTApXG4gICB7cmVzPWMoaSxzdGFydCxlbmQsMCwwKX1cbiAgIGVsc2V7XG4gICAgIHJlcz1jKGksc3RhcnQsZW5kLHN1bShkWyw1XSxuYS5ybT1UKSxucm93KGQpKVxuICAgfVxuICAgcmU9cmJpbmQocmUscmVzKVxuICAgc3RhcnQ9c3RhcnQrMTAwO2VuZD1zdGFydCs5OVxuICAgY2F0KHN0YXJ0LFxcLS0tXFwsZW5kLFxcXFxuXFwpXG4gfVxuIGNvbG5hbWVzKHJlKT1jKFxcQ2hyXFwsXFxTdGFydFxcLFxcRW5kXFwsXFxTdW1fZ2VycFxcLFxcQ291bnRfZ2VycFxcKVxuIFxuIG91dD1xcShcXHtuYX0uY2hye2l9LmxvYWQudHh0XFwpXG4gd3JpdGUudGFibGUocmUsb3V0LHF1b3RlID0gRixjb2wubmE9VCxyb3cubmFtZXMgPSBGLHNlcD1cXFxcdFxcKVxufVxuYXJnPWdldGFyZygpXG5kby5jYWxsKGdldF9sb2FkLGFyZylcblxuXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r library(data.table) library(Ropt) get_load=function(i,co) { gerp_f=qq(_20samples_chr{i}_whole_gerp_SNP.txt) g_f=qq(/common/jyanglab/gxu6/msfs_teo/Basic_data/WGS/teo_20samples_sep21_2018_AGPv4_chr{i}.recode.vcf) gerp=fread(gerp_f, header=T,data.table=F) g=fread(g_f,head=T,skip=51,select = c(1,2,co),data.table=F) na=unlist(strsplit(colnames(g)[3],_))[1] if(all(gerp[,2]==g[,2])){cat(of gerp file is equal to vcf file)} g=cbind(g,gerp<span class="math inline">\(GERP)  colnames(g)[4]=\GERP\   g=na.omit(g)  g=g[-grep(\\\./\\.\,g[,3]),]  start=1;end=start+99 ##window size is 100bp  re=NULL  while(end&lt;=max(g[,2]))  {  d=g[g\)</span>pos&gt;=start &amp; g$pos&lt;=end,] if(nrow(d)==0) {res=c(i,start,end,0,0)} else{ res=c(i,start,end,sum(d[,5],na.rm=T),nrow(d)) } re=rbind(re,res) start=start+100;end=start+99 cat(start,-–,end,\n) } colnames(re)=c(,,,_gerp,_gerp)</p>
+<p>out=qq({na}.chr{i}.load.txt) write.table(re,out,quote = F,col.na=T,row.names = F,sep=\t) } arg=getarg() do.call(get_load,arg)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -369,7 +241,7 @@ do.call(get_load,arg)
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdldCBnZW5ldGljIGxvYWQgb2YgZWFjaCBsaW5lIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQphdXRob3I6IEdlbiBYdQ0KLS0tDQojI0dldCBjb29yZGluYXRlcyBvZiBlYWNoIFNOUCBmcm9tIFZDRiBmaWxlDQpgYGB7cGVybH0NCiRpbj0idGVvXzIwc2FtcGxlc19zZXAyMV8yMDE4X0FHUHY0X2NociRBUkdWWzBdXC5yZWNvZGUudmNmIjsNCm9wZW4oVCwiJGluIil8fGRpZSAiQ2FuJ3Qgb3BlbiB5b3VyIGZpbGUhIjsNCiRvdXQ9InRlb18yMHNhbXBsZXMuY2hyJEFSR1ZbMF1cLnBvcy50eHQiOw0Kb3BlbihSLCI+JG91dCIpOw0KcHJpbnQgUiAiQ2hyCXBvc1xuIjsNCndoaWxlKDxUPikNCnsNCgljaG9tcDsNCmlmKC9eIy8pe25leHQ7fQ0KCUBhYT1zcGxpdDsNCglwcmludCBSICIkYWFbMF0JJGFhWzFdXG4iOw0KCX0NCmNsb3NlKFQsUik7DQoNCmBgYA0KDQoNCiMjQ29udmVydCBkYXRhIHRvIEFHUHYzIGNvb3JkaW5hdGVzDQpgYGB7cGVybH0NCm9wZW4oVCwiJEFSR1ZbMF0iKXx8ZGllICJDYW4ndCBvcGVuIHlvdXIgZmlsZSEiOyAjIyMkQVJHVlswXSBpcyBmaWxlIG5hbWUsIGVnOiB0ZW9fMjBzYW1wbGVzLmNocjEucG9zLnR4dA0KJEFSR1ZbMF09fnMvXC50eHQvLzsNCiRuYT0kQVJHVlswXTsNCm9wZW4oUiwiPiRuYS4yMDBicC5iZWQiKTsNCiRsPTxUPjsNCndoaWxlKDxUPikNCnsNCgljaG9tcDsNCglAYWE9c3BsaXQ7DQoJJHN0YXJ0PSRhYVsxXS0xOw0KCSRlbmQ9JGFhWzFdKzE5ODsNCnByaW50IFIgIiRhYVswXQkkc3RhcnQJJGVuZFxuIjsNCgl9DQpjbG9zZShULFIpOw0KcHJpbnQgIkhhdmUgZ290IGJlZCBmaWxlXG4iOw0KYHNlcXRrIHN1YnNlcSAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0L21haXplLWdlbm9tZS1WNC5mYSAkbmEuMjAwYnAuYmVkID4gJG5hLjIwMGJwLlY0LmZhYDsNCnByaW50ICJIYXZlIGdvdCBiZWQgZmFzdGEgZmlsZVxuIjsNCmBid2EgbWVtIC10IDEwIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfVjMvbWFpemUtZ2Vub21lLVYzICRuYS4yMDBicC5WNC5mYSA+ICRuYS5zYW1gOw0KcHJpbnQgIkhhdmUgYWdhbGluZWQgdG8gQjczIG9mIFYzXG4iOw0Kb3BlbihULCIkbmEuc2FtIil8fGRpZSAiQ2FuJ3Qgb3BlbiB5b3VyIGZpbGUhIjsNCm9wZW4oUiwiPiRuYS52M19wb3MudHh0Iik7DQpwcmludCBSICJNYXJrZXIJQ2hyCVBvc1xuIjsNCndoaWxlKDxUPikNCnsNCgljaG9tcDsNCmlmKC9eQC8gb3IgL15cW00vKXtuZXh0O30NCglAYWE9c3BsaXQgL1x0LywkXzsNCglAYmI9c3BsaXQgL1wtLywkYWFbMF07DQoJQGNjPXNwbGl0IC9cOi8sJGFhWzBdOw0KCSRiYlswXT1+cy9cOi9cXy87DQoJJG1rPSJTJGJiWzBdIjsNCgkkbm09Ik5NOmk6MCI7DQoJaWYoJGFhWzJdPT0kY2NbMF0gJiYgJGFhWzExXSBlcSAkbm0pDQoJe3ByaW50IFIgIiRtawkkYWFbMl0JJGFhWzNdXG4iO30NCgkNCgl9DQpjbG9zZShULFIpOw0KYHJtICRuYS5zYW0gJG5hLjIwMGJwLmJlZCAkbmEuMjAwYnAuVjQuZmFgOw0KcHJpbnQgIlR1c2sgaGFzIGJlZW4gZmluc2VkXG4iOw0KYGBgDQoNCiMjZ2V0IEdFUlAgU2NvcmUgb2YgZWFjaCBTTlANCmBgYHtyfQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KbGlicmFyeShSb3B0KQ0KDQpnZXRfZ2VycD1mdW5jdGlvbihpKQ0KICB7Zmk9cXEoInRlb18yMHNhbXBsZXMuY2hye2l9LnBvcy52M19wb3MudHh0IikNCnA9ZnJlYWQoZmksIGhlYWRlcj1ULGRhdGEudGFibGU9RikgDQpmPXFxKCIvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vQmFzaWNfZGF0YS9HRVJQL01haXplX0dFUlBfZmlsZV9BR1B2M19jaHJ7aX0udHh0IikNCmQ9ZnJlYWQoZiwgaGVhZGVyPVQsZGF0YS50YWJsZT1GKSANCmQxPWRbcFssM10sXQ0KaWYobnJvdyhkMSk9PW5yb3cocCkpDQp7Y2F0KCJUaGUgc2FtZSByb3cgb2YgY2hyIixpLCJcbiIpfQ0KZDE9Y2JpbmQocCxkMVssNF0pDQpjb2xuYW1lcyhkMSlbNF09IkdFUlBfU2NvcmUiDQpkMT1kMVtvcmRlcihkMVssMl0sZDFbLDNdKSxdDQpvdXQ9cXEoInRlb18yMHNhbXBsZXNfZ2VycF9jaHJ7aX0udHh0IikNCndyaXRlLnRhYmxlKGQxLG91dCxxdW90ZSA9IEYsY29sLm5hPVQscm93Lm5hbWVzID0gRixzZXA9Ilx0IikNCn0NCmFyZz1nZXRhcmcoKQ0KZG8uY2FsbChnZXRfZ2VycCxhcmcpDQpgYGANCg0KI2dldCBHRVJQIFNjb3JlIG9mIGVhY2ggU05QIGluIHRoZSB3aG9sZSB2Y2YgZmlsZQ0KYGBge3Blcmx9DQpvcGVuKFQsInRlb18yMHNhbXBsZXNfZ2VycF9jaHIkQVJHVlswXVwudHh0Iil8fGRpZSAiQ2FuJ3Qgb3BlbiB5b3VyIGZpbGUhIjsNCm9wZW4oUiwiPnRlb18yMHNhbXBsZXNfY2hyJEFSR1ZbMF1cX19nZXJwX1NOUFwudHh0Iik7DQokbD08VD47cHJpbnQgUiAiJGwiOw0Kd2hpbGUoPFQ+KQ0Kew0KCWNob21wOw0KCUBhYT1zcGxpdDsNCmlmKCRhYVszXT4wKXtwcmludCBSICIkX1xuIjt9DQoJfQ0KY2xvc2UoVCxSKTsNCg0KJGY9InRlb18yMHNhbXBsZXNfY2hyJEFSR1ZbMF1cX19nZXJwX1NOUC50eHQiOw0Kb3BlbihULCIkZiIpfHxkaWUgIkNhbid0IG9wZW4geW91ciBmaWxlISI7DQp3aGlsZSg8VD4pDQp7DQoJY2hvbXA7DQpAYWE9c3BsaXQ7DQokaGFzaHskYWFbMF19PSRhYVszXTsNCgkJfQ0KcHJpbnQgIkNociRBUkdWWzBdXCBIYXNoIGZpbmlzaGVkIVxuIjsNCiR2Y2Y9InRlb18yMHNhbXBsZXNfc2VwMjFfMjAxOF9BR1B2NF9jaHIkQVJHVlswXVwucmVjb2RlLnZjZiI7DQpvcGVuKEYsIiR2Y2YiKXx8ZGllICJDYW4ndCBvcGVuIHlvdXIgZmlsZSEiOw0KJG91dD0idGVvXzIwc2FtcGxlc19jaHIkQVJHVlswXVxfd2hvbGVfZ2VycF9TTlAudHh0IjsNCm9wZW4oUiwiPiRvdXQiKTsNCnByaW50IFIgIkNocglQb3MJR0VSUFxuIjsNCndoaWxlKDxGPikNCnsNCgljaG9tcDsNCglpZigvXiMvKXtuZXh0O30NCkBiYj1zcGxpdDsNCiRtaz0iUyRiYlswXV8kYmJbMV0iOw0KCWlmKGV4aXN0cygkaGFzaHskbWt9KSkNCgl7cHJpbnQgUiAiJGJiWzBdCSRiYlsxXQkkaGFzaHskbWt9XG4iO30NCgllbHNle3ByaW50IFIgIiRiYlswXQkkYmJbMV0JTkFcbiI7fQ0KCX0NCg0KYGBgDQoNCg0KIyNnZXQgZ2VuZXRpYyBsb2FkIA0KYGBge3J9DQpsaWJyYXJ5KGRhdGEudGFibGUpDQpsaWJyYXJ5KFJvcHQpDQpnZXRfbG9hZD1mdW5jdGlvbihpLGNvKQ0KICB7DQogIGdlcnBfZj1xcSgidGVvXzIwc2FtcGxlc19jaHJ7aX1fd2hvbGVfZ2VycF9TTlAudHh0IikNCiAgZ19mPXFxKCIvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vQmFzaWNfZGF0YS9XR1MvdGVvXzIwc2FtcGxlc19zZXAyMV8yMDE4X0FHUHY0X2NocntpfS5yZWNvZGUudmNmIikNCmdlcnA9ZnJlYWQoZ2VycF9mLCBoZWFkZXI9VCxkYXRhLnRhYmxlPUYpIA0KZz1mcmVhZChnX2YsaGVhZD1ULHNraXA9NTEsc2VsZWN0ID0gYygxLDIsY28pLGRhdGEudGFibGU9RikNCm5hPXVubGlzdChzdHJzcGxpdChjb2xuYW1lcyhnKVszXSwiXyIpKVsxXQ0KaWYoYWxsKGdlcnBbLDJdPT1nWywyXSkpe2NhdCgibnJvdyBvZiBnZXJwIGZpbGUgaXMgZXF1YWwgdG8gdmNmIGZpbGVcbiIpfQ0KZz1jYmluZChnLGdlcnAkR0VSUCkgIA0KIGNvbG5hbWVzKGcpWzRdPSJHRVJQIiANCiBnPW5hLm9taXQoZykgDQogZz1nWy1ncmVwKCJcXC4vXFwuIixnWywzXSksXQ0KIHN0YXJ0PTE7ZW5kPXN0YXJ0Kzk5ICMjd2luZG93IHNpemUgaXMgMTAwYnANCiByZT1OVUxMDQogd2hpbGUoZW5kPD1tYXgoZ1ssMl0pKQ0KIHsNCiAgIGQ9Z1tnJHBvcz49c3RhcnQgJiBnJHBvczw9ZW5kLF0NCiAgIGlmKG5yb3coZCk9PTApDQogICB7cmVzPWMoaSxzdGFydCxlbmQsMCwwKX0NCiAgIGVsc2V7DQogICAgIHJlcz1jKGksc3RhcnQsZW5kLHN1bShkWyw1XSxuYS5ybT1UKSxucm93KGQpKQ0KICAgfQ0KICAgcmU9cmJpbmQocmUscmVzKQ0KICAgc3RhcnQ9c3RhcnQrMTAwO2VuZD1zdGFydCs5OQ0KICAgY2F0KHN0YXJ0LCItLS0iLGVuZCwiXG4iKQ0KIH0NCiBjb2xuYW1lcyhyZSk9YygiQ2hyIiwiU3RhcnQiLCJFbmQiLCJTdW1fZ2VycCIsIkNvdW50X2dlcnAiKQ0KIA0KIG91dD1xcSgie25hfS5jaHJ7aX0ubG9hZC50eHQiKQ0KIHdyaXRlLnRhYmxlKHJlLG91dCxxdW90ZSA9IEYsY29sLm5hPVQscm93Lm5hbWVzID0gRixzZXA9Ilx0IikNCn0NCmFyZz1nZXRhcmcoKQ0KZG8uY2FsbChnZXRfbG9hZCxhcmcpDQoNCg0KYGBgDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdldCBnZW5ldGljIGxvYWQgb2YgZWFjaCBsaW5lIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQphdXRob3I6IEdlbiBYdQ0KLS0tDQojIyBHZXQgY29vcmRpbmF0ZXMgb2YgZWFjaCBTTlAgZnJvbSBWQ0YgZmlsZQ0KYGBge3Blcmx9DQokaW49InRlb18yMHNhbXBsZXNfc2VwMjFfMjAxOF9BR1B2NF9jaHIkQVJHVlswXVwucmVjb2RlLnZjZiI7DQpvcGVuKFQsIiRpbiIpfHxkaWUgIkNhbid0IG9wZW4geW91ciBmaWxlISI7DQokb3V0PSJ0ZW9fMjBzYW1wbGVzLmNociRBUkdWWzBdXC5wb3MudHh0IjsNCm9wZW4oUiwiPiRvdXQiKTsNCnByaW50IFIgIkNocglwb3NcbiI7DQp3aGlsZSg8VD4pDQp7DQoJY2hvbXA7DQppZigvXiMvKXtuZXh0O30NCglAYWE9c3BsaXQ7DQoJcHJpbnQgUiAiJGFhWzBdCSRhYVsxXVxuIjsNCgl9DQpjbG9zZShULFIpOw0KDQpgYGANCg0KDQojIyBDb252ZXJ0IGRhdGEgdG8gQUdQdjMgY29vcmRpbmF0ZXMNCmBgYHtwZXJsfQ0Kb3BlbihULCIkQVJHVlswXSIpfHxkaWUgIkNhbid0IG9wZW4geW91ciBmaWxlISI7ICMjIyRBUkdWWzBdIGlzIGZpbGUgbmFtZSwgZWc6IHRlb18yMHNhbXBsZXMuY2hyMS5wb3MudHh0DQokQVJHVlswXT1+cy9cLnR4dC8vOw0KJG5hPSRBUkdWWzBdOw0Kb3BlbihSLCI+JG5hLjIwMGJwLmJlZCIpOw0KJGw9PFQ+Ow0Kd2hpbGUoPFQ+KQ0Kew0KCWNob21wOw0KCUBhYT1zcGxpdDsNCgkkc3RhcnQ9JGFhWzFdLTE7DQoJJGVuZD0kYWFbMV0rMTk4Ow0KcHJpbnQgUiAiJGFhWzBdCSRzdGFydAkkZW5kXG4iOw0KCX0NCmNsb3NlKFQsUik7DQpwcmludCAiSGF2ZSBnb3QgYmVkIGZpbGVcbiI7DQpgc2VxdGsgc3Vic2VxIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfdjQvbWFpemUtZ2Vub21lLVY0LmZhICRuYS4yMDBicC5iZWQgPiAkbmEuMjAwYnAuVjQuZmFgOw0KcHJpbnQgIkhhdmUgZ290IGJlZCBmYXN0YSBmaWxlXG4iOw0KYGJ3YSBtZW0gLXQgMTAgL2NvbW1vbi9qeWFuZ2xhYi9neHU2L0I3M19WMy9tYWl6ZS1nZW5vbWUtVjMgJG5hLjIwMGJwLlY0LmZhID4gJG5hLnNhbWA7DQpwcmludCAiSGF2ZSBhZ2FsaW5lZCB0byBCNzMgb2YgVjNcbiI7DQpvcGVuKFQsIiRuYS5zYW0iKXx8ZGllICJDYW4ndCBvcGVuIHlvdXIgZmlsZSEiOw0Kb3BlbihSLCI+JG5hLnYzX3Bvcy50eHQiKTsNCnByaW50IFIgIk1hcmtlcglDaHIJUG9zXG4iOw0Kd2hpbGUoPFQ+KQ0Kew0KCWNob21wOw0KaWYoL15ALyBvciAvXlxbTS8pe25leHQ7fQ0KCUBhYT1zcGxpdCAvXHQvLCRfOw0KCUBiYj1zcGxpdCAvXC0vLCRhYVswXTsNCglAY2M9c3BsaXQgL1w6LywkYWFbMF07DQoJJGJiWzBdPX5zL1w6L1xfLzsNCgkkbWs9IlMkYmJbMF0iOw0KCSRubT0iTk06aTowIjsNCglpZigkYWFbMl09PSRjY1swXSAmJiAkYWFbMTFdIGVxICRubSkNCgl7cHJpbnQgUiAiJG1rCSRhYVsyXQkkYWFbM11cbiI7fQ0KCQ0KCX0NCmNsb3NlKFQsUik7DQpgcm0gJG5hLnNhbSAkbmEuMjAwYnAuYmVkICRuYS4yMDBicC5WNC5mYWA7DQpwcmludCAiVHVzayBoYXMgYmVlbiBmaW5zZWRcbiI7DQpgYGANCg0KIyMgZ2V0IEdFUlAgU2NvcmUgb2YgZWFjaCBTTlANCmBgYHtyfQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KbGlicmFyeShSb3B0KQ0KDQpnZXRfZ2VycD1mdW5jdGlvbihpKQ0KICB7Zmk9cXEoInRlb18yMHNhbXBsZXMuY2hye2l9LnBvcy52M19wb3MudHh0IikNCnA9ZnJlYWQoZmksIGhlYWRlcj1ULGRhdGEudGFibGU9RikgDQpmPXFxKCIvY29tbW9uL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vQmFzaWNfZGF0YS9HRVJQL01haXplX0dFUlBfZmlsZV9BR1B2M19jaHJ7aX0udHh0IikNCmQ9ZnJlYWQoZiwgaGVhZGVyPVQsZGF0YS50YWJsZT1GKSANCmQxPWRbcFssM10sXQ0KaWYobnJvdyhkMSk9PW5yb3cocCkpDQp7Y2F0KCJUaGUgc2FtZSByb3cgb2YgY2hyIixpLCJcbiIpfQ0KZDE9Y2JpbmQocCxkMVssNF0pDQpjb2xuYW1lcyhkMSlbNF09IkdFUlBfU2NvcmUiDQpkMT1kMVtvcmRlcihkMVssMl0sZDFbLDNdKSxdDQpvdXQ9cXEoInRlb18yMHNhbXBsZXNfZ2VycF9jaHJ7aX0udHh0IikNCndyaXRlLnRhYmxlKGQxLG91dCxxdW90ZSA9IEYsY29sLm5hPVQscm93Lm5hbWVzID0gRixzZXA9Ilx0IikNCn0NCmFyZz1nZXRhcmcoKQ0KZG8uY2FsbChnZXRfZ2VycCxhcmcpDQpgYGANCg0KIyBnZXQgR0VSUCBTY29yZSBvZiBlYWNoIFNOUCBpbiB0aGUgd2hvbGUgdmNmIGZpbGUNCmBgYHtwZXJsfQ0Kb3BlbihULCJ0ZW9fMjBzYW1wbGVzX2dlcnBfY2hyJEFSR1ZbMF1cLnR4dCIpfHxkaWUgIkNhbid0IG9wZW4geW91ciBmaWxlISI7DQpvcGVuKFIsIj50ZW9fMjBzYW1wbGVzX2NociRBUkdWWzBdXF9fZ2VycF9TTlBcLnR4dCIpOw0KJGw9PFQ+O3ByaW50IFIgIiRsIjsNCndoaWxlKDxUPikNCnsNCgljaG9tcDsNCglAYWE9c3BsaXQ7DQppZigkYWFbM10+MCl7cHJpbnQgUiAiJF9cbiI7fQ0KCX0NCmNsb3NlKFQsUik7DQoNCiRmPSJ0ZW9fMjBzYW1wbGVzX2NociRBUkdWWzBdXF9fZ2VycF9TTlAudHh0IjsNCm9wZW4oVCwiJGYiKXx8ZGllICJDYW4ndCBvcGVuIHlvdXIgZmlsZSEiOw0Kd2hpbGUoPFQ+KQ0Kew0KCWNob21wOw0KQGFhPXNwbGl0Ow0KJGhhc2h7JGFhWzBdfT0kYWFbM107DQoJCX0NCnByaW50ICJDaHIkQVJHVlswXVwgSGFzaCBmaW5pc2hlZCFcbiI7DQokdmNmPSJ0ZW9fMjBzYW1wbGVzX3NlcDIxXzIwMThfQUdQdjRfY2hyJEFSR1ZbMF1cLnJlY29kZS52Y2YiOw0Kb3BlbihGLCIkdmNmIil8fGRpZSAiQ2FuJ3Qgb3BlbiB5b3VyIGZpbGUhIjsNCiRvdXQ9InRlb18yMHNhbXBsZXNfY2hyJEFSR1ZbMF1cX3dob2xlX2dlcnBfU05QLnR4dCI7DQpvcGVuKFIsIj4kb3V0Iik7DQpwcmludCBSICJDaHIJUG9zCUdFUlBcbiI7DQp3aGlsZSg8Rj4pDQp7DQoJY2hvbXA7DQoJaWYoL14jLyl7bmV4dDt9DQpAYmI9c3BsaXQ7DQokbWs9IlMkYmJbMF1fJGJiWzFdIjsNCglpZihleGlzdHMoJGhhc2h7JG1rfSkpDQoJe3ByaW50IFIgIiRiYlswXQkkYmJbMV0JJGhhc2h7JG1rfVxuIjt9DQoJZWxzZXtwcmludCBSICIkYmJbMF0JJGJiWzFdCU5BXG4iO30NCgl9DQoNCmBgYA0KDQoNCiMjIGdldCBnZW5ldGljIGxvYWQgDQpgYGB7cn0NCmxpYnJhcnkoZGF0YS50YWJsZSkNCmxpYnJhcnkoUm9wdCkNCmdldF9sb2FkPWZ1bmN0aW9uKGksY28pDQogIHsNCiAgZ2VycF9mPXFxKCJ0ZW9fMjBzYW1wbGVzX2NocntpfV93aG9sZV9nZXJwX1NOUC50eHQiKQ0KICBnX2Y9cXEoIi9jb21tb24vanlhbmdsYWIvZ3h1Ni9tc2ZzX3Rlby9CYXNpY19kYXRhL1dHUy90ZW9fMjBzYW1wbGVzX3NlcDIxXzIwMThfQUdQdjRfY2hye2l9LnJlY29kZS52Y2YiKQ0KZ2VycD1mcmVhZChnZXJwX2YsIGhlYWRlcj1ULGRhdGEudGFibGU9RikgDQpnPWZyZWFkKGdfZixoZWFkPVQsc2tpcD01MSxzZWxlY3QgPSBjKDEsMixjbyksZGF0YS50YWJsZT1GKQ0KbmE9dW5saXN0KHN0cnNwbGl0KGNvbG5hbWVzKGcpWzNdLCJfIikpWzFdDQppZihhbGwoZ2VycFssMl09PWdbLDJdKSl7Y2F0KCJucm93IG9mIGdlcnAgZmlsZSBpcyBlcXVhbCB0byB2Y2YgZmlsZVxuIil9DQpnPWNiaW5kKGcsZ2VycCRHRVJQKSAgDQogY29sbmFtZXMoZylbNF09IkdFUlAiIA0KIGc9bmEub21pdChnKSANCiBnPWdbLWdyZXAoIlxcLi9cXC4iLGdbLDNdKSxdDQogc3RhcnQ9MTtlbmQ9c3RhcnQrOTkgIyN3aW5kb3cgc2l6ZSBpcyAxMDBicA0KIHJlPU5VTEwNCiB3aGlsZShlbmQ8PW1heChnWywyXSkpDQogew0KICAgZD1nW2ckcG9zPj1zdGFydCAmIGckcG9zPD1lbmQsXQ0KICAgaWYobnJvdyhkKT09MCkNCiAgIHtyZXM9YyhpLHN0YXJ0LGVuZCwwLDApfQ0KICAgZWxzZXsNCiAgICAgcmVzPWMoaSxzdGFydCxlbmQsc3VtKGRbLDVdLG5hLnJtPVQpLG5yb3coZCkpDQogICB9DQogICByZT1yYmluZChyZSxyZXMpDQogICBzdGFydD1zdGFydCsxMDA7ZW5kPXN0YXJ0Kzk5DQogICBjYXQoc3RhcnQsIi0tLSIsZW5kLCJcbiIpDQogfQ0KIGNvbG5hbWVzKHJlKT1jKCJDaHIiLCJTdGFydCIsIkVuZCIsIlN1bV9nZXJwIiwiQ291bnRfZ2VycCIpDQogDQogb3V0PXFxKCJ7bmF9LmNocntpfS5sb2FkLnR4dCIpDQogd3JpdGUudGFibGUocmUsb3V0LHF1b3RlID0gRixjb2wubmE9VCxyb3cubmFtZXMgPSBGLHNlcD0iXHQiKQ0KfQ0KYXJnPWdldGFyZygpDQpkby5jYWxsKGdldF9sb2FkLGFyZykNCg0KDQpgYGANCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg==</div>
 
 
 

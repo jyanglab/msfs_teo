@@ -3,7 +3,7 @@ title: "Get genetic load of each line"
 output: html_notebook
 author: Gen Xu
 ---
-##Get coordinates of each SNP from VCF file
+## Get coordinates of each SNP from VCF file
 ```{perl}
 $in="teo_20samples_sep21_2018_AGPv4_chr$ARGV[0]\.recode.vcf";
 open(T,"$in")||die "Can't open your file!";
@@ -22,7 +22,7 @@ close(T,R);
 ```
 
 
-##Convert data to AGPv3 coordinates
+## Convert data to AGPv3 coordinates
 ```{perl}
 open(T,"$ARGV[0]")||die "Can't open your file!"; ###$ARGV[0] is file name, eg: teo_20samples.chr1.pos.txt
 $ARGV[0]=~s/\.txt//;
@@ -65,7 +65,7 @@ close(T,R);
 print "Tusk has been finsed\n";
 ```
 
-##get GERP Score of each SNP
+## get GERP Score of each SNP
 ```{r}
 library(data.table)
 library(Ropt)
@@ -88,7 +88,7 @@ arg=getarg()
 do.call(get_gerp,arg)
 ```
 
-#get GERP Score of each SNP in the whole vcf file
+# get GERP Score of each SNP in the whole vcf file
 ```{perl}
 open(T,"teo_20samples_gerp_chr$ARGV[0]\.txt")||die "Can't open your file!";
 open(R,">teo_20samples_chr$ARGV[0]\__gerp_SNP\.txt");
@@ -129,7 +129,7 @@ $mk="S$bb[0]_$bb[1]";
 ```
 
 
-##get genetic load 
+## get genetic load 
 ```{r}
 library(data.table)
 library(Ropt)
