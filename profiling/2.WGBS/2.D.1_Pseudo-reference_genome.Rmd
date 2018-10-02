@@ -6,12 +6,12 @@ author: Gen Xu
 
 #To improve the mapping rate, reads of teosinte were mapped to each corrected pseudo-reference genome 
 
-#get Annotation file
+# get Annotation file
 ```{bash}
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' JRIAL2_20samples_All_sep12_2018_AGPv4.vcf.gz > JRIAL2_20samples_All_sep21_2018annot.txt
 
 ```
-#get pseudo-reference genome
+# get pseudo-reference genome
 ```{r}
 library("data.table")
 library("Biostrings")

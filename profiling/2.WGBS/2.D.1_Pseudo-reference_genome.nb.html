@@ -147,7 +147,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("2.D.1_Running bismark.Rmd");
+  window.initializeSourceEmbed("2.D.1_Pseudo-reference_genome.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -185,9 +185,9 @@ $(document).ready(function () {
 <h1>get Annotation file</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYmNmdG9vbHMgcXVlcnkgLWYgJyVDSFJPTVxcdCVQT1NcXHQlUkVGXFx0JUFMVFtcXHQlSVVQQUNHVF1cXG4nIEpSSUFMMl8yMHNhbXBsZXNfQWxsX3NlcDEyXzIwMThfQUdQdjQudmNmLmd6ID4gSlJJQUwyXzIwc2FtcGxlc19BbGxfc2VwMjFfMjAxOGFubm90LnR4dFxuXG5gYGAifQ== -->
-<pre class="bash"><code>bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' JRIAL2_20samples_All_sep12_2018_AGPv4.vcf.gz &gt; JRIAL2_20samples_All_sep21_2018annot.txt
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYGBgYmFzaFxuYmNmdG9vbHMgcXVlcnkgLWYgJyVDSFJPTVxcdCVQT1NcXHQlUkVGXFx0JUFMVFtcXHQlSVVQQUNHVF1cXG4nIEpSSUFMMl8yMHNhbXBsZXNfQWxsX3NlcDEyXzIwMThfQUdQdjQudmNmLmd6ID4gSlJJQUwyXzIwc2FtcGxlc19BbGxfc2VwMjFfMjAxOGFubm90LnR4dFxuXG5gYGBcbmBgYCJ9 -->
+<p><code>bash</code>bash bcftools query -f ‘%CHROM%POS%REF%ALT[%IUPACGT]’ JRIAL2_20samples_All_sep12_2018_AGPv4.vcf.gz &gt; JRIAL2_20samples_All_sep21_2018annot.txt</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -196,29 +196,22 @@ $(document).ready(function () {
 <h1>get pseudo-reference genome</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShcImRhdGEudGFibGVcIilcbmxpYnJhcnkoXCJCaW9zdHJpbmdzXCIpXG5saWJyYXJ5KFwicHNldWRvUmVmXCIpXG5cbm91dGRpciA8LSBcIi9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L21zZnNfdGVvL0Jhc2ljX2RhdGEvVEVPX1BzZXVkb1JlZlwiXG5cbnNucGR0IDwtIGZyZWFkKFwiSlJJQUwyXzIwc2FtcGxlc19BbGxfc2VwMjFfMjAxOGFubm90LnR4dFwiLCBoZWFkZXI9VClcblxuY29sbmFtZXMoc25wZHQpWzE6NF09YyhcImNoclwiLFwicG9zXCIsXCJyZWZcIixcImFsdFwiKVxuIyBmYSBjYW4gYmUgXCJjaGFyYWN0ZXJcIiwgXCJETkFTdHJpbmdTZXRcIiBvciBcIkROQVN0cmluZ1wiXG5mYSA8LSBcIi9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NC9tYWl6ZS1nZW5vbWUtVjQuZmFcIlxuZmEgPC0gcmVhZEROQVN0cmluZ1NldChmaWxlcGF0aCA9IGZhLCBmb3JtYXQ9XCJmYXN0YVwiKVxuXG5wc2V1ZG9SZWYoZmEsIHNucGR0LCBzaWR4ID0gNTpuY29sKHNucGR0KSwgYXJ1bGVzPU5VTEwsIG91dGRpcilcblxuYGBgIn0= -->
-<pre class="r"><code>library(&quot;data.table&quot;)
-library(&quot;Biostrings&quot;)
-library(&quot;pseudoRef&quot;)
-
-outdir &lt;- &quot;/lustre/work/jyanglab/gxu6/msfs_teo/Basic_data/TEO_PseudoRef&quot;
-
-snpdt &lt;- fread(&quot;JRIAL2_20samples_All_sep21_2018annot.txt&quot;, header=T)
-
-colnames(snpdt)[1:4]=c(&quot;chr&quot;,&quot;pos&quot;,&quot;ref&quot;,&quot;alt&quot;)
-# fa can be &quot;character&quot;, &quot;DNAStringSet&quot; or &quot;DNAString&quot;
-fa &lt;- &quot;/lustre/work/jyanglab/gxu6/B73_v4/maize-genome-V4.fa&quot;
-fa &lt;- readDNAStringSet(filepath = fa, format=&quot;fasta&quot;)
-
-pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules=NULL, outdir)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShcXGRhdGEudGFibGVcXClcbmxpYnJhcnkoXFxCaW9zdHJpbmdzXFwpXG5saWJyYXJ5KFxccHNldWRvUmVmXFwpXG5cbm91dGRpciA8LSBcXC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L21zZnNfdGVvL0Jhc2ljX2RhdGEvVEVPX1BzZXVkb1JlZlxcXG5cbnNucGR0IDwtIGZyZWFkKFxcSlJJQUwyXzIwc2FtcGxlc19BbGxfc2VwMjFfMjAxOGFubm90LnR4dFxcLCBoZWFkZXI9VClcblxuY29sbmFtZXMoc25wZHQpWzE6NF09YyhcXGNoclxcLFxccG9zXFwsXFxyZWZcXCxcXGFsdFxcKVxuIyBmYSBjYW4gYmUgXFxjaGFyYWN0ZXJcXCwgXFxETkFTdHJpbmdTZXRcXCBvciBcXEROQVN0cmluZ1xcXG5mYSA8LSBcXC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NC9tYWl6ZS1nZW5vbWUtVjQuZmFcXFxuZmEgPC0gcmVhZEROQVN0cmluZ1NldChmaWxlcGF0aCA9IGZhLCBmb3JtYXQ9XFxmYXN0YVxcKVxuXG5wc2V1ZG9SZWYoZmEsIHNucGR0LCBzaWR4ID0gNTpuY29sKHNucGR0KSwgYXJ1bGVzPU5VTEwsIG91dGRpcilcblxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r library(.table) library() library()</p>
+<p>outdir &lt;- /lustre/work/jyanglab/gxu6/msfs_teo/Basic_data/TEO_PseudoRef<br />
+snpdt &lt;- fread(2_20samples_All_sep21_2018annot.txt, header=T)</p>
+<p>colnames(snpdt)[1:4]=c(,,,) # fa can be ,  or <br />
+fa &lt;- /lustre/work/jyanglab/gxu6/B73_v4/maize-genome-V4.fa<br />
+fa &lt;- readDNAStringSet(filepath = fa, format=)</p>
+<p>pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules=NULL, outdir)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlBzZXVkby1yZWZlcmVuY2UgZ2Vub21lICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiBHZW4gWHUNCi0tLQ0KDQojVG8gaW1wcm92ZSB0aGUgbWFwcGluZyByYXRlLCByZWFkcyBvZiB0ZW9zaW50ZSB3ZXJlIG1hcHBlZCB0byBlYWNoIGNvcnJlY3RlZCBwc2V1ZG8tcmVmZXJlbmNlIGdlbm9tZSANCg0KI2dldCBBbm5vdGF0aW9uIGZpbGUNCmBgYHtiYXNofQ0KYmNmdG9vbHMgcXVlcnkgLWYgJyVDSFJPTVx0JVBPU1x0JVJFRlx0JUFMVFtcdCVJVVBBQ0dUXVxuJyBKUklBTDJfMjBzYW1wbGVzX0FsbF9zZXAxMl8yMDE4X0FHUHY0LnZjZi5neiA+IEpSSUFMMl8yMHNhbXBsZXNfQWxsX3NlcDIxXzIwMThhbm5vdC50eHQNCg0KYGBgDQojZ2V0IHBzZXVkby1yZWZlcmVuY2UgZ2Vub21lDQpgYGB7cn0NCmxpYnJhcnkoImRhdGEudGFibGUiKQ0KbGlicmFyeSgiQmlvc3RyaW5ncyIpDQpsaWJyYXJ5KCJwc2V1ZG9SZWYiKQ0KDQpvdXRkaXIgPC0gIi9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L21zZnNfdGVvL0Jhc2ljX2RhdGEvVEVPX1BzZXVkb1JlZiINCg0Kc25wZHQgPC0gZnJlYWQoIkpSSUFMMl8yMHNhbXBsZXNfQWxsX3NlcDIxXzIwMThhbm5vdC50eHQiLCBoZWFkZXI9VCkNCg0KY29sbmFtZXMoc25wZHQpWzE6NF09YygiY2hyIiwicG9zIiwicmVmIiwiYWx0IikNCiMgZmEgY2FuIGJlICJjaGFyYWN0ZXIiLCAiRE5BU3RyaW5nU2V0IiBvciAiRE5BU3RyaW5nIg0KZmEgPC0gIi9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NC9tYWl6ZS1nZW5vbWUtVjQuZmEiDQpmYSA8LSByZWFkRE5BU3RyaW5nU2V0KGZpbGVwYXRoID0gZmEsIGZvcm1hdD0iZmFzdGEiKQ0KDQpwc2V1ZG9SZWYoZmEsIHNucGR0LCBzaWR4ID0gNTpuY29sKHNucGR0KSwgYXJ1bGVzPU5VTEwsIG91dGRpcikNCg0KYGBgDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlBzZXVkby1yZWZlcmVuY2UgZ2Vub21lICINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiBHZW4gWHUNCi0tLQ0KDQojVG8gaW1wcm92ZSB0aGUgbWFwcGluZyByYXRlLCByZWFkcyBvZiB0ZW9zaW50ZSB3ZXJlIG1hcHBlZCB0byBlYWNoIGNvcnJlY3RlZCBwc2V1ZG8tcmVmZXJlbmNlIGdlbm9tZSANCg0KIyBnZXQgQW5ub3RhdGlvbiBmaWxlDQpgYGB7YmFzaH0NCmJjZnRvb2xzIHF1ZXJ5IC1mICclQ0hST01cdCVQT1NcdCVSRUZcdCVBTFRbXHQlSVVQQUNHVF1cbicgSlJJQUwyXzIwc2FtcGxlc19BbGxfc2VwMTJfMjAxOF9BR1B2NC52Y2YuZ3ogPiBKUklBTDJfMjBzYW1wbGVzX0FsbF9zZXAyMV8yMDE4YW5ub3QudHh0DQoNCmBgYA0KIyBnZXQgcHNldWRvLXJlZmVyZW5jZSBnZW5vbWUNCmBgYHtyfQ0KbGlicmFyeSgiZGF0YS50YWJsZSIpDQpsaWJyYXJ5KCJCaW9zdHJpbmdzIikNCmxpYnJhcnkoInBzZXVkb1JlZiIpDQoNCm91dGRpciA8LSAiL2x1c3RyZS93b3JrL2p5YW5nbGFiL2d4dTYvbXNmc190ZW8vQmFzaWNfZGF0YS9URU9fUHNldWRvUmVmIg0KDQpzbnBkdCA8LSBmcmVhZCgiSlJJQUwyXzIwc2FtcGxlc19BbGxfc2VwMjFfMjAxOGFubm90LnR4dCIsIGhlYWRlcj1UKQ0KDQpjb2xuYW1lcyhzbnBkdClbMTo0XT1jKCJjaHIiLCJwb3MiLCJyZWYiLCJhbHQiKQ0KIyBmYSBjYW4gYmUgImNoYXJhY3RlciIsICJETkFTdHJpbmdTZXQiIG9yICJETkFTdHJpbmciDQpmYSA8LSAiL2x1c3RyZS93b3JrL2p5YW5nbGFiL2d4dTYvQjczX3Y0L21haXplLWdlbm9tZS1WNC5mYSINCmZhIDwtIHJlYWRETkFTdHJpbmdTZXQoZmlsZXBhdGggPSBmYSwgZm9ybWF0PSJmYXN0YSIpDQoNCnBzZXVkb1JlZihmYSwgc25wZHQsIHNpZHggPSA1Om5jb2woc25wZHQpLCBhcnVsZXM9TlVMTCwgb3V0ZGlyKQ0KDQpgYGANCg0KDQoNCg==</div>
 
 
 
