@@ -1,0 +1,183 @@
+---
+title: "Get genetic load of each line"
+output: html_notebook
+author: Gen Xu
+---
+##Get coordinates of each SNP from VCF file
+```{perl}
+$in="teo_20samples_sep21_2018_AGPv4_chr$ARGV[0]\.recode.vcf";
+open(T,"$in")||die "Can't open your file!";
+$out="teo_20samples.chr$ARGV[0]\.pos.txt";
+open(R,">$out");
+print R "Chr	pos\n";
+while(<T>)
+{
+	chomp;
+if(/^#/){next;}
+	@aa=split;
+	print R "$aa[0]	$aa[1]\n";
+	}
+close(T,R);
+
+```
+
+
+##Convert data to AGPv3 coordinates
+```{perl}
+open(T,"$ARGV[0]")||die "Can't open your file!"; ###$ARGV[0] is file name, eg: teo_20samples.chr1.pos.txt
+$ARGV[0]=~s/\.txt//;
+$na=$ARGV[0];
+open(R,">$na.200bp.bed");
+$l=<T>;
+while(<T>)
+{
+	chomp;
+	@aa=split;
+	$start=$aa[1]-1;
+	$end=$aa[1]+198;
+print R "$aa[0]	$start	$end\n";
+	}
+close(T,R);
+print "Have got bed file\n";
+`seqtk subseq /common/jyanglab/gxu6/B73_v4/maize-genome-V4.fa $na.200bp.bed > $na.200bp.V4.fa`;
+print "Have got bed fasta file\n";
+`bwa mem -t 10 /common/jyanglab/gxu6/B73_V3/maize-genome-V3 $na.200bp.V4.fa > $na.sam`;
+print "Have agalined to B73 of V3\n";
+open(T,"$na.sam")||die "Can't open your file!";
+open(R,">$na.v3_pos.txt");
+print R "Marker	Chr	Pos\n";
+while(<T>)
+{
+	chomp;
+if(/^@/ or /^\[M/){next;}
+	@aa=split /\t/,$_;
+	@bb=split /\-/,$aa[0];
+	@cc=split /\:/,$aa[0];
+	$bb[0]=~s/\:/\_/;
+	$mk="S$bb[0]";
+	$nm="NM:i:0";
+	if($aa[2]==$cc[0] && $aa[11] eq $nm)
+	{print R "$mk	$aa[2]	$aa[3]\n";}
+	
+	}
+close(T,R);
+`rm $na.sam $na.200bp.bed $na.200bp.V4.fa`;
+print "Tusk has been finsed\n";
+```
+
+##get GERP Score of each SNP
+```{r}
+library(data.table)
+library(Ropt)
+
+get_gerp=function(i)
+  {fi=qq("teo_20samples.chr{i}.pos.v3_pos.txt")
+p=fread(fi, header=T,data.table=F) 
+f=qq("/common/jyanglab/gxu6/msfs_teo/Basic_data/GERP/Maize_GERP_file_AGPv3_chr{i}.txt")
+d=fread(f, header=T,data.table=F) 
+d1=d[p[,3],]
+if(nrow(d1)==nrow(p))
+{cat("The same row of chr",i,"\n")}
+d1=cbind(p,d1[,4])
+colnames(d1)[4]="GERP_Score"
+d1=d1[order(d1[,2],d1[,3]),]
+out=qq("teo_20samples_gerp_chr{i}.txt")
+write.table(d1,out,quote = F,col.na=T,row.names = F,sep="\t")
+}
+arg=getarg()
+do.call(get_gerp,arg)
+```
+
+#get GERP Score of each SNP in the whole vcf file
+```{perl}
+open(T,"teo_20samples_gerp_chr$ARGV[0]\.txt")||die "Can't open your file!";
+open(R,">teo_20samples_chr$ARGV[0]\__gerp_SNP\.txt");
+$l=<T>;print R "$l";
+while(<T>)
+{
+	chomp;
+	@aa=split;
+if($aa[3]>0){print R "$_\n";}
+	}
+close(T,R);
+
+$f="teo_20samples_chr$ARGV[0]\__gerp_SNP.txt";
+open(T,"$f")||die "Can't open your file!";
+while(<T>)
+{
+	chomp;
+@aa=split;
+$hash{$aa[0]}=$aa[3];
+		}
+print "Chr$ARGV[0]\ Hash finished!\n";
+$vcf="teo_20samples_sep21_2018_AGPv4_chr$ARGV[0]\.recode.vcf";
+open(F,"$vcf")||die "Can't open your file!";
+$out="teo_20samples_chr$ARGV[0]\_whole_gerp_SNP.txt";
+open(R,">$out");
+print R "Chr	Pos	GERP\n";
+while(<F>)
+{
+	chomp;
+	if(/^#/){next;}
+@bb=split;
+$mk="S$bb[0]_$bb[1]";
+	if(exists($hash{$mk}))
+	{print R "$bb[0]	$bb[1]	$hash{$mk}\n";}
+	else{print R "$bb[0]	$bb[1]	NA\n";}
+	}
+
+```
+
+
+##get genetic load 
+```{r}
+library(data.table)
+library(Ropt)
+get_load=function(i,co)
+  {
+  gerp_f=qq("teo_20samples_chr{i}_whole_gerp_SNP.txt")
+  g_f=qq("/common/jyanglab/gxu6/msfs_teo/Basic_data/WGS/teo_20samples_sep21_2018_AGPv4_chr{i}.recode.vcf")
+gerp=fread(gerp_f, header=T,data.table=F) 
+g=fread(g_f,head=T,skip=51,select = c(1,2,co),data.table=F)
+na=unlist(strsplit(colnames(g)[3],"_"))[1]
+if(all(gerp[,2]==g[,2])){cat("nrow of gerp file is equal to vcf file\n")}
+g=cbind(g,gerp$GERP)  
+ colnames(g)[4]="GERP" 
+ g=na.omit(g) 
+ g=g[-grep("\\./\\.",g[,3]),]
+ start=1;end=start+99 ##window size is 100bp
+ re=NULL
+ while(end<=max(g[,2]))
+ {
+   d=g[g$pos>=start & g$pos<=end,]
+   if(nrow(d)==0)
+   {res=c(i,start,end,0,0)}
+   else{
+     res=c(i,start,end,sum(d[,5],na.rm=T),nrow(d))
+   }
+   re=rbind(re,res)
+   start=start+100;end=start+99
+   cat(start,"---",end,"\n")
+ }
+ colnames(re)=c("Chr","Start","End","Sum_gerp","Count_gerp")
+ 
+ out=qq("{na}.chr{i}.load.txt")
+ write.table(re,out,quote = F,col.na=T,row.names = F,sep="\t")
+}
+arg=getarg()
+do.call(get_load,arg)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
