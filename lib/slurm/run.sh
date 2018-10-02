@@ -1,0 +1,10 @@
+sbatch 1147-8D.slurm
+sbatch JRIAL2S.slurm
+sbatch JRIAL2Q.slurm
+sbatch JRIAL2G.slurm
+sbatch JRIAL2F.slurm
+sbatch JRIAL2E.slurm
+sbatch JRIAL2D.slurm
+sbatch PI-620846.slurm
+sbatch SRR850328.slurm
+sbatch SRR6201713.slurm
