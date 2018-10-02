@@ -1,0 +1,34 @@
+---
+title: "Pseudo-reference genome "
+output: html_notebook
+author: Gen Xu
+---
+
+#To improve the mapping rate, reads of teosinte were mapped to each corrected pseudo-reference genome 
+
+#get Annotation file
+```{bash}
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%IUPACGT]\n' JRIAL2_20samples_All_sep12_2018_AGPv4.vcf.gz > JRIAL2_20samples_All_sep21_2018annot.txt
+
+```
+#get pseudo-reference genome
+```{r}
+library("data.table")
+library("Biostrings")
+library("pseudoRef")
+
+outdir <- "/lustre/work/jyanglab/gxu6/msfs_teo/Basic_data/TEO_PseudoRef"
+
+snpdt <- fread("JRIAL2_20samples_All_sep21_2018annot.txt", header=T)
+
+colnames(snpdt)[1:4]=c("chr","pos","ref","alt")
+# fa can be "character", "DNAStringSet" or "DNAString"
+fa <- "/lustre/work/jyanglab/gxu6/B73_v4/maize-genome-V4.fa"
+fa <- readDNAStringSet(filepath = fa, format="fasta")
+
+pseudoRef(fa, snpdt, sidx = 5:ncol(snpdt), arules=NULL, outdir)
+
+```
+
+
+
