@@ -1,0 +1,27 @@
+---
+title: "Running Bismark"
+output: html_notebook
+author: Gen Xu
+---
+
+##Prepare bimark Genome
+```{bash}
+bismark_genome_preparation --path_to_bowtie /home/jyanglab/gxu6/software/bowtie2-2.3.4.2 --verbose --bowtie2 /lustre/work/jyanglab/gxu6/B73_v4
+```
+
+## Alignment
+```{bash}
+bismark --bowtie2 -p 12 -N 1 -L 25 -o /common/jyanglab/gxu6/msfs_teo/WGBS/cache/mapping/maize/re_run /common/jyanglab/gxu6/B73_v4 -1 SRR850328_1.fastq.gz -2 SRR850328_2.fastq.gz > SRR850328.log
+```
+
+#Remove duplication
+```{bash}
+deduplicate_bismark --bam -p SRR1610961_1_bismark_bt2_pe.bam
+```
+
+
+## Bismark methylation extractor
+```{bash}
+bismark_methylation_extractor --no_overlap -p --bedGraph --comprehensive --counts --buffer_size 30% --cytosine_report --genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam
+```
+
