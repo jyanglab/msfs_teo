@@ -1,0 +1,74 @@
+---
+title: "VCFv4 teo20 from Wenbin"
+output: html_notebook
+author: "Jinliang Yang"
+---
+
+
+
+```{r}
+library(data.table)
+
+teo <- fread("/lustre/work/jyanglab/shared/sh_gen/genetic_load/20teo.genetic_load.txt", data.table=FALSE)
+
+lr <- fread("/lustre/work/jyanglab/shared/sh_gen/genetic_load/landrace.genetic_load.txt", data.table=FALSE)
+
+```
+
+
+
+## Summarize them in large bin size and visulize the results
+
+```{r}
+get_bin_load <- function(d=teo, chr=1, binsize=10000){
+  #library()
+  chr1 <- subset(d, Chr == chr)
+  ## avg over all samples
+  chr1$mload <- apply(chr1[, -1:-3], 1, mean)
+
+  #BINSIZE = 100000
+  chr1$Start <- as.numeric(as.character(chr1$Start))
+  chr1$bin <- paste(chr1$Chr, round(chr1$Start/binsize,0), sep="_")
+
+  chr1 <- as.data.table(chr1)
+  df <- chr1[, .(binload = sum(mload)), by= bin]
+  df <- as.data.frame(df)
+  df$pos <- gsub(".*_", "", df$bin)
+  return(df)
+}
+```
+
+
+
+
+### Teosinte
+
+```{r}
+
+teo1 <- get_bin_load(d=teo, chr=1, binsize=100000)
+
+## fit a smooth spline
+fit1 <- smooth.spline(teo1[, "pos"], teo1[, "binload"], cv = TRUE)
+plot(teo1[, "pos"], teo1[, "binload"], col="grey")
+#Plotting Regression Line
+lines(fit1, lwd=2, col="purple")
+
+```
+
+### Landrace
+
+```{r}
+lr1 <- get_bin_load(d=lr, chr=1, binsize=100000)
+
+## fit a smooth spline
+fit2 <- smooth.spline(lr1[, "pos"], lr1[, "binload"], cv = TRUE)
+#points(lr1[, "pos"], lr1[, "binload"], col="yellow")
+
+#Plotting Regression Line
+lines(fit2, lwd=2, col="blue")
+abline(v=2700, lty=2, lwd=3, col="red")
+legend("topright", c("Teosinte", "Landrace"), col=c("purple", "blue"), lwd=2)
+```
+
+
+
