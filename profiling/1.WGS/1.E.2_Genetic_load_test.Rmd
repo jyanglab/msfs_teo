@@ -45,7 +45,7 @@ get_bin_load <- function(d=teo, chr=1, binsize=10000){
 
 ```{r}
 
-teo1 <- get_bin_load(d=teo, chr=1, binsize=100000)
+teo1 <- get_bin_load(d=teo, chr=1, binsize=10000)
 
 ## fit a smooth spline
 fit1 <- smooth.spline(teo1[, "pos"], teo1[, "binload"], cv = TRUE)
@@ -58,7 +58,7 @@ lines(fit1, lwd=2, col="purple")
 ### Landrace
 
 ```{r}
-lr1 <- get_bin_load(d=lr, chr=1, binsize=100000)
+lr1 <- get_bin_load(d=lr, chr=1, binsize=10000)
 
 ## fit a smooth spline
 fit2 <- smooth.spline(lr1[, "pos"], lr1[, "binload"], cv = TRUE)
@@ -66,9 +66,33 @@ fit2 <- smooth.spline(lr1[, "pos"], lr1[, "binload"], cv = TRUE)
 
 #Plotting Regression Line
 lines(fit2, lwd=2, col="blue")
-abline(v=2700, lty=2, lwd=3, col="red")
+abline(v=27000, lty=2, lwd=3, col="red")
 legend("topright", c("Teosinte", "Landrace"), col=c("purple", "blue"), lwd=2)
 ```
 
+
+### Zoom in near TB1
+
+
+```{r}
+
+## Set the region of interest
+rg <- 22000:30000
+## fit a smooth spline
+fit1 <- smooth.spline(teo1[rg, "pos"], teo1[rg, "binload"], cv = TRUE)
+plot(teo1[rg, "pos"], teo1[rg, "binload"], col="grey")
+#Plotting Regression Line
+lines(fit1, lwd=2, col="purple")
+
+## fit a smooth spline
+fit2 <- smooth.spline(lr1[rg, "pos"], lr1[rg, "binload"], cv = TRUE)
+#points(lr1[, "pos"], lr1[, "binload"], col="yellow")
+
+#Plotting Regression Line
+lines(fit2, lwd=2, col="blue")
+abline(v=27000, lty=2, lwd=3, col="red")
+legend("topright", c("Teosinte", "Landrace"), col=c("purple", "blue"), lwd=2)
+
+```
 
 
