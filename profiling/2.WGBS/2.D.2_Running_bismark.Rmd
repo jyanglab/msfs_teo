@@ -22,6 +22,55 @@ deduplicate_bismark --bam -p SRR1610961_1_bismark_bt2_pe.bam
 
 ## Bismark methylation extractor
 ```{bash}
-bismark_methylation_extractor --no_overlap -p --bedGraph --comprehensive --counts --buffer_size 30% --cytosine_report --genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam
+bismark_methylation_extractor --no_overlap -p --parallel 8 --bedGraph --comprehensive --counts --buffer_size 50G --cytosine_report --genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam
+
+bismark2bedGraph --buffer_size 50% --CX CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt -o CHH_IL14.meth_lev.txt CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt
+
+bismark2bedGraph --buffer_size 50% --CX CHG_context_IL14_1_bismark_bt2_pe.deduplicated.txt -o CHG_IL14.meth_lev.txt CHG_context_IL14_1_bismark_bt2_pe.deduplicated.txt
+
+bismark2bedGraph --buffer_size 50% --CX CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt -o CHH_IL14.meth_lev.txt CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt
 ```
+
+##For "bismark2bedGraph" step, CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt maybe more than 100 GB, so big memory is needed, we splited the big file to 10 small ones.
+```{perl} 
+open(T,"$ARGV[0]")||die "Can't open your file!";##_1_bismark_bt2_pe.deduplicated.txt
+$f=$ARGV[0];
+$f=~s/\_1\_bismark\_bt2\_pe\.deduplicated\.txt//; 
+print "$f";
+$ch=$ARGV[1];
+$out="$f\_Chr$ch\.txt";
+open(R,">$out");
+$l=<T>;
+print R "$l";
+while(<T>)
+{
+	chomp;
+@aa=split;
+if($aa[2]==$ARGV[1])
+	{print R "$_\n";}
+	}
+close(T,R);
+
+```
+
+#Only sites that covered more than three mapped reads were considered.
+```{perl} 
+$in=$ARGV[0]; ##CHH.A632_Chr10.meth_lev.txt.gz.bismark.cov.gz
+$out=$in;
+$out=~s/\.gz\.bismark\.cov\.gz//;
+open(T,"gunzip -c $in |")||die "Can't open your file!";
+open(R,">$out");
+print R "Chr	Pos	methy_per	count_methy	count_unmethy\n";
+while(<T>)
+{
+	chomp;
+@aa=split;
+$dp=$aa[4]+$aa[5];
+if($dp<3){next;}
+if(/^\d/)
+{print R "$aa[0]	$aa[1]	$aa[3]	$aa[4]	$aa[5]\n";}
+	}
+close(T,R);
+```
+
 
