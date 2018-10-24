@@ -131,35 +131,39 @@ $mk="S$bb[0]_$bb[1]";
 
 ## get genetic load 
 ```{r}
+##caculate the genetic load in the region
+##method:for example, one region, we have 100 SNPs, 20 SNPs are GERP SNP(gerp>0)
+##genetic load=20/100
 library(data.table)
 library(Ropt)
-get_load=function(i,co)
+get_load=function(i,co,win)
   {
   gerp_f=qq("teo_20samples_chr{i}_whole_gerp_SNP.txt")
   g_f=qq("/common/jyanglab/gxu6/msfs_teo/Basic_data/WGS/teo_20samples_sep21_2018_AGPv4_chr{i}.recode.vcf")
 gerp=fread(gerp_f, header=T,data.table=F) 
 g=fread(g_f,head=T,skip=51,select = c(1,2,co),data.table=F)
 na=unlist(strsplit(colnames(g)[3],"_"))[1]
-if(all(gerp[,2]==g[,2])){cat("nrow of gerp file is equal to vcf file\n")}
-g=cbind(g,gerp$GERP)  
- colnames(g)[4]="GERP" 
- g=na.omit(g) 
+colnames(g)[1:2]=colnames(gerp)[1:2]
+g=merge(g,gerp,by=c("Chr","Pos"))
+g=g[order(g[,1],g[,2]),] 
  g=g[-grep("\\./\\.",g[,3]),]
- start=1;end=start+99 ##window size is 100bp
+ start=1;end=start+win-1
  re=NULL
  while(end<=max(g[,2]))
  {
-   d=g[g$pos>=start & g$pos<=end,]
+   d=g[g[,2]>=start & g[,2]<=end,]
    if(nrow(d)==0)
-   {res=c(i,start,end,0,0)}
+   {res=c(i,start,end,0)}
    else{
-     res=c(i,start,end,sum(d[,5],na.rm=T),nrow(d))
+     de=length(which(d[,4]>0))
+     load=de/nrow(d)
+     res=c(i,start,end,load)
    }
    re=rbind(re,res)
-   start=start+100;end=start+99
+   start=start+win;end=start+win-1
    cat(start,"---",end,"\n")
  }
- colnames(re)=c("Chr","Start","End","Sum_gerp","Count_gerp")
+ colnames(re)=c("Chr","Start","End","G_load")
  
  out=qq("{na}.chr{i}.load.txt")
  write.table(re,out,quote = F,col.na=T,row.names = F,sep="\t")
@@ -167,16 +171,331 @@ g=cbind(g,gerp$GERP)
 arg=getarg()
 do.call(get_load,arg)
 
+##Rscript get_load_teo.r i=1 co=10 win=10000 > JRIAL2A_Chr8.log
+#windowsize is 10KB
+
+##conbine results according to chromosomes
+conb=function(id)
+  {re=NULL
+for(i in 1:10)
+{
+  f=qq("{id}.chr{i}.load.txt")
+  d=fread(f,head=T,data.table=F) 
+  re=rbind(re,d)
+}
+out=qq("{id}.load.txt")
+write.table(re,out,quote = F,col.na=T,row.names = F,sep="\t")
+cat(id," has been finshed!","\n")
+}
+
+arg=getarg()
+do.call(conb,arg)
+#Rscript conbine_load.r id=JRIAL2T > JRIAL2T.log
+
+##conbine results according to samples
+library(data.table)
+library(Ropt)
+f=list.files(path=".",patt="load.txt")
+d=fread(f[1], header=T,data.table=F)
+colnames(d)[4]=gsub(".load.txt","",f[1])
+mk=qq("S{d[,1]}_{d[,2]}_{d[,3]}")
+d=cbind(mk,d)
+for(i in f[-1])
+{
+ d0= fread(i, header=T,data.table=F) 
+ mk=qq("S{d0[,1]}_{d0[,2]}_{d0[,3]}")
+ d0=cbind(mk,d0)
+ colnames(d0)[5]=gsub(".load.txt","",i)
+ 
+d=merge(d,d0,by=c("mk","Chr","Start","End"))
+cat(i," finshed!\n")
+}
+d=d[order(d[,2],d[,3]),]
+d=d[,-1]
+out="20teo.genetic_load.txt"
+write.table(d,out,quote = F,col.na=T,row.names = F,sep="\t")
 
 ```
 
+##To compare the genetic load with landrace and elite maize, we downloaded the hapmap3 unimputed genotype(AGPV3), sanples with read depth more than four were retained. Finally, 95 improved maize inbread lines and 24 landrace lines were keeped.
+#Get SNP position of hapmap3
+```{perl}
+$f="c$ARGV[0]\_hmp321_withGL.vcf.gz";
+open(T,"gunzip -c $f|")||die "Can't open your file!";
+$out="hmp3_chr$ARGV[0]\.snp.txt";
+open(R,">$out");
+print R "Chr	Pos\n";
+while(<T>)
+{
+	chomp;
+	if(/^#/){next;}
+@aa=split;
+$lref=length($aa[3]);$lalt=length($aa[4]);
+if($lref>1 || $lalt>1){next;} ##keep snps, remove INDEL
+print R "$aa[0]	$aa[1]\n";
+	
+	}
+close(T,R);
+```
 
+#Get GERP value for each SNP(AGPv3)
+```{r}
+library(data.table)
+library(Ropt)
+get_gerp=function(i)
+  {fi=qq("hmp3_chr{i}.snp.txt")
+p=fread(fi, header=T,data.table=F) 
+f=qq("/common/jyanglab/gxu6/msfs_teo/Basic_data/GERP/Maize_GERP_file_AGPv3_chr{i}.txt")
+d=fread(f, header=T,data.table=F)
+d1=d[p[,2],]
+if(nrow(d1)==nrow(p))
+{cat("The same row of chr",i,"\n")}
+d1=cbind(p,d1[,4])
+colnames(d1)[3]="GERP_Score"
+out=qq("hmp3_gerp_chr{i}.txt")
+write.table(d1,out,quote = F,col.na=T,row.names = F,sep="\t")
+}
+arg=getarg()
+do.call(get_gerp,arg)
+```
 
+#Convert physical position from V3 to V4
+```{perl}
+#####Example file like below:##############
+####file name: Chr1.txt ##############
+###Chr	Pos##########
+###1	555############
+###cmd: perl convert_v3_2_v4.pl Chr1.txt##
+open(T,"$ARGV[0]")||die "Can't open your file!"; ###$ARGV[0] is file name， suffixis ".txt"", eg: chr1.txt
+$ARGV[0]=~s/\.txt//;
+$na=$ARGV[0];
+open(R,">$na.200bp.bed");
+$l=<T>;
+while(<T>)
+{
+	chomp;
+	@aa=split;
+	$start=$aa[1]-1;
+	$end=$aa[1]+198;
+print R "$aa[0]	$start	$end\n";
+	}
+close(T,R);
+print "Have got bed file\n";
+`seqtk subseq /common/jyanglab/gxu6/B73_V3/maize-genome-V3.fa $na.200bp.bed > $na.200bp.V4.fa`;
+print "Have got bed fasta file\n";
+`bwa mem -t 10 /common/jyanglab/gxu6/B73_v4/maize-genome-V4.fa $na.200bp.V4.fa > $na.sam`;
+print "Have agalined to B73 of V4\n";
+open(T,"$na.sam")||die "Can't open your file!";
+open(R,">$na.v4_pos.txt");
+print R "Marker	Chr	Pos\n";
+while(<T>)
+{
+	chomp;
+if(/^@/ or /^\[M/){next;}
+	@aa=split /\t/,$_;
+	@bb=split /\-/,$aa[0];
+	@cc=split /\:/,$aa[0];
+	$bb[0]=~s/\:/\_/;
+	$mk="S$bb[0]";
+	$nm="NM:i:0";
+	if($aa[2]==$cc[0] && $aa[11] eq $nm)
+	{print R "$mk	$aa[2]	$aa[3]\n";}
+	
+	}
+close(T,R);
+#`rm $na.sam $na.200bp.bed $na.200bp.V3.fa`;
+print "Tusk has been finsed\n";
+```
 
+#Get GERP value for each SNP(AGPv4)
+```{perl}
+$gf="hmp3_gerp_chr$ARGV[0]\.txt"; #hmp3_gerp_chr1.txt
+open(T,"$gf")||die "Can't open your file!";
+while(<T>)
+{
+	chomp;
+@aa=split;
+$mk="S$aa[0]_$aa[1]";
+$hash{$mk}=$aa[2];
+}
+print "Hash has been finsed!";
 
+$in="hmp3_AGPV3_chr$ARGV[0]\.v4_pos.txt"; ##hmp3_AGPV3_chr4.v4_pos.txt
+open(F,"$in")||die "Can't open your file!";
+$out="hmp3_AGPV3_chr$ARGV[0]\.v4_pos_GERP.txt";
+open(R,">$out");
+$l=<F>;print R "Chr	Pos	GERP\n";
+while(<F>)
+{
+	chomp;
+@bb=split;
+if(exists($hash{$bb[0]}))
+	{print R "$bb[1]	$bb[2]	$hash{$bb[0]}\n"}
+	}
+close(T,R);
+```
 
+#Change the VCF from V3 to V4
+```{perl}
+$pf="hmp3_AGPV3_chr$ARGV[0]\.v4_pos.txt"; #hmp3_AGPV3_chr1.v4_pos.txt
+open(T,"$pf")||die "Can't open your file!";
+while(<T>)
+{
+	chomp;
+@aa=split;
+$hash{$aa[0]}="$aa[1]	$aa[2]";
+}
+print "Hash has been finsed!";
 
+$in="hmp3_AGPV3_chr$ARGV[0]\_128samples_DP4.vcf";
+open(T,"$in")||die "Can't open your file!";
+$out="hmp3_AGPV3_chr$ARGV[0]\_128samples_DP4.vcf1";
+open(R,">$out");
+while(<T>)
+{
+	chomp;
+	if(/^#/){print R "$_\n";next;}
+@bb=split /\t/,$_,3;
+$mk="S$bb[0]\_$bb[1]";
+if(exists($hash{$mk}))
+	{print R "$hash{$mk}	$bb[2]\n"}
+	}
+close(T,R);
+`rm $in`;
+`mv $out $in`;
+```
 
+#Get genetic load in 128 hapmap3 sample
+```{r}
+library(data.table)
+library(Ropt)
+get_load=function(i,co,win) ##i is chr, co:10-137, win is windowsize,bp
+  {
+  gerp_f=qq("hmp3_AGPV3_chr{i}.v4_pos_GERP.txt")
+  g_f=qq("hmp3_AGPV4_chr{i}_128samples_DP4.vcf")
+gerp=fread(gerp_f, header=T,data.table=F) 
+g=fread(g_f,head=T,skip=21,select = c(1,2,co),data.table=F)
+na=colnames(g)[3]
+colnames(g)[1:2]=colnames(gerp)[1:2]
+g=merge(g,gerp,by=c("Chr","Pos"))
+g=g[order(g[,1],g[,2]),] 
+ g=g[-grep("\\./\\.",g[,3]),]
+ start=1;end=start+win-1
+ re=NULL
+ while(end<=max(g[,2]))
+ {
+   d=g[g[,2]>=start & g[,2]<=end,]
+   if(nrow(d)==0)
+   {res=c(i,start,end,0)}else{
+     de=length(which(d[,4]>0))
+     load=de/nrow(d)
+     res=c(i,start,end,load)
+   }
+   re=rbind(re,res)
+   start=start+win;end=start+win-1
+   cat(start,"---",end,"\n")
+ }
+ colnames(re)=c("Chr","Start","End","G_load")
+ 
+ out=qq("{na}.chr{i}.load.txt")
+ write.table(re,out,quote = F,col.na=T,row.names = F,sep="\t")
+}
+arg=getarg()
+do.call(get_load,arg)
+##Rscript get_load_hmp3.r i=1 co=10 win=10000
+
+##conbine results according to chromosomes
+library(data.table)
+library(Ropt)
+conb=function(id)
+  {re=NULL
+for(i in 1:10)
+{
+  f=qq("{id}.chr{i}.load.txt")
+  d=fread(f,head=T,data.table=F) 
+  re=rbind(re,d)
+}
+out=qq("{id}.load.txt")
+write.table(re,out,quote = F,col.na=T,row.names = F,sep="\t")
+cat(id," has been finshed!","\n")
+}
+
+arg=getarg()
+do.call(conb,arg)
+##Rscript conbine_load.r id=A272 > A272.log
+
+##conbine results according to samples
+library(data.table)
+library(Ropt)
+f=list.files(path=".",patt="load.txt")
+d=fread(f[1], header=T,data.table=F)
+colnames(d)[4]=gsub(".load.txt","",f[1])
+mk=qq("S{d[,1]}_{d[,2]}_{d[,3]}")
+d=cbind(mk,d)
+for(i in f[-1])
+{
+ d0= fread(i, header=T,data.table=F) 
+ mk=qq("S{d0[,1]}_{d0[,2]}_{d0[,3]}")
+ d0=cbind(mk,d0)
+ colnames(d0)[5]=gsub(".load.txt","",i)
+ 
+d=merge(d,d0,by=c("mk","Chr","Start","End"))
+cat(i," finshed!\n")
+}
+d=d[order(d[,2],d[,3]),]
+d=d[,-1]
+out="teosinte.genetic_load.txt"
+write.table(d,out,quote = F,col.na=T,row.names = F,sep="\t")
+```
+
+#Get differentially genetic load region(DGLR)
+```{r}
+library(data.table)
+library(Ropt)
+get_dglr=function(input1,input2,out)
+{
+d1=fread(input1, header=T,data.table=F)
+d2=fread(input2, header=T,data.table=F)
+mk1=qq("{d1[,1]}_{d1[,2]}_{d1[,3]}")
+mk2=qq("{d2[,1]}_{d2[,2]}_{d2[,3]}")
+d1=cbind(mk1,d1)
+d2=cbind(mk2,d2)
+cmk=intersect(d1[,1],d2[,1])
+d1=d1[d1[,1]%in%cmk,]
+d1=d1[order(d1[,2],d1[,3]),]
+d2=d2[d2[,1]%in%cmk,]
+d2=d2[order(d2[,2],d2[,3]),]
+#if(d1[,1]==d2[,1]){cat("Marker is the same\n")}
+nc1=ncol(d1)
+nc2=ncol(d2)
+#d1=d1[d1[,2]==ch,]
+#d2=d2[d2[,2]==ch,]
+r=NULL
+li=nrow(d2)
+cat("Total line is ",li,"\n")
+for(i in 1:nrow(d1))
+{
+  d1a=d1[i,]
+  d2a=d2[i,]
+  x=as.numeric(d1a[1,5:nc1])
+  y=as.numeric(d2a[1,5:nc2])
+  m_x=mean(x,na.rm=T)
+  m_y=mean(y,na.rm=T)
+m_x_y=mean(x,na.rm=T)-mean(y,na.rm=T)
+x[1]=x[1]+0.0000000001
+p=t.test(x,y)$p.value
+d0=unlist(c(d1[i,2:4],m_x,m_y,m_x_y,p)) 
+r=rbind(r,d0)
+cat("Now is line ",i,"\n")
+}
+colnames(r)[4:7]=c("m_x","m_y","x-y","P-value")
+write.table(r,out,quote = F,col.na=T,row.names = F,sep="\t")
+}
+arg=getarg()
+do.call(get_dglr,arg)
+##nohup Rscript get_dglr.r input1="20teo.genetic_load.txt" input2="landrace.genetic_load.txt" ch=1 out="20teo_landrace.dglr.txt" &     
+
+```
 
 
 
