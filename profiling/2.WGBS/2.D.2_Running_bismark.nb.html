@@ -214,17 +214,74 @@ $(document).ready(function () {
 <h2>Bismark methylation extractor</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYGBgYmFzaFxuYmlzbWFya19tZXRoeWxhdGlvbl9leHRyYWN0b3IgLS1ub19vdmVybGFwIC1wIC0tYmVkR3JhcGggLS1jb21wcmVoZW5zaXZlIC0tY291bnRzIC0tYnVmZmVyX3NpemUgMzAlIC0tY3l0b3NpbmVfcmVwb3J0IC0tZ2Vub21lX2ZvbGRlciAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IFNSUjE2MTA5NjFfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQuYmFtXG5gYGBcbmBgYCJ9 -->
-<p><code>bash</code>bash bismark_methylation_extractor –no_overlap -p –bedGraph –comprehensive –counts –buffer_size 30% –cytosine_report –genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgYmFzaFxuYmlzbWFya19tZXRoeWxhdGlvbl9leHRyYWN0b3IgLS1ub19vdmVybGFwIC1wIC0tcGFyYWxsZWwgOCAtLWJlZEdyYXBoIC0tY29tcHJlaGVuc2l2ZSAtLWNvdW50cyAtLWJ1ZmZlcl9zaXplIDUwRyAtLWN5dG9zaW5lX3JlcG9ydCAtLWdlbm9tZV9mb2xkZXIgL2NvbW1vbi9qeWFuZ2xhYi9neHU2L0I3M192NCBTUlIxNjEwOTYxXzFfYmlzbWFya19idDJfcGUuZGVkdXBsaWNhdGVkLmJhbVxuXG5iaXNtYXJrMmJlZEdyYXBoIC0tYnVmZmVyX3NpemUgNTAlIC0tQ1ggQ0hIX2NvbnRleHRfSUwxNF8xX2Jpc21hcmtfYnQyX3BlLmRlZHVwbGljYXRlZC50eHQgLW8gQ0hIX0lMMTQubWV0aF9sZXYudHh0IENISF9jb250ZXh0X0lMMTRfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQudHh0XG5cbmJpc21hcmsyYmVkR3JhcGggLS1idWZmZXJfc2l6ZSA1MCUgLS1DWCBDSEdfY29udGV4dF9JTDE0XzFfYmlzbWFya19idDJfcGUuZGVkdXBsaWNhdGVkLnR4dCAtbyBDSEdfSUwxNC5tZXRoX2xldi50eHQgQ0hHX2NvbnRleHRfSUwxNF8xX2Jpc21hcmtfYnQyX3BlLmRlZHVwbGljYXRlZC50eHRcblxuYmlzbWFyazJiZWRHcmFwaCAtLWJ1ZmZlcl9zaXplIDUwJSAtLUNYIENISF9jb250ZXh0X0lMMTRfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQudHh0IC1vIENISF9JTDE0Lm1ldGhfbGV2LnR4dCBDSEhfY29udGV4dF9JTDE0XzFfYmlzbWFya19idDJfcGUuZGVkdXBsaWNhdGVkLnR4dFxuYGBgIn0= -->
+<pre class="bash"><code>bismark_methylation_extractor --no_overlap -p --parallel 8 --bedGraph --comprehensive --counts --buffer_size 50G --cytosine_report --genome_folder /common/jyanglab/gxu6/B73_v4 SRR1610961_1_bismark_bt2_pe.deduplicated.bam
+
+bismark2bedGraph --buffer_size 50% --CX CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt -o CHH_IL14.meth_lev.txt CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt
+
+bismark2bedGraph --buffer_size 50% --CX CHG_context_IL14_1_bismark_bt2_pe.deduplicated.txt -o CHG_IL14.meth_lev.txt CHG_context_IL14_1_bismark_bt2_pe.deduplicated.txt
+
+bismark2bedGraph --buffer_size 50% --CX CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt -o CHH_IL14.meth_lev.txt CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="for-bismark2bedgraph-step-chh_context_il14_1_bismark_bt2_pe.deduplicated.txt-maybe-more-than-100-gb-so-big-memory-is-needed-we-splited-the-big-file-to-10-small-ones." class="section level2">
+<h2>For “bismark2bedGraph” step, CHH_context_IL14_1_bismark_bt2_pe.deduplicated.txt maybe more than 100 GB, so big memory is needed, we splited the big file to 10 small ones.</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxub3BlbihULFwiJEFSR1ZbMF1cIil8fGRpZSBcIkNhbid0IG9wZW4geW91ciBmaWxlIVwiOyMjXzFfYmlzbWFya19idDJfcGUuZGVkdXBsaWNhdGVkLnR4dFxuJGY9JEFSR1ZbMF07XG4kZj1+cy9cXF8xXFxfYmlzbWFya1xcX2J0MlxcX3BlXFwuZGVkdXBsaWNhdGVkXFwudHh0Ly87IFxucHJpbnQgXCIkZlwiO1xuJGNoPSRBUkdWWzFdO1xuJG91dD1cIiRmXFxfQ2hyJGNoXFwudHh0XCI7XG5vcGVuKFIsXCI+JG91dFwiKTtcbiRsPTxUPjtcbnByaW50IFIgXCIkbFwiO1xud2hpbGUoPFQ+KVxue1xuXHRjaG9tcDtcbkBhYT1zcGxpdDtcbmlmKCRhYVsyXT09JEFSR1ZbMV0pXG5cdHtwcmludCBSIFwiJF9cXG5cIjt9XG5cdH1cbmNsb3NlKFQsUik7XG5cbmBgYCJ9 -->
+<pre class="perl"><code>open(T,&quot;$ARGV[0]&quot;)||die &quot;Can't open your file!&quot;;##_1_bismark_bt2_pe.deduplicated.txt
+$f=$ARGV[0];
+$f=~s/\_1\_bismark\_bt2\_pe\.deduplicated\.txt//; 
+print &quot;$f&quot;;
+$ch=$ARGV[1];
+$out=&quot;$f\_Chr$ch\.txt&quot;;
+open(R,&quot;&gt;$out&quot;);
+$l=&lt;T&gt;;
+print R &quot;$l&quot;;
+while(&lt;T&gt;)
+{
+    chomp;
+@aa=split;
+if($aa[2]==$ARGV[1])
+    {print R &quot;$_\n&quot;;}
+    }
+close(T,R);
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="only-sites-that-covered-more-than-three-mapped-reads-were-considered." class="section level1">
+<h1>Only sites that covered more than three mapped reads were considered.</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgcGVybFxuJGluPSRBUkdWWzBdOyAjI0NISC5BNjMyX0NocjEwLm1ldGhfbGV2LnR4dC5nei5iaXNtYXJrLmNvdi5nelxuJG91dD0kaW47XG4kb3V0PX5zL1xcLmd6XFwuYmlzbWFya1xcLmNvdlxcLmd6Ly87XG5vcGVuKFQsXCJndW56aXAgLWMgJGluIHxcIil8fGRpZSBcIkNhbid0IG9wZW4geW91ciBmaWxlIVwiO1xub3BlbihSLFwiPiRvdXRcIik7XG5wcmludCBSIFwiQ2hyXHRQb3NcdG1ldGh5X3Blclx0Y291bnRfbWV0aHlcdGNvdW50X3VubWV0aHlcXG5cIjtcbndoaWxlKDxUPilcbntcblx0Y2hvbXA7XG5AYWE9c3BsaXQ7XG4kZHA9JGFhWzRdKyRhYVs1XTtcbmlmKCRkcDwzKXtuZXh0O31cbmlmKC9eXFxkLylcbntwcmludCBSIFwiJGFhWzBdXHQkYWFbMV1cdCRhYVszXVx0JGFhWzRdXHQkYWFbNV1cXG5cIjt9XG5cdH1cbmNsb3NlKFQsUik7XG5gYGAifQ== -->
+<pre class="perl"><code>$in=$ARGV[0]; ##CHH.A632_Chr10.meth_lev.txt.gz.bismark.cov.gz
+$out=$in;
+$out=~s/\.gz\.bismark\.cov\.gz//;
+open(T,&quot;gunzip -c $in |&quot;)||die &quot;Can't open your file!&quot;;
+open(R,&quot;&gt;$out&quot;);
+print R &quot;Chr    Pos methy_per   count_methy count_unmethy\n&quot;;
+while(&lt;T&gt;)
+{
+    chomp;
+@aa=split;
+$dp=$aa[4]+$aa[5];
+if($dp&lt;3){next;}
+if(/^\d/)
+{print R &quot;$aa[0]    $aa[1]  $aa[3]  $aa[4]  $aa[5]\n&quot;;}
+    }
+close(T,R);</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
-</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJ1bm5pbmcgQmlzbWFyayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiBHZW4gWHUNCi0tLQ0KDQojIyBQcmVwYXJlIGJpbWFyayBHZW5vbWUNCmBgYHtiYXNofQ0KYmlzbWFya19nZW5vbWVfcHJlcGFyYXRpb24gLS1wYXRoX3RvX2Jvd3RpZSAvaG9tZS9qeWFuZ2xhYi9neHU2L3NvZnR3YXJlL2Jvd3RpZTItMi4zLjQuMiAtLXZlcmJvc2UgLS1ib3d0aWUyIC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NA0KYGBgDQoNCiMjIEFsaWdubWVudA0KYGBge2Jhc2h9DQpiaXNtYXJrIC0tYm93dGllMiAtcCAxMiAtTiAxIC1MIDI1IC1vIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9tc2ZzX3Rlby9XR0JTL2NhY2hlL21hcHBpbmcvbWFpemUvcmVfcnVuIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfdjQgLTEgU1JSODUwMzI4XzEuZmFzdHEuZ3ogLTIgU1JSODUwMzI4XzIuZmFzdHEuZ3ogPiBTUlI4NTAzMjgubG9nDQpgYGANCg0KIyBSZW1vdmUgZHVwbGljYXRpb24NCmBgYHtiYXNofQ0KZGVkdXBsaWNhdGVfYmlzbWFyayAtLWJhbSAtcCBTUlIxNjEwOTYxXzFfYmlzbWFya19idDJfcGUuYmFtDQpgYGANCg0KDQojIyBCaXNtYXJrIG1ldGh5bGF0aW9uIGV4dHJhY3Rvcg0KYGBge2Jhc2h9DQpiaXNtYXJrX21ldGh5bGF0aW9uX2V4dHJhY3RvciAtLW5vX292ZXJsYXAgLXAgLS1iZWRHcmFwaCAtLWNvbXByZWhlbnNpdmUgLS1jb3VudHMgLS1idWZmZXJfc2l6ZSAzMCUgLS1jeXRvc2luZV9yZXBvcnQgLS1nZW5vbWVfZm9sZGVyIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfdjQgU1JSMTYxMDk2MV8xX2Jpc21hcmtfYnQyX3BlLmRlZHVwbGljYXRlZC5iYW0NCmBgYA0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJ1bm5pbmcgQmlzbWFyayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KYXV0aG9yOiBHZW4gWHUNCi0tLQ0KDQojIyBQcmVwYXJlIGJpbWFyayBHZW5vbWUNCmBgYHtiYXNofQ0KYmlzbWFya19nZW5vbWVfcHJlcGFyYXRpb24gLS1wYXRoX3RvX2Jvd3RpZSAvaG9tZS9qeWFuZ2xhYi9neHU2L3NvZnR3YXJlL2Jvd3RpZTItMi4zLjQuMiAtLXZlcmJvc2UgLS1ib3d0aWUyIC9sdXN0cmUvd29yay9qeWFuZ2xhYi9neHU2L0I3M192NA0KYGBgDQoNCiMjIEFsaWdubWVudA0KYGBge2Jhc2h9DQpiaXNtYXJrIC0tYm93dGllMiAtcCAxMiAtTiAxIC1MIDI1IC1vIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9tc2ZzX3Rlby9XR0JTL2NhY2hlL21hcHBpbmcvbWFpemUvcmVfcnVuIC9jb21tb24vanlhbmdsYWIvZ3h1Ni9CNzNfdjQgLTEgU1JSODUwMzI4XzEuZmFzdHEuZ3ogLTIgU1JSODUwMzI4XzIuZmFzdHEuZ3ogPiBTUlI4NTAzMjgubG9nDQpgYGANCg0KIyBSZW1vdmUgZHVwbGljYXRpb24NCmBgYHtiYXNofQ0KZGVkdXBsaWNhdGVfYmlzbWFyayAtLWJhbSAtcCBTUlIxNjEwOTYxXzFfYmlzbWFya19idDJfcGUuYmFtDQpgYGANCg0KDQojIyBCaXNtYXJrIG1ldGh5bGF0aW9uIGV4dHJhY3Rvcg0KYGBge2Jhc2h9DQpiaXNtYXJrX21ldGh5bGF0aW9uX2V4dHJhY3RvciAtLW5vX292ZXJsYXAgLXAgLS1wYXJhbGxlbCA4IC0tYmVkR3JhcGggLS1jb21wcmVoZW5zaXZlIC0tY291bnRzIC0tYnVmZmVyX3NpemUgNTBHIC0tY3l0b3NpbmVfcmVwb3J0IC0tZ2Vub21lX2ZvbGRlciAvY29tbW9uL2p5YW5nbGFiL2d4dTYvQjczX3Y0IFNSUjE2MTA5NjFfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQuYmFtDQoNCmJpc21hcmsyYmVkR3JhcGggLS1idWZmZXJfc2l6ZSA1MCUgLS1DWCBDSEhfY29udGV4dF9JTDE0XzFfYmlzbWFya19idDJfcGUuZGVkdXBsaWNhdGVkLnR4dCAtbyBDSEhfSUwxNC5tZXRoX2xldi50eHQgQ0hIX2NvbnRleHRfSUwxNF8xX2Jpc21hcmtfYnQyX3BlLmRlZHVwbGljYXRlZC50eHQNCg0KYmlzbWFyazJiZWRHcmFwaCAtLWJ1ZmZlcl9zaXplIDUwJSAtLUNYIENIR19jb250ZXh0X0lMMTRfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQudHh0IC1vIENIR19JTDE0Lm1ldGhfbGV2LnR4dCBDSEdfY29udGV4dF9JTDE0XzFfYmlzbWFya19idDJfcGUuZGVkdXBsaWNhdGVkLnR4dA0KDQpiaXNtYXJrMmJlZEdyYXBoIC0tYnVmZmVyX3NpemUgNTAlIC0tQ1ggQ0hIX2NvbnRleHRfSUwxNF8xX2Jpc21hcmtfYnQyX3BlLmRlZHVwbGljYXRlZC50eHQgLW8gQ0hIX0lMMTQubWV0aF9sZXYudHh0IENISF9jb250ZXh0X0lMMTRfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQudHh0DQpgYGANCg0KIyNGb3IgImJpc21hcmsyYmVkR3JhcGgiIHN0ZXAsIENISF9jb250ZXh0X0lMMTRfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQudHh0IG1heWJlIG1vcmUgdGhhbiAxMDAgR0IsIHNvIGJpZyBtZW1vcnkgaXMgbmVlZGVkLCB3ZSBzcGxpdGVkIHRoZSBiaWcgZmlsZSB0byAxMCBzbWFsbCBvbmVzLg0KYGBge3Blcmx9IA0Kb3BlbihULCIkQVJHVlswXSIpfHxkaWUgIkNhbid0IG9wZW4geW91ciBmaWxlISI7IyNfMV9iaXNtYXJrX2J0Ml9wZS5kZWR1cGxpY2F0ZWQudHh0DQokZj0kQVJHVlswXTsNCiRmPX5zL1xfMVxfYmlzbWFya1xfYnQyXF9wZVwuZGVkdXBsaWNhdGVkXC50eHQvLzsgDQpwcmludCAiJGYiOw0KJGNoPSRBUkdWWzFdOw0KJG91dD0iJGZcX0NociRjaFwudHh0IjsNCm9wZW4oUiwiPiRvdXQiKTsNCiRsPTxUPjsNCnByaW50IFIgIiRsIjsNCndoaWxlKDxUPikNCnsNCgljaG9tcDsNCkBhYT1zcGxpdDsNCmlmKCRhYVsyXT09JEFSR1ZbMV0pDQoJe3ByaW50IFIgIiRfXG4iO30NCgl9DQpjbG9zZShULFIpOw0KDQpgYGANCg0KI09ubHkgc2l0ZXMgdGhhdCBjb3ZlcmVkIG1vcmUgdGhhbiB0aHJlZSBtYXBwZWQgcmVhZHMgd2VyZSBjb25zaWRlcmVkLg0KYGBge3Blcmx9IA0KJGluPSRBUkdWWzBdOyAjI0NISC5BNjMyX0NocjEwLm1ldGhfbGV2LnR4dC5nei5iaXNtYXJrLmNvdi5neg0KJG91dD0kaW47DQokb3V0PX5zL1wuZ3pcLmJpc21hcmtcLmNvdlwuZ3ovLzsNCm9wZW4oVCwiZ3VuemlwIC1jICRpbiB8Iil8fGRpZSAiQ2FuJ3Qgb3BlbiB5b3VyIGZpbGUhIjsNCm9wZW4oUiwiPiRvdXQiKTsNCnByaW50IFIgIkNocglQb3MJbWV0aHlfcGVyCWNvdW50X21ldGh5CWNvdW50X3VubWV0aHlcbiI7DQp3aGlsZSg8VD4pDQp7DQoJY2hvbXA7DQpAYWE9c3BsaXQ7DQokZHA9JGFhWzRdKyRhYVs1XTsNCmlmKCRkcDwzKXtuZXh0O30NCmlmKC9eXGQvKQ0Ke3ByaW50IFIgIiRhYVswXQkkYWFbMV0JJGFhWzNdCSRhYVs0XQkkYWFbNV1cbiI7fQ0KCX0NCmNsb3NlKFQsUik7DQpgYGANCg0KDQo=</div>
 
 
 
