@@ -13,7 +13,7 @@ reg_me=function(f,ch)
   out=qq("{na}.chr{ch}.100bp_meth.txt")
 d1=fread(f, header=T,data.table=F) 
 d1=d1[d1[,1]==ch,]
-seq=seq(from=1,to=max(d1[,2]),by=100)
+seq=seq(from=0,to=max(d1[,2]),by=100)
 index=cut(x = d1[,2],breaks = seq)
 rg=split(1:nrow(d1),index)
 re=NULL
@@ -26,6 +26,7 @@ for(i in 1:length(rg))
  reg=gsub("]","",reg,perl=T)
  reg=gsub("\\(","",reg,perl=T)
  start=as.numeric(unlist(strsplit(reg,","))[1])
+ start=start+1
  end=as.numeric(unlist(strsplit(reg,","))[2])
   res=c(ch,start,end,meth,nrow(d))
   res=paste(res,collapse ="\t")
@@ -40,6 +41,7 @@ for(i in 1:length(rg))
 }
 arg=getarg()
 do.call(reg_me,arg)
+
 
 ##Rscript get_region_methy_level.r f=CHG_PI-620774.meth_lev.txt ch=1 > CHG_PI-620774.meth_lev.txt_Chr1.log
 ```
