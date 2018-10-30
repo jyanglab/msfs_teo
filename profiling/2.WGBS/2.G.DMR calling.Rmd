@@ -1,0 +1,56 @@
+---
+title: "DMR calling"
+output: html_notebook
+author: Gen Xu
+---
+
+#metilene - a tool for fast and sensitive detection of differential DNA methylation
+#A binary segmentation algorithm combined with a two-dimensional statistical test；
+
+#Detection of DMRs with multiple groups of samples in minutes rather than days；
+
+#Metilene outperforms other state-of-the-art tools  low coverage data and can estimate missing data
+
+#Get bed file
+```{r}
+library(data.table)
+library(Ropt)
+get_bed=function(f)
+{
+na=gsub(".meth_lev.txt","",f) ##CpG_LH123HT.meth_lev.txt
+out=qq("{na}.bed")
+d1=fread(f, header=T,data.table=F) 
+d1=d1[order(d1[,1],d1[,2]),]
+d1[,3]=d1[,3]/100
+write.table(d1,f,quote = F,col.na=T,row.names = F,sep="\t")
+s=d1[,2]-1
+bed=cbind(d1[,1],s,d1[,2:3])
+write.table(bed,out,quote = F,col.na=F,row.names = F,sep="\t")
+}
+arg=getarg()
+do.call(get_bed,arg)
+
+```
+
+#Get input file for metilene
+```{bash}
+bedtools unionbedg -header -names Teo_JRIAL2T Teo_JRIAL2S  Lan_PI-628514 Lan_PI-628503 -filler NA -i CpG_JRIAL2T.bed CpG_JRIAL2S.bed  CpG_PI-628514.bed CpG_PI-628503.bed  | cut -f1,3- | sed 's/end/pos/' > metilene_Teo_Lan_input.txt
+
+```
+
+#Running Metilene
+```{bash}
+metilene -M 200 -m 6 -d 0.4 -t 13 -a Teo -b Lan metilene_Teo_Lan_input.txt | sort -V -k1,1 -k2,2n > CpG_metilene_Teo_Lan.out.txt
+```
+
+#filter results
+```{bash}
+perl /home/jyanglab/gxu6/software/metilene_v0.2-7/metilene_output.pl -q CpG_metilene_Teo_Lan.out.txt -o CpG_metilene_Teo_Lan_q001 -p 0.01 -c 6 -d 0.4 -a Teo -b Lan
+```
+
+
+
+
+
+
+
