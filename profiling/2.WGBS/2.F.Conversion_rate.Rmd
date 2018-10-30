@@ -1,0 +1,53 @@
+---
+title: "Conversion rate"
+output: html_notebook
+author: Gen Xu
+---
+#Get Pt bam file
+```{bash}
+samtools sort -m 55G JRIAL2A_R1_bismark_bt2_pe.deduplicated.bam > JRIAL2A.rmdedup.sorted.bam
+
+samtools index JRIAL2A.rmdedup.sorted.bam
+
+samtools view -b -h JRIAL2A.rmdedup.sorted.bam Pt > JRIAL2A.pt.bam
+
+samtools sort -n -m 10G JRIAL2A.pt.bam > JRIAL2A.sorted.pt.bam
+```
+
+#Methylation_extractor
+```{bash}
+bismark_methylation_extractor --no_overlap -p --parallel 4 --bedGraph --comprehensive --counts --buffer_size 60% --CX --cytosine_report --genome_folder /common/jyanglab/gxu6/Pt_V4/ JRIAL2A.sorted.pt.bam
+```
+
+#Get conversion rate, computing method is 1- (#C/(#C+#T))
+```{perl}
+@f=glob "*splitting_report.txt"; ##JRIAL2A.sorted.pt_splitting_report.txt
+open(R,">Conversion_rate.teo.txt");
+print R "ID	Conversion_rate\n";
+
+foreach $f(@f)
+{
+	$mc=NULL;
+	$id=$f;
+	$id=~s/\.sorted\.pt\_splitting\_report\.txt//;
+	open(T,"$f")||die "Can't open your file!";
+while(<T>)
+{
+	chomp;
+	if(/^Total number of C\'s analysed/)
+	{@aa=split /\t/,$_;$to=$aa[1];}
+if(/^Total methylated C\'s in/)
+{@bb=split /\t/,$_;
+$mc=$mc+$bb[1];
+}
+	}
+$cr=1-$mc/$to;
+print R "$id	$cr\n";
+	}
+close(T,R);
+```
+
+
+
+
+
