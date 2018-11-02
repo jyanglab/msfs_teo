@@ -44,7 +44,8 @@ loc_cleaning <- function(geocode_results){
     for(i in 1:length(geocode_results)){
         tem <- data.frame(address=geocode_results[[i]]$results[[1]]$formatted_address,
                           lat=geocode_results[[i]]$results[[1]]$geometry$location[['lat']],
-                          lng=geocode_results[[i]]$results[[1]]$geometry$location[['lng']]
+                          lng=geocode_results[[i]]$results[[1]]$geometry$location[['lng']],
+                          id=names(geocode_results)[i]
                           )
         out <- rbind(tem, out)
     }

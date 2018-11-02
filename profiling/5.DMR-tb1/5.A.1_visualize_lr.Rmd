@@ -54,19 +54,23 @@ googleloc <- function(df, google_api_key="AIzaSyA8zz", outcache, outtxt){
     ### google_api_key:  use your own google AGP key, https://console.developers.google.com/
     
     ### search location using google API
+    df <- df[order(df$loc),]
     geocode_apply <- function(x){
         geocode(x, source = "google", output = "all", override_limit = TRUE,
                 api_key=google_api_key)
     }
     
-    geocode_results <- sapply(as.character(df$loc), geocode_apply, simplify = F)
-    
-    message(sprintf("###>>> [googleloc]: find location for %s users", length(geocode_results)))
+    gres <- list()
+    for(i in 1:nrow(df)){
+      gres[[as.character(df$id[i])]] <- geocode_apply(df$loc[i])
+    }
+    #geocode_results <- sapply(as.character(df$loc), geocode_apply, simplify = F)
+    #message(sprintf("###>>> [googleloc]: find location for %s users", length(geocode_results)))
     
     ### Step Three: clearning results
+    out <- loc_cleaning(gres)
     
-    out <- loc_cleaning(geocode_results)
-    
+    #out <- cbind(df, out)
     if(!is.null(outcache)){
         save("geocode_results", file=outcache)
     }
@@ -74,7 +78,7 @@ googleloc <- function(df, google_api_key="AIzaSyA8zz", outcache, outtxt){
         write.table(out, outtxt, sep="\t", row.names=FALSE)
     }
     
-    return(geocode_results)
+    return(out)
 }
 
 
@@ -90,6 +94,7 @@ res1 <- googleloc(df, google_api_key="AIzaSyDy2BmGRwI9OB-HBdmn9rAKhCLpzxEmSgI",
                   outcache="largedata/api_res.RData", 
                   outtxt="cache/location_res.txt")
 
+test <- merge(df, res1, by="id")
 
 ```
 
