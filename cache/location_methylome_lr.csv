@@ -1,0 +1,18 @@
+id,f,Plant.ID,Plant.Name,Taxonomy,Origin,Material,Maintained.By,Availability
+AMES8235,CHG_AMES-8235.meth_lev.txt,Ames 8235,Nayarit 35,Zea mays subsp. mays,Mexico Nayarit,Seed,NC7,Add to Cart
+PI620767,CHG_PI-620767.meth_lev.txt,PI 620767,Aguascalientes 16,Zea mays subsp. mays,Mexico Aguascalientes,Seed,NC7,Add to Cart
+PI620773,CHG_PI-620773.meth_lev.txt,PI 620773,Baja California 10,Zea mays subsp. mays,Mexico Baja Sur,Seed,NC7,Add to Cart
+PI620774,CHG_PI-620774.meth_lev.txt,PI 620774,Chiapas 70,Zea mays subsp. mays,Mexico Chiapas,Seed,NC7,Add to Cart
+PI620784,CHG_PI-620784.meth_lev.txt,PI 620784,Colima 8,Zea mays subsp. mays,Mexico Colima,Seed,NC7,Add to Cart
+PI620785,CHG_PI-620785.meth_lev.txt,PI 620785,Durango 29,Zea mays subsp. mays,Mexico Durango,Seed,NC7,Add to Cart
+PI620797,CHG_PI-620797.meth_lev.txt,PI 620797,Guerrero 1,Zea mays subsp. mays,Mexico Guerrero,Seed,NC7,Add to Cart
+PI620819,CHG_PI-620819.meth_lev.txt,PI 620819,Hidalgo 39,Zea mays subsp. mays,Mexico Hidalgo,Seed,NC7,Add to Cart
+PI620821,CHG_PI-620821.meth_lev.txt,PI 620821,Jalisco 9,Zea mays subsp. mays,Mexico Jalisco,Seed,NC7,Add to Cart
+PI620834,CHG_PI-620834.meth_lev.txt,PI 620834,Michoacan 113,Zea mays subsp. mays,Mexico Michoacan,Seed,NC7,Add to Cart
+PI620842,CHG_PI-620842.meth_lev.txt,PI 620842,Oaxaca 49,Zea mays subsp. mays,Mexico Oaxaca,Seed,NC7,Add to Cart
+PI620846,CHG_PI-620846.meth_lev.txt,PI 620846,Puebla 19,Zea mays subsp. mays,Mexico Puebla,Seed,NC7,Add to Cart
+PI620856,CHG_PI-620856.meth_lev.txt,PI 620856,Sinaloa 20,Zea mays subsp. mays,Mexico Sinaloa,Seed,NC7,Add to Cart
+PI620859,CHG_PI-620859.meth_lev.txt,PI 620859,Sonora 153,Zea mays subsp. mays,Mexico Sonora,Seed,NC7,Add to Cart
+PI620860,CHG_PI-620860.meth_lev.txt,PI 620860,Veracruz 273,Zea mays subsp. mays,Mexico Veracruz,Seed,NC7,Add to Cart
+PI628503,CHG_PI-628503.meth_lev.txt,PI 628503,Tamaulipas 92,Zea mays subsp. mays,Mexico Tamaulipas,Seed,NC7,Add to Cart
+PI628514,CHG_PI-628514.meth_lev.txt,PI 628514,Yucatan 135,Zea mays subsp. mays,Mexico Yucatan,Seed,NC7,Add to Cart
