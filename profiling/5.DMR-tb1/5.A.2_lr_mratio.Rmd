@@ -91,12 +91,12 @@ library(ggmap)
 ## Longitude : -100 21' 00'' 
 
 cols <- brewer.pal(5,"RdBu")
-myloc <- c(-150, 0, -60, 30)
+myloc <- c(-120, 10, -80, 30)
 mymap <- get_map(location=myloc, source="google", crop=FALSE, color="bw")
 ggmap(mymap) + 
     geom_point(aes(x = lng, y = lat), data = out,
-               alpha = .9, color=cols[out$col], size = 3) +
-  geom_point(aes(x = -100.21, y = 18.41), color="red", size = 5, shape=17)
+               alpha = .9, color=cols[out$col], size = 5) +
+  geom_point(aes(x = -100.21, y = 18.41), color="red", size = 8, shape=17)
   
 
 ```
