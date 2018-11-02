@@ -1,0 +1,17 @@
+"address"	"lat"	"lng"
+"Yucatan Peninsula, Mexico"	18.806656	-89.3985283
+"Tamaulipas, Mexico"	24.26694	-98.8362755
+"Heroica Veracruz, Ver., Mexico"	19.173773	-96.1342241
+"Sonora, Mexico"	29.2972247	-110.3308814
+"Sinaloa, Mexico"	25.1721091	-107.4795173
+"Puebla City, Puebla, Mexico"	19.0414398	-98.2062727
+"Oaxaca, Mexico"	17.0731842	-96.7265889
+"Michoacán, Mexico"	19.5665192	-101.7068294
+"Jalisco, Mexico"	20.6595382	-103.3494376
+"Hidalgo, Mexico"	20.0910963	-98.7623874
+"Guerrero, Mexico"	17.4391926	-99.5450974
+"Durango, Mexico"	24.5592665	-104.6587821
+"Colima, Mexico"	19.1222634	-104.0072348
+"Chiapas, Mexico"	16.7569318	-93.1292353
+"Baja California Sur, Mexico"	26.0444446	-111.6660725
+"Aguascalientes, Mexico"	21.8852562	-102.2915677
