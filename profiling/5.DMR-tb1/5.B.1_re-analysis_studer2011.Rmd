@@ -1,0 +1,37 @@
+---
+title: "Re-analysis Studer 2011 NG fine mapping results"
+output: html_notebook
+author: Jinliang Yang
+date: 11-05-2018
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+# Modelling
+
+```{r}
+d <- read.csv("data/Studer_2011_NatGenet_tb1_data-110706.csv")
+d[,10:24] <- apply(d[,10:24], 2, as.character)
+d[d=="MM"] <- 0
+d[d=="IM"] <- 1
+d[d=="II"] <- 2
+table(d$Line)
+```
+
+
+```{r}
+library("lme4")
+d$TILL <- as.numeric(as.character(d$TILL))
+m1 <- lmer(TILL ~ GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + (1 | Year), data=d)
+anova(m1)
+
+
+fit <- lm(TILL ~ Year + Line + GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + GS6:GS2 + GS6:GS3 + GS5:GS2 + GS5:GS3, data=d)
+```
+
+
