@@ -1,0 +1,87 @@
+---
+title: "Re-analysis Studer 2011 NG fine mapping results"
+output: html_notebook
+author: Jinliang Yang
+date: 11-05-2018
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+# Modelling
+
+```{r}
+## Using R/QTL
+
+#install.packages("qtl")
+library(qtl)
+
+
+d <- read.csv("data/Studer_2011_NatGenet_tb1_data-110706_rqtl.csv")
+d <- d[-1:-2, ]
+
+d$Year <- as.factor(d$Year)
+d$ID <- as.factor(d$ID)
+d$Family <- as.factor(Family)
+fit <- lm(TILL ~ Year*ID*Family, data=d)
+
+out <- cbind(d$Year, d$ID)
+
+tb1 <- read.cross("csv", file="data/Studer_2011_NatGenet_tb1_data-110706_rqtl.csv",
+                  genotype=c("MM","IM", "II"), alleles=c("I","M"), estimate.map=FALSE, na.strings=".", crosstype = "f2")
+
+x <- as.matrix(d[-1:-2, c("Year", "ID","Family")])
+x <- apply(x, 2, as.numeric)
+tb1 <- calc.genoprob(tb1, step=0, off.end=0, error.prob=0.01)
+out.em <- scanone(tb1, pheno.col="TILL", method="em", addcovar=x)
+
+plot(out.em, ylab="LOD score")
+
+summary(out.em, alpha=0.1)
+
+lodint(out.em, 1, 1.5)
+
+effectplot(tb1, mname1="GS1")
+effectplot(tb1, mname1="GS2")
+effectplot(tb1, mname1="GS6")
+   
+
+
+out2 <- scantwo(tb1)
+plot(out2)
+```
+
+
+```
+
+
+```{r}
+library("lme4")
+d$TILL <- as.numeric(as.character(d$TILL))
+m1 <- lmer(TILL ~ GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + (1 | Year), data=d)
+anova(m1)
+
+fit <- lmer(TILL ~ Line + (1|Year), data=d)
+anova(fit)
+
+fit <- lm(TILL ~ Line + Year, data=d)
+anova(fit)
+
+fit1 <- lm(TILL ~ as.factor(Year) + GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + GS6:GS2 + GS6:GS3 + GS5:GS2 + GS5:GS3, data=d)
+
+summary(fit1)
+```
+
+```{r}
+d$LBIL <- as.numeric(as.character(d$LBIL))
+
+fit2 <- lm(LBIL ~ as.factor(Year) + GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + GS6:GS2 + GS6:GS3 + GS5:GS2 + GS5:GS3, data=d)
+summary(fit2)
+```
+
+
+

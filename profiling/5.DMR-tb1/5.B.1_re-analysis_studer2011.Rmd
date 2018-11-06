@@ -30,8 +30,24 @@ d$TILL <- as.numeric(as.character(d$TILL))
 m1 <- lmer(TILL ~ GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + (1 | Year), data=d)
 anova(m1)
 
+fit <- lmer(TILL ~ Line + (1|Year), data=d)
+anova(fit)
 
-fit <- lm(TILL ~ Year + Line + GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + GS6:GS2 + GS6:GS3 + GS5:GS2 + GS5:GS3, data=d)
+fit <- lm(TILL ~ Year + Line, data=d)
+summary(fit)
+anova(fit)
+
+fit1 <- lm(TILL ~ as.factor(Year) + GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + GS6:GS2 + GS6:GS3 + GS5:GS2 + GS5:GS3, data=d)
+
+summary(fit1)
 ```
+
+```{r}
+d$LBIL <- as.numeric(as.character(d$LBIL))
+
+fit2 <- lm(LBIL ~ as.factor(Year) + GS1 + GS8 + GS7 + GS4 + GS6 + GS5 + GS2 + GS3 + GS6:GS2 + GS6:GS3 + GS5:GS2 + GS5:GS3, data=d)
+summary(fit2)
+```
+
 
 
