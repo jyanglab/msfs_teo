@@ -18,7 +18,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ```{r}
 test_p2g <- function(chr=9){
   source("lib/p2g.R")
-  train <- read.csv("~/Documents/Github/zmSNPtools/shareData/ISU_integrated_IBM_AGPv2_training.csv")
+  train <- read.csv("data/ISU_integrated_IBM_AGPv2_training.csv")
   train$Physical <- as.numeric(as.character(gsub(",", "", train$Physical)))
   ### test the proformance of the function using the training data
   
@@ -31,8 +31,8 @@ test_p2g <- function(chr=9){
 }
 
 use_p2g <- function(){
-  source("~/Documents/Github/zmSNPtools/Rcodes/p2g.R")
-  train <- read.csv("~/Documents/Github/zmSNPtools/shareData/ISU_integrated_IBM_AGPv2_training.csv")
+  source("libp2g.R")
+  train <- read.csv("data/ISU_integrated_IBM_AGPv2_training.csv")
   train$Physical <- as.numeric(as.character(gsub(",", "", train$Physical)))
   ### test the proformance of the function using the training data
   
