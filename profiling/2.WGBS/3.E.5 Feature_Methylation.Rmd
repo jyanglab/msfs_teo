@@ -80,7 +80,7 @@ for(i in 1:nrow(d_f))
 for(i in 1:nrow(d_r))
 {
   d2=d_r[i,]
-  unit=ceiling((d2[,5]-d2[,4])/60)
+  unit=(d2[,5]-d2[,4])/60
   bin_s=seq(d2[1,4],d2[1,5],by=unit)[-21]
   bin_e=(seq(d2[1,4],d2[1,5],by=unit)-1)[-1]
   
@@ -90,12 +90,6 @@ for(i in 1:nrow(d_r))
 }
 colnames(genb)=c("Chr","bin_s","bin_e","Gen","Bin")
 write.table(genb,"Gene_body_bin.txt",quote = F,col.na=T,row.names = F,sep="\t")
-
-```
-
-#Get input file for metilene
-```{bash}
-bedtools unionbedg -header -names Teo_JRIAL2T Teo_JRIAL2S  Lan_PI-628514 Lan_PI-628503 -filler NA -i CpG_JRIAL2T.bed CpG_JRIAL2S.bed  CpG_PI-628514.bed CpG_PI-628503.bed  | cut -f1,3- | sed 's/end/pos/' > metilene_Teo_Lan_input.txt
 
 ```
 
