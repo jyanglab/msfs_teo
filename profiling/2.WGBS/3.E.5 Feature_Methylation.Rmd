@@ -1,0 +1,158 @@
+---
+title: "Get feature methylation level"
+output: html_notebook
+author: Gen Xu
+---
+##Get bin bed file. up- and downstream 2K region of each gene was cut to 20 bins, the gene body was cut to 60 bins 
+
+```{r}
+library(data.table)
+library(Ropt)
+d1=fread("B73v4.gene.txt", header=T,data.table=F)
+d_f=d1[d1[,7]=="+",]
+d_r=d1[d1[,7]=="-",]
+#####################get_upstream_2K_bin#########################
+up_s=NULL
+for(i in 1:nrow(d_f))
+{
+  d2=d_f[i,]
+  bin_s=seq(d2[1,3],d2[1,4],by=100)[-21]-1
+  bin_e=(seq(d2[1,3],d2[1,4],by=100)-1)[-1]-1
+
+  bin=cbind(d2[1,2],bin_s,bin_e,d2[1,1],paste("bin",1:20,sep= ""))
+  up_s=rbind(up_s,bin)
+  cat("Upstream Forwd row",i,"\n")
+}
+
+for(i in 1:nrow(d_r))
+{
+  d2=d_r[i,]
+  bin_s=seq(d2[1,5],d2[1,6],by=100)[-21]
+  bin_e=(seq(d2[1,5],d2[1,6],by=100)-1)[-1]
+  
+  bin=cbind(d2[1,2],bin_s,bin_e,d2[1,1],paste("bin",sort(1:20,decreasing =T),sep= ""))
+  up_s=rbind(up_s,bin)
+  cat("Upstream reverse row",i,"\n")
+}
+colnames(up_s)=c("Chr","bin_s","bin_e","Gen","Bin")
+write.table(up_s,"up_stream2k_bin.txt",quote = F,col.na=T,row.names = F,sep="\t")
+#############################################################################
+
+#####################get_downstream_2K_bin#########################
+down_s=NULL
+for(i in 1:nrow(d_f))
+{
+  d2=d_f[i,]
+  bin_s=seq(d2[1,5],d2[1,6],by=100)[-21]
+  bin_e=(seq(d2[1,5],d2[1,6],by=100)-1)[-1]
+  
+  bin=cbind(d2[1,2],bin_s,bin_e,d2[1,1],paste("bin",1:20,sep= ""))
+  down_s=rbind(down_s,bin)
+  cat("Downstream Forwd row",i,"\n")
+}
+
+for(i in 1:nrow(d_r))
+{
+  d2=d_r[i,]
+  bin_s=seq(d2[1,3],d2[1,4],by=100)[-21]-1
+  bin_e=(seq(d2[1,3],d2[1,4],by=100)-1)[-1]-1
+  bin=cbind(d2[1,2],bin_s,bin_e,d2[1,1],paste("bin",sort(1:20,decreasing =T),sep= ""))
+  down_s=rbind(down_s,bin)
+  cat("Downstream reverse row",i,"\n")
+}
+colnames(down_s)=c("Chr","bin_s","bin_e","Gen","Bin")
+write.table(down_s,"down_stream2k_bin.txt",quote = F,col.na=T,row.names = F,sep="\t")
+
+################################Gene_body_bin#####################################
+genb=NULL
+for(i in 1:nrow(d_f))
+{
+  d2=d_f[i,]
+  unit=(d2[,5]-d2[,4])/60
+  bin_s=seq(d2[1,4],d2[1,5],by=unit)[-21]-1
+  bin_e=(seq(d2[1,4],d2[1,5],by=unit)-1)[-1]-1
+  
+  bin=cbind(d2[1,2],bin_s,bin_e,d2[1,1],paste("bin",1:length(bin_s),sep= ""))
+  genb=rbind(genb,bin)
+  cat("Gene Forwd row",i,"\n")
+}
+
+for(i in 1:nrow(d_r))
+{
+  d2=d_r[i,]
+  unit=ceiling((d2[,5]-d2[,4])/60)
+  bin_s=seq(d2[1,4],d2[1,5],by=unit)[-21]
+  bin_e=(seq(d2[1,4],d2[1,5],by=unit)-1)[-1]
+  
+  bin=cbind(d2[1,2],bin_s,bin_e,d2[1,1],paste("bin",sort(1:length(bin_s),decreasing =T),sep= ""))
+  genb=rbind(genb,bin)
+  cat("Gene reverse row",i,"\n")
+}
+colnames(genb)=c("Chr","bin_s","bin_e","Gen","Bin")
+write.table(genb,"Gene_body_bin.txt",quote = F,col.na=T,row.names = F,sep="\t")
+
+```
+
+#Get input file for metilene
+```{bash}
+bedtools unionbedg -header -names Teo_JRIAL2T Teo_JRIAL2S  Lan_PI-628514 Lan_PI-628503 -filler NA -i CpG_JRIAL2T.bed CpG_JRIAL2S.bed  CpG_PI-628514.bed CpG_PI-628503.bed  | cut -f1,3- | sed 's/end/pos/' > metilene_Teo_Lan_input.txt
+
+```
+
+#Get methylation level of each bin
+```{bash}
+bedtools intersect -a Gene_body_bin.txt  -b $_ -wao > $aa[0]\.Gene_body.bin.methy.txt
+bedtools intersect -a down_stream2k_bin.txt  -b $_ -wao > $aa[0]\.down_stream2k.bin.methy.txt
+bedtools intersect -a up_stream2k_bin.txt  -b $_ -wao > $aa[0]\.up_stream2k.bin.methy.txt
+```
+
+```{r}
+library(data.table)
+library(Ropt)
+f=list.files(path=".",pattern = "Gene_body.bin.methy.txt")
+for(i in f[1])
+{
+  sp=gsub(".Gene_body.bin.methy.txt","",i)
+  d=fread(i, header=F,data.table=F) 
+  d=d[d[,10]>0,]
+  bin=NULL
+  for(b in unique(d[,5]))
+  {
+    d1=d[d[,5]==b,]
+    m=mean(as.numeric(d1[,9]),na.rm=T)
+    re=c(b,m)
+    bin=rbind(bin,re)
+  }
+  colnames(bin)=c("Bin",sp)
+}
+
+mbin=bin
+for(i in f[-1])
+{
+  sp=gsub(".Gene_body.bin.methy.txt","",i)
+  d=fread(i, header=F,data.table=F) 
+  d=d[d[,10]>0,]
+  bin=NULL
+  for(b in unique(d[,5]))
+  {
+    d1=d[d[,5]==b,]
+    m=mean(as.numeric(d1[,9]),na.rm=T)
+    re=c(b,m)
+    bin=rbind(bin,re)
+  }
+  colnames(bin)=c("Bin",sp)
+  mbin=merge(mbin,bin,by="Bin")
+  cat("Finsh",i,"\n")
+}
+id=as.numeric(gsub("bin","",mbin[,1]))
+mbin=cbind(mbin,id)
+mbin=mbin[order(mbin[,ncol(mbin)]),]
+mbin=mbin[,-ncol(mbin)]
+write.table(mbin,"Gene_body.bin.methy.txt",quote = F,col.na=T,row.names = F,sep="\t")
+```
+
+
+
+
+
+
