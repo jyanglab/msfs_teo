@@ -1,0 +1,140 @@
+---
+title: "Calculate overall SFSs and their distributions"
+output: html_notebook
+author: Jinliang Yang
+date: 12-30-2018
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+## Data shared by Gen:
+
+### `/common/jyanglab/shared/Gen_Xu/mr_basepair`
+- This one contains the methylation ratio at base-pair level
+
+### `/common/jyanglab/shared/Gen_Xu/mr_100bptile`
+- This one contains the methylation ratio at 100-bp tile
+
+
+# purpose: treat methylation level per tile as a genotype using arbitrary cutoff 
+
+and then conduct sensitivity test to show cutoff not very sensitive 
+
+
+```{r, eval=FALSE}
+library("data.table")
+## concatenate chr1-10 => chrall
+cat_mr <- function(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", 
+                      outdir="largedata/COMET/CG_COMET/"){
+    
+    ### checking the status
+    files <- list.files(path=path, pattern="txt", full.names=TRUE)
+    df <- data.frame(file=files, context=files, genotype=files, chr=1)
+    df$fid <- gsub(".*\\/", "", df$file)
+    df$context <- gsub("_.*", "", df$fid)
+    df$genotype <- gsub("\\..*", "", df$fid)
+    df$genotype <- gsub(".*_", "", df$genotype)
+    df$chr <- gsub(".*chr|\\.100bp.*", "", df$fid)
+    
+    geno <- as.character(unique(df$genotype))
+    for(gi in 1:length(geno)){
+      sub <- subset(df, genotype %in% geno[gi])
+      if(nrow(sub) != 10){
+          message(sprintf("###>>>> ERROR! [ %s ] doesnot have all 10 chrs!", gi))
+      }
+      
+      
+      ### concat ten chrs together
+      out <- data.frame()
+      for(i in 1:10){
+        chr <- fread(as.character(sub$file[i]), header=TRUE, data.table=FALSE)
+        out <- rbind(out, chr)
+      }
+      
+      message(sprintf("###>>> writing [ %s ], with [ %s ] rows ...", sub$genotype[1], nrow(out)))
+      
+      outfile <- paste0(outdir, "/", sub("chr10", "chrall", sub$fid[1]))
+      fwrite(out, outfile, sep="\t", row.names=FALSE, quote=FALSE )
+    }
+}
+```
+
+
+### RUN the above function
+```{r, eval=FALSE}
+library("data.table")
+##########
+### Teosinte 
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
+
+
+### Landrace
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CG", outdir="largedata/mr_100bp/landrace/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHG", outdir="largedata/mr_100bp/landrace/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHH", outdir="largedata/mr_100bp/landrace/")
+
+
+### Elite
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/elite/")
+
+
+```
+
+
+
+
+
+```{r, eval=FALSE}
+out$level <- "med"
+      out[out$meth >= 0.66, ]$level <- "high"
+      out[out$meth <= 0.33, ]$level <- "low"
+        
+      
+      write.table(out, paste0(outdir, sid, "_COMET.csv"), 
+                    sep=",", row.names=FALSE, quote=FALSE)
+
+############################################################################
+get_sum <- function(path="largedata/COMET/CG_COMET"){
+    files <- list.files(path=path, pattern="csv", full.names=T)
+    out <- data.frame()
+    for(i in 1:length(files)){
+        df <- read.csv(files[i])
+        sid <- gsub(".*/|_.*", "", files[i])
+        message(sprintf("###>>> Processing sample: [ %s ] ...", sid))
+        tem <- data.frame(id=sid, high=sum(subset(df, level %in% "high")$size),
+                          med=sum(subset(df, level %in% "med")$size),
+                          low=sum(subset(df, level %in% "low")$size) )
+        
+        out <- rbind(out, tem)
+    }
+    return(out)
+}
+
+##########
+## CG
+res <- get_sum(path="largedata/COMET/CG_COMET")
+write.table(res, "cache/COMET_CG_sum_stat.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+## CHG
+res <- get_sum(path="largedata/COMET_CHG/CHG_COMET/")
+write.table(res, "cache/COMET_CHG_sum_stat.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+
+stat <- read.csv("cache/COMET_CG_sum_stat.csv")
+
+
+
+```
+
+
+
+
