@@ -25,7 +25,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 and then conduct sensitivity test to show cutoff not very sensitive 
 
-### Concatenate data
+### Concatenate data by chrs
 
 ```{r, eval=FALSE}
 library("data.table")
