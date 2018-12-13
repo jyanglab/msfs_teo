@@ -2,7 +2,7 @@
 title: "Calculate overall SFSs and their distributions"
 output: html_notebook
 author: Jinliang Yang
-date: 12-30-2018
+date: 11-30-2018
 ---
 
 
@@ -25,6 +25,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 and then conduct sensitivity test to show cutoff not very sensitive 
 
+### Concatenate data
 
 ```{r, eval=FALSE}
 library("data.table")
@@ -89,51 +90,6 @@ cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdi
 
 ```
 
-
-
-
-
-```{r, eval=FALSE}
-out$level <- "med"
-      out[out$meth >= 0.66, ]$level <- "high"
-      out[out$meth <= 0.33, ]$level <- "low"
-        
-      
-      write.table(out, paste0(outdir, sid, "_COMET.csv"), 
-                    sep=",", row.names=FALSE, quote=FALSE)
-
-############################################################################
-get_sum <- function(path="largedata/COMET/CG_COMET"){
-    files <- list.files(path=path, pattern="csv", full.names=T)
-    out <- data.frame()
-    for(i in 1:length(files)){
-        df <- read.csv(files[i])
-        sid <- gsub(".*/|_.*", "", files[i])
-        message(sprintf("###>>> Processing sample: [ %s ] ...", sid))
-        tem <- data.frame(id=sid, high=sum(subset(df, level %in% "high")$size),
-                          med=sum(subset(df, level %in% "med")$size),
-                          low=sum(subset(df, level %in% "low")$size) )
-        
-        out <- rbind(out, tem)
-    }
-    return(out)
-}
-
-##########
-## CG
-res <- get_sum(path="largedata/COMET/CG_COMET")
-write.table(res, "cache/COMET_CG_sum_stat.csv", sep=",", row.names=FALSE, quote=FALSE)
-
-## CHG
-res <- get_sum(path="largedata/COMET_CHG/CHG_COMET/")
-write.table(res, "cache/COMET_CHG_sum_stat.csv", sep=",", row.names=FALSE, quote=FALSE)
-
-
-stat <- read.csv("cache/COMET_CG_sum_stat.csv")
-
-
-
-```
 
 
 
