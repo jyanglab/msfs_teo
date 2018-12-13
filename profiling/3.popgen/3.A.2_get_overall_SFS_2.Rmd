@@ -25,15 +25,15 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 and then conduct sensitivity test to show cutoff not very sensitive 
 
-### Concatenate data
+### Concatenate data by chrs
 
-### 
+### Concatenate by lines
+=> to matrix
 
 ```{r, eval=FALSE}
 library("data.table")
 
-
-getsfs <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100){
+getcat <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100){
     
     files <- list.files(path=path, pattern=context, full.names = TRUE)  
     message(sprintf("###>>> found [ %s ] files with pattern=[%s]", length(files), context))
@@ -53,30 +53,39 @@ getsfs <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22,
         names(fi)[4] <- fid
         fout <- merge(fout, fi[, c("uid", fid)], by="uid", all=TRUE)
     }
+ 
+    outfile <- paste0(path, "_", context, "_matrix.csv")   
+    fwrite(fout,  outfile, sep=",", row.names=FALSE, quote=FALSE)   
+}
+
+
+### apply the function:
+getcat(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100)
+getcat(path="largedata/mr_100bp/teosinte", context="CHG", cols=3:22, BINSIZE=100)
+getcat(path="largedata/mr_100bp/teosinte", context="CHH", cols=3:22, BINSIZE=100)
+#
+
+``` 
+  
+### From matrix to SFS
+
+
+  
+```{r, eval=FALSE}
+library("data.table")
+
+test <- fout[1:10, ]
+test$cna <- apply(test, 1, function(x) sum(is.na(x)))
     
- fwrite(fout, "largedata/mr_100bp/teosinte_CpG_matrix.csv", sep=",", row.names=FALSE, quote=FALSE)   
+fout$cna <- apply(fout, 1, function(x) sum(is.na(x)))
     
-    
-    
-    
-    cg <- exon[ V2 == context] #9270420      22
-    
-    cg <- as.data.frame(cg)
-    cg[cg=="."] <- "NA"
-    cg[, cols] <- apply(cg[, cols], 2, as.numeric)
-    
-    cg$chr <- gsub("_.*", "", cg$V1)
-    cg$pos <- as.numeric(as.character(gsub(".*_", "", cg$V1)))
-    
-    cg$bin <- paste(cg$chr, round(cg$pos/BINSIZE, 0), sep="_")
-    
-    
+getsfs <- function(mxfile="largedata/mr_100bp/teosinte_CpG_matrix.csv")    
     #.SD is a data.table and holds all the values of all columns, except the one specified in by.
-    cg <- as.data.table(cg)
-    res <- cg[, lapply(.SD, mymean), by=bin, .SDcols = paste0("V",3:22)]
-    
-    res <- as.data.frame(res)
-    f <- apply(res[, -1], 1, getcount)
+    #mx <- as.data.table(mx)
+    #res <- cg[, lapply(.SD, mymean), by=bin, .SDcols = paste0("V",3:22)]
+    mx <- fread(mxfile, data.table=FALSE)
+    #mx <- as.data.frame(mx)
+    f <- apply(mx[1:10, -1], 1, getcount)
     sfs <- table(f)
 }
 
@@ -85,10 +94,11 @@ mymean <- function(x){
 }
 
 getcount <- function(x, mmin=0.3, mmax=0.7){
+    x <- x[!is.na(x)]
     n0 <- sum(x < mmin)
     n2 <- sum(x > mmax)
     n1 <- sum(x >= mmin & x <= mmax)
-    return(2*n2+n1)
+    return(c(n0, n2, n1))
 }
 
 
