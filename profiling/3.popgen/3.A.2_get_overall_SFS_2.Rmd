@@ -1,0 +1,128 @@
+---
+title: "Calculate overall SFSs and their distributions: step2"
+output: html_notebook
+author: Jinliang Yang
+date: 12-12-2018
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+## Data shared by Gen:
+
+### `/common/jyanglab/shared/Gen_Xu/mr_basepair`
+- This one contains the methylation ratio at base-pair level
+
+### `/common/jyanglab/shared/Gen_Xu/mr_100bptile`
+- This one contains the methylation ratio at 100-bp tile
+
+
+# purpose: treat methylation level per tile as a genotype using arbitrary cutoff 
+
+and then conduct sensitivity test to show cutoff not very sensitive 
+
+### Concatenate data
+
+### 
+
+```{r, eval=FALSE}
+library("data.table")
+
+
+getsfs <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100){
+    
+    files <- list.files(path=path, pattern=context, full.names = TRUE)  
+    message(sprintf("###>>> found [ %s ] files with pattern=[%s]", length(files), context))
+    
+    
+    ### format the first file 
+    f1 <- fread(files[1], data.table=FALSE)
+    f1$uid <- paste(f1$Chr, f1$Start, f1$End, sep="_")
+    fid <- gsub(".*\\/|\\..*", "", files[1])
+    names(f1)[4] <- fid
+    fout <- f1[, c("uid", fid)]
+        
+    for(i in 2:length(files)){
+        fi <- fread(files[i], data.table=FALSE)
+        fi$uid <- paste(fi$Chr, fi$Start, fi$End, sep="_")
+        fid <- gsub(".*\\/|\\..*", "", files[i])
+        names(fi)[4] <- fid
+        fout <- merge(fout, fi[, c("uid", fid)], by="uid", all=TRUE)
+    }
+    
+ fwrite(fout, "largedata/mr_100bp/teosinte_CpG_matrix.csv", sep=",", row.names=FALSE, quote=FALSE)   
+    
+    
+    
+    
+    cg <- exon[ V2 == context] #9270420      22
+    
+    cg <- as.data.frame(cg)
+    cg[cg=="."] <- "NA"
+    cg[, cols] <- apply(cg[, cols], 2, as.numeric)
+    
+    cg$chr <- gsub("_.*", "", cg$V1)
+    cg$pos <- as.numeric(as.character(gsub(".*_", "", cg$V1)))
+    
+    cg$bin <- paste(cg$chr, round(cg$pos/BINSIZE, 0), sep="_")
+    
+    
+    #.SD is a data.table and holds all the values of all columns, except the one specified in by.
+    cg <- as.data.table(cg)
+    res <- cg[, lapply(.SD, mymean), by=bin, .SDcols = paste0("V",3:22)]
+    
+    res <- as.data.frame(res)
+    f <- apply(res[, -1], 1, getcount)
+    sfs <- table(f)
+}
+
+mymean <- function(x){
+    return(mean(x, na.rm=T))
+}
+
+getcount <- function(x, mmin=0.3, mmax=0.7){
+    n0 <- sum(x < mmin)
+    n2 <- sum(x > mmax)
+    n1 <- sum(x >= mmin & x <= mmax)
+    return(2*n2+n1)
+}
+
+
+sfs <- getsfs(context="CHG", cols=3:22, BINSIZE=100)
+write.table(mysfs, "cache/sfs_test.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+
+### RUN the above function
+```{r, eval=FALSE}
+library("data.table")
+##########
+### Teosinte 
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
+
+
+### Landrace
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CG", outdir="largedata/mr_100bp/landrace/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHG", outdir="largedata/mr_100bp/landrace/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHH", outdir="largedata/mr_100bp/landrace/")
+
+
+### Elite
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/elite/")
+
+
+```
+
+
+
+
+
