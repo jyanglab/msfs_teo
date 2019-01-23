@@ -63,75 +63,17 @@ getcat <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22,
 getcat(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100)
 getcat(path="largedata/mr_100bp/teosinte", context="CHG", cols=3:22, BINSIZE=100)
 getcat(path="largedata/mr_100bp/teosinte", context="CHH", cols=3:22, BINSIZE=100)
-#
+### apply the function to landrace
+getcat(path="largedata/mr_100bp/landrace", context="CpG", cols=3:22, BINSIZE=100)
+getcat(path="largedata/mr_100bp/landrace", context="CHG", cols=3:22, BINSIZE=100)
+getcat(path="largedata/mr_100bp/landrace", context="CHH", cols=3:22, BINSIZE=100)
+### apply the function to maize
+getcat(path="largedata/mr_100bp/elite", context="CpG", cols=3:22, BINSIZE=100)
+getcat(path="largedata/mr_100bp/elite", context="CHG", cols=3:22, BINSIZE=100)
+getcat(path="largedata/mr_100bp/elite", context="CHH", cols=3:22, BINSIZE=100)
 
 ``` 
   
-### From matrix to SFS
-
-
-  
-```{r, eval=FALSE}
-library("data.table")
-
-test <- fout[1:10, ]
-test$cna <- apply(test, 1, function(x) sum(is.na(x)))
-    
-fout$cna <- apply(fout, 1, function(x) sum(is.na(x)))
-    
-getsfs <- function(mxfile="largedata/mr_100bp/teosinte_CpG_matrix.csv")    
-    #.SD is a data.table and holds all the values of all columns, except the one specified in by.
-    #mx <- as.data.table(mx)
-    #res <- cg[, lapply(.SD, mymean), by=bin, .SDcols = paste0("V",3:22)]
-    mx <- fread(mxfile, data.table=FALSE)
-    #mx <- as.data.frame(mx)
-    f <- apply(mx[1:10, -1], 1, getcount)
-    sfs <- table(f)
-}
-
-mymean <- function(x){
-    return(mean(x, na.rm=T))
-}
-
-getcount <- function(x, mmin=0.3, mmax=0.7){
-    x <- x[!is.na(x)]
-    n0 <- sum(x < mmin)
-    n2 <- sum(x > mmax)
-    n1 <- sum(x >= mmin & x <= mmax)
-    return(c(n0, n2, n1))
-}
-
-
-sfs <- getsfs(context="CHG", cols=3:22, BINSIZE=100)
-write.table(mysfs, "cache/sfs_test.csv", sep=",", row.names=FALSE, quote=FALSE)
-
-```
-
-
-### RUN the above function
-```{r, eval=FALSE}
-library("data.table")
-##########
-### Teosinte 
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
-
-
-### Landrace
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CG", outdir="largedata/mr_100bp/landrace/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHG", outdir="largedata/mr_100bp/landrace/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHH", outdir="largedata/mr_100bp/landrace/")
-
-
-### Elite
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/elite/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/elite/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/elite/")
-
-
-```
-
 
 
 
