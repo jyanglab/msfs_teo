@@ -1,5 +1,5 @@
 ---
-title: "Step4: run array job for NA imputation"
+title: "Step5: run array job for NA imputation"
 output: html_notebook
 author: Jinliang Yang
 date: 12-12-2018
@@ -12,30 +12,44 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 #library(tidyverse)
 ```
 
-## Step4: 
+## Step4 and Step5: 
 
 
 ### Test
 ```{r}
+library(data.table)
 mx <- fread("largedata/mr_100bp/teosinte_CpG_matrix.csv", data.table=FALSE)
 out <- doimpute(mx, ncols=2:21, binsize=1000)
 
 out <- doimpute(mx, ncols=2:3, binsize=1000)
 
+mx <- fread("largedata/mr_100bp/landrace_CpG_matrix.csv", data.table=FALSE)
+out <- doimpute(mx, ncols=2:18, binsize=1000)
+
 ```
 
 
+### Teosinte
 ```{r}
 library("huskeR")
-run_Rcodes(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1, 
-           rcodes = "profiling/3.popgen/3.A.4_set_ajob_teo.R",
+run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1, 
+           rcodes = "profiling/3.popgen/3.A.4_setup_ajob_teo.R",
            arrayshid = "slurm-script/run_rcode_array.sh",
            email="yangjl0930@gmail.com", 
-            runinfo = c(FALSE, "jclarke", 10, "30G", "16:00:00"))
-
+            runinfo = c(TRUE, "jclarke", 10, "30G", "16:00:00"))
+#
 ```
 
-
+### Landrace
+```{r}
+library("huskeR")
+run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1, 
+           rcodes = "profiling/3.popgen/3.A.4_setup_ajob_land.R",
+           arrayshid = "slurm-script/run_land_array.sh",
+           email="yangjl0930@gmail.com", 
+            runinfo = c(TRUE, "jclarke", 10, "30G", "24:00:00"))
+#
+```
 
 
 
