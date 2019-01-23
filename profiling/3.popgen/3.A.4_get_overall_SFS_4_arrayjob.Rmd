@@ -1,0 +1,113 @@
+---
+title: "Step4: run array job for NA imputation"
+output: html_notebook
+author: Jinliang Yang
+date: 12-12-2018
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+## Step4: 
+
+
+### Test
+```{r}
+mx <- fread("largedata/mr_100bp/teosinte_CpG_matrix.csv", data.table=FALSE)
+out <- doimpute(mx, ncols=2:21, binsize=1000)
+
+out <- doimpute(mx, ncols=2:3, binsize=1000)
+
+```
+
+
+```{r}
+library("huskeR")
+run_Rcodes(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1, 
+           rcodes = "profiling/3.popgen/3.A.4_set_ajob_teo.R",
+           arrayshid = "slurm-script/run_rcode_array.sh",
+           email="yangjl0930@gmail.com", 
+            runinfo = c(FALSE, "jclarke", 10, "30G", "16:00:00"))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+#########
+    
+    mx <- sum(is.na(mymx[,2]))
+    ### compute NA number after first imputation
+    
+    if(nanum > 0){
+      mx$chr <- gsub("_.*", "", mx$uid)
+      mx$pos <- gsub(".*_", "", mx$uid)
+      mx$bin <- paste(mx$chr, round(as.numeric(as.character(mx$pos))/binsize,0), sep="_")
+    }
+      
+    f <- apply(mx[1:10, -1], 1, getcount)
+    sfs <- table(f)
+
+mymean <- function(x){
+    return(mean(x, na.rm=T))
+}
+
+getcount <- function(x, mmin=0.3, mmax=0.7){
+    x <- x[!is.na(x)]
+    n0 <- sum(x < mmin)
+    n2 <- sum(x > mmax)
+    n1 <- sum(x >= mmin & x <= mmax)
+    return(c(n0, n2, n1))
+}
+
+
+sfs <- getsfs(context="CHG", cols=3:22, BINSIZE=100)
+write.table(mysfs, "cache/sfs_test.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+
+### RUN the above function
+```{r, eval=FALSE}
+library("data.table")
+##########
+### Teosinte 
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
+
+
+### Landrace
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CG", outdir="largedata/mr_100bp/landrace/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHG", outdir="largedata/mr_100bp/landrace/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHH", outdir="largedata/mr_100bp/landrace/")
+
+
+### Elite
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/elite/")
+
+
+```
+
+
+
+
+
