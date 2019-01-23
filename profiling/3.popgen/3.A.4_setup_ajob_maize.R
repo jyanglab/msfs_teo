@@ -14,10 +14,10 @@ source("lib/doimpute.R")
 library("data.table")
 library("plyr")
 
-files <- list.files(path="largedata/mr_100bp", pattern="landrace_", full.names=TRUE)
+files <- list.files(path="largedata/mr_100bp", pattern="elite_", full.names=TRUE)
 
 mx <- fread(files[JOBID], data.table=FALSE)
-out <- doimpute(mx, ncols=2:18, binsize=1000)
+out <- doimpute(mx, ncols=2:17, binsize=1000)
 
 outfile <- gsub("matrix", "matrix_imp", files[JOBID])
 fwrite(out, outfile, sep=",", row.names=FALSE, quote=FALSE)
