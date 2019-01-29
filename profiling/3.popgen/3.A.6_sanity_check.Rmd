@@ -1,0 +1,37 @@
+---
+title: "Check NA imputation results"
+output: html_notebook
+author: Jinliang Yang
+date: 01-28-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+### Check Teosinte imputation results
+
+```{r, eval=FALSE}
+library(data.table)
+mx <- fread("largedata/mr_100bp/teosinte_CpG_matrix.csv", data.table=FALSE)
+imp <- fread("largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", data.table=FALSE)
+
+sum(mx$uid != imp$uid) # 0 good
+
+
+idx = 2
+sum(is.na(mx[,idx]))
+sum(is.na(imp[,idx+2])) # 0 good
+
+sum(mx[!is.na(mx[,idx]), idx] != imp[!is.na(mx[,idx]), idx+2]) # 0 good
+
+```
+
+
+
+
+

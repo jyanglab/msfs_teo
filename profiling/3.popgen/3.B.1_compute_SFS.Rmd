@@ -1,0 +1,67 @@
+---
+title: "Start to compute SFS"
+output: html_notebook
+author: Jinliang Yang
+date: 01-28-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+### get_SFS function
+
+```{r, eval=FALSE}
+library("data.table")
+
+getsfs <- function(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+                   cols=4:23,
+                   outfile="cache/teosinte_CpG.csv"){
+    
+    df <- fread(impfile, data.table=FALSE)
+    #.SD is a data.table and holds all the values of all columns, except the one specified in by.
+    #df <- as.data.table(df)
+    #res <- cg[, lapply(.SD, mymean), by=bin, .SDcols = paste0("V",3:22)]
+    
+    #df <- as.data.frame(df)
+    f <- apply(df[, cols], 1, getcount)
+    sfs <- table(f)
+    write.table(sfs, outfile, sep=",", row.names=FALSE, quote=FALSE)
+}
+
+getcount <- function(x, mmin=0.3, mmax=0.7){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+```
+
+## Teosinte
+
+```{r, eval=FALSE}
+getsfs(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CpG.csv")
+getsfs(impfile="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHG.csv")
+getsfs(impfile="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHH.csv")
+```
+
+## Landrace
+
+```{r, eval=FALSE}
+getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_landrace_CpG.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_landrace_CHG.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHH_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_landrace_CHH.csv")
+#
+```
+
+
