@@ -61,7 +61,7 @@ run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1
            rcodes = "profiling/3.popgen/3.A.4_setup_ajob_maize.R",
            arrayshid = "slurm-script/run_maize_array.sh",
            email="yangjl0930@gmail.com", 
-            runinfo = c(TRUE, "jclarke", 10, "30G", "24:00:00"))
+            runinfo = c(TRUE, "jclarke", 10, "50G", "36:00:00"))
 #
 ```
 
