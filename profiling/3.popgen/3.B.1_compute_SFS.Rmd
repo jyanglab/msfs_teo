@@ -56,11 +56,11 @@ getsfs(impfile="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv",
 
 ```{r, eval=FALSE}
 getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
-       cols=4:23, outfile="cache/sfs_landrace_CpG.csv")
+       cols=4:20, outfile="cache/sfs_landrace_CpG.csv")
 getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
-       cols=4:23, outfile="cache/sfs_landrace_CHG.csv")
+       cols=4:20, outfile="cache/sfs_landrace_CHG.csv")
 getsfs(impfile="largedata/mr_100bp/landrace_CHH_matrix_imp.csv", 
-       cols=4:23, outfile="cache/sfs_landrace_CHH.csv")
+       cols=4:20, outfile="cache/sfs_landrace_CHH.csv")
 #
 ```
 
