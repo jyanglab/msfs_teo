@@ -18,7 +18,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ### Test
 ```{r}
 library("huskeR")
-run_Rcodes(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
+run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
            rcodes = "profiling/3.popgen/3.B.2_setup_MCMC.R",
            arrayshid = "slurm-script/run_MCMC_array.sh",
            email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "10G", "36:00:00"))
@@ -31,6 +31,14 @@ run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1
             runinfo = c(TRUE, "jclarke", 10, "30G", "16:00:00"))
 #
 ```
+
+
+------------------
+
+```{r}
+a <- load("largedata/sfs_teosinte_CHG.RData")
+```
+
 
 
 
