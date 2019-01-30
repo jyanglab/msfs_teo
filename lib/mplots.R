@@ -59,15 +59,15 @@ mplot <- function(res, burnin=0.25, rates=c(1E7,1E8,1E6)){
         geom_histogram(aes(prior.mu),bins=30,alpha=0.2,fill=cbPalette[1])+
         scale_x_log10()+
         xlab(expression(mu))
-    if(fake==TRUE){ muplot=muplot+geom_vline(xintercept = fake.alpha/(4*Ne))} 
-    else{ muplot=muplot+geom_vline(xintercept = mode.mu) }
+    if(fake){ muplot=muplot+geom_vline(xintercept = fake.alpha/(4*Ne)) 
+      } else{ muplot=muplot+geom_vline(xintercept = mode.mu) }
     
     muplotzoom<-ggplot(data.frame(post.mu)) +
         geom_histogram(aes(post.mu),fill=cbPalette[2],bins=30)+
         xlab(expression(mu))+  
         theme(axis.text=element_text(size=6))
-    if(fake==TRUE){ muplotzoom=muplotzoom+geom_vline(xintercept = fake.alpha/(4*Ne))} 
-    else{ muplotzoom=muplotzoom+geom_vline(xintercept = mode.mu) }
+    if(fake==TRUE){ muplotzoom=muplotzoom+geom_vline(xintercept = fake.alpha/(4*Ne))
+      } else{ muplotzoom=muplotzoom+geom_vline(xintercept = mode.mu) }
     
     #BETA
     nuplot<-ggplot(data.frame(post.nu,prior.nu)) +
@@ -75,15 +75,15 @@ mplot <- function(res, burnin=0.25, rates=c(1E7,1E8,1E6)){
         geom_histogram(aes(prior.nu),bins=30,alpha=0.2,fill=cbPalette[1])+
         scale_x_log10()+
         xlab(expression(nu))
-    if(fake==TRUE){ nuplot=nuplot+geom_vline(xintercept = fake.beta/(4*Ne))} else{ 
-        nuplot=nuplot+geom_vline(xintercept = mode.nu) }
+    if(fake==TRUE){ nuplot=nuplot+geom_vline(xintercept = fake.beta/(4*Ne)) 
+      }else{ nuplot=nuplot+geom_vline(xintercept = mode.nu) }
     
     nuplotzoom<-ggplot(data.frame(post.nu)) +
         geom_histogram(aes(post.nu),fill=cbPalette[3],bins=30)+
         xlab(expression(nu))+ 
         theme(axis.text=element_text(size=6))
-    if(fake==TRUE){ nuplotzoom=nuplotzoom+geom_vline(xintercept = fake.beta/(4*Ne))} 
-    else{ nuplotzoom=nuplotzoom+geom_vline(xintercept = mode.nu) }
+    if(fake==TRUE){ nuplotzoom=nuplotzoom+geom_vline(xintercept = fake.beta/(4*Ne)) 
+      }else{ nuplotzoom=nuplotzoom+geom_vline(xintercept = mode.nu) }
     
     #GAMMA
     splot<-ggplot(data.frame(post.s,prior.s)) + 
@@ -91,20 +91,20 @@ mplot <- function(res, burnin=0.25, rates=c(1E7,1E8,1E6)){
         geom_histogram(aes(prior.s),bins=30,alpha=0.2,fill=cbPalette[1])+
         scale_x_log10()+
         xlab("s")
-    if(fake==TRUE){ splot=splot+geom_vline(xintercept = fake.gamma/(4*Ne))} 
-    else{ splot=splot+geom_vline(xintercept = mode.s) }
+    if(fake==TRUE){ splot=splot+geom_vline(xintercept = fake.gamma/(4*Ne))
+      }else{ splot=splot+geom_vline(xintercept = mode.s) }
     
     splotzoom<-ggplot(data.frame(post.s)) + 
         geom_histogram(aes(post.s),fill=cbPalette[4],bins=30)+
         xlab("s")+
         theme(axis.text=element_text(size=6))
-    if(fake==TRUE){ splotzoom=splotzoom+geom_vline(xintercept = fake.gamma/(4*Ne))}  
-    else{ splotzoom=splotzoom+geom_vline(xintercept = mode.s) }
+    if(fake==TRUE){ splotzoom=splotzoom+geom_vline(xintercept = fake.gamma/(4*Ne))  
+      }else{ splotzoom=splotzoom+geom_vline(xintercept = mode.s) }
     
     #PLOT
     message(sprintf("posterior mu [ %s ], nu [ %s ] and s [ %s ]", mode.mu, mode.nu, mode.s))
-    plot_grid(mtrace,ntrace,strace,muplot,nuplot,splot,muplotzoom,nuplotzoom,splotzoom,
-              ncol=3,rel_heights=c(1.5,1,1), align="v")
+    print(plot_grid(mtrace,ntrace,strace,muplot,nuplot,splot,muplotzoom,nuplotzoom,splotzoom,
+              ncol=3,rel_heights=c(1.5,1,1), align="v"))
     return(c(mode.mu, mode.nu, mode.s))
 }
 
