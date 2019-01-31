@@ -66,72 +66,55 @@ run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1
 ```
 
 
+## Missing Data filtering
+
+Note that maize CG could not run successfully because of high missing rate:
 
 
-
-
-
-
-
-
-
-```
-#########
-    
-    mx <- sum(is.na(mymx[,2]))
-    ### compute NA number after first imputation
-    
-    if(nanum > 0){
-      mx$chr <- gsub("_.*", "", mx$uid)
-      mx$pos <- gsub(".*_", "", mx$uid)
-      mx$bin <- paste(mx$chr, round(as.numeric(as.character(mx$pos))/binsize,0), sep="_")
-    }
-      
-    f <- apply(mx[1:10, -1], 1, getcount)
-    sfs <- table(f)
-
-mymean <- function(x){
-    return(mean(x, na.rm=T))
-}
-
-getcount <- function(x, mmin=0.3, mmax=0.7){
-    x <- x[!is.na(x)]
-    n0 <- sum(x < mmin)
-    n2 <- sum(x > mmax)
-    n1 <- sum(x >= mmin & x <= mmax)
-    return(c(n0, n2, n1))
-}
-
-
-sfs <- getsfs(context="CHG", cols=3:22, BINSIZE=100)
-write.table(mysfs, "cache/sfs_test.csv", sep=",", row.names=FALSE, quote=FALSE)
-
-```
-
-
-### RUN the above function
 ```{r, eval=FALSE}
-library("data.table")
-##########
-### Teosinte 
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
+
+tb <- apply(mx[,-1], 2, function(x) sum(is.na(x)))
+tb/nrow(mx)
+
+mx <- mx[, -14:-15]
+mx$missing <- apply(mx[,-1], 1, function(x) sum(is.na(x)))
+table(mx$missing)
+
+mx2 <- subset(mx, missing < 9 ) #9/15=60%
+fwrite(mx2[, -16], "largedata/mr_100bp/elite_rm_CpG_matrix.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
-### Landrace
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CG", outdir="largedata/mr_100bp/landrace/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHG", outdir="largedata/mr_100bp/landrace/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHH", outdir="largedata/mr_100bp/landrace/")
+######### CHG
+mx <- fread("largedata/mr_100bp/elite_CHG_matrix.csv", data.table=FALSE)
+tb <- apply(mx[,-1], 2, function(x) sum(is.na(x)))
+tb/nrow(mx)
 
+mx <- mx[, -14:-15]
+mx$missing <- apply(mx[,-1], 1, function(x) sum(is.na(x)))
+table(mx$missing)
 
-### Elite
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/elite/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/elite/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/elite/")
+mx2 <- subset(mx, missing < 9 ) #9/15=60%
+fwrite(mx2[, -16], "largedata/mr_100bp/elite_rm_CHG_matrix.csv", sep=",", row.names=FALSE, quote=FALSE)
 
+######### CHH
+mx <- fread("largedata/mr_100bp/elite_CHH_matrix.csv", data.table=FALSE)
+tb <- apply(mx[,-1], 2, function(x) sum(is.na(x)))
+tb/nrow(mx)
+
+mx <- mx[, -14:-15]
+mx$missing <- apply(mx[,-1], 1, function(x) sum(is.na(x)))
+table(mx$missing)
+
+mx2 <- subset(mx, missing < 9 ) #9/15=60%
+fwrite(mx2[, -16], "largedata/mr_100bp/elite_rm_CHH_matrix.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 ```
+
+
+
+
+
+
 
 
 
