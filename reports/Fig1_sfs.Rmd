@@ -1,0 +1,206 @@
+---
+title: "Run MCMC BC"
+output: html_notebook
+author: Jinliang Yang
+date: 01-30-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+### Teosinte Genome-wide results
+
+```{r}
+library("data.table")
+library("tidyr")
+library("ggplot2")
+library(cowplot)
+
+
+ob <- load("cache/sfs_teosinte_CpG.RData")
+df1 <- data.frame(chrs=0:40, frq=res$my_sfs, context="CG", population="teosinte")
+ob <- load("cache/sfs_teosinte_CHG.RData")
+df2 <- data.frame(chrs=0:40, frq=res$my_sfs, context="CHG", population="teosinte")
+ob <- load("cache/sfs_teosinte_CHH.RData")
+df3 <- data.frame(chrs=0:40, frq=res$my_sfs, context="CHH", population="teosinte")
+
+ob <- load("cache/sfs_landrace_CpG.RData")
+df4 <- data.frame(chrs=0:34, frq=res$my_sfs, context="CG", population="landrace")
+ob <- load("cache/sfs_landrace_CHG.RData")
+df5 <- data.frame(chrs=0:34, frq=res$my_sfs, context="CHG", population="landrace")
+ob <- load("cache/sfs_landrace_CHH.RData")
+df6 <- data.frame(chrs=0:34, frq=res$my_sfs, context="CHH", population="landrace")
+
+
+teo <- rbind(df1, df2)
+#####>>> read from cache/
+
+land <- rbind(df4, df5)
+
+cbPalette=c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+
+###################################################################################################
+
+
+s1 <- ggplot(teo, aes(chrs, frq, fill=context)) + 
+  geom_bar(stat="identity", position = "dodge") +
+    #theme_bw() +
+    xlab("") +
+    ylab("Frequency") +
+    #scale_fill_manual(values=c("#ff0000", "#008080", "#003366"),
+    #                  name="", labels=c("Class I", "Class II and III", "Other TE")) +
+    theme(legend.position="top", axis.text=element_text(size=15), axis.title=element_text(size=15) ) +
+    scale_fill_discrete(name="", labels=c("Base-pairs", "COMET frequency"))
+#########
+s2 <- ggplot(land, aes(chrs, frq, fill=context)) + 
+  geom_bar(stat="identity", position = "dodge") +
+    #theme_bw() +
+    xlab("") +
+    ylab("Frequency") +
+    #scale_fill_manual(values=c("#ff0000", "#008080", "#003366"),
+    #                  name="", labels=c("Class I", "Class II and III", "Other TE")) +
+    theme(legend.position="top", axis.text=element_text(size=15), axis.title=element_text(size=15) ) +
+    scale_fill_discrete(name="", labels=c("Base-pairs", "COMET frequency"))
+#########
+s1
+
+
+p <- plot_grid(s1, s2, ncol=1, rel_heights=c(1,1), align="v")
+
+p
+
+
+### SFS and transposons
+### cowplot: combined
+p <- plot_grid(s1, s2, s3, s4, ncol=1, rel_heights=c(1,1,1,1), align="v")
+
+pdf("graphs/Figure_sfs_cg.pdf", width=6, height=12)
+ggdraw(p) + draw_plot_label(c("A", "B", "C", "D" ), c(0, 0, 0, 0), c(1, 3/4, 2/4, 1/4), size=15)
+dev.off()
+
+
+
+
+
+plot_grid(s1,ncol=1, align="v")
+
+```
+
+```{r}
+###################################################################################################
+### SFS and genic features
+gen <- read.csv("cache/SFS_comet_features.csv")
+gen$exon <- gen$exon/sum(gen$exon)
+gen$intron <- gen$intron/sum(gen$intron)
+gen$onek <- gen$onek/sum(gen$onek)
+
+out2 <- gather(gen[, c("site", "onek", "exon", "intron")], "type", "value", 2:4)
+s2 <- ggplot(out2, aes(site, value, fill=type)) +
+    geom_bar(stat="identity", position = "dodge") +
+    #theme_bw() +
+    xlab("") +
+    ylab("Frequency") +
+    #scale_fill_manual(values=c("#ff0000", "#008080", "#003366"),
+    #                  name="", labels=c("Exon", "Intron", "1k upstream")) +
+    scale_fill_discrete(name="", labels=c("Exon", "Intron", "1k upstream")) +
+    theme(legend.position="top", axis.text=element_text(size=15), axis.title=element_text(size=15) )
+#########
+s2
+
+###################################################################################################
+### SFS and transposons
+tab4 <- read.csv("cache/SFS_comet_features.csv")
+tab4$c1 <- tab4$c1/sum(tab4$c1)
+tab4$c2 <- tab4$c2/sum(tab4$c2)
+tab4$c3 <- tab4$c3/sum(tab4$c3)
+
+out3 <- gather(tab4[, c("site", "c1", "c2", "c3")], "type", "value", 2:4)
+s3 <- ggplot(out3, aes(site, value, fill=type)) +
+    geom_bar(stat="identity", position = "dodge") +
+    #theme_bw() +
+    xlab("") +
+    ylab("Frequency") +
+    #scale_fill_manual(values=c("#ff0000", "#008080", "#003366"),
+    #                  name="", labels=c("Class I", "Class II and III", "Other TE")) +
+    scale_fill_discrete(name="", labels=c("Class I", "Class II and III", "Other TE")) +
+    theme(legend.position="top", axis.text=element_text(size=15), axis.title=element_text(size=15) ) 
+#########
+s3
+
+
+s4 <- ggplot(df, aes(factor(sfs), log(length))) + geom_boxplot() +
+    #theme_bw() +
+    xlab("") +
+    ylab("COMET log(bp)") +
+    #scale_fill_manual(values=c("#ff0000", "#008080", "#003366"),
+    #                  name="", labels=c("Class I", "Class II and III", "Other TE")) +
+    scale_x_discrete(breaks=c(0, 10, 20, 30, 40)) +
+    theme(legend.position="top", axis.text=element_text(size=15), axis.title=element_text(size=15) )
+
+#########
+s4
+
+###################################################################################################
+
+
+
+
+```
+# Landrace
+
+```{r}
+### Jinliang Yang
+### 10-14-2016
+### run MCMC for comet on chr10
+
+source("lib/mplots.R")
+source("lib/mcmcbc.R")
+
+ob <- load("cache/sfs_landrace_CpG.RData")
+sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:34)
+out1 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
+#
+
+ob <- load("cache/sfs_landrace_CHG.RData")
+sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:34)
+out2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
+# posterior mu [ 4.60934455109854e-07 ], nu [ 6.77645732778247e-07 ] and s [ 1.79033264284426e-06 ]
+
+
+ob <- load("cache/sfs_landrace_CHH.RData")
+sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:34)
+out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
+#
+```
+
+------------------
+
+```{r}
+a <- load("largedata/sfs_teosinte_CHG.RData")
+```
+
+```{r}
+comp.col <- c("blue","red","purple4","darkgreen","mediumvioletred","orange")
+comp.shape <- c(21,24)
+ggplot(uuf.cap.whole.axes, aes(x = CAP1, y = CAP2, color = Depth, shape = Site)) + #change, or can add "size = Replicate"
+  geom_vline(xintercept = 0, alpha = 0.9) +
+  geom_hline(yintercept = 0, alpha = 0.9) +
+  geom_point(size = 4, alpha = 0.75) +
+  theme_classic() +
+  labs(x = "Constrained PCo1 (30.18%)", y = "Constrained PCo2 (24.34%)") + #change
+  scale_color_manual(values = comp.col) +
+  scale_fill_manual(values = comp.col) +
+  scale_shape_manual(values = comp.shape) +
+  theme(text = element_text(size = 20)) +
+  theme(panel.border = element_rect(colour = "black",fill=NA))
+```
+
+
+
+
