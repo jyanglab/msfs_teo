@@ -39,6 +39,17 @@ run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
 #
 ```
 
+### Maize:
+```{r, eval=FALSE}
+library("huskeR")
+run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
+           rcodes = "profiling/3.popgen/3.B.2_setup_MCMC_maize.R",
+           arrayshid = "slurm-script/run_MCMC_land_array.sh",
+           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "10G", "36:00:00"))
+
+#
+```
+
 ------------------
 
 ```{r}
