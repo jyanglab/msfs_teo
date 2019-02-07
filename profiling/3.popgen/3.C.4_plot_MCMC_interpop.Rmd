@@ -1,0 +1,45 @@
+---
+title: "Run MCMC BC"
+output: html_notebook
+author: Jinliang Yang
+date: 01-30-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+### Teosinte Genome-wide results
+
+```{r}
+### Jinliang Yang
+### 10-14-2016
+### run MCMC for comet on chr10
+
+source("lib/mplots.R")
+source("lib/mcmcbc.R")
+
+ob <- load("cache/interpop_CpG.RData")
+sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
+out1 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
+#
+
+ob <- load("cache/interpop_CHG.RData")
+sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
+out2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
+# posterior mu [ 4.60934455109854e-07 ], nu [ 6.77645732778247e-07 ] and s [ 1.79033264284426e-06 ]
+
+
+ob <- load("cache/interpop_CHH.RData")
+sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
+out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
+#
+```
+
+
+
+
