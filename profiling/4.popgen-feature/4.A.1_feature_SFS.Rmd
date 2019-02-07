@@ -94,5 +94,24 @@ get_feature_sfs(pop1="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv",
 ```
 
 
+### fix 0 sites
+
+
+### CHH need to be modified:
+```{r}
+files <- list.files(path="cache/", pattern = "gf_sfs_interpop_CHH", full.names = T)
+
+cg <- read.csv("cache/gf_sfs_interpop_CG_exon.csv")
+for(i in 1:length(files)){
+  afile <- read.csv(files[i])
+  chh <- merge(cg, afile, by="ftb", all.x=T)
+  
+  chh[is.na(chh[, 3]), 3] <- 0
+  chh <- chh[, c(1,3)]
+  names(chh) <- c("ftb", "Freq")
+  write.table(chh, files[i], sep=",", row.names=FALSE, quote=FALSE)
+}
+
+```
 
 
