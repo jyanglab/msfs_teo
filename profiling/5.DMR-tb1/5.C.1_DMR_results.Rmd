@@ -1,0 +1,28 @@
+---
+title: "DMR results from Gen"
+output: html_notebook
+author: Jinliang Yang
+date: 02-07-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+# Modelling
+
+```{r}
+## Using R/QTL
+alldmr <- read.delim("data/all_DMRs.txt")
+
+
+gene_dmr <- read.delim("data/all_DMR_overp_genes.txt")
+gene_dmr <- gene_dmr[order(abs(gene_dmr$mean_methylation_difference), decreasing = T),]
+
+```
+
+enriched in genic region?
+
