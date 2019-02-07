@@ -190,19 +190,20 @@ $(document).ready(function () {
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoXCJodXNrZVJcIikiLCJydW5fUmNvZGUoaW5wdXRkZj1kYXRhLmZyYW1lKGZpbGU9MToxMiwgb3V0PTEpLCBvdXRkaXI9XCJzbHVybS1zY3JpcHRcIiwgY21kbm89MSwiLCIgICAgICAgICAgIHJjb2RlcyA9IFwicHJvZmlsaW5nLzQucG9wZ2VuLWZlYXR1cmUvNC5BLjJfc2V0dXBfZmVhdHVyZV9NQ01DLlJcIiwiLCIgICAgICAgICAgIGFycmF5c2hpZCA9IFwic2x1cm0tc2NyaXB0L3J1bl9NQ01DX2ludGVycG9wX2FycmF5LnNoXCIsIiwiICAgICAgICAgICBlbWFpbD1cInlhbmdqbDA5MzBAZ21haWwuY29tXCIsIHJ1bmluZm8gPSBjKFRSVUUsIFwianlhbmdsYWJcIiwgMiwgXCI0R1wiLCBcIjM2OjAwOjAwXCIpKSJdfQ== -->
+<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoXCJodXNrZVJcIikiLCJydW5fUmNvZGUoaW5wdXRkZj1kYXRhLmZyYW1lKGZpbGU9MToxMiwgb3V0PTEpLCBvdXRkaXI9XCJzbHVybS1zY3JpcHRcIiwgY21kbm89MSwiLCIgICAgICAgICAgcmNvZGVzID0gXCJwcm9maWxpbmcvNC5wb3BnZW4tZmVhdHVyZS80LkEuMl9zZXR1cF9mZWF0dXJlX01DTUMuUlwiLCIsIiAgICAgICAgICBydmVyc2lvbj1cIjMuNVwiLCIsIiAgICAgICAgICBhcnJheXNoaWQgPSBcInNsdXJtLXNjcmlwdC9ydW5fTUNNQ19pbnRlcnBvcF9hcnJheS5zaFwiLCIsIiAgICAgICAgICBlbWFpbD1cInlhbmdqbDA5MzBAZ21haWwuY29tXCIsIHJ1bmluZm8gPSBjKFRSVUUsIFwianlhbmdsYWJcIiwgMiwgXCI0R1wiLCBcIjM2OjAwOjAwXCIpKSJdfQ== -->
 <pre class="r"><code>library(&quot;huskeR&quot;)
 run_Rcode(inputdf=data.frame(file=1:12, out=1), outdir=&quot;slurm-script&quot;, cmdno=1,
-           rcodes = &quot;profiling/4.popgen-feature/4.A.2_setup_feature_MCMC.R&quot;,
-           arrayshid = &quot;slurm-script/run_MCMC_interpop_array.sh&quot;,
-           email=&quot;yangjl0930@gmail.com&quot;, runinfo = c(TRUE, &quot;jyanglab&quot;, 2, &quot;4G&quot;, &quot;36:00:00&quot;))</code></pre>
+          rcodes = &quot;profiling/4.popgen-feature/4.A.2_setup_feature_MCMC.R&quot;,
+          rversion=&quot;3.5&quot;,
+          arrayshid = &quot;slurm-script/run_MCMC_interpop_array.sh&quot;,
+          email=&quot;yangjl0930@gmail.com&quot;, runinfo = c(TRUE, &quot;jyanglab&quot;, 2, &quot;4G&quot;, &quot;36:00:00&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUnVuIGludGVycG9wIGZlYXR1cmUgTUNNQyBCQyIKb3V0cHV0OiBodG1sX25vdGVib29rCmF1dGhvcjogSmlubGlhbmcgWWFuZwpkYXRlOiAwMi0wNS0yMDE5Ci0tLQoKCmBgYHtyIHNldHVwLCBlY2hvPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpIAprbml0cjo6b3B0c19rbml0JHNldChyb290LmRpcj1ub3JtYWxpemVQYXRoKCcuLi8uLi8nKSkgCiNsaWJyYXJ5KHRpZHl2ZXJzZSkKYGBgCgoKCgojIyMgVGVvc2ludGU6CgotIDEwMDAsMDAwIHJ1bnMKYGBge3IsIGV2YWw9RkFMU0V9CmxpYnJhcnkoImh1c2tlUiIpCnJ1bl9SY29kZShpbnB1dGRmPWRhdGEuZnJhbWUoZmlsZT0xOjEyLCBvdXQ9MSksIG91dGRpcj0ic2x1cm0tc2NyaXB0IiwgY21kbm89MSwKICAgICAgICAgICByY29kZXMgPSAicHJvZmlsaW5nLzQucG9wZ2VuLWZlYXR1cmUvNC5BLjJfc2V0dXBfZmVhdHVyZV9NQ01DLlIiLAogICAgICAgICAgIGFycmF5c2hpZCA9ICJzbHVybS1zY3JpcHQvcnVuX01DTUNfaW50ZXJwb3BfYXJyYXkuc2giLAogICAgICAgICAgIGVtYWlsPSJ5YW5namwwOTMwQGdtYWlsLmNvbSIsIHJ1bmluZm8gPSBjKFRSVUUsICJqeWFuZ2xhYiIsIDIsICI0RyIsICIzNjowMDowMCIpKQoKCmBgYAoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUnVuIGludGVycG9wIGZlYXR1cmUgTUNNQyBCQyIKb3V0cHV0OiBodG1sX25vdGVib29rCmF1dGhvcjogSmlubGlhbmcgWWFuZwpkYXRlOiAwMi0wNS0yMDE5Ci0tLQoKCmBgYHtyIHNldHVwLCBlY2hvPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpIAprbml0cjo6b3B0c19rbml0JHNldChyb290LmRpcj1ub3JtYWxpemVQYXRoKCcuLi8uLi8nKSkgCiNsaWJyYXJ5KHRpZHl2ZXJzZSkKYGBgCgoKCgojIyMgVGVvc2ludGU6CgotIDEwMDAsMDAwIHJ1bnMKYGBge3IsIGV2YWw9RkFMU0V9CmxpYnJhcnkoImh1c2tlUiIpCnJ1bl9SY29kZShpbnB1dGRmPWRhdGEuZnJhbWUoZmlsZT0xOjEyLCBvdXQ9MSksIG91dGRpcj0ic2x1cm0tc2NyaXB0IiwgY21kbm89MSwKICAgICAgICAgIHJjb2RlcyA9ICJwcm9maWxpbmcvNC5wb3BnZW4tZmVhdHVyZS80LkEuMl9zZXR1cF9mZWF0dXJlX01DTUMuUiIsCiAgICAgICAgICBydmVyc2lvbj0iMy41IiwKICAgICAgICAgIGFycmF5c2hpZCA9ICJzbHVybS1zY3JpcHQvcnVuX01DTUNfaW50ZXJwb3BfYXJyYXkuc2giLAogICAgICAgICAgZW1haWw9InlhbmdqbDA5MzBAZ21haWwuY29tIiwgcnVuaW5mbyA9IGMoVFJVRSwgImp5YW5nbGFiIiwgMiwgIjRHIiwgIjM2OjAwOjAwIikpCgoKYGBgCgoKCg==</div>
 
 
 

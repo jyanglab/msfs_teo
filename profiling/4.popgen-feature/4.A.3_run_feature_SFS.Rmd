@@ -21,9 +21,10 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ```{r, eval=FALSE}
 library("huskeR")
 run_Rcode(inputdf=data.frame(file=1:12, out=1), outdir="slurm-script", cmdno=1,
-           rcodes = "profiling/4.popgen-feature/4.A.2_setup_feature_MCMC.R",
-           arrayshid = "slurm-script/run_MCMC_interpop_array.sh",
-           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "4G", "36:00:00"))
+          rcodes = "profiling/4.popgen-feature/4.A.2_setup_feature_MCMC.R",
+          rversion="3.5",
+          arrayshid = "slurm-script/run_MCMC_interpop_array.sh",
+          email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "4G", "36:00:00"))
 
 
 ```
