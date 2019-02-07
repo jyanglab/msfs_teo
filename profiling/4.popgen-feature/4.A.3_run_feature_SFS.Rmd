@@ -19,7 +19,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 - 1000,000 runs
 ```{r, eval=FALSE}
-library("huskeR")
+library("huskeR", lib.loc="/home/jyanglab/jyang21/R/x86_64-pc-linux-gnu-library/3.5")
 run_Rcode(inputdf=data.frame(file=1:12, out=1), outdir="slurm-script", cmdno=1,
           rcodes = "profiling/4.popgen-feature/4.A.2_setup_feature_MCMC.R",
           rversion="3.5",
