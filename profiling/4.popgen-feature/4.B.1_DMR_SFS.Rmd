@@ -1,0 +1,112 @@
+---
+title: "Genomic feature selection using AGPV4 Annotation"
+output: html_notebook
+author: Jinliang Yang
+date: 02-07-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+Note, require `R/3.5` or above for the following step:
+
+```{r, eval=FALSE}
+
+get_DMR_sfs <- function(pop1="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+                   pop2="largedata/mr_100bp/landrace_CpG_matrix_imp.csv",
+                   pop3="largedata/mr_100bp/elite_rm_CpG_matrix_imp.csv",
+                   dmrfile="data/all_DMRs.txt", context="CG", outpath="cache/DMR_sfs_interpop_"){
+    
+    df1 <- fread(pop1, data.table=FALSE)
+    df2 <- fread(pop2, data.table=FALSE)
+    df3 <- fread(pop3, data.table=FALSE)
+    
+    df <- merge(df1, df2[, -2:-3], by="uid")
+    df <- merge(df, df3[, -2:-3], by="uid")
+    
+    ###########
+    chr <- df[, 1:3]
+    chr$start <- as.numeric(as.character(df$pos)) - 100+1
+    chr$end <- as.numeric(as.character(df$pos))
+    gr1 = with(chr, GRanges(seqnames=chr, IRanges(start=start, end=end), strand="+", uid=uid))
+    
+    
+    f <- read.delim(dmrfile)
+    f <- subset(f, Type %in% context)
+    gr0 = with(f, GRanges(seqnames=chr, IRanges(start=start, end=stop), strand="+" ))
+    feature <- gr0
+    ex1 = findOverlaps(feature, gr1)
+    out <- gr1[subjectHits(ex1)]
+    
+    mydf <- subset(df, uid %in% mcols(out)$uid)
+    message(sprintf("###>>> [%s] rows and [%s] cols for context [%s], sfs...", nrow(mydf), ncol(mydf), context))
+    #########
+      #df <- as.data.frame(df)
+    ftb <- apply(mydf[, -1:-3], 1, getcount)
+    sfs <- table(ftb)
+    outfile <- paste0(outpath, context, ".csv")
+    write.table(sfs, outfile, sep=",", row.names=FALSE, quote=FALSE)
+    
+}
+
+getcount <- function(x, mmin=0.3, mmax=0.7){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+
+library("GenomicRanges")
+library("data.table")
+
+ob <- load("largedata/AGPv4_genomic_features.RData")
+
+# CG
+get_DMR_sfs(pop1="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+            pop2="largedata/mr_100bp/landrace_CpG_matrix_imp.csv",
+            pop3="largedata/mr_100bp/elite_rm_CpG_matrix_imp.csv",
+            dmrfile="data/all_DMRs.txt", context="CG", outpath="cache/DMR_sfs_interpop_")
+  
+# CHG  
+get_DMR_sfs(pop1="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+            pop2="largedata/mr_100bp/landrace_CHG_matrix_imp.csv",
+            pop3="largedata/mr_100bp/elite_rm_CHG_matrix_imp.csv",
+            dmrfile="data/all_DMRs.txt", context="CHG", outpath="cache/DMR_sfs_interpop_")
+  
+# CHH 
+get_DMR_sfs(pop1="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv", 
+            pop2="largedata/mr_100bp/landrace_CHH_matrix_imp.csv",
+            pop3="largedata/mr_100bp/elite_rm_CHH_matrix_imp.csv",
+            dmrfile="data/all_DMRs.txt", context="CHH", outpath="cache/DMR_sfs_interpop_")
+
+```
+
+
+### fix 0 sites
+
+
+### CHH need to be modified:
+```{r, eval=FALSE}
+files <- list.files(path="cache/", pattern = "gf_sfs_interpop_CHH", full.names = T)
+
+cg <- read.csv("cache/gf_sfs_interpop_CG_exon.csv")
+for(i in 1:length(files)){
+  afile <- read.csv(files[i])
+  chh <- merge(cg, afile, by="ftb", all.x=T)
+  
+  chh[is.na(chh[, 3]), 3] <- 0
+  chh <- chh[, c(1,3)]
+  names(chh) <- c("ftb", "Freq")
+  write.table(chh, files[i], sep=",", row.names=FALSE, quote=FALSE)
+}
+
+```
+
+
