@@ -1,0 +1,33 @@
+---
+title: "Run interpop feature MCMC BC"
+output: html_notebook
+author: Jinliang Yang
+date: 02-05-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+
+### Teosinte:
+
+- 1000,000 runs
+```{r, eval=FALSE}
+library("huskeR", lib.loc="/home/jyanglab/jyang21/R/x86_64-pc-linux-gnu-library/3.5")
+run_Rcode(inputdf=data.frame(file=1:12, out=1), outdir="slurm-script", cmdno=1,
+          rcodes = "profiling/4.popgen-feature/4.B.3_setup_TE_MCMC.R",
+          rversion="3.5",
+          arrayshid = "slurm-script/run_MCMC_interpop_array.sh",
+          email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "4G", "36:00:00"))
+
+
+```
+
+
+
