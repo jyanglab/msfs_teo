@@ -1,0 +1,54 @@
+---
+title: "Genomic feature selection using AGPV4 Annotation"
+output: html_notebook
+author: Jinliang Yang
+date: 02-07-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+[TE annotation](https://mcstitzer.github.io/maize_TEs/)
+
+```{r}
+get_gff_features <- function(gff_file="/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3"){
+    #library(data.table)
+    gff <- read.delim(gff_file, comment.char = "#", header=FALSE)
+    names(gff) <- c("seqname", "source", "feature", "start", "end", "score",
+                    "strand", "frame", "attribute")
+    
+    ### get canonical genes on chr1:10
+    #info <- read.delim(anno_gene, header=TRUE)
+    #info <- subset(info, chromosome %in% paste0("chr", 1:10) & is_canonical == "yes" )
+    #message(sprintf("###>>> Number of canonical transcripts on chr1-10: [ %s ]", nrow(info)))
+    
+    
+    #helitron$attribute <- gsub("ID=:", "", helitron$attribute)
+    #gene$attribute <- gsub(";.*", "", gene$attribute)
+    # gene <- subset(gene, attribute %in% info$gene_id)
+    
+    out <- list()
+    out[['helitron']] <- subset(gff, feature=="helitron")
+    out[['LTR_retrotransposon']] <- subset(gff, feature=="LTR_retrotransposon")
+    out[['solo_LTR']] <- subset(gff, feature=="solo_LTR")
+    out[['terminal_inverted_repeat_element']] <- subset(gff, feature=="terminal_inverted_repeat_element")
+    
+    return(out)
+    
+}
+
+#######
+te <- get_gff_features(gff_file="/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/B73.structuralTEv2.fulllength.2018-09-19.gff3")
+
+save(list="te", file="largedata/AGPv4_TE_features.RData")
+# 11Mb
+
+```
+
+
+
+
