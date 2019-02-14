@@ -1,0 +1,146 @@
+---
+title: "Run VCAP through huskeR"
+output: html_notebook
+date: 02-13-2019
+---
+
+## VCAP using BED file
+
+The BED file genome coordinates should be 0-based with the chromStart inclusive and the chromEnd exclusive (see https://genome.ucsc.edu/FAQ/FAQformat.html#format1). Note that Ensembl genome database, gff3, gtf, and Tassel5 coordinates are 1-based (and gff3 and gtf ranges are start and end-inclusive). A simple way to go from Ensemble/gff3/gtf/Tassel coordinates to BED file coordinates without subtracting 1 is to think of the BED file coordinates as 1-based but with start exclusive and end inclusive. Hence, a BED file range with chromStart = 5000 and chromEnd = 5100 includes chromosomal positions ≥ 5001 and ≤ 5100 in terms of a Tassel genotype file. The coordinate system (i.e., AGPv3) should be consistent between the BED and genotype files.
+
+From Thomas:
+For GWAS the idea was to have K1) promotor_5kb;  K2) promotor_1kb + 5' UTR;  K3) Exon + Intron;    K4) 3' UTR + post_gene_1kb;   K5) far from genes (non_genic)
+We have to check if combining K1) and K2) gives us better or weeker statistics over bgSNPs.
+
+
+### CG
+
+- 5kb
+- exonic
+- intronic
+- 
+
+
+```{r}
+
+frq <- read.csv("cache/ASB_BG_frq.csv")
+asb <- subset(frq, type %in% "ASB")
+
+tot <- length(unique(asb$snpid))
+# K1) promotor_5kb;
+p5k <- subset(asb, promoter_5kb %in% "yes")
+# K2) promotor_1kb + 5' UTR;
+p1k5 <- subset(asb, promoter_1kb %in% "yes" | five_prime_UTR %in% "yes")
+# gene five_prime_UTR exon intron three_prime_UTR
+# K3) Exon + Intron;
+exin <- subset(asb, exon %in% "yes" | intron %in% "yes")
+# K4) 3' UTR + post_gene_1kb
+post1k <- subset(asb, post_gene_1kb %in% "yes" | three_prime_UTR %in% "yes")
+# K5) far from genes (non_genic)
+nong <- subset(asb, non_genic %in% "yes")
+
+stat <- data.frame(cat=c("K1", "K2", "K3", "K4", "K5"),
+                   des=c("promotor_5kb", "promotor_1kb + 5 UTR", "Exon + Intron", "3 UTR + post_gene_1kb", "far from genes (non_genic)"),
+                   sites=c(nrow(p5k), nrow(p1k5), nrow(exin), nrow(post1k), nrow(nong)))
+write.table(stat, "cache/K5_ASB_stat.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+####################
+get_asb_feature <- function(asb1, outputbase="largedata/VCAP/asb_K1" ){
+  
+  #asb1 <- subset(frq, type %in% "ASB" & frq[, feature] %in% "yes")
+  asb1 <- asb1[, c("CHR", "pos", "pos")]
+  names(asb1) <- c("chr", "start", "end")
+  asb1$start <- asb1$start - 1
+  message(sprintf("###>>> feature SNPs [%s]",  nrow(asb1)))
+  write.table(asb1, paste0(outputbase, ".bed"), sep="\t", 
+            row.names=FALSE, col.names=FALSE, quote=FALSE)
+}
+
+frq <- read.csv("cache/ASB_BG_frq.csv")
+asb <- subset(frq, type %in% "ASB")
+
+
+# K1) promotor_5kb;
+get_asb_feature(asb1=p5k, outputbase="largedata/kinship/asb_K1" )
+
+# K2) promotor_1kb + 5' UTR;
+get_asb_feature(asb1=p1k5, outputbase="largedata/kinship/asb_K2" )
+
+# K3) Exon + Intron;
+get_asb_feature(asb1=exin, outputbase="largedata/kinship/asb_K3" )
+
+# K4) 3' UTR + post_gene_1kb
+get_asb_feature(asb1=post1k, outputbase="largedata/kinship/asb_K4" )
+
+# K5) far from genes (non_genic)
+get_asb_feature(asb1=nong, outputbase="largedata/kinship/asb_K5" )
+
+```
+
+### Run VCAP via huskeR
+
+```{R}
+
+library("huskeR")
+df <- data.frame(bedfile1="largedata/kinship/asb_K1.bed",
+                 bedfile2="largedata/kinship/asb_K2.bed",
+                 bedfile3="largedata/kinship/asb_K3.bed",
+                 bedfile4="largedata/kinship/asb_K4.bed",
+                 bedfile5="largedata/kinship/asb_K5.bed",
+                 gz.lix="/lustre/work/jyanglab/jyang21/dbcenter/RareAlleles/genomeAnnos/VCAP/genotypes/NAM/namrils_projected_hmp31_MAF02mnCnt2500.hmp.txt.gz.lix",
+                 genome_kinship="/lustre/work/jyanglab/jyang21/dbcenter/RareAlleles/genomeAnnos/VCAP/kinship/NAM_HM31_MAF02mnCnt2500_WholeGenomeCentered_IBS_SqrMatrix.txt",
+                 res_kinship="largedata/kinship/asb_res_kinship"
+                 )
+
+run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE,
+       "jclarke", "10", "50G", "3:00:00"))
+
+```
+
+### Run LDAK
+
+Using R package `huskeR`:
+
+```{r}
+library("huskeR")
+
+### get kinship list
+kfile <- list.files(path="largedata/kinship", pattern="N.bin", full.names=TRUE)
+d <- data.frame(kin=gsub(".grm.N.bin", "", kfile))
+write.table(d, "largedata/kinship/asb_klist.txt", sep="\t", 
+            row.names=FALSE, col.names=FALSE, quote=FALSE)
+
+###
+pheno <- list.files(path="/lustre/work/jyanglab/jyang21/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected", pattern="NAM", full.names=TRUE)
+
+df <- data.frame(output="largedata/h2_asb/", klist="largedata/kinship/asb_klist.txt", pheno=pheno)
+df$output <- paste0(df$output, gsub(".*\\/|.txt", "", df$pheno))
+
+set_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"))
+
+```
+
+## get Results
+
+```{r}
+files <- list.files(path="largedata/h2_asb", pattern="reml", full.names=TRUE)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  h2 <- read.table(files[i], skip=13, header=TRUE)
+  th2 <- as.data.frame(t(h2[-7, 1:2]))
+  names(th2) <- as.character(h2$Component[-7])
+  th2$trait <- files[i]
+  out <- rbind(out, th2[-1, ])
+}
+
+out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
+tkey <- read.delim("/lustre/work/jyanglab/jyang21/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
+
+out <- merge(out, tkey, by.x="trait", by.y="raw_name")
+out$Her_ALL <- as.numeric(as.character(out$Her_ALL))
+out1 <- subset(out, Her_ALL > 0.4)
+write.table(out, "cache/h2_asb_K1-5.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+
