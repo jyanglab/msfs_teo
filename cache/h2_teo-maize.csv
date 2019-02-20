@@ -1,44 +1,44 @@
-Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_K8,Her_Top,Her_ALL,trait
--0.014761,-0.021864, 0.108852, 0.021630,-0.001490, 0.158450, 0.085487, 0.000000, 0.342494,largedata/VCAP/h2_teo-maize/NAM_AA_Res_With_IBM_For_GWAS_famCorrected.reml
--0.001248,-0.068474, 0.189564, 0.090361, 0.032233, 0.221162, 0.176361, 0.000000, 0.562802,largedata/VCAP/h2_teo-maize/NAM_asiavg_famCorrected.reml
--0.025489,-0.017625, 0.156164, 0.035142,-0.018445, 0.113253, 0.022641, 0.000000, 0.246672,largedata/VCAP/h2_teo-maize/NAM_Chla_Res_With_IBM_For_GWAS_famCorrected.reml
--0.007570, 0.025693,-0.102064, 0.049097, 0.001049,-0.002776, 0.063665, 0.000000,-0.045597,largedata/VCAP/h2_teo-maize/NAM_Chlb_Res_With_IBM_For_GWAS_famCorrected.reml
--0.025618,-0.000832, 0.187555, 0.067030, 0.013091, 0.277315, 0.096502, 0.000000, 0.670760,largedata/VCAP/h2_teo-maize/NAM_dtaavg_famCorrected.reml
--0.028644, 0.002561, 0.194944, 0.068954,-0.019003, 0.260768, 0.134574, 0.000000, 0.680736,largedata/VCAP/h2_teo-maize/NAM_dtsavg_famCorrected.reml
--0.017958,-0.005276, 0.203078, 0.048588, 0.046633, 0.186879, 0.162332, 0.000000, 0.641177,largedata/VCAP/h2_teo-maize/NAM_ehtavg_famCorrected.reml
--0.016738, 0.012196, 0.230084, 0.068774, 0.017983, 0.215365, 0.083294, 0.000000, 0.620391,largedata/VCAP/h2_teo-maize/NAM_ehtdivphtavg_famCorrected.reml
--0.014681, 0.001649, 0.057870, 0.010176, 0.008733, 0.050992, 0.012864, 0.000000, 0.131350,largedata/VCAP/h2_teo-maize/NAM_Fruc_Res_With_IBM_For_GWAS_famCorrected.reml
--0.012317,-0.020502, 0.074687,-0.009236, 0.012395,-0.052004, 0.004834, 0.000000,-0.033484,largedata/VCAP/h2_teo-maize/NAM_Fuma2_Res_With_IBM_For_GWAS_famCorrected.reml
--0.022900,-0.003187,-0.102389, 0.078456,-0.159643, 0.155216, 0.107002, 0.000000, 0.058023,largedata/VCAP/h2_teo-maize/NAM_Fuma_Res_With_IBM_For_GWAS_famCorrected.reml
--0.028674,-0.018491, 0.284104, 0.007231, 0.010874, 0.011194, 0.002904, 0.000000, 0.162872,largedata/VCAP/h2_teo-maize/NAM_Gluc_Res_With_IBM_For_GWAS_famCorrected.reml
--0.025207,-0.046287, 0.304848,-0.153078,-0.071325, 0.208005,-0.166474, 0.000000, 0.050150,largedata/VCAP/h2_teo-maize/NAM_Glut_Res_With_IBM_For_GWAS_famCorrected.reml
- 0.014608, 0.040250, 0.261681, 0.129544,-0.029719, 0.275839,-0.021893, 0.000000, 0.499719,largedata/VCAP/h2_teo-maize/NAM_Kwt_5loc_residuals_famCorrected.reml
--0.009569,-0.003787, 0.049273, 0.035553,-0.026633, 0.052429, 0.070554, 0.000000, 0.148370,largedata/VCAP/h2_teo-maize/NAM_Mala_Res_With_IBM_For_GWAS_famCorrected.reml
--0.015613,-0.009387, 0.098552, 0.014564, 0.008444, 0.000416, 0.011687, 0.000000, 0.073542,largedata/VCAP/h2_teo-maize/NAM_Nitr_Res_With_IBM_For_GWAS_famCorrected.reml
--0.004734,-0.031549, 0.242687, 0.030896, 0.067274, 0.225237, 0.136302, 0.000000, 0.668837,largedata/VCAP/h2_teo-maize/NAM_nlb_residuals_famCorrected.reml
--0.014992,-0.016361, 0.190766, 0.048407, 0.027634, 0.230088, 0.089094, 0.000000, 0.621089,largedata/VCAP/h2_teo-maize/NAM_nphavg_famCorrected.reml
-0.005712,0.008031,0.168254,0.067555,0.035251,0.180290,0.100200,0.000000,0.616722,largedata/VCAP/h2_teo-maize/NAM_nteavg_famCorrected.reml
--0.018076, 0.006737, 0.157259, 0.051179, 0.031019, 0.219684, 0.101804, 0.000000, 0.605966,largedata/VCAP/h2_teo-maize/NAM_nttavg_famCorrected.reml
--0.008881,-0.010230, 0.164570, 0.035079, 0.001392, 0.250363, 0.168289, 0.000000, 0.640624,largedata/VCAP/h2_teo-maize/NAM_phtavg_famCorrected.reml
--0.004651,-0.006035, 0.121448, 0.031833,-0.001771, 0.241769, 0.190123, 0.000000, 0.617562,largedata/VCAP/h2_teo-maize/NAM_phtdivdtravg_famCorrected.reml
- 0.002347,-0.002658, 0.100546, 0.060228,-0.041129, 0.305907, 0.143240, 0.000000, 0.628910,largedata/VCAP/h2_teo-maize/NAM_phtdivnphavg_famCorrected.reml
--0.092254, 0.043976, 0.431076,-0.008678,-0.102927,-0.019527, 0.398863, 0.000000, 0.476655,largedata/VCAP/h2_teo-maize/NAM_ppgddta_pop_famCorrected.reml
--0.126461,-0.152904, 0.371688, 0.008150, 0.005253, 0.015043,-0.037787, 0.000000, 0.139648,largedata/VCAP/h2_teo-maize/NAM_ppgddts_pop_famCorrected.reml
--0.008107,-0.009524, 0.092742,-0.014052, 0.012874, 0.086523,-0.016835, 0.000000, 0.163028,largedata/VCAP/h2_teo-maize/NAM_Prot_Res_With_IBM_For_GWAS_famCorrected.reml
-0.0725,0.0725,0.0725,0.0725,0.0725,0.0725,0.0725,0.0000,0.5800,largedata/VCAP/h2_teo-maize/NAM_Residual_boxcox_noIBM_famCorrected.reml
--0.038157,-0.017860, 0.237376, 0.044896, 0.031711, 0.225749, 0.141285, 0.000000, 0.658061,largedata/VCAP/h2_teo-maize/NAM_Residual_leaf_length_noIBM_famCorrected.reml
--0.016217,-0.028150, 0.220401, 0.110674,-0.005449, 0.325323, 0.071857, 0.000000, 0.684268,largedata/VCAP/h2_teo-maize/NAM_Residual_leaf_width_noIBM_famCorrected.reml
--0.023923,-0.000093, 0.184593, 0.071108, 0.032083, 0.253458, 0.104424, 0.000000, 0.665999,largedata/VCAP/h2_teo-maize/NAM_residuals_distancebased_for_d2a_famCorrected.reml
--0.027850, 0.004067, 0.199281, 0.071232, 0.007576, 0.253687, 0.116399, 0.000000, 0.676917,largedata/VCAP/h2_teo-maize/NAM_residuals_distancebased_for_d2s_famCorrected.reml
--0.085872,-0.029383, 0.190466, 0.145246,-0.071564, 0.204174, 0.074109, 0.000000, 0.618122,largedata/VCAP/h2_teo-maize/NAM_residuals_distancebased_for_slbv2_famCorrected.reml
--0.013350,-0.015484, 0.102737,-0.008018, 0.027799, 0.088989, 0.017742, 0.000000, 0.195813,largedata/VCAP/h2_teo-maize/NAM_ResPrin1_Res_With_IBM_For_GWAS_famCorrected.reml
--0.017664,-0.002905, 0.088576, 0.038204,-0.013802, 0.157373, 0.012105, 0.000000, 0.267087,largedata/VCAP/h2_teo-maize/NAM_ResPrin2_Res_With_IBM_For_GWAS_famCorrected.reml
- 0.023805,-0.001850,-0.013820, 0.033881,-0.000641, 0.074350, 0.015304, 0.000000, 0.151757,largedata/VCAP/h2_teo-maize/NAM_rpravg_famCorrected.reml
- 0.017084,-0.002374, 0.094526, 0.055496, 0.018922, 0.275801, 0.121117, 0.000000, 0.635654,largedata/VCAP/h2_teo-maize/NAM_sf_residuals_nopop_famCorrected.reml
- 0.016130,-0.008934, 0.163675, 0.066904, 0.045375, 0.213494, 0.099019, 0.000000, 0.637110,largedata/VCAP/h2_teo-maize/NAM_so_residuals_nopop_famCorrected.reml
--0.011685,-0.000535, 0.130094, 0.025932, 0.010244, 0.109824, 0.050469, 0.000000, 0.294642,largedata/VCAP/h2_teo-maize/NAM_Star_Res_With_IBM_For_GWAS_famCorrected.reml
-0.002743,0.008846,0.062939,0.024085,0.004222,0.035049,0.010869,0.000000,0.115568,largedata/VCAP/h2_teo-maize/NAM_Sucr_Res_With_IBM_For_GWAS_famCorrected.reml
--0.015728,-0.005787, 0.110349, 0.049135, 0.158637, 0.208131, 0.149263, 0.000000, 0.690614,largedata/VCAP/h2_teo-maize/NAM_tassel_branches_famCorrected.reml
--0.014095,-0.009764, 0.111267, 0.153318, 0.047755, 0.184641, 0.135252, 0.000000, 0.630564,largedata/VCAP/h2_teo-maize/NAM_tassel_length_famCorrected.reml
--0.003134,-0.002028, 0.125423, 0.052589,-0.021806, 0.289922, 0.098474, 0.000000, 0.613512,largedata/VCAP/h2_teo-maize/NAM_thtavg_famCorrected.reml
--0.011893,-0.012330, 0.122928, 0.030938,-0.036775, 0.281027, 0.111977, 0.000000, 0.548734,largedata/VCAP/h2_teo-maize/NAM_thtdivnttavg_famCorrected.reml
+Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_ALL,trait
+0.081987,0.020702,0.000264,0.160274,0.015455,0.064619,0.343301,largedata/VCAP/h2_teo-maize/NAM_AA_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.151928, 0.071733,-0.019205, 0.203529, 0.023022, 0.121098, 0.552106,largedata/VCAP/h2_teo-maize/NAM_asiavg_famCorrected.reml
+ 0.108549, 0.034622,-0.016662, 0.119201,-0.006724, 0.020697, 0.259681,largedata/VCAP/h2_teo-maize/NAM_Chla_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.015052,-0.006828,-0.003421, 0.017777,-0.006518,-0.005669, 0.010393,largedata/VCAP/h2_teo-maize/NAM_Chlb_Res_With_IBM_For_GWAS_famCorrected.reml
+0.157387,0.064850,0.013807,0.279644,0.058046,0.095235,0.668967,largedata/VCAP/h2_teo-maize/NAM_dtaavg_famCorrected.reml
+ 0.167990, 0.063211,-0.020509, 0.266994, 0.067967, 0.136223, 0.681876,largedata/VCAP/h2_teo-maize/NAM_dtsavg_famCorrected.reml
+0.179657,0.048951,0.041172,0.188787,0.018625,0.162684,0.639875,largedata/VCAP/h2_teo-maize/NAM_ehtavg_famCorrected.reml
+0.223481,0.064683,0.014557,0.221391,0.011039,0.084661,0.619812,largedata/VCAP/h2_teo-maize/NAM_ehtdivphtavg_famCorrected.reml
+0.053500,0.004545,0.014413,0.047821,0.004046,0.003104,0.127429,largedata/VCAP/h2_teo-maize/NAM_Fruc_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.021747,-0.042376, 0.016254,-0.056253,-0.022480, 0.075457,-0.007652,largedata/VCAP/h2_teo-maize/NAM_Fuma_Res_With_IBM_For_GWAS_famCorrected.reml
+-0.020958, 0.004015,-0.003783, 0.008309, 0.013427, 0.003910, 0.004919,largedata/VCAP/h2_teo-maize/NAM_Fuma2_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.064987, 0.010821, 0.025141, 0.081059,-0.010414, 0.054637, 0.226230,largedata/VCAP/h2_teo-maize/NAM_Gluc_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.053839,-0.001053, 0.005482, 0.033493,-0.001566, 0.027549, 0.117744,largedata/VCAP/h2_teo-maize/NAM_Glut_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.075258, 0.083310,-0.036630, 0.277581,-0.049444, 0.127755, 0.477830,largedata/VCAP/h2_teo-maize/NAM_Kwt_5loc_residuals_famCorrected.reml
+ 0.015823, 0.041148,-0.028785, 0.057638,-0.010517, 0.068583, 0.143888,largedata/VCAP/h2_teo-maize/NAM_Mala_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.075069, 0.007963, 0.003492, 0.009017,-0.033999, 0.017823, 0.079366,largedata/VCAP/h2_teo-maize/NAM_Nitr_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.213766, 0.036017, 0.074673, 0.222618,-0.002685, 0.126347, 0.670735,largedata/VCAP/h2_teo-maize/NAM_nlb_residuals_famCorrected.reml
+0.153045,0.051581,0.025859,0.232223,0.072234,0.087724,0.622667,largedata/VCAP/h2_teo-maize/NAM_nphavg_famCorrected.reml
+0.180755,0.066646,0.037475,0.179658,0.050438,0.101070,0.616043,largedata/VCAP/h2_teo-maize/NAM_nteavg_famCorrected.reml
+0.127747,0.052104,0.031480,0.223537,0.063633,0.103787,0.602289,largedata/VCAP/h2_teo-maize/NAM_nttavg_famCorrected.reml
+ 0.144683, 0.036048,-0.001857, 0.254167, 0.039449, 0.168206, 0.640696,largedata/VCAP/h2_teo-maize/NAM_phtavg_famCorrected.reml
+ 0.109003, 0.032827,-0.003716, 0.243966, 0.044533, 0.190791, 0.617405,largedata/VCAP/h2_teo-maize/NAM_phtdivdtravg_famCorrected.reml
+ 0.100930, 0.059997,-0.040773, 0.305356, 0.061301, 0.142460, 0.629270,largedata/VCAP/h2_teo-maize/NAM_phtdivnphavg_famCorrected.reml
+0.152245,0.036820,0.026081,0.211631,0.021074,0.085709,0.533561,largedata/VCAP/h2_teo-maize/NAM_ppgddta_pop_famCorrected.reml
+ 0.149317, 0.049275,-0.004036, 0.219045, 0.032380, 0.099237, 0.545218,largedata/VCAP/h2_teo-maize/NAM_ppgddts_pop_famCorrected.reml
+ 0.081635,-0.013049, 0.010681, 0.088314, 0.014967,-0.016336, 0.166212,largedata/VCAP/h2_teo-maize/NAM_Prot_Res_With_IBM_For_GWAS_famCorrected.reml
+0.093333,0.093333,0.093333,0.093333,0.093333,0.093333,0.560000,largedata/VCAP/h2_teo-maize/NAM_Residual_boxcox_noIBM_famCorrected.reml
+0.187754,0.047236,0.022454,0.222735,0.030247,0.145473,0.655899,largedata/VCAP/h2_teo-maize/NAM_Residual_leaf_length_noIBM_famCorrected.reml
+ 0.187876, 0.107425,-0.005843, 0.314908,-0.000955, 0.081526, 0.684938,largedata/VCAP/h2_teo-maize/NAM_Residual_leaf_width_noIBM_famCorrected.reml
+0.158155,0.068288,0.031114,0.256145,0.046211,0.104835,0.664749,largedata/VCAP/h2_teo-maize/NAM_residuals_distancebased_for_d2a_famCorrected.reml
+0.173005,0.065840,0.006220,0.258180,0.055207,0.118793,0.677245,largedata/VCAP/h2_teo-maize/NAM_residuals_distancebased_for_d2s_famCorrected.reml
+ 0.103895, 0.129285,-0.015847, 0.191324, 0.045914, 0.174844, 0.629415,largedata/VCAP/h2_teo-maize/NAM_residuals_distancebased_for_slbv2_famCorrected.reml
+ 0.068137, 0.008079, 0.014052, 0.087427,-0.014463, 0.033040, 0.196272,largedata/VCAP/h2_teo-maize/NAM_ResPrin1_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.064701, 0.046276,-0.013684, 0.160544, 0.007926, 0.005775, 0.271538,largedata/VCAP/h2_teo-maize/NAM_ResPrin2_Res_With_IBM_For_GWAS_famCorrected.reml
+-0.010797, 0.036742,-0.007351, 0.077567, 0.034786, 0.017587, 0.148533,largedata/VCAP/h2_teo-maize/NAM_rpravg_famCorrected.reml
+0.107769,0.057383,0.017356,0.276836,0.054755,0.120435,0.634534,largedata/VCAP/h2_teo-maize/NAM_sf_residuals_nopop_famCorrected.reml
+0.177642,0.066556,0.045906,0.215378,0.035186,0.097617,0.638285,largedata/VCAP/h2_teo-maize/NAM_so_residuals_nopop_famCorrected.reml
+ 0.120223, 0.028003, 0.008295, 0.110490,-0.022726, 0.052192, 0.296477,largedata/VCAP/h2_teo-maize/NAM_Star_Res_With_IBM_For_GWAS_famCorrected.reml
+ 0.070555, 0.022769, 0.004229, 0.035844,-0.027535, 0.010717, 0.116578,largedata/VCAP/h2_teo-maize/NAM_Sucr_Res_With_IBM_For_GWAS_famCorrected.reml
+0.092023,0.049226,0.152663,0.209317,0.039377,0.148656,0.691263,largedata/VCAP/h2_teo-maize/NAM_tassel_branches_famCorrected.reml
+0.078513,0.153225,0.049111,0.181515,0.023739,0.143311,0.629414,largedata/VCAP/h2_teo-maize/NAM_tassel_length_famCorrected.reml
+ 0.121563, 0.051956,-0.022359, 0.291199, 0.072004, 0.099152, 0.613515,largedata/VCAP/h2_teo-maize/NAM_thtavg_famCorrected.reml
+ 0.103149, 0.032137,-0.036252, 0.283481, 0.055453, 0.110504, 0.548473,largedata/VCAP/h2_teo-maize/NAM_thtdivnttavg_famCorrected.reml
