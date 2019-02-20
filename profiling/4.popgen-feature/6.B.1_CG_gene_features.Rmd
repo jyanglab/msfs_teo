@@ -1,0 +1,161 @@
+---
+title: "Cumulative genetic features"
+output: html_notebook
+author: Jinliang Yang
+date: 02-19-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+## Read in data provided by Gen
+```{r}
+library(data.table)
+d1=fread("largedata/Gene_body_methylation_CG/Maize_Gene_body.bin.methy.txt", header=T,data.table=F)
+d2=fread("largedata/Gene_body_methylation_CG/Landrace_Gene_body.bin.methy.txt", header=T,data.table=F)
+d3=fread("largedata/Gene_body_methylation_CG/Teosinte_Gene_body.bin.methy.txt", header=T,data.table=F)
+
+d11=fread("largedata/Gene_body_methylation_CG/Maize_Gene_up_stream2k.bin.methy.txt", header=T,data.table=F)
+d22=fread("largedata/Gene_body_methylation_CG/Landrace_Gene_up_stream2k.bin.methy.txt", header=T,data.table=F)
+d33=fread("largedata/Gene_body_methylation_CG/Teosinte_Gene_up_stream2k.bin.methy.txt", header=T,data.table=F)
+
+d111=fread("largedata/Gene_body_methylation_CG/Maize_Gene_down_stream2k.bin.methy.txt", header=T,data.table=F)
+d222=fread("largedata/Gene_body_methylation_CG/Landrace_Gene_down_stream2k.bin.methy.txt", header=T,data.table=F)
+d333=fread("largedata/Gene_body_methylation_CG/Teosinte_Gene_down_stream2k.bin.methy.txt", header=T,data.table=F)
+
+
+library("tidyr")
+library("ggplot2")
+
+# converted from short to long format:
+ld1 <- gather(d1, key="genotype", value="mr", 2:ncol(d1))
+ld1$group <- "maize"
+
+ld2 <- gather(d2, key="genotype", value="mr", 2:ncol(d2))
+ld2$group <- "landrace"
+
+ld3 <- gather(d3, key="genotype", value="mr", 2:ncol(d3))
+ld3$group <- "teosinte"
+
+df1 <- rbind(ld1, ld2, ld3)
+df1$Bin <- as.numeric(as.character(gsub("bin", "", df1$Bin)))
+
+
+# converted from short to long format:
+ld11 <- gather(d11, key="genotype", value="mr", 2:ncol(d11))
+ld11$group <- "maize"
+
+ld22 <- gather(d22, key="genotype", value="mr", 2:ncol(d22))
+ld22$group <- "landrace"
+
+ld33 <- gather(d33, key="genotype", value="mr", 2:ncol(d33))
+ld33$group <- "teosinte"
+
+df2 <- rbind(ld11, ld22, ld33)
+df2$Bin <- as.numeric(as.character(gsub("bin", "", df2$Bin)))
+df2$Bin <- df2$Bin - 20
+
+# converted from short to long format:
+ld111 <- gather(d111, key="genotype", value="mr", 2:ncol(d111))
+ld111$group <- "maize"
+
+ld222 <- gather(d222, key="genotype", value="mr", 2:ncol(d222))
+ld222$group <- "landrace"
+
+ld333 <- gather(d333, key="genotype", value="mr", 2:ncol(d333))
+ld333$group <- "teosinte"
+
+df3 <- rbind(ld111, ld222, ld333)
+df3$Bin <- as.numeric(as.character(gsub("bin", "", df3$Bin)))
+df3$Bin <- df3$Bin + 60
+
+df <- rbind(df1, df2, df3)
+
+df2 <- rbind(df2, subset(df1, Bin ==1))
+df3 <- rbind(df3, subset(df1, Bin == 60))
+
+                 
+cols <- c("#E39500", "#53B3E9", "#43A178")
+fsize=18
+p1 <- ggplot(df, aes(x=Bin, y=mr, color=factor(group)) ) +
+    labs(colour="") +
+    xlab("bin") +
+    ylab("Methylation Level") +
+    scale_color_manual(values=cols) +
+    #scale_linetype_manual(values=lty1) +
+    geom_smooth(method = "loess", data=df2, size=1) +
+    geom_smooth(method = "loess", data=df1, size=1) +
+    geom_smooth(method = "loess", data=df3, size=1) +
+    #guides(color=TRUE) +
+    theme(axis.text.y = element_text(angle = 90, hjust = 1),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize),
+          legend.position="top", legend.box = "horizontal")
+
+p1
+
+```
+
+
+
+
+```{r}
+
+runtest <- function(df, ranksum=TRUE){
+  out <- data.frame()
+  for(i in -19:80){
+    sub <- subset(df, Bin == i)
+    if(ranksum){
+      p1 <- wilcox.test(subset(sub, group %in% c("maize", "landrace"))$mr, subset(sub, group %in% "teosinte")$mr)$p.value
+      p2 <- wilcox.test(subset(sub, group %in% "maize")$mr, subset(sub, group %in% "landrace")$mr)$p.value
+      p3 <- wilcox.test(subset(sub, group %in% "teosinte")$mr, subset(sub, group %in% "landrace")$mr)$p.value
+      tem <- data.frame(bin=i, p1=p1, p2=p2, p3=p3)
+    }else{
+      p1 <- t.test(subset(sub, group %in% "maize")$mr, subset(sub, group %in% "teosinte")$mr)$p.value
+      p2 <- t.test(subset(sub, group %in% "maize")$mr, subset(sub, group %in% "landrace")$mr)$p.value
+      p3 <- t.test(subset(sub, group %in% "teosinte")$mr, subset(sub, group %in% "landrace")$mr)$p.value
+      tem <- data.frame(bin=i, p1=p1, p2=p2, p3=p3)
+    }
+    out <- rbind(out, tem)
+  }
+  return(out)
+}
+
+pval <- runtest(df, ranksum=TRUE)
+pval <- runtest(df, ranksum=FALSE)
+
+
+cols <- c("#E39500", "#53B3E9", "#43A178")
+fsize=18
+p1 <- ggplot(pval, aes(x=bin, y=-log10(p1) ) ) +
+    labs(colour="") +
+    xlab("bin") +
+    ylab("Methylation Level") +
+    #scale_color_manual(values=cols) +
+    #scale_linetype_manual(values=lty1) +
+    geom_smooth(method = "loess", data=subset(pval, bin < 1), size=1) +
+    geom_smooth(method = "loess", data=subset(pval, bin > 1 & bin <= 60), size=1) +
+    geom_smooth(method = "loess", data=subset(pval, bin >60), size=1) +
+    #guides(color=TRUE) +
+    theme(axis.text.y = element_text(angle = 90, hjust = 1),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize),
+          legend.position="top", legend.box = "horizontal")
+
+p1
+
+```
+
+
+
+
+
