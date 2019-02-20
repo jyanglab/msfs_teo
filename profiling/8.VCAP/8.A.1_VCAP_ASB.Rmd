@@ -101,6 +101,14 @@ for(i in 1:length(files)){
   out <- rbind(out, th2[-1, ])
 }
 
+
+write.table(out, "cache/h2_teo-maize.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+
+
+out <- read.csv("cache/h2_teo-maize.csv")
+
+
 out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
 tkey <- read.delim("/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
 
