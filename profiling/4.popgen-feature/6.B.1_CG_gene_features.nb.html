@@ -187,37 +187,21 @@ $(document).ready(function () {
 <h2>Read in data provided by Gen</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29scyA8LSBjKFwiI0UzOTUwMFwiLCBcIiM1M0IzRTlcIiwgXCIjNDNBMTc4XCIpXG5mc2l6ZT0xOFxucDEgPC0gZ2dwbG90KGRmLCBhZXMoeD1CaW4sIHk9bXIsIGNvbG9yPWZhY3Rvcihncm91cCkpICkgK1xuICAgIGxhYnMoY29sb3VyPVwiUG9wdWxhdGlvblwiKSArXG4gICAgeGxhYihcImJpblwiKSArXG4gICAgeWxhYihcIk1SXCIpICtcbiAgICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzPWNvbHMpICtcbiAgICAjc2NhbGVfbGluZXR5cGVfbWFudWFsKHZhbHVlcz1sdHkxKSArXG4gICAgZ2VvbV9zbW9vdGgobWV0aG9kID0gXCJsb2Vzc1wiLCBkYXRhPWRmMiwgc2l6ZT0xKSArXG4gICAgZ2VvbV9zbW9vdGgobWV0aG9kID0gXCJsb2Vzc1wiLCBkYXRhPWRmMSwgc2l6ZT0xKSArXG4gICAgZ2VvbV9zbW9vdGgobWV0aG9kID0gXCJsb2Vzc1wiLCBkYXRhPWRmMywgc2l6ZT0xKSArXG4gICAgZ3VpZGVzKGNvbG9yPVRSVUUpICtcbiAgICB0aGVtZShheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dChhbmdsZSA9IDkwLCBoanVzdCA9IDEpLFxuICAgICAgICAgIGF4aXMudGV4dD1lbGVtZW50X3RleHQoc2l6ZT1mc2l6ZSksXG4gICAgICAgICAgYXhpcy50aXRsZT1lbGVtZW50X3RleHQoc2l6ZT1mc2l6ZSwgZmFjZT1cImJvbGRcIiksXG4gICAgICAgICAgbGVnZW5kLnRpdGxlID0gZWxlbWVudF90ZXh0KHNpemU9ZnNpemUsIGZhY2U9XCJib2xkXCIpLFxuICAgICAgICAgIGxlZ2VuZC50ZXh0ID0gZWxlbWVudF90ZXh0KHNpemU9ZnNpemUpKVxucDFcblxuYGBgIn0= -->
-<pre class="r"><code>cols &lt;- c(&quot;#E39500&quot;, &quot;#53B3E9&quot;, &quot;#43A178&quot;)
-fsize=18
-p1 &lt;- ggplot(df, aes(x=Bin, y=mr, color=factor(group)) ) +
-    labs(colour=&quot;Population&quot;) +
-    xlab(&quot;bin&quot;) +
-    ylab(&quot;MR&quot;) +
-    scale_color_manual(values=cols) +
-    #scale_linetype_manual(values=lty1) +
-    geom_smooth(method = &quot;loess&quot;, data=df2, size=1) +
-    geom_smooth(method = &quot;loess&quot;, data=df1, size=1) +
-    geom_smooth(method = &quot;loess&quot;, data=df3, size=1) +
-    guides(color=TRUE) +
-    theme(axis.text.y = element_text(angle = 90, hjust = 1),
-          axis.text=element_text(size=fsize),
-          axis.title=element_text(size=fsize, face=&quot;bold&quot;),
-          legend.title = element_text(size=fsize, face=&quot;bold&quot;),
-          legend.text = element_text(size=fsize))
-p1
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxuZDE9ZnJlYWQoXCJsYXJnZWRhdGEvR2VuZV9ib2R5X21ldGh5bGF0aW9uX0NHL01haXplX0dlbmVfYm9keS5iaW4ubWV0aHkudHh0XCIsIGhlYWRlcj1ULGRhdGEudGFibGU9RilcbmBgYCJ9 -->
+<pre class="r"><code>library(data.table)
+d1=fread(&quot;largedata/Gene_body_methylation_CG/Maize_Gene_body.bin.methy.txt&quot;, header=T,data.table=F)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gdmFsaWRhdGVfZ3VpZGUoZ3VpZGUpIDogVW5rbm93biBndWlkZTogVFJVRVxuIn0= -->
-<pre><code>Error in validate_guide(guide) : Unknown guide: TRUE</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZnJlYWQoXCJsYXJnZWRhdGEvR2VuZV9ib2R5X21ldGh5bGF0aW9uX0NHL01haXplX0dlbmVfYm9keS5iaW4ubWV0aHkudHh0XCIsICA6IFxuICBGaWxlICdsYXJnZWRhdGEvR2VuZV9ib2R5X21ldGh5bGF0aW9uX0NHL01haXplX0dlbmVfYm9keS5iaW4ubWV0aHkudHh0JyBkb2VzIG5vdCBleGlzdDsgZ2V0d2QoKT09Jy9Vc2Vycy9qeWFuZzIxL0RvY3VtZW50cy9jb3dvcmtlcnMvZ2VuL21zZnNfdGVvJy4gSW5jbHVkZSBjb3JyZWN0IGZ1bGwgcGF0aCwgb3Igb25lIG9yIG1vcmUgc3BhY2VzIHRvIGNvbnNpZGVyIHRoZSBpbnB1dCBhIHN5c3RlbSBjb21tYW5kLlxuIn0= -->
+<pre><code>Error in fread(&quot;largedata/Gene_body_methylation_CG/Maize_Gene_body.bin.methy.txt&quot;,  : 
+  File 'largedata/Gene_body_methylation_CG/Maize_Gene_body.bin.methy.txt' does not exist; getwd()=='/Users/jyang21/Documents/coworkers/gen/msfs_teo'. Include correct full path, or one or more spaces to consider the input a system command.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHZhbCA8LSBydW50ZXN0KGRmLCByYW5rc3VtPVRSVUUpXG5cbmBgYCJ9 -->
-<pre class="r"><code>pval &lt;- runtest(df, ranksum=TRUE)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHZhbCA8LSBydW50ZXN0KGRmLCByYW5rc3VtPVRSVUUpXG5cbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r pval &lt;- runtest(df, ranksum=TRUE)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZGF0YS5mcmFtZShiaW4gPSBpLCBwMSA9IHAxLCBwMiA9IHAyLCBwMyA9IHAzKSA6IFxuICBvYmplY3QgJ3AzJyBub3QgZm91bmRcbiJ9 -->
 <pre><code>Error in data.frame(bin = i, p1 = p1, p2 = p2, p3 = p3) : 
