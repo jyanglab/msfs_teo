@@ -1,0 +1,141 @@
+---
+title: "Run VCAP through huskeR"
+output: html_notebook
+date: 02-22-2019
+author: "Jinliang Yang"
+---
+
+## VCAP using BED file
+
+The BED file genome coordinates should be 0-based with the chromStart inclusive and the chromEnd exclusive (see https://genome.ucsc.edu/FAQ/FAQformat.html#format1). Note that Ensembl genome database, gff3, gtf, and Tassel5 coordinates are 1-based (and gff3 and gtf ranges are start and end-inclusive). A simple way to go from Ensemble/gff3/gtf/Tassel coordinates to BED file coordinates without subtracting 1 is to think of the BED file coordinates as 1-based but with start exclusive and end inclusive. Hence, a BED file range with chromStart = 5000 and chromEnd = 5100 includes chromosomal positions ≥ 5001 and ≤ 5100 in terms of a Tassel genotype file. The coordinate system (i.e., AGPv3) should be consistent between the BED and genotype files.
+
+
+Fron Gen: in the below folder:
+`largedata/DMR_Features_Overlap`
+
+
+From Thomas:
+For GWAS the idea was to have K1) promotor_5kb;  K2) promotor_1kb + 5' UTR;  K3) Exon + Intron;    K4) 3' UTR + post_gene_1kb;   K5) far from genes (non_genic)
+We have to check if combining K1) and K2) gives us better or weeker statistics over bgSNPs.
+
+
+### CG
+
+- 5kb
+- exonic
+- intronic
+- 
+
+### Maize and Teosinte CG
+
+02192022 version:
+five mutually exclusive features:
+1. gene body
+2. downstream 5k
+3. upstream 5k
+4. intergenic
+5. TE
+
+```{r, eval=FALSE}
+
+
+library("huskeR")
+run_batch_vcap <- function(
+  input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
+  output_dir = "largedata/VCAP/CG_teosinte_maize",
+  dmr_pattern = "CG_teosinte_maize"){
+  
+  # setup file system and find the dmr pattern
+  files <- list.files(input_dir, full.names = TRUE, pattern="bed")
+  df <- data.frame(f=files, pop="1")
+  idx <- grep(dmr_pattern, df$f)
+  temdf <- df[idx, ]
+  
+  # copy the files to the new folder
+  dir.create(output_dir, showWarnings = FALSE)
+  dir.create(paste0(output_dir, "/bedfile"), showWarnings = FALSE)
+  file.copy(as.character(temdf$f), paste0(output_dir, "/bedfile"))
+  
+  temdf$files <- gsub(".*\\/", "", temdf$f)
+  temdf$files <- paste0(output_dir, "/bedfile/", temdf$files)
+  df <- data.frame(bedfile1=temdf$files[1],
+                 bedfile2=temdf$files[2],
+                 bedfile3=temdf$files[3],
+                 bedfile4=temdf$files[4],
+                 bedfile5=temdf$files[5],
+                 gz.lix="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/genotypes/NAM/namrils_projected_hmp31_MAF02mnCnt2500.hmp.txt.gz.lix",
+                 genome_kinship="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/kinship/NAM_HM31_MAF02mnCnt2500_WholeGenomeCentered_IBS_SqrMatrix.txt",
+                 res_kinship=paste0(output_dir, "/bedfile")
+                 )
+
+  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE,"jyanglab", "2", "10G", "3:00:00"))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+### Run LDAK
+
+Using R package `huskeR`:
+
+```{r, eval=FALSE}
+library("huskeR")
+
+### get kinship list
+kfile <- list.files(path="largedata/VCAP/test", pattern="N.bin", full.names=TRUE)
+d <- data.frame(kin=gsub(".grm.N.bin", "", kfile))
+write.table(d, "largedata/VCAP/kinship/teo-maize-CG_klist.txt", sep="\t", 
+            row.names=FALSE, col.names=FALSE, quote=FALSE)
+
+###
+pheno <- list.files(path="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected", pattern="NAM", full.names=TRUE)
+
+df <- data.frame(output="largedata/VCAP/h2_teo-maize/", klist="largedata/VCAP/kinship/teo-maize-CG_klist.txt", pheno=pheno)
+df$output <- paste0(df$output, gsub(".*\\/|.txt", "", df$pheno))
+
+run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"))
+
+```
+
+## get Results
+
+```{r, eval=FALSE}
+files <- list.files(path="largedata/VCAP/h2_teo-maize", pattern="reml", full.names=TRUE)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  h2 <- read.table(files[i], skip=13, header=TRUE)
+  th2 <- as.data.frame(t(h2[-7, 1:2]))
+  names(th2) <- as.character(h2$Component[-7])
+  th2$trait <- files[i]
+  out <- rbind(out, th2[-1, ])
+}
+
+
+write.table(out, "cache/h2_teo-maize.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+
+
+out <- read.csv("cache/h2_teo-maize.csv")
+
+
+out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
+tkey <- read.delim("/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
+
+out <- merge(out, tkey, by.x="trait", by.y="raw_name")
+out$Her_ALL <- as.numeric(as.character(out$Her_ALL))
+out1 <- subset(out, Her_ALL > 0.4)
+write.table(out, "cache/h2_teo-maize_CG.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+

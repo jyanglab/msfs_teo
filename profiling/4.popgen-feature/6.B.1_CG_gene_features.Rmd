@@ -113,7 +113,7 @@ runtest <- function(df, ranksum=TRUE){
   for(i in -19:80){
     sub <- subset(df, Bin == i)
     if(ranksum){
-      p1 <- wilcox.test(subset(sub, group %in% c("maize", "landrace"))$mr, subset(sub, group %in% "teosinte")$mr)$p.value
+      p1 <- wilcox.test(subset(sub, group %in% "maize")$mr, subset(sub, group %in% "teosinte")$mr)$p.value
       p2 <- wilcox.test(subset(sub, group %in% "maize")$mr, subset(sub, group %in% "landrace")$mr)$p.value
       p3 <- wilcox.test(subset(sub, group %in% "teosinte")$mr, subset(sub, group %in% "landrace")$mr)$p.value
       tem <- data.frame(bin=i, p1=p1, p2=p2, p3=p3)
@@ -128,7 +128,8 @@ runtest <- function(df, ranksum=TRUE){
   return(out)
 }
 
-pval <- runtest(df, ranksum=TRUE)
+df0 <- subset(df, genotype != "CpG_B73")
+pval <- runtest(df=df0, ranksum=TRUE)
 pval <- runtest(df, ranksum=FALSE)
 
 
