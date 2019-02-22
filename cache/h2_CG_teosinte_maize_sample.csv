@@ -1,0 +1,259 @@
+trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_ALL,context,rep,pretty_name,h2
+asiavg,0.014264,0.019814,0.00312,0.00913,0, 0.685343, 0.721810,CG_teosinte_maize,S1,Anthesis-silking interval,0.046328
+asiavg,0.02242,0.012456,0.003586,0,0.005655, 0.689130, 0.722744,CG_teosinte_maize,S14,Anthesis-silking interval,0.044117
+asiavg,0.060527,0,0,0,0.003587, 0.699374, 0.720206,CG_teosinte_maize,S8,Anthesis-silking interval,0.064114
+asiavg,0.017399,0.014837,0.000698,0,0.00108, 0.709390, 0.721322,CG_teosinte_maize,S33,Anthesis-silking interval,0.034014
+asiavg,0.048082,0,0.004935,0,0, 0.681983, 0.718255,CG_teosinte_maize,S16,Anthesis-silking interval,0.053017
+asiavg,0.014348,0.025358,0.004168,0,0.001065, 0.679079, 0.723668,CG_teosinte_maize,S5,Anthesis-silking interval,0.044939
+asiavg,0,0.014099,0.028126,0,0, 0.693521, 0.721768,CG_teosinte_maize,S13,Anthesis-silking interval,0.042225
+asiavg,0.017524,0.012168,0.025568,0,0, 0.673145, 0.720229,CG_teosinte_maize,S18,Anthesis-silking interval,0.05526
+asiavg,0.011191,0,0.01355,0,0, 0.721238, 0.725967,CG_teosinte_maize,S10,Anthesis-silking interval,0.024741
+asiavg,0.027366,0.005768,0,0,0, 0.699841, 0.722784,CG_teosinte_maize,S15,Anthesis-silking interval,0.033134
+asiavg,0.022085,0.020543,0.011645,0,0.000296, 0.673160, 0.721406,CG_teosinte_maize,S4,Anthesis-silking interval,0.054569
+asiavg,0,0.004085,0,0.001072,0, 0.729799, 0.724538,CG_teosinte_maize,S12,Anthesis-silking interval,0.005157
+asiavg,0.023447,0.015287,0.00387,0,0, 0.692162, 0.724040,CG_teosinte_maize,S17,Anthesis-silking interval,0.042604
+asiavg,0.019768,0,0.00158,0,0, 0.723590, 0.721859,CG_teosinte_maize,S6,Anthesis-silking interval,0.021348
+asiavg,0.011988,0.015621,0.001654,0.02509,0, 0.673151, 0.724418,CG_teosinte_maize,S26,Anthesis-silking interval,0.054353
+asiavg,0.041846,0.027832,0.017294,0,0.001202, 0.649207, 0.720737,CG_teosinte_maize,S19,Anthesis-silking interval,0.088174
+asiavg,0.034693,0.014053,0.001801,0.010941,0.007893,0.648601,0.717982,CG_teosinte_maize,S11,Anthesis-silking interval,0.069381
+asiavg,0.002611,0.017605,0,0,0.002446, 0.732844, 0.722972,CG_teosinte_maize,S28,Anthesis-silking interval,0.022662
+asiavg,0.035299,0.002322,0.005601,0.001927,0, 0.682095, 0.721548,CG_teosinte_maize,S20,Anthesis-silking interval,0.045149
+asiavg,0.001269,0,0.020612,0,0, 0.747087, 0.721141,CG_teosinte_maize,S25,Anthesis-silking interval,0.021881
+asiavg,0.027798,0.01525,0.009579,0.005665,0, 0.668871, 0.720223,CG_teosinte_maize,S3,Anthesis-silking interval,0.058292
+asiavg,0.021849,0.010024,0.014132,0,0, 0.683579, 0.720891,CG_teosinte_maize,S7,Anthesis-silking interval,0.046005
+asiavg,0.043395,0.034562,0.011968,0,0.007054, 0.644690, 0.713584,CG_teosinte_maize,S27,Anthesis-silking interval,0.096979
+asiavg,0,0.006467,0.000319,0,0, 0.747374, 0.725947,CG_teosinte_maize,S2,Anthesis-silking interval,0.006786
+asiavg,0.018159,0.007955,0.011206,0,0.002598, 0.697535, 0.723682,CG_teosinte_maize,S9,Anthesis-silking interval,0.039918
+asiavg,0.0448,0.006715,0.010527,0,0, 0.686725, 0.720634,CG_teosinte_maize,S29,Anthesis-silking interval,0.062042
+asiavg,0.025371,0.009807,0,0,0, 0.706212, 0.723407,CG_teosinte_maize,S21,Anthesis-silking interval,0.035178
+asiavg,0.029908,0.007266,0.030182,0,0, 0.672038, 0.722168,CG_teosinte_maize,S32,Anthesis-silking interval,0.067356
+asiavg,0.004742,0.028392,0.023059,0,0.009678, 0.661188, 0.720678,CG_teosinte_maize,S30,Anthesis-silking interval,0.065871
+asiavg,0.020479,0.013364,0.005738,0,0, 0.715495, 0.724491,CG_teosinte_maize,S23,Anthesis-silking interval,0.039581
+asiavg,0.030061,0.00374,0.00678,0,0, 0.690615, 0.725348,CG_teosinte_maize,S22,Anthesis-silking interval,0.040581
+asiavg,0.024469,0.021962,0.041737,0,0, 0.641481, 0.724163,CG_teosinte_maize,S31,Anthesis-silking interval,0.088168
+asiavg,0.015875,0,0.009851,0,0.002848, 0.722187, 0.725567,CG_teosinte_maize,S24,Anthesis-silking interval,0.028574
+Chla_Res_With_IBM_For_GWAS,0.348378,0,0,0,0.03321, 0.205512, 0.461586,CG_teosinte_maize,S1,Chlorophyll A,0.381588
+Chla_Res_With_IBM_For_GWAS,0.042953,0.003813,0,0.039844,0, 0.263840, 0.331152,CG_teosinte_maize,S33,Chlorophyll A,0.08661
+Chla_Res_With_IBM_For_GWAS,0.046707,0,0,0.005319,0.012114, 0.265848, 0.327586,CG_teosinte_maize,S10,Chlorophyll A,0.06414
+Chla_Res_With_IBM_For_GWAS,0.006435,0,0.049792,0,0, 0.275247, 0.310850,CG_teosinte_maize,S5,Chlorophyll A,0.056227
+Chla_Res_With_IBM_For_GWAS,0.007638,0.004768,0.01337,0,0.00117, 0.303469, 0.327120,CG_teosinte_maize,S13,Chlorophyll A,0.026946
+Chla_Res_With_IBM_For_GWAS,0.011098,0.011999,0.011104,0.010323,0, 0.287032, 0.328712,CG_teosinte_maize,S12,Chlorophyll A,0.044524
+Chla_Res_With_IBM_For_GWAS,0,0.010278,0.131291,0,0, 0.348128, 0.284788,CG_teosinte_maize,S17,Chlorophyll A,0.141569
+Chla_Res_With_IBM_For_GWAS,0.010696,0.014532,0,0.000382,0, 0.317678, 0.332132,CG_teosinte_maize,S6,Chlorophyll A,0.02561
+Chla_Res_With_IBM_For_GWAS,0.057068,0,0,0,0, 0.354103, 0.295125,CG_teosinte_maize,S14,Chlorophyll A,0.057068
+Chla_Res_With_IBM_For_GWAS,0.029803,0.022805,0.01369,0,0, 0.301147, 0.331031,CG_teosinte_maize,S19,Chlorophyll A,0.066298
+Chla_Res_With_IBM_For_GWAS,0.055732,0,0,0,0.03968, 0.282791, 0.303914,CG_teosinte_maize,S11,Chlorophyll A,0.095412
+Chla_Res_With_IBM_For_GWAS,0,0,0.016822,0,0, 0.577285, 0.385877,CG_teosinte_maize,S16,Chlorophyll A,0.016822
+Chla_Res_With_IBM_For_GWAS,0.043569,0.017576,0.000327,0,0, 0.287032, 0.327259,CG_teosinte_maize,S20,Chlorophyll A,0.061472
+Chla_Res_With_IBM_For_GWAS,0.036518,0.007553,0.004959,0.021473,0, 0.264465, 0.322513,CG_teosinte_maize,S25,Chlorophyll A,0.070503
+Chla_Res_With_IBM_For_GWAS,0.027855,0,0.054259,0.000277,0, 0.272195, 0.321085,CG_teosinte_maize,S18,Chlorophyll A,0.082391
+Chla_Res_With_IBM_For_GWAS,0.026449,0.023421,0.018311,0,0, 0.295137, 0.331034,CG_teosinte_maize,S7,Chlorophyll A,0.068181
+Chla_Res_With_IBM_For_GWAS,0.110147,0.074351,0,0,0, 0.216712, 0.291972,CG_teosinte_maize,S15,Chlorophyll A,0.184498
+Chla_Res_With_IBM_For_GWAS,0,0,0.003064,0,0.00143, 0.350575, 0.339302,CG_teosinte_maize,S4,Chlorophyll A,0.004494
+Chla_Res_With_IBM_For_GWAS,0,0.04664,0,0.10816,0, 0.077872, 0.087302,CG_teosinte_maize,S9,Chlorophyll A,0.1548
+Chla_Res_With_IBM_For_GWAS,0.003653,0,0.022567,0.037413,0.000852, 0.270149, 0.328416,CG_teosinte_maize,S29,Chlorophyll A,0.064485
+Chla_Res_With_IBM_For_GWAS,0,0.009821,0.008301,0,0, 0.349013, 0.332365,CG_teosinte_maize,S21,Chlorophyll A,0.018122
+Chla_Res_With_IBM_For_GWAS,0.063377,0,0.014242,0,0, 0.270488, 0.322898,CG_teosinte_maize,S26,Chlorophyll A,0.077619
+Chla_Res_With_IBM_For_GWAS,0.035596,0,0.035814,0,0, 0.289777, 0.323224,CG_teosinte_maize,S30,Chlorophyll A,0.07141
+Chla_Res_With_IBM_For_GWAS,0.282293,0,0,0,0, 0.046625, 0.159634,CG_teosinte_maize,S8,Chlorophyll A,0.282293
+Chla_Res_With_IBM_For_GWAS,0.004365,0.013813,0.028195,0.00719,0, 0.277880, 0.329308,CG_teosinte_maize,S28,Chlorophyll A,0.053563
+Chla_Res_With_IBM_For_GWAS,0.070414,0.01672,0.014317,0.010083,0, 0.206391, 0.313989,CG_teosinte_maize,S27,Chlorophyll A,0.111534
+Chla_Res_With_IBM_For_GWAS,0.023539,0.02546,0,0,0, 0.330910, 0.325977,CG_teosinte_maize,S2,Chlorophyll A,0.048999
+Chla_Res_With_IBM_For_GWAS,0,0,0.10794,0,0, 0.174814, 0.052220,CG_teosinte_maize,S3,Chlorophyll A,0.10794
+Chla_Res_With_IBM_For_GWAS,0.06347,0,0,0,0, 0.511910, 0.406382,CG_teosinte_maize,S22,Chlorophyll A,0.06347
+Chla_Res_With_IBM_For_GWAS,0.036448,0,0,0,0.003804, 0.334555, 0.336338,CG_teosinte_maize,S34,Chlorophyll A,0.040252
+Chla_Res_With_IBM_For_GWAS,0.012651,0.014781,0.011588,0.033485,0.000998,0.254913,0.328416,CG_teosinte_maize,S24,Chlorophyll A,0.073503
+Chla_Res_With_IBM_For_GWAS,0.01266,0,0.010258,0,0, 0.327972, 0.330290,CG_teosinte_maize,S23,Chlorophyll A,0.022918
+Chla_Res_With_IBM_For_GWAS,0.020942,0.00722,0.031372,0,0, 0.287552, 0.329396,CG_teosinte_maize,S31,Chlorophyll A,0.059534
+ehtavg,0,0.031694,0.003232,0.01815,0, 0.749032, 0.795552,CG_teosinte_maize,S5,Ear height,0.053076
+ehtavg,0.032678,0.003252,0,0,0.003352, 0.813394, 0.794097,CG_teosinte_maize,S11,Ear height,0.039282
+ehtavg,0,0,0.010334,0.018347,0, 0.783696, 0.796826,CG_teosinte_maize,S6,Ear height,0.028681
+ehtavg,0.043609,0.016027,0,0,0, 0.778373, 0.791069,CG_teosinte_maize,S9,Ear height,0.059636
+ehtavg,0.066851,0.006408,0.030882,0,0.000199, 0.689490, 0.789714,CG_teosinte_maize,S33,Ear height,0.10434
+ehtavg,0.036566,0.017665,0.034044,0.016986,0, 0.684093, 0.787156,CG_teosinte_maize,S23,Ear height,0.105261
+ehtavg,0.005246,0.033537,0,0,0, 0.789142, 0.795388,CG_teosinte_maize,S1,Ear height,0.038783
+ehtavg,0.040404,0.025695,0.004606,0,0, 0.737058, 0.792982,CG_teosinte_maize,S20,Ear height,0.070705
+ehtavg,0.012061,0.010866,0.01366,0,0, 0.760434, 0.793093,CG_teosinte_maize,S13,Ear height,0.036587
+ehtavg,0.021526,0,0.004979,0.00513,0, 0.774897, 0.795780,CG_teosinte_maize,S7,Ear height,0.031635
+ehtavg,0.037451,0,0.008532,0.00566,0, 0.758677, 0.790250,CG_teosinte_maize,S16,Ear height,0.051643
+ehtavg,0.016327,0.013561,0,0,0, 0.780338, 0.792851,CG_teosinte_maize,S4,Ear height,0.029888
+ehtavg,0.021406,0.005179,0.006328,0,0.00324, 0.770501, 0.795421,CG_teosinte_maize,S15,Ear height,0.036153
+ehtavg,0.069999,0.017591,0.001327,0,0, 0.723069, 0.791060,CG_teosinte_maize,S12,Ear height,0.088917
+ehtavg,0,0.011289,0,0,0, 0.818589, 0.798044,CG_teosinte_maize,S17,Ear height,0.011289
+ehtavg,0,0.006915,0.009927,0,0, 0.799513, 0.794423,CG_teosinte_maize,S21,Ear height,0.016842
+ehtavg,0.030496,0,0.009216,0,0, 0.764353, 0.795050,CG_teosinte_maize,S14,Ear height,0.039712
+ehtavg,0.038374,0.014548,0.005827,0,0, 0.760403, 0.791067,CG_teosinte_maize,S8,Ear height,0.058749
+ehtavg,0.042349,0.01476,0.016297,0,0, 0.741146, 0.788643,CG_teosinte_maize,S18,Ear height,0.073406
+ehtavg,0.011767,0.006491,0.019315,0,0, 0.776994, 0.792074,CG_teosinte_maize,S28,Ear height,0.037573
+ehtavg,0,0.016074,0,0.059169,0, 0.773036, 0.768277,CG_teosinte_maize,S10,Ear height,0.075243
+ehtavg,0.03295,0.023861,0.008623,0,0.006256, 0.720288, 0.790692,CG_teosinte_maize,S25,Ear height,0.07169
+ehtavg,0.026041,0.019293,0.007503,0.00281,0, 0.744704, 0.794918,CG_teosinte_maize,S2,Ear height,0.055647
+ehtavg,0.046449,0.007907,0,0,0, 0.758843, 0.797187,CG_teosinte_maize,S22,Ear height,0.054356
+ehtavg,0,0,0.005966,0,0, 0.829495, 0.793950,CG_teosinte_maize,S29,Ear height,0.005966
+ehtavg,0.016907,0.001188,0.007579,0,0, 0.802476, 0.795139,CG_teosinte_maize,S31,Ear height,0.025674
+ehtavg,0.022152,0.013498,0.010034,0,0, 0.764695, 0.794211,CG_teosinte_maize,S19,Ear height,0.045684
+ehtavg,0.027824,0.013033,0,0,0, 0.797680, 0.795910,CG_teosinte_maize,S24,Ear height,0.040857
+ehtavg,0.004923,0.020971,0.008156,0.019434,0.000966,0.740871,0.795321,CG_teosinte_maize,S26,Ear height,0.05445
+ehtavg,0.035392,0.0113,0.008469,0,0.000223, 0.753156, 0.793998,CG_teosinte_maize,S3,Ear height,0.055384
+ehtavg,0.035562,0.021877,0.01657,0,0, 0.741797, 0.793882,CG_teosinte_maize,S27,Ear height,0.074009
+ehtavg,0,0.017676,0.008856,0.006983,0, 0.766079, 0.795778,CG_teosinte_maize,S30,Ear height,0.033515
+Fruc_Res_With_IBM_For_GWAS,0.00922,0.008232,0.013415,0.018956,0, 0.131238, 0.178710,CG_teosinte_maize,S5,Fructose,0.049823
+Fruc_Res_With_IBM_For_GWAS,0.020109,0.010279,0.008821,0,0.002003, 0.175363, 0.191370,CG_teosinte_maize,S33,Fructose,0.041212
+Fruc_Res_With_IBM_For_GWAS,0.014374,0,0.031803,0,0.005119, 0.132864, 0.170658,CG_teosinte_maize,S11,Fructose,0.051296
+Fruc_Res_With_IBM_For_GWAS,0,0.011515,0.013295,0.010425,0, 0.157921, 0.180801,CG_teosinte_maize,S20,Fructose,0.035235
+Fruc_Res_With_IBM_For_GWAS,0,0.015818,0,0,0, 0.210007, 0.173594,CG_teosinte_maize,S7,Fructose,0.015818
+Fruc_Res_With_IBM_For_GWAS,0.02647,0.004675,0.022868,0,0, 0.153103, 0.172942,CG_teosinte_maize,S16,Fructose,0.054013
+Fruc_Res_With_IBM_For_GWAS,0.000712,0,0.009899,0,0, 0.187372, 0.180024,CG_teosinte_maize,S4,Fructose,0.010611
+Fruc_Res_With_IBM_For_GWAS,0,0,0,0.013827,0, 0.196227, 0.181841,CG_teosinte_maize,S8,Fructose,0.013827
+Fruc_Res_With_IBM_For_GWAS,0,0.011689,0.02016,0,0, 0.167940, 0.182022,CG_teosinte_maize,S12,Fructose,0.031849
+Fruc_Res_With_IBM_For_GWAS,0,0,0.002333,0,0, 0.203706, 0.105238,CG_teosinte_maize,S6,Fructose,0.002333
+Fruc_Res_With_IBM_For_GWAS,0.006007,0.019721,0.003341,0.010632,0, 0.141363, 0.179489,CG_teosinte_maize,S21,Fructose,0.039701
+Fruc_Res_With_IBM_For_GWAS,0,0.082338,0,0,0, 0.227545, 0.090505,CG_teosinte_maize,S9,Fructose,0.082338
+Fruc_Res_With_IBM_For_GWAS,0,0,0,0,0.003405, 0.356851, 0.183156,CG_teosinte_maize,S14,Fructose,0.003405
+Fruc_Res_With_IBM_For_GWAS,0.02903,0.007704,0.007865,0,0, 0.130926, 0.168655,CG_teosinte_maize,S19,Fructose,0.044599
+Fruc_Res_With_IBM_For_GWAS,0.021448,0.01331,0,0,0.010808, 0.154336, 0.173792,CG_teosinte_maize,S23,Fructose,0.045566
+Fruc_Res_With_IBM_For_GWAS,0.008631,0.034273,0,0,0, 0.163139, 0.164289,CG_teosinte_maize,S28,Fructose,0.042904
+Fruc_Res_With_IBM_For_GWAS,0.029144,0.016132,0.009786,0.006372,1.4e-05,0.111345,0.172794,CG_teosinte_maize,S13,Fructose,0.061448
+Fruc_Res_With_IBM_For_GWAS,0.004628,0,0,0,0.02382, 0.131983, 0.042660,CG_teosinte_maize,S18,Fructose,0.028448
+Fruc_Res_With_IBM_For_GWAS,0.033059,0.005909,0.004264,0,0, 0.149630, 0.176893,CG_teosinte_maize,S22,Fructose,0.043232
+Fruc_Res_With_IBM_For_GWAS,0,0.004442,0.092139,0,0, 0.038344, 0.023304,CG_teosinte_maize,S10,Fructose,0.096581
+Fruc_Res_With_IBM_For_GWAS,0.02065,0,0.013706,0,0, 0.155982, 0.177800,CG_teosinte_maize,S15,Fructose,0.034356
+Fruc_Res_With_IBM_For_GWAS,0,0,0,0.002141,0, 0.197608, 0.108375,CG_teosinte_maize,S2,Fructose,0.002141
+Fruc_Res_With_IBM_For_GWAS,0.017314,0.01826,0.004789,0.004451,0, 0.122531, 0.160444,CG_teosinte_maize,S17,Fructose,0.044814
+Fruc_Res_With_IBM_For_GWAS,0.019859,0,0.001196,0,0, 0.187968, 0.184495,CG_teosinte_maize,S29,Fructose,0.021055
+Fruc_Res_With_IBM_For_GWAS,0.021051,0.01504,0,0,0.004824, 0.159410, 0.165880,CG_teosinte_maize,S1,Fructose,0.040915
+Fruc_Res_With_IBM_For_GWAS,0.045488,0.019882,0,0,0, 0.119736, 0.168663,CG_teosinte_maize,S32,Fructose,0.06537
+Fruc_Res_With_IBM_For_GWAS,0.024825,0.020892,0,0,0, 0.154414, 0.181465,CG_teosinte_maize,S3,Fructose,0.045717
+Fruc_Res_With_IBM_For_GWAS,0,0.04828,0.017492,0,0, 0.160810, 0.176227,CG_teosinte_maize,S24,Fructose,0.065772
+Fruc_Res_With_IBM_For_GWAS,0.026148,0,0.00583,0.008343,0, 0.169282, 0.190684,CG_teosinte_maize,S27,Fructose,0.040321
+Fruc_Res_With_IBM_For_GWAS,0.023116,0,0.007881,0.019584,0, 0.151191, 0.184601,CG_teosinte_maize,S25,Fructose,0.050581
+Fruc_Res_With_IBM_For_GWAS,0,0.004133,0,0.009472,0, 0.176452, 0.179403,CG_teosinte_maize,S30,Fructose,0.013605
+Fruc_Res_With_IBM_For_GWAS,0.000622,0,0,0,0, 0.338420, 0.229125,CG_teosinte_maize,S31,Fructose,0.000622
+Fruc_Res_With_IBM_For_GWAS,0,0,0.001143,0,0.014918, 0.195706, 0.183209,CG_teosinte_maize,S26,Fructose,0.016061
+Gluc_Res_With_IBM_For_GWAS,0.042201,0,0.031654,0,0.007482, 0.278432, 0.326149,CG_teosinte_maize,S11,Glucose,0.081337
+Gluc_Res_With_IBM_For_GWAS,0.020793,0.010067,0.014387,0.00107,0, 0.298026, 0.337846,CG_teosinte_maize,S5,Glucose,0.046317
+Gluc_Res_With_IBM_For_GWAS,0,0,0,0.058956,0, 0.446277, 0.329469,CG_teosinte_maize,S8,Glucose,0.058956
+Gluc_Res_With_IBM_For_GWAS,0,0.00924,0,0,0, 0.379241, 0.335425,CG_teosinte_maize,S7,Glucose,0.00924
+Gluc_Res_With_IBM_For_GWAS,0.015652,0,0,0.019652,0, 0.317259, 0.335002,CG_teosinte_maize,S6,Glucose,0.035304
+Gluc_Res_With_IBM_For_GWAS,0.000469,0,0.017781,0,0, 0.350999, 0.339404,CG_teosinte_maize,S9,Glucose,0.01825
+Gluc_Res_With_IBM_For_GWAS,0.020586,0.009256,0,0.003797,0, 0.328673, 0.340106,CG_teosinte_maize,S14,Glucose,0.033639
+Gluc_Res_With_IBM_For_GWAS,0.014394,0.008533,0.003398,0,0, 0.337964, 0.333138,CG_teosinte_maize,S19,Glucose,0.026325
+Gluc_Res_With_IBM_For_GWAS,0.018607,0,0.031749,0,0, 0.313275, 0.328299,CG_teosinte_maize,S16,Glucose,0.050356
+Gluc_Res_With_IBM_For_GWAS,0.004133,0.0168,0.015029,0,0, 0.327029, 0.325877,CG_teosinte_maize,S20,Glucose,0.035962
+Gluc_Res_With_IBM_For_GWAS,0.040991,0.005981,0.021659,0.010657,0, 0.264995, 0.337759,CG_teosinte_maize,S13,Glucose,0.079288
+Gluc_Res_With_IBM_For_GWAS,0,0.012684,0.013534,0.022147,0.020721, 0.270846, 0.338672,CG_teosinte_maize,S18,Glucose,0.069086
+Gluc_Res_With_IBM_For_GWAS,0.032616,0.02399,0.018292,0,0, 0.265825, 0.331195,CG_teosinte_maize,S22,Glucose,0.074898
+Gluc_Res_With_IBM_For_GWAS,0.012496,0,0.013445,0.00139,0, 0.319843, 0.339133,CG_teosinte_maize,S4,Glucose,0.027331
+Gluc_Res_With_IBM_For_GWAS,0.018459,0.032112,0,0.008064,0.00182, 0.282656, 0.342365,CG_teosinte_maize,S15,Glucose,0.060455
+Gluc_Res_With_IBM_For_GWAS,0,0.016337,0.023044,0,0, 0.331089, 0.336039,CG_teosinte_maize,S12,Glucose,0.039381
+Gluc_Res_With_IBM_For_GWAS,0.00858,0.015418,0.000332,0,0, 0.351255, 0.327903,CG_teosinte_maize,S17,Glucose,0.02433
+Gluc_Res_With_IBM_For_GWAS,0.035193,0.024307,0.009412,0.009833,0, 0.272598, 0.340417,CG_teosinte_maize,S21,Glucose,0.078745
+Gluc_Res_With_IBM_For_GWAS,0.034707,0.020022,0.012474,0,0, 0.292165, 0.337384,CG_teosinte_maize,S1,Glucose,0.067203
+Gluc_Res_With_IBM_For_GWAS,0.006314,0,0.006333,0,0, 0.335259, 0.335957,CG_teosinte_maize,S30,Glucose,0.012647
+Gluc_Res_With_IBM_For_GWAS,0.040425,0.023504,0.003703,0.018609,0, 0.246041, 0.329297,CG_teosinte_maize,S3,Glucose,0.086241
+Gluc_Res_With_IBM_For_GWAS,0.010401,0.009595,0.008716,0,0.005106, 0.309083, 0.333240,CG_teosinte_maize,S23,Glucose,0.033818
+Gluc_Res_With_IBM_For_GWAS,0.015553,0.018781,0.005521,0,0, 0.337808, 0.332870,CG_teosinte_maize,S28,Glucose,0.039855
+Gluc_Res_With_IBM_For_GWAS,0.022954,0.000897,0.007513,0.022444,0, 0.290812, 0.337042,CG_teosinte_maize,S25,Glucose,0.053808
+Gluc_Res_With_IBM_For_GWAS,0,0,0,0,0, 0.536339, 0.385878,CG_teosinte_maize,S2,Glucose,0
+Gluc_Res_With_IBM_For_GWAS,0,0.058473,0,0.033816,0, 0.204774, 0.174874,CG_teosinte_maize,S24,Glucose,0.092289
+Gluc_Res_With_IBM_For_GWAS,0.027788,0.006443,0.004075,0.008889,0, 0.296524, 0.338787,CG_teosinte_maize,S10,Glucose,0.047195
+Gluc_Res_With_IBM_For_GWAS,0.006054,0.013452,0,0.009574,0, 0.345785, 0.354068,CG_teosinte_maize,S31,Glucose,0.02908
+Gluc_Res_With_IBM_For_GWAS,0.031523,0.00711,0,0.01434,0, 0.307789, 0.344040,CG_teosinte_maize,S29,Glucose,0.052973
+Gluc_Res_With_IBM_For_GWAS,0.061757,0,0,0.047994,0, 0.406910, 0.399935,CG_teosinte_maize,S26,Glucose,0.109751
+Gluc_Res_With_IBM_For_GWAS,0.010134,0,0.019359,0.006671,0, 0.282469, 0.282687,CG_teosinte_maize,S27,Glucose,0.036164
+Kwt_5loc_residuals,0.020461,0,0,0.018893,0.010463, 0.598513, 0.638299,CG_teosinte_maize,S8,100 Kernel weight,0.049817
+Kwt_5loc_residuals,0.021257,0.027645,0.007366,0,0.005844, 0.592400, 0.630956,CG_teosinte_maize,S7,100 Kernel weight,0.062112
+Kwt_5loc_residuals,0.002296,0.041225,0,0.01998,0, 0.586163, 0.639501,CG_teosinte_maize,S33,100 Kernel weight,0.063501
+Kwt_5loc_residuals,0.013958,0.000816,0.005452,0.008803,0, 0.614213, 0.637585,CG_teosinte_maize,S14,100 Kernel weight,0.029029
+Kwt_5loc_residuals,0.016191,0.003867,0,0,0.006197, 0.629374, 0.635024,CG_teosinte_maize,S11,100 Kernel weight,0.026255
+Kwt_5loc_residuals,0.00385,0.039406,0.011464,0,0, 0.579913, 0.632653,CG_teosinte_maize,S20,100 Kernel weight,0.05472
+Kwt_5loc_residuals,0.03978,0,0.045789,0,0, 0.579091, 0.632761,CG_teosinte_maize,S13,100 Kernel weight,0.085569
+Kwt_5loc_residuals,0.039323,0.006984,0,0,0, 0.607864, 0.631797,CG_teosinte_maize,S18,100 Kernel weight,0.046307
+Kwt_5loc_residuals,0.046183,0.038355,0.022309,0.008545,0.006105,0.508607,0.630102,CG_teosinte_maize,S5,100 Kernel weight,0.121497
+Kwt_5loc_residuals,0.025773,0.005323,0.006691,0.01153,0, 0.599187, 0.639658,CG_teosinte_maize,S4,100 Kernel weight,0.049317
+Kwt_5loc_residuals,0.036575,0.009349,0,0,0, 0.618424, 0.634728,CG_teosinte_maize,S9,100 Kernel weight,0.045924
+Kwt_5loc_residuals,0.026012,0.014269,0.01804,0,0, 0.586683, 0.634980,CG_teosinte_maize,S12,100 Kernel weight,0.058321
+Kwt_5loc_residuals,0.019415,0.012902,0.009297,0.02061,0, 0.579953, 0.635680,CG_teosinte_maize,S6,100 Kernel weight,0.062224
+Kwt_5loc_residuals,0.015153,0.016532,0.010709,0,0, 0.603583, 0.634950,CG_teosinte_maize,S21,100 Kernel weight,0.042394
+Kwt_5loc_residuals,0.012579,0.005929,0,0,0, 0.632197, 0.636579,CG_teosinte_maize,S1,100 Kernel weight,0.018508
+Kwt_5loc_residuals,0.022815,0.004508,0.0498,0.017027,0.004248,0.536741,0.635138,CG_teosinte_maize,S30,100 Kernel weight,0.098398
+Kwt_5loc_residuals,0.016633,0.005611,0.015073,0.007636,0.00033,0.589944,0.635227,CG_teosinte_maize,S19,100 Kernel weight,0.045283
+Kwt_5loc_residuals,0.04774,0.034499,0.026021,0,0, 0.535114, 0.633113,CG_teosinte_maize,S16,100 Kernel weight,0.10826
+Kwt_5loc_residuals,0.037796,0.001984,0.017226,0.032207,0.001233,0.541767,0.632214,CG_teosinte_maize,S28,100 Kernel weight,0.090446
+Kwt_5loc_residuals,0.00488,0.006392,0.000115,0.00376,0, 0.629851, 0.637191,CG_teosinte_maize,S25,100 Kernel weight,0.015147
+Kwt_5loc_residuals,0.042264,0.026039,0.017091,0,0, 0.565977, 0.635540,CG_teosinte_maize,S3,100 Kernel weight,0.085394
+Kwt_5loc_residuals,0.01901,0.021601,0.021449,0,0, 0.590603, 0.631407,CG_teosinte_maize,S22,100 Kernel weight,0.06206
+Kwt_5loc_residuals,0.017761,0.017417,0,0,0.003797, 0.606234, 0.635237,CG_teosinte_maize,S10,100 Kernel weight,0.038975
+Kwt_5loc_residuals,0.038117,0,0,0,0.000457, 0.623465, 0.637642,CG_teosinte_maize,S15,100 Kernel weight,0.038574
+Kwt_5loc_residuals,0.032203,0.014443,0.007475,0.022384,0.003008,0.555140,0.634653,CG_teosinte_maize,S2,100 Kernel weight,0.079513
+Kwt_5loc_residuals,0.034258,0.012399,0.010813,0,0, 0.589974, 0.636427,CG_teosinte_maize,S17,100 Kernel weight,0.05747
+Kwt_5loc_residuals,0,0,0.0064,0,0.00794, 0.645217, 0.638433,CG_teosinte_maize,S29,100 Kernel weight,0.01434
+Kwt_5loc_residuals,0.014854,0.00567,0.011405,0,0, 0.646186, 0.633541,CG_teosinte_maize,S26,100 Kernel weight,0.031929
+Kwt_5loc_residuals,0.036224,0.009594,0.000197,0,0, 0.611506, 0.628402,CG_teosinte_maize,S31,100 Kernel weight,0.046015
+Kwt_5loc_residuals,0.011901,0.009531,0.004016,0,0, 0.615264, 0.636324,CG_teosinte_maize,S23,100 Kernel weight,0.025448
+Kwt_5loc_residuals,0.054082,0,0.02769,0,0, 0.596256, 0.638009,CG_teosinte_maize,S27,100 Kernel weight,0.081772
+Kwt_5loc_residuals,0.016443,0.005922,0.000652,0.019048,0, 0.599213, 0.631443,CG_teosinte_maize,S24,100 Kernel weight,0.042065
+Nitr_Res_With_IBM_For_GWAS,0.02259,0,0.002492,0.011604,0, 0.060530, 0.085562,CG_teosinte_maize,S14,Nitrate,0.036686
+Nitr_Res_With_IBM_For_GWAS,0.014869,0.026607,0,0.020425,0, 0.037128, 0.096146,CG_teosinte_maize,S1,Nitrate,0.061901
+Nitr_Res_With_IBM_For_GWAS,0.037223,0.004665,0,0,0, 0.068170, 0.089251,CG_teosinte_maize,S13,Nitrate,0.041888
+Nitr_Res_With_IBM_For_GWAS,0.032789,0,0.02224,0.017613,0, 0.040004, 0.102804,CG_teosinte_maize,S16,Nitrate,0.072642
+Nitr_Res_With_IBM_For_GWAS,0.029976,0.006765,0.02503,0,0, 0.034213, 0.090605,CG_teosinte_maize,S20,Nitrate,0.061771
+Nitr_Res_With_IBM_For_GWAS,0.036237,0,0.018854,0.027996,0.001371, 0.019703, 0.097822,CG_teosinte_maize,S15,Nitrate,0.084458
+Nitr_Res_With_IBM_For_GWAS,0.00755,0.011893,0.017596,8.8e-05,0, 0.061996, 0.098305,CG_teosinte_maize,S18,Nitrate,0.037127
+Nitr_Res_With_IBM_For_GWAS,0.005155,0.031579,0.005555,0.022942,0, 0.034605, 0.096290,CG_teosinte_maize,S17,Nitrate,0.065231
+Nitr_Res_With_IBM_For_GWAS,0.00101,0,0,0,0, 0.136345, 0.095941,CG_teosinte_maize,S21,Nitrate,0.00101
+Nitr_Res_With_IBM_For_GWAS,0.027999,0,0.034992,0,0, 0.059011, 0.080251,CG_teosinte_maize,S26,Nitrate,0.062991
+Nitr_Res_With_IBM_For_GWAS,0.026166,0.021643,0.015487,0.017869,0, 0.016938, 0.093698,CG_teosinte_maize,S30,Nitrate,0.081165
+Nitr_Res_With_IBM_For_GWAS,0.066663,0,0.011419,0,0.003278, 0.035747, 0.104161,CG_teosinte_maize,S11,Nitrate,0.08136
+Nitr_Res_With_IBM_For_GWAS,0.030892,0.00737,0,0,0, 0.081668, 0.090922,CG_teosinte_maize,S23,Nitrate,0.038262
+Nitr_Res_With_IBM_For_GWAS,0.035065,0.017978,0.01528,0,0, 0.036914, 0.096993,CG_teosinte_maize,S28,Nitrate,0.068323
+Nitr_Res_With_IBM_For_GWAS,0.045199,0,0,0,0.000284, 0.054582, 0.091086,CG_teosinte_maize,S25,Nitrate,0.045483
+Nitr_Res_With_IBM_For_GWAS,0.012037,0.000425,0.015004,0,0, 0.090142, 0.096328,CG_teosinte_maize,S3,Nitrate,0.027466
+Nitr_Res_With_IBM_For_GWAS,0.032865,0.026785,0.0045,0,0, 0.052046, 0.096010,CG_teosinte_maize,S22,Nitrate,0.06415
+Nitr_Res_With_IBM_For_GWAS,0.023678,0,0.008097,0,0, 0.119225, 0.112063,CG_teosinte_maize,S10,Nitrate,0.031775
+Nitr_Res_With_IBM_For_GWAS,0.028709,0.027349,0.015343,0,0, 0.046114, 0.098162,CG_teosinte_maize,S31,Nitrate,0.071401
+Nitr_Res_With_IBM_For_GWAS,0.013962,0.021146,0.012571,0,0, 0.077482, 0.098625,CG_teosinte_maize,S12,Nitrate,0.047679
+Nitr_Res_With_IBM_For_GWAS,0.041219,0.005644,0,0,0, 0.064694, 0.101883,CG_teosinte_maize,S24,Nitrate,0.046863
+Nitr_Res_With_IBM_For_GWAS,0.026189,0.009867,0.022882,0.015738,0, 0.034793, 0.103377,CG_teosinte_maize,S29,Nitrate,0.074676
+Nitr_Res_With_IBM_For_GWAS,0.010509,0.030744,0.008379,0,0, 0.056800, 0.095129,CG_teosinte_maize,S4,Nitrate,0.049632
+Nitr_Res_With_IBM_For_GWAS,0.006934,0.014149,0.01639,0.002249,0, 0.055016, 0.093985,CG_teosinte_maize,S9,Nitrate,0.039722
+Nitr_Res_With_IBM_For_GWAS,0.038682,0,0.003041,0,0, 0.093583, 0.090120,CG_teosinte_maize,S19,Nitrate,0.041723
+Nitr_Res_With_IBM_For_GWAS,0.008768,0,0.011211,0,0, 0.103715, 0.109288,CG_teosinte_maize,S6,Nitrate,0.019979
+Nitr_Res_With_IBM_For_GWAS,0.045739,0.022356,0.021914,0,0.003741, 0.025856, 0.104414,CG_teosinte_maize,S27,Nitrate,0.09375
+Nitr_Res_With_IBM_For_GWAS,0.022434,0.018309,0.003264,0,0, 0.060788, 0.095441,CG_teosinte_maize,S8,Nitrate,0.044007
+Nitr_Res_With_IBM_For_GWAS,0,0.007319,0.022078,0.026962,0, 0.042961, 0.089852,CG_teosinte_maize,S2,Nitrate,0.056359
+Nitr_Res_With_IBM_For_GWAS,0.045779,0,0.01012,0,0, 0.053188, 0.083171,CG_teosinte_maize,S7,Nitrate,0.055899
+Nitr_Res_With_IBM_For_GWAS,0.017727,0.004055,0.031099,0,0.002766, 0.070938, 0.104009,CG_teosinte_maize,S5,Nitrate,0.055647
+nphavg,0.03341,0.012001,0.018605,0,0, 0.722851, 0.758026,CG_teosinte_maize,S16,Nodes per plant,0.064016
+nphavg,0.020168,0.006356,0.022295,0,0, 0.723445, 0.762602,CG_teosinte_maize,S13,Nodes per plant,0.048819
+nphavg,0.032694,0.009936,0.021561,0.022865,0, 0.677696, 0.761186,CG_teosinte_maize,S18,Nodes per plant,0.087056
+nphavg,0.037671,0,0,0,0.000285, 0.735709, 0.765440,CG_teosinte_maize,S17,Nodes per plant,0.037956
+nphavg,0.000852,0.001511,0.016537,0.001268,0, 0.752910, 0.766104,CG_teosinte_maize,S10,Nodes per plant,0.020168
+nphavg,0,0,0,0.013108,0, 0.776459, 0.765333,CG_teosinte_maize,S1,Nodes per plant,0.013108
+nphavg,0.127583,0,0.070102,0.09017,0, 0.546234, 0.783289,CG_teosinte_maize,S14,Nodes per plant,0.287855
+nphavg,0.059649,0,0.041216,0.01704,0, 0.765754, 0.791769,CG_teosinte_maize,S11,Nodes per plant,0.117905
+nphavg,0.003526,0.008134,0.004308,0,0, 0.760677, 0.763989,CG_teosinte_maize,S21,Nodes per plant,0.015968
+nphavg,0.025897,0.0136,0.007177,0.0047,0.001631,0.708883,0.761887,CG_teosinte_maize,S20,Nodes per plant,0.053005
+nphavg,0.027004,0,0.024923,0,0, 0.729604, 0.760344,CG_teosinte_maize,S25,Nodes per plant,0.051927
+nphavg,0.022019,0.006568,0.011764,0,0, 0.739244, 0.762889,CG_teosinte_maize,S3,Nodes per plant,0.040351
+nphavg,0.016884,0,0.01243,0,0.004647, 0.750242, 0.762239,CG_teosinte_maize,S23,Nodes per plant,0.033961
+nphavg,0.015634,0.021567,0.01903,0,0, 0.709027, 0.760019,CG_teosinte_maize,S27,Nodes per plant,0.056231
+nphavg,0.053483,0.019068,0.017671,0.009752,0, 0.664638, 0.762970,CG_teosinte_maize,S15,Nodes per plant,0.099974
+nphavg,0.035404,0.015083,0.018526,0.003594,0, 0.692523, 0.761322,CG_teosinte_maize,S12,Nodes per plant,0.072607
+nphavg,0.004825,0.030342,0,0.011199,0, 0.733777, 0.762886,CG_teosinte_maize,S24,Nodes per plant,0.046366
+nphavg,0.014065,0.009767,0.017932,0,0, 0.742897, 0.763081,CG_teosinte_maize,S32,Nodes per plant,0.041764
+nphavg,0.025889,0,0.030371,0,0, 0.721608, 0.759716,CG_teosinte_maize,S26,Nodes per plant,0.05626
+nphavg,0.006236,0.013746,0.018862,0,0.002528, 0.743532, 0.765183,CG_teosinte_maize,S30,Nodes per plant,0.041372
+nphavg,0.001141,0.026537,0.009505,0.002027,0, 0.732911, 0.765788,CG_teosinte_maize,S19,Nodes per plant,0.03921
+nphavg,0.008841,0.009597,0.001729,0.001692,0, 0.743496, 0.764947,CG_teosinte_maize,S6,Nodes per plant,0.021859
+nphavg,0.004283,0.002888,0.009835,0,0, 0.780562, 0.760861,CG_teosinte_maize,S28,Nodes per plant,0.017006
+nphavg,0.042626,0,0.022229,0,0.006885, 0.714109, 0.763365,CG_teosinte_maize,S33,Nodes per plant,0.07174
+nphavg,0.017472,0,0.002819,0,0, 0.766724, 0.764307,CG_teosinte_maize,S8,Nodes per plant,0.020291
+nphavg,0.038635,0,0,0.010636,0, 0.748176, 0.760394,CG_teosinte_maize,S22,Nodes per plant,0.049271
+nphavg,0,0.025606,0,0,0.003847, 0.753306, 0.765724,CG_teosinte_maize,S5,Nodes per plant,0.029453
+nphavg,0.000402,0,0,0,0, 0.793478, 0.763298,CG_teosinte_maize,S31,Nodes per plant,0.000402
+nphavg,0.012823,0,0.002369,0,0.000528, 0.754814, 0.763858,CG_teosinte_maize,S2,Nodes per plant,0.01572
+nphavg,0,0,0,0,0, 0.974572, 0.733745,CG_teosinte_maize,S7,Nodes per plant,0
+nphavg,0.004453,0,0.027889,0,0, 0.760471, 0.762732,CG_teosinte_maize,S29,Nodes per plant,0.032342
+nphavg,0.024595,0,0.001883,0.008137,0, 0.733745, 0.761922,CG_teosinte_maize,S4,Nodes per plant,0.034615
+nphavg,0.0179,0.016134,0,0,0, 0.741396, 0.761884,CG_teosinte_maize,S9,Nodes per plant,0.034034
