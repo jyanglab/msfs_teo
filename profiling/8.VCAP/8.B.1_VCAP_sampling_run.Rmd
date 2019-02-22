@@ -1,0 +1,151 @@
+---
+title: "Run VCAP through huskeR"
+output: html_notebook
+date: 02-22-2019
+author: "Jinliang Yang"
+---
+
+
+### Maize and Teosinte CG
+
+02192022 version:
+five mutually exclusive features:
+1. gene body
+2. downstream 5k
+3. upstream 5k
+4. intergenic
+5. TE
+
+```{r, eval=FALSE}
+
+
+library("huskeR")
+run_batch_vcap <- function(
+  input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize")){
+  
+  # setup file system and find the dmr pattern
+  files <- list.files(input_dir, full.names = TRUE, pattern="bed")
+  df <- data.frame(f=files, pop="1")
+  
+  ### loop over patterns
+  outdf <- data.frame()
+  for(i in 1:length(dmr_patterns)){
+    idx <- grep(dmr_pattern, df$f)
+    temdf <- df[idx, ]
+    
+    output_dir <- paste0("largedata/VCAP/", dmr_patterns[i])
+    # copy the files to the new folder
+    dir.create(output_dir, showWarnings = FALSE)
+    dir.create(paste0(output_dir, "/bedfile"), showWarnings = FALSE)
+    file.copy(as.character(temdf$f), paste0(output_dir, "/bedfile"))
+    temdf$files <- gsub(".*\\/", "", temdf$f)
+    temdf$files <- paste0(output_dir, "/bedfile/", temdf$files)
+    
+    temp <- data.frame(bedfile1=temdf$files[1],
+                 bedfile2=temdf$files[2],
+                 bedfile3=temdf$files[3],
+                 bedfile4=temdf$files[4],
+                 bedfile5=temdf$files[5],
+                 res = paste0(output_dir, "/bedfile/rest_geno"))
+    outdf <- rbind(outdf, temp)
+  }
+  
+  
+  ### df for batch job input:
+  df <- data.frame(bedfile1=outdf$bedfile1,
+                 bedfile2=outdf$bedfile2,
+                 bedfile3=outdf$bedfile3,
+                 bedfile4=outdf$bedfile4,
+                 bedfile5=outdf$bedfile5,
+                 gz.lix="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/genotypes/NAM/namrils_projected_hmp31_MAF02mnCnt2500.hmp.txt.gz.lix",
+                 genome_kinship="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/kinship/NAM_HM31_MAF02mnCnt2500_WholeGenomeCentered_IBS_SqrMatrix.txt",
+                 res_kinship=outdf$res
+                 )
+
+  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE,"jyanglab", "5", "20G", "3:00:00"))
+}
+
+run_batch_vcap(
+  input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
+                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
+
+```
+
+### Run LDAK
+
+Using R package `huskeR`:
+
+```{r, eval=FALSE}
+library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
+
+run_batch_ldak <- function(
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
+                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace")
+  ){
+  
+  df <- data.frame()
+  ### get kinship list
+  for(i in 1:length(dmr_patterns)){
+    ###
+    pheno <- list.files(path="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected", pattern="NAM", full.names=TRUE)
+    
+    ### write out kinship list file
+    kinship_dir <- paste0("largedata/VCAP/", dmr_patterns[i], "/bedfile")
+    kfile <- list.files(path=kinship_dir, pattern="N.bin", full.names=TRUE)
+    d <- data.frame(kin=gsub(".grm.N.bin", "", kfile))
+    write.table(d, paste0(kinship_dir, "/kinlist.txt"), sep="\t", 
+            row.names=FALSE, col.names=FALSE, quote=FALSE)
+    
+    output_h2 <- gsub("bedfile", "h2/", kinship_dir)
+    dir.create(output_h2, showWarnings = FALSE)
+    tem <- data.frame(output=output_h2, klist=paste0(kinship_dir, "/kinlist.txt"), pheno=pheno)
+    tem$output <- paste0(tem$output, gsub(".*\\/|.txt", "", tem$pheno))
+    df <- rbind(df, tem)
+  }
+  
+  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jyanglab", "5", "20G", "8:00:00"))
+}
+
+
+run_batch_ldak(dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
+                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
+
+```
+
+## get Results
+
+```{r, eval=FALSE}
+files <- list.files(path="largedata/VCAP/h2_teo-maize", pattern="reml", full.names=TRUE)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  h2 <- read.table(files[i], skip=13, header=TRUE)
+  th2 <- as.data.frame(t(h2[-7, 1:2]))
+  names(th2) <- as.character(h2$Component[-7])
+  th2$trait <- files[i]
+  out <- rbind(out, th2[-1, ])
+}
+
+
+write.table(out, "cache/h2_teo-maize.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+
+
+out <- read.csv("cache/h2_teo-maize.csv")
+
+
+out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
+tkey <- read.delim("/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
+
+out <- merge(out, tkey, by.x="trait", by.y="raw_name")
+out$Her_ALL <- as.numeric(as.character(out$Her_ALL))
+out1 <- subset(out, Her_ALL > 0.4)
+write.table(out, "cache/h2_teo-maize_CG.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+
