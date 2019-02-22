@@ -39,7 +39,7 @@ five mutually exclusive features:
 ```{r, eval=FALSE}
 
 
-library("huskeR")
+library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
 run_batch_vcap <- function(
   input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
   dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize")){
@@ -51,7 +51,7 @@ run_batch_vcap <- function(
   ### loop over patterns
   outdf <- data.frame()
   for(i in 1:length(dmr_patterns)){
-    idx <- grep(dmr_pattern, df$f)
+    idx <- grep(dmr_patterns[i], df$f)
     temdf <- df[idx, ]
     
     output_dir <- paste0("largedata/VCAP/", dmr_patterns[i])
@@ -127,7 +127,7 @@ run_batch_ldak <- function(
     df <- rbind(df, tem)
   }
   
-  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jyanglab", "5", "20G", "8:00:00"))
+  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jyanglab", "2", "10G", "8:00:00"))
 }
 
 
@@ -136,36 +136,4 @@ run_batch_ldak(dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_
                   "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
 
 ```
-
-## get Results
-
-```{r, eval=FALSE}
-files <- list.files(path="largedata/VCAP/h2_teo-maize", pattern="reml", full.names=TRUE)
-
-out <- data.frame()
-for(i in 1:length(files)){
-  h2 <- read.table(files[i], skip=13, header=TRUE)
-  th2 <- as.data.frame(t(h2[-7, 1:2]))
-  names(th2) <- as.character(h2$Component[-7])
-  th2$trait <- files[i]
-  out <- rbind(out, th2[-1, ])
-}
-
-
-write.table(out, "cache/h2_teo-maize.csv", sep=",", row.names=FALSE, quote=FALSE)
-
-
-
-out <- read.csv("cache/h2_teo-maize.csv")
-
-
-out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
-tkey <- read.delim("/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
-
-out <- merge(out, tkey, by.x="trait", by.y="raw_name")
-out$Her_ALL <- as.numeric(as.character(out$Her_ALL))
-out1 <- subset(out, Her_ALL > 0.4)
-write.table(out, "cache/h2_teo-maize_CG.csv", sep=",", row.names=FALSE, quote=FALSE)
-```
-
 

@@ -1,0 +1,95 @@
+---
+title: "Run VCAP through huskeR"
+output: html_notebook
+date: 02-22-2019
+author: "Jinliang Yang"
+---
+
+
+### Maize and Teosinte CG
+
+02192022 version:
+five mutually exclusive features:
+1. gene body
+2. downstream 5k
+3. upstream 5k
+4. intergenic
+5. TE
+
+### Run LDAK
+
+Using R package `huskeR`:
+
+```{r, eval=FALSE}
+library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
+
+run_batch_ldak_sample <- function(sid=1:10, traits, runinfo=c(TRUE, "jyanglab", "2", "10G", "8:00:00"),
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
+                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace")
+  ){
+  
+  df <- data.frame()
+  ###
+  pheno <- list.files(path="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected", pattern="NAM", full.names=TRUE)
+  ph <- data.frame(pheno, trait=1)
+  ph$trait <- as.character(gsub(".*/NAM_|_famCorrected.txt", "", ph$pheno))
+  ph <- subset(ph, trait %in% as.character(traits))
+    
+  ### get kinship list
+  for(i in 1:length(dmr_patterns)){
+    
+    df1 <- data.frame()
+    for(j in 1:length(sid)){
+      ### write out kinship list file
+      kinship_dir <- paste0("largedata/VCAP/", dmr_patterns[i], "/sample/S", j, "/bedfile")
+      
+      kfile <- list.files(path=kinship_dir, pattern="N.bin", full.names=TRUE)
+      d <- data.frame(kin=gsub(".grm.N.bin", "", kfile))
+      write.table(d, paste0(kinship_dir, "/kinlist.txt"), sep="\t", 
+            row.names=FALSE, col.names=FALSE, quote=FALSE)
+      
+      output_h2 <- gsub("bedfile", "h2/", kinship_dir)
+      dir.create(output_h2, showWarnings = FALSE)
+      tem <- data.frame(output=output_h2, klist=paste0(kinship_dir, "/kinlist.txt"), pheno=ph$pheno)
+      tem$output <- paste0(tem$output, gsub(".*\\/|.txt", "", tem$pheno))
+      df1 <- rbind(df1, tem)
+    }
+    df <- rbind(df, df1)
+  }
+  
+  run_ldak(df, email="yangjl0930@gmail.com", runinfo=runinfo)
+}
+
+
+```
+
+
+## This step only for traits of interests
+
+                                                                                             V1
+1       largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_body_overlap.bed.kinship
+2 largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_downstr_5k_overlap.bed.kinship
+3   largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_upstr_5k_overlap.bed.kinship
+4     largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_intergenic_overlap.bed.kinship
+5             largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_TE_overlap.bed.kinship
+6                                            largedata/VCAP/CG_landrace_maize/bedfile/rest_geno
+
+K1: gene body
+K2: downstream 5k
+K3: upstream 5k
+K4: intergenic
+K5: TE
+```{r}
+res <- read.csv("cache/h2_CG_teosinte_maize.csv")
+t <- subset(res, h2 > 0.05) # 16
+
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait[1:8]), 
+                      runinfo=c(TRUE, "jyanglab", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CG_teosinte_maize")
+
+
+
+```
+
+
