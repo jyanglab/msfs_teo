@@ -23,9 +23,10 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 ```{r, eval=FALSE}
 
-get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2", 
-                   outfile="cache/h2_CG_teosinte_maize.csv"){
-  files <- list.files(path=pwd, pattern="reml", full.names=TRUE)
+get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/sample", 
+                   outfile="cache/h2_CG_teosinte_maize_sample.csv"){
+  
+  files <- list.files(path=pwd, recursive = T, pattern="reml", full.names=TRUE)
 
   #klist <- read.table("largedata/VCAP/CG_landrace_maize/bedfile/kinlist.txt", header=F)
   out <- data.frame()
@@ -36,7 +37,13 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
     th2$trait <- files[i]
     out <- rbind(out, th2[-1, ])
   }
-
+  
+  out$context <- gsub(".*VCAP\\/", "", out$trait)
+  out$context <- gsub("\\/.*", "", out$context)
+  
+  out$rep <- gsub(".*sample\\/", "", out$trait)
+  out$rep <- gsub("\\/.*", "", out$rep)
+  
   out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
   tkey <- read.delim("/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
   
@@ -46,11 +53,11 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
   
   for(j in 2:6){
     out[, j] <- as.numeric(as.character(out[,j]))
-    out[out[,j] < 0, j] <- 0
+    #out[out[,j] < 0, j] <- 0
   }
   
   out$h2 <- out$Her_K1 + out$Her_K2 + out$Her_K3 + out$Her_K4 + out$Her_K5
-  
+  print(table(out$rep))
   write.table(out, outfile, sep=",", row.names=FALSE, quote=FALSE)
 }
 
@@ -58,18 +65,23 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
 ```
 
 ```{r}
-get_h2(pwd="largedata/VCAP/CG_teosinte_maize/h2", outfile="cache/h2_CG_teosinte_maize.csv")
+get_h2(pwd="largedata/VCAP/CG_teosinte_maize/sample", outfile="cache/h2_CG_teosinte_maize_sample.csv")
+
+
+
+
+
 
 get_h2(pwd="largedata/VCAP/CHG_teosinte_maize/h2", outfile="cache/h2_CHG_teosinte_maize.csv")
-get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
+#get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
 
 get_h2(pwd="largedata/VCAP/CG_teosinte_landrace/h2", outfile="cache/h2_CG_teosinte_landrace.csv")
 get_h2(pwd="largedata/VCAP/CHG_teosinte_landrace/h2", outfile="cache/h2_CHG_teosinte_landrace.csv")
-get_h2(pwd="largedata/VCAP/CHH_teosinte_landrace/h2", outfile="cache/h2_CHH_teosinte_landrace.csv")
+#get_h2(pwd="largedata/VCAP/CHH_teosinte_landrace/h2", outfile="cache/h2_CHH_teosinte_landrace.csv")
 
 get_h2(pwd="largedata/VCAP/CG_landrace_maize/h2", outfile="cache/h2_CG_landrace_maize.csv")
 get_h2(pwd="largedata/VCAP/CHG_landrace_maize/h2", outfile="cache/h2_CHG_landrace_maize.csv")
-get_h2(pwd="largedata/VCAP/CHH_landrace_maize/h2", outfile="cache/h2_CHH_landrace_maize.csv")
+#get_h2(pwd="largedata/VCAP/CHH_landrace_maize/h2", outfile="cache/h2_CHH_landrace_maize.csv")
 
 
 ```
