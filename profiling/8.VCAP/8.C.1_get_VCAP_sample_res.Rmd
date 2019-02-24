@@ -67,13 +67,13 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/sample",
 ```{r}
 get_h2(pwd="largedata/VCAP/CG_teosinte_maize/sample", outfile="cache/h2_CG_teosinte_maize_sample.csv")
 
-
-
-
-
-
-get_h2(pwd="largedata/VCAP/CHG_teosinte_maize/h2", outfile="cache/h2_CHG_teosinte_maize.csv")
+get_h2(pwd="largedata/VCAP/CG_teosinte_landrace/sample", outfile="cache/h2_CG_teosinte_landrace.csv")
 #get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
+
+
+
+
+
 
 get_h2(pwd="largedata/VCAP/CG_teosinte_landrace/h2", outfile="cache/h2_CG_teosinte_landrace.csv")
 get_h2(pwd="largedata/VCAP/CHG_teosinte_landrace/h2", outfile="cache/h2_CHG_teosinte_landrace.csv")
