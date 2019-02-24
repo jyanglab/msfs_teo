@@ -98,4 +98,14 @@ run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait[9:16]),
 
 ```
 
+## 2-23-2019: 
+```{r}
+res <- read.csv("cache/h2_CG_teosinte_landrace.csv")
+t <- subset(res, h2 > 0.05) # 7
 
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait), 
+                      runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CG_teosinte_landrace")
+
+
+```
