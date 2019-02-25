@@ -22,163 +22,69 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 6                                            largedata/VCAP/CG_landrace_maize/bedfile/rest_geno
 
 
-
-```{r}
-cg1 <- read.csv("cache/h2_CG_teosinte_maize.csv")
-chg1 <- read.csv("cache/h2_CHG_teosinte_maize.csv")
-#chh1 <- read.csv("cache/h2_CHH_teosinte_maize.csv")
-
-
-cg2 <- read.csv("cache/h2_CG_teosinte_landrace.csv")
-chg2 <- read.csv("cache/h2_CHG_teosinte_landrace.csv")
-#chh2 <- read.csv("cache/h2_CHH_teosinte_landrace.csv")
-
-cg3 <- read.csv("cache/h2_CG_landrace_maize.csv")
-chg3 <- read.csv("cache/h2_CHG_landrace_maize.csv")
-#chh3 <- read.csv("cache/h2_CHH_landrace_maize.csv")
-
-
-
-```
-
 ### Bar plot
 
 CG teosinte and maize
 ```{r}
-cg1$trait <- as.character(cg1$trait)
-cg1$pretty_name <- as.character(cg1$pretty_name)
-cg1[is.na(cg1$pretty_name), ]$pretty_name <- cg1[is.na(cg1$pretty_name), ]$trait
-subcg1 <- cg1[, c("pretty_name", "h2", "Her_K6", "Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5")]
-subcg1 <- subcg1[order(subcg1$h2, decreasing = F),]
-subcg1$Her_K6 <- -abs(subcg1$Her_K6)
-subcg1$od <- 1:nrow(subcg1)
 
-subcg1$pretty_name <- factor(subcg1$pretty_name,  levels=subcg1$pretty_name)
-df <- gather(data=subcg1, key=k, value="var", 3:8)
-  
-p <- ggplot(df, aes(x=pretty_name, y=var, fill=k), position = position_stack(reverse = TRUE)) +
-    geom_bar(stat="identity") +
-    coord_flip() +
-    theme_bw() +
-    xlab("") +
-    ylab("") +
-    scale_x_discrete(position = "top") +
-    geom_vline(xintercept=0.1, linetype="dotted") +
-    # https://www.color-hex.com/color-palette/73961
-    scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
-                      name=c(""), 
-                      labels=c("Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5", "Her_K6")) +
-    #scale_fill_discrete(name="", labels=c("Exon", "Intron")) +
-    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
-#########
-p
-
-```
-
-CG teosinte and landrace
-```{r}
-cg1 <- cg2
-cg1$trait <- as.character(cg1$trait)
-cg1$pretty_name <- as.character(cg1$pretty_name)
-cg1[is.na(cg1$pretty_name), ]$pretty_name <- cg1[is.na(cg1$pretty_name), ]$trait
-subcg1 <- cg1[, c("pretty_name", "h2", "Her_K6", "Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5")]
-subcg1 <- subcg1[order(subcg1$h2, decreasing = F),]
-subcg1$Her_K6 <- -abs(subcg1$Her_K6)
-subcg1$od <- 1:nrow(subcg1)
-
-subcg1$pretty_name <- factor(subcg1$pretty_name,  levels=subcg1$pretty_name)
-df <- gather(data=subcg1, key=k, value="var", 3:8)
-  
-p <- ggplot(df, aes(x=pretty_name, y=var, fill=k), position = position_stack(reverse = TRUE)) +
-    geom_bar(stat="identity") +
-    coord_flip() +
-    theme_bw() +
-    xlab("") +
-    ylab("") +
-    scale_x_discrete(position = "top") +
-    geom_vline(xintercept=0.1, linetype="dotted") +
-    # https://www.color-hex.com/color-palette/73961
-    scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
-                      name=c(""), 
-                      labels=c("Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5", "Her_K6")) +
-    #scale_fill_discrete(name="", labels=c("Exon", "Intron")) +
-    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
-#########
-p
-
-```
-
-CG landrace and maize
-```{r}
-cg1 <- cg3
-cg1$trait <- as.character(cg1$trait)
-cg1$pretty_name <- as.character(cg1$pretty_name)
-cg1[is.na(cg1$pretty_name), ]$pretty_name <- cg1[is.na(cg1$pretty_name), ]$trait
-subcg1 <- cg1[, c("pretty_name", "h2", "Her_K6", "Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5")]
-subcg1 <- subcg1[order(subcg1$h2, decreasing = F),]
-subcg1$Her_K6 <- -abs(subcg1$Her_K6)
-subcg1$od <- 1:nrow(subcg1)
-
-subcg1$pretty_name <- factor(subcg1$pretty_name,  levels=subcg1$pretty_name)
-df <- gather(data=subcg1, key=k, value="var", 3:8)
-  
-p <- ggplot(df, aes(x=pretty_name, y=var, fill=k), position = position_stack(reverse = TRUE)) +
-    geom_bar(stat="identity") +
-    coord_flip() +
-    theme_bw() +
-    xlab("") +
-    ylab("") +
-    scale_x_discrete(position = "top") +
-    geom_hline(yintercept=0.1, linetype="dotted") +
-    # https://www.color-hex.com/color-palette/73961
-    scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
-                      name=c(""), 
-                      labels=c("Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5", "Her_K6")) +
-    #scale_fill_discrete(name="", labels=c("Exon", "Intron")) +
-    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
-#########
-p
-
-```
-
-
-
-
-
-### Bean Plot:
-
-```{r}
-library("beanplot")
 library("dplyr")
 library("tidyr")
 library("ggplot2")
 
 
-plot_beans <- function(obs, bg, mytrait="asiavg"){
+mybarplot <- function(df){
+  cg1 <- df
+  cg1$trait <- as.character(cg1$trait)
+  cg1$pretty_name <- as.character(cg1$pretty_name)
+  cg1[is.na(cg1$pretty_name), ]$pretty_name <- cg1[is.na(cg1$pretty_name), ]$trait
+  subcg1 <- cg1[, c("pretty_name", "h2", "Her_K6", "Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5")]
+  subcg1 <- subcg1[order(subcg1$h2, decreasing = F),]
+  subcg1$Her_K6 <- -abs(subcg1$Her_K6)
+  subcg1$od <- 1:nrow(subcg1)
+
+  subcg1$pretty_name <- factor(subcg1$pretty_name,  levels=subcg1$pretty_name)
+  df <- gather(data=subcg1, key=k, value="var", 3:8)
   
-  bg1 <- subset(bg, trait %in% mytrait)
-  bg1 <- gather(data=bg1, key=k, value="var", 2:6)
-  
-  #### for trait perse
-  bg1$key <- gsub(".*_K", "K", bg1$k)
-  #bg1$key <- as.numeric(as.character(bg1$key))
-  bg1$var <- as.numeric(as.character(bg1$var))
-  
-  obs1 <- subset(obs, trait %in% mytrait)
-  obs1 <- gather(data=obs1, key=key, value="val", 2:6)
-  
-  yval <- range(c(obs1$val, bg1$var))
-  
-  beanplot(var ~ as.factor(key), data = bg1, ll = 0.04, cex=1.5, border = NA,
-         what=c(0, 1, 0, 1), col=c(c("antiquewhite3", "black")), cex=1, 
-         xlab="", ylab="Variance Explained", main= obs1$pretty_name[1], ylim=c(yval[1], yval[2]+0.02))
-  for(i in 1:nrow(obs1)){
-    lines(x=c(i-0.3, i+0.3), y=c(obs1$val[i], obs1$val[i]), lwd=2, col="red")
-  }
+  p <- ggplot(df, aes(x=pretty_name, y=var, fill=k), position = position_stack(reverse = TRUE)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    geom_hline(yintercept=0.1, linetype="dotted") +
+    scale_x_discrete(position = "top") +
+    geom_vline(xintercept=0.1, linetype="dotted") +
+    # https://www.color-hex.com/color-palette/73961
+    scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+                      name=c(""),
+                      labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    #scale_fill_discrete(name="", labels=c("Exon", "Intron")) +
+    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+  #########
+  return(p)
 }
 
 
+
+cg1 <- read.csv("cache/h2_CG_teosinte_maize.csv")
+
+pdf("graphs/barplot_CG_teosinte_maize.pdf", width = 8, height=8)
+mybarplot(df=cg1)
+dev.off()  
+
+cg2 <- read.csv("cache/h2_CG_teosinte_landrace.csv")
+pdf("graphs/barplot_CG_teosinte_landrace.pdf", width = 8, height=8)
+mybarplot(df=cg2)
+dev.off()  
+
+cg3 <- read.csv("cache/h2_CG_landrace_maize.csv")
+pdf("graphs/barplot_CG_landrace_maize.pdf", width = 8, height=8)
+mybarplot(df=cg3)
+dev.off()  
+
 ```
+
+
 
 
 ### sampling results
