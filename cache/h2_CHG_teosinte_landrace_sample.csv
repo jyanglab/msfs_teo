@@ -1,0 +1,701 @@
+trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_ALL,context,rep,pretty_name,h2
+Chlb_Res_With_IBM_For_GWAS,0.005386,-0.002209,-0.001838,0.003703,0.006306,-0.001510, 0.009839,CHG_teosinte_landrace,S25,Chlorophyll B,0.011348
+Chlb_Res_With_IBM_For_GWAS,-0.004595,-0.000341,0.006418,0.000257,0.001426, 0.003685, 0.006850,CHG_teosinte_landrace,S35,Chlorophyll B,0.003165
+Chlb_Res_With_IBM_For_GWAS,-0.013263,0.000258,-0.013496,-0.002724,0.013355, 0.006041,-0.009829,CHG_teosinte_landrace,S36,Chlorophyll B,-0.01587
+Chlb_Res_With_IBM_For_GWAS,0.069995,-0.093716,0.119368,0.035033,-0.023562,-0.168773,-0.061654,CHG_teosinte_landrace,S27,Chlorophyll B,0.107118
+Chlb_Res_With_IBM_For_GWAS,0.030388,-0.040849,-0.016102,-0.07461,0.156557, 0.010069, 0.065453,CHG_teosinte_landrace,S30,Chlorophyll B,0.055384
+Chlb_Res_With_IBM_For_GWAS,-0.009097,0.01336,-0.008003,-0.043458,-0.062727, 0.075782,-0.034143,CHG_teosinte_landrace,S26,Chlorophyll B,-0.109925
+Chlb_Res_With_IBM_For_GWAS,-0.001856,0.011805,-0.003394,0.013447,-0.002739,-0.000470, 0.016794,CHG_teosinte_landrace,S28,Chlorophyll B,0.017263
+Chlb_Res_With_IBM_For_GWAS,-0.003131,-0.000267,-0.000121,-0.004861,0.004032, 0.016916, 0.012568,CHG_teosinte_landrace,S31,Chlorophyll B,-0.004348
+Chlb_Res_With_IBM_For_GWAS,0.009359,0.005031,0.002578,-0.003721,0.001494, 0.001148, 0.015890,CHG_teosinte_landrace,S33,Chlorophyll B,0.014741
+Chlb_Res_With_IBM_For_GWAS,-0.020895,-0.033876,-0.005154,-0.031373,-0.007595, 0.170880, 0.071987,CHG_teosinte_landrace,S37,Chlorophyll B,-0.098893
+Chlb_Res_With_IBM_For_GWAS,0.0136,0.006256,0.012957,-0.000576,-0.000856,-0.006511, 0.024869,CHG_teosinte_landrace,S39,Chlorophyll B,0.031381
+Chlb_Res_With_IBM_For_GWAS,0.000265,0.003874,0.002972,0.004055,0.003948,-0.002493, 0.012620,CHG_teosinte_landrace,S21,Chlorophyll B,0.015114
+Chlb_Res_With_IBM_For_GWAS,0.00082,0.082343,-0.002293,0.017869,0.040185,-0.094244, 0.044681,CHG_teosinte_landrace,S23,Chlorophyll B,0.138924
+Chlb_Res_With_IBM_For_GWAS,-0.097207,0.015711,-0.0792,0.100065,0.000211, 0.046014,-0.014405,CHG_teosinte_landrace,S29,Chlorophyll B,-0.06042
+Chlb_Res_With_IBM_For_GWAS,-0.029328,-0.054235,-0.008067,0.006832,0.00044, 0.016302,-0.068058,CHG_teosinte_landrace,S32,Chlorophyll B,-0.084358
+Chlb_Res_With_IBM_For_GWAS,-0.093832,-0.024974,-0.005159,-0.028189,0.064712, 0.136468, 0.049028,CHG_teosinte_landrace,S34,Chlorophyll B,-0.087442
+Chlb_Res_With_IBM_For_GWAS,0.063346,-0.025382,0.016053,-0.002833,-0.003344,-0.072500,-0.024659,CHG_teosinte_landrace,S38,Chlorophyll B,0.04784
+Chlb_Res_With_IBM_For_GWAS,-0.005454,-0.001148,0.00665,0.009638,-0.010539, 0.011276, 0.010423,CHG_teosinte_landrace,S4,Chlorophyll B,-0.000853
+Chlb_Res_With_IBM_For_GWAS,-0.04037,0.120385,-0.036194,-0.013463,-0.033743,-0.117889,-0.121275,CHG_teosinte_landrace,S22,Chlorophyll B,-0.003385
+Chlb_Res_With_IBM_For_GWAS,0.000345,-0.003145,0.002416,0.003253,-0.004351, 0.014182, 0.012701,CHG_teosinte_landrace,S24,Chlorophyll B,-0.001482
+Chlb_Res_With_IBM_For_GWAS,0.011831,0.000288,0.001212,0.004276,-0.002666,-0.002156, 0.012784,CHG_teosinte_landrace,S3,Chlorophyll B,0.014941
+Chlb_Res_With_IBM_For_GWAS,0.001427,-0.000347,0.002018,-0.003774,-0.002272, 0.014714, 0.011766,CHG_teosinte_landrace,S1,Chlorophyll B,-0.002948
+Chlb_Res_With_IBM_For_GWAS,-0.074965,-0.056759,-0.054248,-0.00062,-0.062096, 0.414737, 0.166049,CHG_teosinte_landrace,S56,Chlorophyll B,-0.248688
+Chlb_Res_With_IBM_For_GWAS,0.001626,0.005911,-0.003349,-0.002831,0.000607, 0.012612, 0.014576,CHG_teosinte_landrace,S14,Chlorophyll B,0.001964
+Chlb_Res_With_IBM_For_GWAS,-0.046262,-0.024177,-0.034785,-0.055488,-0.007853, 0.283938, 0.115371,CHG_teosinte_landrace,S40,Chlorophyll B,-0.168565
+Chlb_Res_With_IBM_For_GWAS,-0.025957,-0.007683,0.015717,-0.008658,0.000249, 0.018901,-0.007431,CHG_teosinte_landrace,S88,Chlorophyll B,-0.026332
+Chlb_Res_With_IBM_For_GWAS,-0.040685,-0.015668,0.011853,-0.025676,-0.008098, 0.028904,-0.049370,CHG_teosinte_landrace,S46,Chlorophyll B,-0.078274
+Chlb_Res_With_IBM_For_GWAS,-0.047417,-0.003529,-0.013076,-0.009597,-0.074505, 0.163644, 0.015521,CHG_teosinte_landrace,S72,Chlorophyll B,-0.148124
+Chlb_Res_With_IBM_For_GWAS,-0.011321,0.125483,-0.036074,-0.015258,-0.01768, 0.097112, 0.142263,CHG_teosinte_landrace,S10,Chlorophyll B,0.04515
+Chlb_Res_With_IBM_For_GWAS,0.164733,0.024102,0.00668,0.026624,-0.027438,-0.125454, 0.069248,CHG_teosinte_landrace,S57,Chlorophyll B,0.194701
+Chlb_Res_With_IBM_For_GWAS,0.000412,0.002051,-0.001749,0.00288,0.004577, 0.006069, 0.014240,CHG_teosinte_landrace,S15,Chlorophyll B,0.008171
+Chlb_Res_With_IBM_For_GWAS,0.033951,-0.032946,-0.004876,-0.020055,-0.018736,-0.051816,-0.094477,CHG_teosinte_landrace,S41,Chlorophyll B,-0.042662
+Chlb_Res_With_IBM_For_GWAS,-0.091719,-0.012036,-0.015362,-0.037073,0.085906, 0.169725, 0.099441,CHG_teosinte_landrace,S89,Chlorophyll B,-0.070284
+Chlb_Res_With_IBM_For_GWAS,-0.000737,0.003172,-0.001231,0.001238,0.002765, 0.008271, 0.013478,CHG_teosinte_landrace,S47,Chlorophyll B,0.005207
+Chlb_Res_With_IBM_For_GWAS,-0.033842,-0.002259,0.018498,-0.143427,0.048236,-0.147630,-0.260425,CHG_teosinte_landrace,S73,Chlorophyll B,-0.112794
+Chlb_Res_With_IBM_For_GWAS,0.002561,0.000186,-0.002135,-0.005689,-0.00181, 0.018510, 0.011622,CHG_teosinte_landrace,S100,Chlorophyll B,-0.006887
+Chlb_Res_With_IBM_For_GWAS,0.059095,0.065914,0.011493,-0.02562,0.006989,-0.154239,-0.036367,CHG_teosinte_landrace,S58,Chlorophyll B,0.117871
+Chlb_Res_With_IBM_For_GWAS,-0.015025,0.007138,0.001276,-0.009988,-0.023064, 0.033758,-0.005905,CHG_teosinte_landrace,S16,Chlorophyll B,-0.039663
+Chlb_Res_With_IBM_For_GWAS,0.011027,-0.018444,-0.006825,0.008872,-0.018986,-0.005038,-0.029393,CHG_teosinte_landrace,S42,Chlorophyll B,-0.024356
+Chlb_Res_With_IBM_For_GWAS,-0.051368,-0.011295,-0.001674,0.011615,-0.011468, 0.056789,-0.007401,CHG_teosinte_landrace,S9,Chlorophyll B,-0.06419
+Chlb_Res_With_IBM_For_GWAS,0.012749,0.062083,0.009099,-0.011792,0.000808,-0.045621, 0.027325,CHG_teosinte_landrace,S48,Chlorophyll B,0.072947
+Chlb_Res_With_IBM_For_GWAS,-0.046979,-0.003891,-0.036242,-0.044499,0.023177, 0.095916,-0.012517,CHG_teosinte_landrace,S74,Chlorophyll B,-0.108434
+Chlb_Res_With_IBM_For_GWAS,0.00724,-0.023465,-0.01438,0.012665,0.020626,-0.018875,-0.016189,CHG_teosinte_landrace,S11,Chlorophyll B,0.002686
+Chlb_Res_With_IBM_For_GWAS,-0.007406,0.000991,0.000622,-0.010578,0.004125, 0.001099,-0.011146,CHG_teosinte_landrace,S59,Chlorophyll B,-0.012246
+Chlb_Res_With_IBM_For_GWAS,0.000519,-0.00021,0.000778,-0.002687,-0.000214, 0.015593, 0.013779,CHG_teosinte_landrace,S17,Chlorophyll B,-0.001814
+Chlb_Res_With_IBM_For_GWAS,-0.02487,-0.021947,-0.002534,-0.032552,-0.02969, 0.101720,-0.009873,CHG_teosinte_landrace,S43,Chlorophyll B,-0.111593
+Chlb_Res_With_IBM_For_GWAS,-0.005906,-0.000539,0.004677,-0.001962,0.004919, 0.009532, 0.010721,CHG_teosinte_landrace,S90,Chlorophyll B,0.001189
+Chlb_Res_With_IBM_For_GWAS,0.009548,-0.001146,0.004668,0.00262,-0.001416, 0.003419, 0.017693,CHG_teosinte_landrace,S49,Chlorophyll B,0.014274
+Chlb_Res_With_IBM_For_GWAS,-0.003354,-0.000784,0.003299,0.001333,-0.000577, 0.013469, 0.013386,CHG_teosinte_landrace,S75,Chlorophyll B,-8.30000000000004e-05
+Chlb_Res_With_IBM_For_GWAS,-0.004308,0.003347,0.000732,-0.002958,0.001312, 0.015092, 0.013216,CHG_teosinte_landrace,S12,Chlorophyll B,-0.001875
+Chlb_Res_With_IBM_For_GWAS,-0.00115,0.011496,0.013465,-0.023376,-0.067196,-0.012889,-0.079651,CHG_teosinte_landrace,S6,Chlorophyll B,-0.066761
+Chlb_Res_With_IBM_For_GWAS,-0.039265,-0.001732,-0.005782,0.049771,-0.042047, 0.042047, 0.002991,CHG_teosinte_landrace,S18,Chlorophyll B,-0.039055
+Chlb_Res_With_IBM_For_GWAS,0.007833,-0.001423,-0.021243,0.008001,0.007028,-0.029865,-0.029669,CHG_teosinte_landrace,S44,Chlorophyll B,0.000195999999999997
+Chlb_Res_With_IBM_For_GWAS,-0.002678,-0.017054,-0.003934,-0.033507,-0.009851, 0.124580, 0.057556,CHG_teosinte_landrace,S91,Chlorophyll B,-0.067024
+Chlb_Res_With_IBM_For_GWAS,-0.00034,-0.030598,0.021898,-0.008098,-0.006463, 0.001891,-0.021710,CHG_teosinte_landrace,S5,Chlorophyll B,-0.023601
+Chlb_Res_With_IBM_For_GWAS,-0.004323,0.000515,0.001062,0.003294,-0.012697,-0.006180,-0.018328,CHG_teosinte_landrace,S76,Chlorophyll B,-0.012149
+Chlb_Res_With_IBM_For_GWAS,0.000428,0.001231,0.000561,-0.00075,0.001437, 0.012215, 0.015123,CHG_teosinte_landrace,S13,Chlorophyll B,0.002907
+Chlb_Res_With_IBM_For_GWAS,-0.004413,-0.002657,0.005417,0.0072,-0.000978, 0.007839, 0.012408,CHG_teosinte_landrace,S60,Chlorophyll B,0.004569
+Chlb_Res_With_IBM_For_GWAS,-0.000396,-0.003327,-6.4e-05,-0.005353,0.002053, 0.020034, 0.012947,CHG_teosinte_landrace,S19,Chlorophyll B,-0.007087
+Chlb_Res_With_IBM_For_GWAS,0.016514,0.003464,0.010001,-0.010503,-0.020535,-0.059579,-0.060638,CHG_teosinte_landrace,S45,Chlorophyll B,-0.001059
+Chlb_Res_With_IBM_For_GWAS,-0.074952,-0.064371,-0.007279,-0.046929,-0.106179, 0.258848,-0.040863,CHG_teosinte_landrace,S92,Chlorophyll B,-0.29971
+Chlb_Res_With_IBM_For_GWAS,-0.000231,0.003355,0.001184,-0.006522,0.007534, 0.006509, 0.011829,CHG_teosinte_landrace,S50,Chlorophyll B,0.00532
+Chlb_Res_With_IBM_For_GWAS,-0.020776,0.003113,-0.012794,-0.084545,0.040634, 0.033783,-0.040585,CHG_teosinte_landrace,S77,Chlorophyll B,-0.074368
+Chlb_Res_With_IBM_For_GWAS,-0.035343,0.082425,-0.006251,0.217659,0.008535,-0.136646, 0.130379,CHG_teosinte_landrace,S79,Chlorophyll B,0.267025
+Chlb_Res_With_IBM_For_GWAS,0.00063,0.012189,-0.00497,0.004376,-0.000788, 0.006381, 0.017819,CHG_teosinte_landrace,S61,Chlorophyll B,0.011437
+Chlb_Res_With_IBM_For_GWAS,0.029029,0.008224,0.12328,0.032182,0.005354,-0.161979, 0.036089,CHG_teosinte_landrace,S2,Chlorophyll B,0.198069
+Chlb_Res_With_IBM_For_GWAS,-0.000405,-0.002677,0.007886,-0.000766,-0.001353, 0.007820, 0.010505,CHG_teosinte_landrace,S67,Chlorophyll B,0.002685
+Chlb_Res_With_IBM_For_GWAS,0.027586,-0.017753,-0.021442,-0.03929,-0.025989,-0.037702,-0.114590,CHG_teosinte_landrace,S93,Chlorophyll B,-0.076888
+Chlb_Res_With_IBM_For_GWAS,-0.028726,0.040913,0.018664,-0.028301,-0.029487, 0.006731,-0.020206,CHG_teosinte_landrace,S51,Chlorophyll B,-0.026937
+Chlb_Res_With_IBM_For_GWAS,0.004779,-0.003884,0.008019,0.004468,0.009694,-0.014704, 0.008371,CHG_teosinte_landrace,S78,Chlorophyll B,0.023076
+Chlb_Res_With_IBM_For_GWAS,-0.011864,0.089956,-0.005078,0.027423,0.023846,-0.205239,-0.080956,CHG_teosinte_landrace,S8,Chlorophyll B,0.124283
+Chlb_Res_With_IBM_For_GWAS,-0.031868,-0.020279,0.252675,0.000306,-0.03587,-0.045910, 0.119054,CHG_teosinte_landrace,S62,Chlorophyll B,0.164964
+Chlb_Res_With_IBM_For_GWAS,-0.035192,0.00118,-0.005128,-0.003905,-0.02554,-0.027861,-0.096446,CHG_teosinte_landrace,S20,Chlorophyll B,-0.068585
+Chlb_Res_With_IBM_For_GWAS,0.011535,-0.002799,-0.000581,0.001209,0.002121,-0.002248, 0.009237,CHG_teosinte_landrace,S68,Chlorophyll B,0.011485
+Chlb_Res_With_IBM_For_GWAS,-0.004112,-4e-04,0.002295,0.012401,0.00089, 0.002261, 0.013335,CHG_teosinte_landrace,S94,Chlorophyll B,0.011074
+Chlb_Res_With_IBM_For_GWAS,0.011932,-0.019617,-0.001969,-0.001501,0.004886,-0.028162,-0.034431,CHG_teosinte_landrace,S52,Chlorophyll B,-0.006269
+Chlb_Res_With_IBM_For_GWAS,-0.024992,0.01973,4.7e-05,-0.066314,0.009207,-0.006739,-0.069061,CHG_teosinte_landrace,S54,Chlorophyll B,-0.062322
+Chlb_Res_With_IBM_For_GWAS,0.026075,-0.005007,0.019201,-0.014177,0.004582,-0.038228,-0.007554,CHG_teosinte_landrace,S80,Chlorophyll B,0.030674
+Chlb_Res_With_IBM_For_GWAS,-0.008774,-0.014578,-0.006312,0.032093,0.001653,-0.001935, 0.002146,CHG_teosinte_landrace,S63,Chlorophyll B,0.00408199999999999
+Chlb_Res_With_IBM_For_GWAS,-0.020495,0.092221,0.046757,0.230623,-0.04683,-0.148113, 0.154163,CHG_teosinte_landrace,S65,Chlorophyll B,0.302276
+Chlb_Res_With_IBM_For_GWAS,-0.000515,-0.003099,-3.4e-05,0.000512,-0.001335, 0.017407, 0.012936,CHG_teosinte_landrace,S69,Chlorophyll B,-0.004471
+Chlb_Res_With_IBM_For_GWAS,-0.014518,-0.017634,0.281962,-0.029155,0.03961,-0.079551, 0.180713,CHG_teosinte_landrace,S95,Chlorophyll B,0.260265
+Chlb_Res_With_IBM_For_GWAS,-0.071174,-0.040455,-0.002578,0.013295,-0.027236,-0.014612,-0.142759,CHG_teosinte_landrace,S53,Chlorophyll B,-0.128148
+Chlb_Res_With_IBM_For_GWAS,-0.007058,-0.016993,-0.021567,0.104477,-0.114335, 0.133391, 0.077915,CHG_teosinte_landrace,S55,Chlorophyll B,-0.055476
+Chlb_Res_With_IBM_For_GWAS,-0.026763,-0.049418,-0.009649,-0.030241,-0.006713, 0.052800,-0.069985,CHG_teosinte_landrace,S81,Chlorophyll B,-0.122784
+Chlb_Res_With_IBM_For_GWAS,-0.031628,-0.013937,-0.025154,0.143692,0.002923,-0.121159,-0.045263,CHG_teosinte_landrace,S64,Chlorophyll B,0.075896
+Chlb_Res_With_IBM_For_GWAS,-0.026235,0.01387,-0.003249,0.077652,-0.01601,-0.042695, 0.003333,CHG_teosinte_landrace,S66,Chlorophyll B,0.046028
+Chlb_Res_With_IBM_For_GWAS,0.007821,-0.000495,0.00161,0.001185,0.007611,-0.001179, 0.016554,CHG_teosinte_landrace,S7,Chlorophyll B,0.017732
+Chlb_Res_With_IBM_For_GWAS,0.003648,-0.004823,-0.003113,-0.000295,-0.002117, 0.021704, 0.015005,CHG_teosinte_landrace,S96,Chlorophyll B,-0.0067
+Chlb_Res_With_IBM_For_GWAS,-0.004733,0.008227,0.003118,-0.000222,0.000562, 0.009206, 0.016157,CHG_teosinte_landrace,S98,Chlorophyll B,0.006952
+Chlb_Res_With_IBM_For_GWAS,0.008124,0.001556,-0.001328,0.017197,0.001057,-0.011567, 0.015038,CHG_teosinte_landrace,S70,Chlorophyll B,0.026606
+Chlb_Res_With_IBM_For_GWAS,0.005756,-0.004765,0.003965,0.003022,-0.000618, 0.004184, 0.011544,CHG_teosinte_landrace,S82,Chlorophyll B,0.00736
+Chlb_Res_With_IBM_For_GWAS,-0.188126,0.08446,-0.015529,0.001218,0.013735, 0.032563,-0.071679,CHG_teosinte_landrace,S84,Chlorophyll B,-0.104242
+Chlb_Res_With_IBM_For_GWAS,0.007578,0.01746,-0.004538,-0.013871,-0.032251,-0.055578,-0.081200,CHG_teosinte_landrace,S86,Chlorophyll B,-0.025622
+Chlb_Res_With_IBM_For_GWAS,-0.05909,-0.001393,-0.063435,-0.065073,0.077716, 0.141261, 0.029987,CHG_teosinte_landrace,S83,Chlorophyll B,-0.111275
+Chlb_Res_With_IBM_For_GWAS,0.003931,0.000402,0.006911,-0.006476,-0.003358, 0.010491, 0.011902,CHG_teosinte_landrace,S97,Chlorophyll B,0.00141
+Chlb_Res_With_IBM_For_GWAS,0.005315,0.004936,0.007171,-0.00268,-0.000444, 0.001361, 0.015658,CHG_teosinte_landrace,S99,Chlorophyll B,0.014298
+Chlb_Res_With_IBM_For_GWAS,0.002504,0.001877,0.000188,0.006377,-0.002935, 0.005073, 0.013084,CHG_teosinte_landrace,S71,Chlorophyll B,0.008011
+Chlb_Res_With_IBM_For_GWAS,0.00315,0.000438,-0.000126,0.003053,-0.001585, 0.011272, 0.016200,CHG_teosinte_landrace,S85,Chlorophyll B,0.00493
+Chlb_Res_With_IBM_For_GWAS,0.000709,0.002623,0.006563,-0.023258,-0.0021, 0.038747, 0.023283,CHG_teosinte_landrace,S87,Chlorophyll B,-0.015463
+ehtdivphtavg,-0.007853,0.002317,-0.001755,-0.058911,-0.007238, 0.827573, 0.754133,CHG_teosinte_landrace,S58,Ratio of ear height to total height,-0.07344
+ehtdivphtavg,-0.002148,0.001127,-0.003663,0.011851,0.001906, 0.738445, 0.747518,CHG_teosinte_landrace,S59,Ratio of ear height to total height,0.009073
+ehtdivphtavg,-0.005964,0.016832,0.007071,0.012753,0.004141, 0.709364, 0.744197,CHG_teosinte_landrace,S56,Ratio of ear height to total height,0.034833
+ehtdivphtavg,0.00501,-0.006195,0.011032,0.0053,-0.000701, 0.732296, 0.746743,CHG_teosinte_landrace,S98,Ratio of ear height to total height,0.014446
+ehtdivphtavg,0.018059,-0.015409,0.014318,-0.00133,-0.009327, 0.726328, 0.732639,CHG_teosinte_landrace,S6,Ratio of ear height to total height,0.006311
+ehtdivphtavg,-0.00835,0.006273,0.001196,-0.011658,-0.003302, 0.763349, 0.747509,CHG_teosinte_landrace,S63,Ratio of ear height to total height,-0.015841
+ehtdivphtavg,0.006181,0.002994,0.014598,0.012139,-0.000129, 0.705312, 0.741094,CHG_teosinte_landrace,S65,Ratio of ear height to total height,0.035783
+ehtdivphtavg,-0.004748,-0.001181,0.000167,0.01516,-0.004878, 0.743402, 0.747923,CHG_teosinte_landrace,S67,Ratio of ear height to total height,0.00452
+ehtdivphtavg,-0.007443,0.018773,0.018664,-0.001105,-0.039094, 0.751748, 0.741543,CHG_teosinte_landrace,S93,Ratio of ear height to total height,-0.010205
+ehtdivphtavg,0.006961,-0.007315,0.025541,-0.0053,0.006287, 0.714664, 0.740838,CHG_teosinte_landrace,S57,Ratio of ear height to total height,0.026174
+ehtdivphtavg,-0.00448,0.005724,0.00943,-0.004696,-0.004888, 0.746199, 0.747289,CHG_teosinte_landrace,S99,Ratio of ear height to total height,0.00109
+ehtdivphtavg,0.000154,-6e-06,-0.002716,-0.002978,-0.001193, 0.756971, 0.750233,CHG_teosinte_landrace,S60,Ratio of ear height to total height,-0.006739
+ehtdivphtavg,0.012233,0.00778,0.007781,-0.002043,-0.003653, 0.722959, 0.745055,CHG_teosinte_landrace,S64,Ratio of ear height to total height,0.022098
+ehtdivphtavg,0.012116,-0.003014,0.000266,-0.002219,0.001439, 0.737921, 0.746509,CHG_teosinte_landrace,S66,Ratio of ear height to total height,0.008588
+ehtdivphtavg,-0.010949,0.011829,0.001655,0.007338,-0.004671, 0.738383, 0.743583,CHG_teosinte_landrace,S68,Ratio of ear height to total height,0.005202
+ehtdivphtavg,0.020925,0.007235,-0.001976,-0.028044,-4.5e-05, 0.732592, 0.730688,CHG_teosinte_landrace,S94,Ratio of ear height to total height,-0.001905
+ehtdivphtavg,-0.006602,0.020852,0.002282,-0.017459,-0.003591, 0.752523, 0.748005,CHG_teosinte_landrace,S52,Ratio of ear height to total height,-0.004518
+ehtdivphtavg,0.010848,0.008657,0.013128,-0.014818,0.001321, 0.723152, 0.742288,CHG_teosinte_landrace,S100,Ratio of ear height to total height,0.019136
+ehtdivphtavg,0.001294,0.004524,0.012301,-0.006509,0.007419, 0.725697, 0.744727,CHG_teosinte_landrace,S61,Ratio of ear height to total height,0.019029
+ehtdivphtavg,0.00267,-0.00093,0.016506,-0.006672,-0.001008, 0.733901, 0.744467,CHG_teosinte_landrace,S88,Ratio of ear height to total height,0.010566
+ehtdivphtavg,0.006942,0.005872,-0.004681,-0.013008,-0.011076, 0.757935, 0.741984,CHG_teosinte_landrace,S9,Ratio of ear height to total height,-0.015951
+ehtdivphtavg,0.038771,-0.002621,0.001221,-0.000114,-0.004679, 0.714993, 0.747572,CHG_teosinte_landrace,S69,Ratio of ear height to total height,0.032578
+ehtdivphtavg,0.011101,0.010197,0.008616,-0.00463,-0.000632, 0.720958, 0.745610,CHG_teosinte_landrace,S95,Ratio of ear height to total height,0.024652
+ehtdivphtavg,-0.006185,0.002583,-0.008648,-0.014621,0.004938, 0.762669, 0.740736,CHG_teosinte_landrace,S53,Ratio of ear height to total height,-0.021933
+ehtdivphtavg,0.006975,0.005517,0.005326,-0.010018,-0.006627, 0.743387, 0.744561,CHG_teosinte_landrace,S11,Ratio of ear height to total height,0.001173
+ehtdivphtavg,0.020873,0.002162,-0.002091,-0.001319,-0.009144, 0.733262, 0.743743,CHG_teosinte_landrace,S62,Ratio of ear height to total height,0.010481
+ehtdivphtavg,-0.002048,0.006114,0.00612,-0.004565,-0.005135, 0.745397, 0.745883,CHG_teosinte_landrace,S89,Ratio of ear height to total height,0.000486000000000001
+ehtdivphtavg,0.007394,-0.004922,-0.000671,-0.00759,-0.027219, 0.782855, 0.749847,CHG_teosinte_landrace,S90,Ratio of ear height to total height,-0.033008
+ehtdivphtavg,0.0108,0.00488,0.01961,-0.033347,-0.029937, 0.794032, 0.766037,CHG_teosinte_landrace,S7,Ratio of ear height to total height,-0.027994
+ehtdivphtavg,0.019475,0.014245,0.012564,-0.012721,-0.010474, 0.721545, 0.744634,CHG_teosinte_landrace,S96,Ratio of ear height to total height,0.023089
+ehtdivphtavg,0.007241,-0.001157,0.01072,-0.005986,-0.002647, 0.739519, 0.747690,CHG_teosinte_landrace,S54,Ratio of ear height to total height,0.008171
+ehtdivphtavg,0.008835,-0.000847,0.00602,-0.009568,-0.005223, 0.746494, 0.745710,CHG_teosinte_landrace,S12,Ratio of ear height to total height,-0.000783000000000001
+ehtdivphtavg,-0.003595,-0.002182,0.012879,-0.000451,0.004552, 0.733926, 0.745129,CHG_teosinte_landrace,S84,Ratio of ear height to total height,0.011203
+ehtdivphtavg,0.000258,0.000209,-0.001684,0.00592,-0.009868, 0.751949, 0.746785,CHG_teosinte_landrace,S86,Ratio of ear height to total height,-0.005165
+ehtdivphtavg,-0.006772,-0.003578,0.002707,0.001403,-0.001233, 0.754287, 0.746813,CHG_teosinte_landrace,S91,Ratio of ear height to total height,-0.007473
+ehtdivphtavg,-0.014459,0.000208,0.004371,0.013722,0.011206, 0.730925, 0.745974,CHG_teosinte_landrace,S70,Ratio of ear height to total height,0.015048
+ehtdivphtavg,0.012165,0.005918,0.002438,-0.00587,-0.005449, 0.737241, 0.746443,CHG_teosinte_landrace,S97,Ratio of ear height to total height,0.009202
+ehtdivphtavg,0.009341,0.001025,-0.000794,-0.008772,-0.005479, 0.751178, 0.746499,CHG_teosinte_landrace,S55,Ratio of ear height to total height,-0.004679
+ehtdivphtavg,0.020542,0.006002,0.019167,0.007763,-0.002385, 0.688612, 0.739701,CHG_teosinte_landrace,S13,Ratio of ear height to total height,0.051089
+ehtdivphtavg,0.008342,0.011049,0.007762,0.012771,0.00512,0.700215,0.745259,CHG_teosinte_landrace,S85,Ratio of ear height to total height,0.045044
+ehtdivphtavg,-0.003352,-0.000766,0.007339,-0.010551,0.003734, 0.748093, 0.744497,CHG_teosinte_landrace,S87,Ratio of ear height to total height,-0.003596
+ehtdivphtavg,0.014277,-0.00534,-0.003122,0.009323,-0.001278, 0.728842, 0.742703,CHG_teosinte_landrace,S92,Ratio of ear height to total height,0.01386
+ehtdivphtavg,-0.010662,-0.008852,-0.008425,-0.047285,-0.044082, 0.872715, 0.753410,CHG_teosinte_landrace,S71,Ratio of ear height to total height,-0.119306
+ehtdivphtavg,0.00948,0.002497,0.004449,0.017471,-0.00845, 0.716885, 0.742332,CHG_teosinte_landrace,S1,Ratio of ear height to total height,0.025447
+ehtdivphtavg,0.007754,-0.005805,0.007792,-0.002316,-0.003138, 0.740954, 0.745240,CHG_teosinte_landrace,S77,Ratio of ear height to total height,0.004287
+ehtdivphtavg,-0.026351,-0.009477,-0.047872,-0.051395,-0.008154, 0.841606, 0.698357,CHG_teosinte_landrace,S14,Ratio of ear height to total height,-0.143249
+ehtdivphtavg,0.000731,-0.00053,0.006752,-0.001521,0.001487, 0.738385, 0.745304,CHG_teosinte_landrace,S40,Ratio of ear height to total height,0.006919
+ehtdivphtavg,0.006809,0.007018,-0.004383,-0.003809,0.004561, 0.737882, 0.748079,CHG_teosinte_landrace,S2,Ratio of ear height to total height,0.010196
+ehtdivphtavg,0.015372,0.001435,-0.006632,-0.037889,-0.003727, 0.790738, 0.759298,CHG_teosinte_landrace,S25,Ratio of ear height to total height,-0.031441
+ehtdivphtavg,0.022236,-0.003488,0.005883,-0.000755,-0.001151, 0.723768, 0.746493,CHG_teosinte_landrace,S72,Ratio of ear height to total height,0.022725
+ehtdivphtavg,0.008887,0.009342,-0.001081,0.016781,-0.005888, 0.716929, 0.744970,CHG_teosinte_landrace,S10,Ratio of ear height to total height,0.028041
+ehtdivphtavg,-0.038612,-0.041697,0.006445,-0.008725,-0.016466, 0.838238, 0.739183,CHG_teosinte_landrace,S78,Ratio of ear height to total height,-0.099055
+ehtdivphtavg,-0.014007,0.02421,0.014171,0.005311,-0.00105, 0.718290, 0.746925,CHG_teosinte_landrace,S15,Ratio of ear height to total height,0.028635
+ehtdivphtavg,0.01092,0.01418,-0.005855,0.000683,-5.3e-05, 0.724438, 0.744313,CHG_teosinte_landrace,S41,Ratio of ear height to total height,0.019875
+ehtdivphtavg,-0.004403,-0.006989,-0.002156,-0.006836,-0.016724, 0.784956, 0.747847,CHG_teosinte_landrace,S20,Ratio of ear height to total height,-0.037108
+ehtdivphtavg,0.00186,-0.001528,0.018966,0.012608,-0.006933, 0.717297, 0.742270,CHG_teosinte_landrace,S26,Ratio of ear height to total height,0.024973
+ehtdivphtavg,0.011741,0.009839,0.000728,-0.001342,-0.003141, 0.728000, 0.745825,CHG_teosinte_landrace,S73,Ratio of ear height to total height,0.017825
+ehtdivphtavg,0.007304,0.010857,-0.003413,-0.008512,-0.00504, 0.743780, 0.744977,CHG_teosinte_landrace,S31,Ratio of ear height to total height,0.001196
+ehtdivphtavg,-0.003886,0.016255,0.010475,-0.005717,0.003194, 0.723380, 0.743701,CHG_teosinte_landrace,S79,Ratio of ear height to total height,0.020321
+ehtdivphtavg,-0.05353,0.004726,-0.055489,-0.019103,-0.060411, 0.924565, 0.740757,CHG_teosinte_landrace,S16,Ratio of ear height to total height,-0.183807
+ehtdivphtavg,-0.046658,0.000451,0.11063,0.021408,-0.037199, 0.713322, 0.761954,CHG_teosinte_landrace,S42,Ratio of ear height to total height,0.048632
+ehtdivphtavg,-0.021501,-0.021461,0.001715,-0.01924,-0.018459, 0.803970, 0.725024,CHG_teosinte_landrace,S21,Ratio of ear height to total height,-0.078946
+ehtdivphtavg,-0.000574,0.001349,0.000885,-0.008938,-0.003658, 0.756621, 0.745685,CHG_teosinte_landrace,S27,Ratio of ear height to total height,-0.010936
+ehtdivphtavg,0.041407,-0.000678,0.00026,-0.007625,-0.000739, 0.717389, 0.750014,CHG_teosinte_landrace,S74,Ratio of ear height to total height,0.032625
+ehtdivphtavg,0.010166,-0.002485,0.008611,0.019521,0.001307, 0.706039, 0.743159,CHG_teosinte_landrace,S32,Ratio of ear height to total height,0.03712
+ehtdivphtavg,0.007322,0.000201,-0.001414,-0.00933,-0.008222, 0.757686, 0.746244,CHG_teosinte_landrace,S8,Ratio of ear height to total height,-0.011443
+ehtdivphtavg,0.001929,0.005816,-0.002181,0.017718,0.00159, 0.720168, 0.745041,CHG_teosinte_landrace,S17,Ratio of ear height to total height,0.024872
+ehtdivphtavg,-0.009389,0.012557,-0.003617,0.000108,0.008436, 0.739410, 0.747506,CHG_teosinte_landrace,S43,Ratio of ear height to total height,0.008095
+ehtdivphtavg,0.013494,0.00136,0.003519,-0.001017,0.009158, 0.715851, 0.742365,CHG_teosinte_landrace,S22,Ratio of ear height to total height,0.026514
+ehtdivphtavg,0.041498,-0.018537,-0.020429,0.030955,-0.031113, 0.743528, 0.745903,CHG_teosinte_landrace,S28,Ratio of ear height to total height,0.002374
+ehtdivphtavg,-0.005522,-0.001798,0.008909,-0.018134,-0.003825, 0.766404, 0.746034,CHG_teosinte_landrace,S75,Ratio of ear height to total height,-0.02037
+ehtdivphtavg,0.001063,0.002071,0.002322,-0.003119,0.008811, 0.734831, 0.745980,CHG_teosinte_landrace,S33,Ratio of ear height to total height,0.011148
+ehtdivphtavg,0.0086,0.010183,0.004111,0.010228,-0.008138, 0.721899, 0.746883,CHG_teosinte_landrace,S80,Ratio of ear height to total height,0.024984
+ehtdivphtavg,-0.002226,0.013382,-0.001571,0.00872,0.000246, 0.726540, 0.745091,CHG_teosinte_landrace,S18,Ratio of ear height to total height,0.018551
+ehtdivphtavg,-0.047261,0.011303,-0.002371,-0.027699,-0.001924, 0.823989, 0.756037,CHG_teosinte_landrace,S44,Ratio of ear height to total height,-0.067952
+ehtdivphtavg,-0.000907,0.005165,0.005104,0.009915,0.015316, 0.711945, 0.746538,CHG_teosinte_landrace,S23,Ratio of ear height to total height,0.034593
+ehtdivphtavg,-0.002998,-0.005127,0.010065,-0.004718,-0.002851, 0.752871, 0.747242,CHG_teosinte_landrace,S29,Ratio of ear height to total height,-0.005629
+ehtdivphtavg,0.012322,0.014898,0.002264,-0.007673,-0.004004, 0.726634, 0.744441,CHG_teosinte_landrace,S76,Ratio of ear height to total height,0.017807
+ehtdivphtavg,0.004544,0.00523,-0.005877,0.004065,-0.001122, 0.740088, 0.746928,CHG_teosinte_landrace,S34,Ratio of ear height to total height,0.00684
+ehtdivphtavg,-0.004778,-0.002269,-0.001176,-0.009922,-0.004398, 0.767828, 0.745284,CHG_teosinte_landrace,S81,Ratio of ear height to total height,-0.022543
+ehtdivphtavg,0.008695,0.003754,0.014804,0.010179,-0.002962, 0.711521, 0.745992,CHG_teosinte_landrace,S19,Ratio of ear height to total height,0.03447
+ehtdivphtavg,-0.001521,-0.004804,-0.006463,0.017427,-0.005071, 0.747195, 0.746762,CHG_teosinte_landrace,S45,Ratio of ear height to total height,-0.000431999999999999
+ehtdivphtavg,-0.005364,0.016534,-0.004081,-0.002858,-0.001049, 0.740266, 0.743448,CHG_teosinte_landrace,S24,Ratio of ear height to total height,0.003182
+ehtdivphtavg,-0.005408,0.001999,0.000299,-0.006716,-0.003414, 0.759748, 0.746508,CHG_teosinte_landrace,S3,Ratio of ear height to total height,-0.01324
+ehtdivphtavg,-0.002513,0.008714,0.003201,0.00264,-0.002249, 0.736537, 0.746331,CHG_teosinte_landrace,S50,Ratio of ear height to total height,0.009793
+ehtdivphtavg,0.002502,6e-05,-0.005345,0.005487,-0.011381, 0.756142, 0.747464,CHG_teosinte_landrace,S35,Ratio of ear height to total height,-0.008677
+ehtdivphtavg,0.011746,-0.007805,-0.005257,-0.00956,-0.013048, 0.767693, 0.743768,CHG_teosinte_landrace,S82,Ratio of ear height to total height,-0.023924
+ehtdivphtavg,-0.007101,0.001048,-0.003131,0.003899,0.001101, 0.749708, 0.745524,CHG_teosinte_landrace,S39,Ratio of ear height to total height,-0.004184
+ehtdivphtavg,0.061235,-0.023451,-0.023712,-0.000903,-0.004631, 0.733757, 0.742295,CHG_teosinte_landrace,S46,Ratio of ear height to total height,0.008538
+ehtdivphtavg,0.004652,0.004021,0.003949,-0.000155,0.000596, 0.732421, 0.745484,CHG_teosinte_landrace,S48,Ratio of ear height to total height,0.013063
+ehtdivphtavg,0.007893,-0.000859,0.001336,-0.009344,0.009927, 0.738779, 0.747732,CHG_teosinte_landrace,S30,Ratio of ear height to total height,0.008953
+ehtdivphtavg,0.005354,0.015438,0.012845,0.010612,-0.001242, 0.700839, 0.743846,CHG_teosinte_landrace,S51,Ratio of ear height to total height,0.043007
+ehtdivphtavg,-0.048433,-0.013407,-0.00544,-0.017922,-0.062717, 0.854667, 0.706750,CHG_teosinte_landrace,S36,Ratio of ear height to total height,-0.147919
+ehtdivphtavg,0.017395,0.003853,0.006355,-0.005708,-0.017423, 0.743584, 0.748056,CHG_teosinte_landrace,S83,Ratio of ear height to total height,0.004472
+ehtdivphtavg,-0.007616,0.003238,-0.001474,0.000378,-0.004832, 0.757810, 0.747504,CHG_teosinte_landrace,S4,Ratio of ear height to total height,-0.010306
+ehtdivphtavg,-0.006625,0.001644,0.003882,0.010757,-0.004612, 0.741509, 0.746556,CHG_teosinte_landrace,S47,Ratio of ear height to total height,0.005046
+ehtdivphtavg,0.005552,0.000882,-0.001247,0.002162,-0.007345, 0.744786, 0.744789,CHG_teosinte_landrace,S49,Ratio of ear height to total height,3.99999999999966e-06
+ehtdivphtavg,0.003062,0.010277,0.003832,0.011005,-0.006829, 0.722114, 0.743460,CHG_teosinte_landrace,S38,Ratio of ear height to total height,0.021347
+ehtdivphtavg,0.010802,0.012321,0.006579,0.009773,0.00191,0.704643,0.746027,CHG_teosinte_landrace,S37,Ratio of ear height to total height,0.041385
+ehtdivphtavg,0.219229,0.058322,0.011767,-8.6e-05,-0.011425, 0.318705, 0.596512,CHG_teosinte_landrace,S5,Ratio of ear height to total height,0.277807
+Fuma_Res_With_IBM_For_GWAS,-0.003227,0.001089,-0.003496,0.021942,0.010009,-0.169505,-0.143187,CHG_teosinte_landrace,S1,Fumarate,0.026317
+Fuma_Res_With_IBM_For_GWAS,0.213294,-0.137456,-0.051363,0.149037,-0.015657,-0.074319, 0.083536,CHG_teosinte_landrace,S40,Fumarate,0.157855
+Fuma_Res_With_IBM_For_GWAS,0.008105,-0.005224,0.003495,-0.001603,0.009821,-0.000173, 0.014420,CHG_teosinte_landrace,S42,Fumarate,0.014594
+Fuma_Res_With_IBM_For_GWAS,0.005467,-0.002717,-0.001675,0.005548,-0.002643, 0.007419, 0.011399,CHG_teosinte_landrace,S100,Fumarate,0.00398
+Fuma_Res_With_IBM_For_GWAS,-0.000333,0.006011,0.006405,-0.001711,0.005855,-0.004869, 0.011358,CHG_teosinte_landrace,S10,Fumarate,0.016227
+Fuma_Res_With_IBM_For_GWAS,0.237976,0.048309,-0.010395,-0.014005,-0.030413,-0.076238, 0.155234,CHG_teosinte_landrace,S11,Fumarate,0.231472
+Fuma_Res_With_IBM_For_GWAS,-0.008053,0.006984,-0.001548,-0.000458,-0.001673, 0.009608, 0.004861,CHG_teosinte_landrace,S46,Fumarate,-0.004748
+Fuma_Res_With_IBM_For_GWAS,0.001173,0.00036,0.004852,0.000548,0.001301,0.002360,0.010594,CHG_teosinte_landrace,S41,Fumarate,0.008234
+Fuma_Res_With_IBM_For_GWAS,-0.003475,0.000114,0.001938,-0.003636,0.001569, 0.017040, 0.013551,CHG_teosinte_landrace,S43,Fumarate,-0.00349
+Fuma_Res_With_IBM_For_GWAS,0.004744,0.002342,0.000639,-0.006147,0.003011, 0.007302, 0.011892,CHG_teosinte_landrace,S47,Fumarate,0.004589
+Fuma_Res_With_IBM_For_GWAS,-0.006722,-0.019137,-0.000888,0.153142,-0.003928,-0.092497, 0.029970,CHG_teosinte_landrace,S52,Fumarate,0.122467
+Fuma_Res_With_IBM_For_GWAS,0.000782,0.002691,-0.001671,-0.003017,0.007795, 0.004426, 0.011005,CHG_teosinte_landrace,S54,Fumarate,0.00658
+Fuma_Res_With_IBM_For_GWAS,-0.110421,-0.035501,-0.04262,0.014374,-0.007551,-0.095646,-0.277364,CHG_teosinte_landrace,S12,Fumarate,-0.181719
+Fuma_Res_With_IBM_For_GWAS,0.010648,0.014699,0.037304,0.008406,-0.023377,-0.095685,-0.048005,CHG_teosinte_landrace,S16,Fumarate,0.04768
+Fuma_Res_With_IBM_For_GWAS,-0.015322,-0.019343,-0.012485,0.002664,-0.023116,-0.014326,-0.081928,CHG_teosinte_landrace,S18,Fumarate,-0.067602
+Fuma_Res_With_IBM_For_GWAS,-0.000733,0.002753,0.00052,0.009209,0.00382,-0.003382, 0.012186,CHG_teosinte_landrace,S44,Fumarate,0.015569
+Fuma_Res_With_IBM_For_GWAS,0.058712,0.010646,-0.02054,0.03742,-0.050224,-0.039386,-0.003372,CHG_teosinte_landrace,S48,Fumarate,0.036014
+Fuma_Res_With_IBM_For_GWAS,-0.002364,-0.000134,0.001785,0.001962,0.000527, 0.008268, 0.010043,CHG_teosinte_landrace,S53,Fumarate,0.001776
+Fuma_Res_With_IBM_For_GWAS,0.122747,-0.0211,-0.007002,-0.009576,-0.028505,-0.103749,-0.047186,CHG_teosinte_landrace,S55,Fumarate,0.056564
+Fuma_Res_With_IBM_For_GWAS,-0.016148,-0.056154,-0.003149,-0.011505,-0.004346,-0.011894,-0.103194,CHG_teosinte_landrace,S13,Fumarate,-0.091302
+Fuma_Res_With_IBM_For_GWAS,-0.002513,0.041014,-0.01094,-0.042048,-0.005917,-0.022365,-0.042769,CHG_teosinte_landrace,S17,Fumarate,-0.020404
+Fuma_Res_With_IBM_For_GWAS,0.006597,0.001712,-0.000257,0.006524,0.002726,-0.001157, 0.016145,CHG_teosinte_landrace,S19,Fumarate,0.017302
+Fuma_Res_With_IBM_For_GWAS,-0.076526,-0.004193,-0.083279,0.014054,-0.040787, 0.209239, 0.018508,CHG_teosinte_landrace,S45,Fumarate,-0.190731
+Fuma_Res_With_IBM_For_GWAS,0.011881,0.000182,0.000424,-0.0022,-0.001647, 0.004383, 0.013024,CHG_teosinte_landrace,S49,Fumarate,0.00864
+Fuma_Res_With_IBM_For_GWAS,-0.034645,0.00229,-0.017039,-0.019555,0.020441, 0.061403, 0.012895,CHG_teosinte_landrace,S50,Fumarate,-0.048508
+Fuma_Res_With_IBM_For_GWAS,-0.023408,-0.005978,-0.037353,0.005275,-0.013598, 0.108087, 0.033025,CHG_teosinte_landrace,S56,Fumarate,-0.075062
+Fuma_Res_With_IBM_For_GWAS,0.194392,0.048799,-0.021279,-0.008068,0.005015,-0.095455, 0.123405,CHG_teosinte_landrace,S14,Fumarate,0.218859
+Fuma_Res_With_IBM_For_GWAS,0.01041,0.006262,-0.003541,0.001384,0.006952,-0.002948, 0.018520,CHG_teosinte_landrace,S61,Fumarate,0.021467
+Fuma_Res_With_IBM_For_GWAS,-0.008172,-0.002234,0.001596,-0.0128,-0.002573, 0.010349,-0.013833,CHG_teosinte_landrace,S2,Fumarate,-0.024183
+Fuma_Res_With_IBM_For_GWAS,0.008746,0.002415,-0.004132,-0.003633,0.002386, 0.008663, 0.014445,CHG_teosinte_landrace,S67,Fumarate,0.005782
+Fuma_Res_With_IBM_For_GWAS,-0.009907,-0.015143,0.000749,-0.005086,-0.038024, 0.300018, 0.232608,CHG_teosinte_landrace,S5,Fumarate,-0.067411
+Fuma_Res_With_IBM_For_GWAS,0.000677,-0.003141,0.05751,0.020729,-7.1e-05,-0.145210,-0.069505,CHG_teosinte_landrace,S51,Fumarate,0.075704
+Fuma_Res_With_IBM_For_GWAS,-0.040185,-0.003554,-0.006474,-0.023723,-0.02193, 0.055926,-0.039940,CHG_teosinte_landrace,S57,Fumarate,-0.095866
+Fuma_Res_With_IBM_For_GWAS,0.004772,0.001407,-0.004933,0.004263,0.001084, 0.002076, 0.008669,CHG_teosinte_landrace,S15,Fumarate,0.006593
+Fuma_Res_With_IBM_For_GWAS,-0.003179,0.007432,0.015881,0.003302,0.001944,-0.004794, 0.020586,CHG_teosinte_landrace,S62,Fumarate,0.02538
+Fuma_Res_With_IBM_For_GWAS,0.040552,-0.021305,0.005796,-0.001978,0.094336,-0.055448, 0.061953,CHG_teosinte_landrace,S20,Fumarate,0.117401
+Fuma_Res_With_IBM_For_GWAS,0.003019,0.001946,0.001869,0.002132,0.002069,-0.000447, 0.010589,CHG_teosinte_landrace,S68,Fumarate,0.011035
+Fuma_Res_With_IBM_For_GWAS,-0.011043,-0.038432,-0.037621,-0.036626,-0.006216, 0.174480, 0.044542,CHG_teosinte_landrace,S26,Fumarate,-0.129938
+Fuma_Res_With_IBM_For_GWAS,-0.003976,0.003221,0.001964,0.000497,0.000955, 0.007785, 0.010446,CHG_teosinte_landrace,S73,Fumarate,0.002661
+Fuma_Res_With_IBM_For_GWAS,0.000938,0.00044,0.002189,0.000864,0.002204,0.001201,0.007835,CHG_teosinte_landrace,S58,Fumarate,0.006635
+Fuma_Res_With_IBM_For_GWAS,-0.112484,-0.027357,-0.020032,-0.004042,-0.01436, 0.178091,-0.000184,CHG_teosinte_landrace,S37,Fumarate,-0.178275
+Fuma_Res_With_IBM_For_GWAS,-0.035491,-0.033501,-0.043153,-0.061276,-0.110578, 0.479020, 0.195021,CHG_teosinte_landrace,S63,Fumarate,-0.283999
+Fuma_Res_With_IBM_For_GWAS,-0.064077,-0.150506,-0.031594,-0.032066,0.031482, 0.279776, 0.033014,CHG_teosinte_landrace,S21,Fumarate,-0.246761
+Fuma_Res_With_IBM_For_GWAS,-0.011734,-0.016516,-0.021155,-0.002271,-0.036024, 0.081483,-0.006216,CHG_teosinte_landrace,S69,Fumarate,-0.0877
+Fuma_Res_With_IBM_For_GWAS,4e-05,-0.001247,0.00901,-0.002121,0.003469, 0.002937, 0.012088,CHG_teosinte_landrace,S27,Fumarate,0.009151
+Fuma_Res_With_IBM_For_GWAS,0.042481,0.00579,-0.025868,-0.039685,0.005551,-0.008783,-0.020514,CHG_teosinte_landrace,S74,Fumarate,-0.011731
+Fuma_Res_With_IBM_For_GWAS,-0.044293,-0.014655,-0.020721,-0.010275,-0.03656, 0.050588,-0.075917,CHG_teosinte_landrace,S59,Fumarate,-0.126504
+Fuma_Res_With_IBM_For_GWAS,0.003186,0.000375,0.000314,-0.001058,-0.001292, 0.008243, 0.009768,CHG_teosinte_landrace,S38,Fumarate,0.001525
+Fuma_Res_With_IBM_For_GWAS,-0.031155,-0.001673,0.015832,-0.025776,0.009783, 0.050180, 0.017191,CHG_teosinte_landrace,S64,Fumarate,-0.032989
+Fuma_Res_With_IBM_For_GWAS,0.009222,-0.066232,-0.03476,0.034075,-0.008965, 0.044712,-0.021949,CHG_teosinte_landrace,S22,Fumarate,-0.06666
+Fuma_Res_With_IBM_For_GWAS,0.046661,0.05597,0.04519,-0.034604,-0.024049,-0.187606,-0.098439,CHG_teosinte_landrace,S7,Fumarate,0.089168
+Fuma_Res_With_IBM_For_GWAS,-0.031122,-0.027617,-0.054359,0.053197,-0.017611,-0.062524,-0.140036,CHG_teosinte_landrace,S28,Fumarate,-0.077512
+Fuma_Res_With_IBM_For_GWAS,-0.002045,-0.040078,-0.046052,-0.038793,-0.034717, 0.166119, 0.004434,CHG_teosinte_landrace,S75,Fumarate,-0.161685
+Fuma_Res_With_IBM_For_GWAS,0.045158,-0.112633,-0.068971,-0.008551,-0.009138, 0.120726,-0.033409,CHG_teosinte_landrace,S6,Fumarate,-0.154135
+Fuma_Res_With_IBM_For_GWAS,-0.084008,-0.002164,-0.035018,-0.016699,-0.057976, 0.002515,-0.193349,CHG_teosinte_landrace,S39,Fumarate,-0.195865
+Fuma_Res_With_IBM_For_GWAS,-0.00314,-0.002724,0.007064,-0.016997,-0.01791,-0.018368,-0.052075,CHG_teosinte_landrace,S65,Fumarate,-0.033707
+Fuma_Res_With_IBM_For_GWAS,-0.01842,-0.004531,-0.008693,-0.021702,-0.001291, 0.053951,-0.000686,CHG_teosinte_landrace,S23,Fumarate,-0.054637
+Fuma_Res_With_IBM_For_GWAS,0.185213,0.006561,0.000214,-0.031912,-0.007437,-0.091927, 0.060711,CHG_teosinte_landrace,S70,Fumarate,0.152639
+Fuma_Res_With_IBM_For_GWAS,-0.024426,0.000543,-0.012031,-0.012008,-0.004755, 0.078791, 0.026114,CHG_teosinte_landrace,S29,Fumarate,-0.052677
+Fuma_Res_With_IBM_For_GWAS,0.007496,-0.015453,-0.001956,-0.002903,-0.003368,-0.002438,-0.018622,CHG_teosinte_landrace,S76,Fumarate,-0.016184
+Fuma_Res_With_IBM_For_GWAS,0.00913,-0.00509,-0.009364,0.002388,-0.00206, 0.011851, 0.006855,CHG_teosinte_landrace,S60,Fumarate,-0.004996
+Fuma_Res_With_IBM_For_GWAS,-0.004106,-0.001185,0.003534,0.004914,-0.001875, 0.001133, 0.002415,CHG_teosinte_landrace,S4,Fumarate,0.001282
+Fuma_Res_With_IBM_For_GWAS,-0.004677,-0.023233,0.034012,0.039957,-0.005917,-0.061806,-0.021665,CHG_teosinte_landrace,S66,Fumarate,0.040142
+Fuma_Res_With_IBM_For_GWAS,0.117222,0.058693,-0.003586,-0.06024,-0.01632,-0.075482, 0.020285,CHG_teosinte_landrace,S24,Fumarate,0.095769
+Fuma_Res_With_IBM_For_GWAS,-0.014842,-0.002254,-0.023318,-0.042569,0.032242, 0.036643,-0.014099,CHG_teosinte_landrace,S71,Fumarate,-0.050741
+Fuma_Res_With_IBM_For_GWAS,-0.007229,0.011097,0.002388,0.007313,-0.002097, 0.009149, 0.020621,CHG_teosinte_landrace,S3,Fumarate,0.011472
+Fuma_Res_With_IBM_For_GWAS,0.000795,0.00417,0.000328,-0.000538,0.000869, 0.007799, 0.013423,CHG_teosinte_landrace,S77,Fumarate,0.005624
+Fuma_Res_With_IBM_For_GWAS,-0.082386,0.063693,-0.126914,0.01692,-0.135133, 0.209898,-0.053923,CHG_teosinte_landrace,S35,Fumarate,-0.26382
+Fuma_Res_With_IBM_For_GWAS,-0.010344,0.073355,-0.042093,-0.039565,-0.048413, 0.050393,-0.016668,CHG_teosinte_landrace,S82,Fumarate,-0.06706
+Fuma_Res_With_IBM_For_GWAS,0.015006,0.000666,-0.004129,0.006986,-0.001005,-0.021529,-0.004004,CHG_teosinte_landrace,S88,Fumarate,0.017524
+Fuma_Res_With_IBM_For_GWAS,2e-04,0.008258,0.002137,-7.8e-05,-0.001651, 0.008013, 0.016879,CHG_teosinte_landrace,S25,Fumarate,0.008866
+Fuma_Res_With_IBM_For_GWAS,-0.027531,-0.001636,-0.014844,-0.016049,-0.000101, 0.029652,-0.030509,CHG_teosinte_landrace,S72,Fumarate,-0.060161
+Fuma_Res_With_IBM_For_GWAS,0.003018,0.002856,0.002923,0.000466,-0.000228, 0.001600, 0.010634,CHG_teosinte_landrace,S30,Fumarate,0.009035
+Fuma_Res_With_IBM_For_GWAS,0.012273,0.028635,-0.014317,-0.011169,-0.010035,-0.003645, 0.001742,CHG_teosinte_landrace,S78,Fumarate,0.005387
+Fuma_Res_With_IBM_For_GWAS,0.006084,-0.005013,0.001441,0.001888,-0.002894,-0.016038,-0.014533,CHG_teosinte_landrace,S36,Fumarate,0.001506
+Fuma_Res_With_IBM_For_GWAS,0.01487,0.002371,0.009855,0.01062,0.0032,-0.012278, 0.028639,CHG_teosinte_landrace,S83,Fumarate,0.040916
+Fuma_Res_With_IBM_For_GWAS,-0.002497,-0.010032,-0.009901,-0.022109,-0.017882, 0.065854, 0.003434,CHG_teosinte_landrace,S89,Fumarate,-0.062421
+Fuma_Res_With_IBM_For_GWAS,-0.071436,-0.051369,0.005245,-0.030071,-0.002042, 0.146045,-0.003628,CHG_teosinte_landrace,S90,Fumarate,-0.149673
+Fuma_Res_With_IBM_For_GWAS,0.001827,0.006268,0.002768,-0.001556,0.005152,-0.000181, 0.014277,CHG_teosinte_landrace,S94,Fumarate,0.014459
+Fuma_Res_With_IBM_For_GWAS,-0.024121,-0.000616,-0.06361,-0.032699,-0.021038, 0.124838,-0.017245,CHG_teosinte_landrace,S31,Fumarate,-0.142084
+Fuma_Res_With_IBM_For_GWAS,0.003844,3e-05,0.001491,0.000849,-0.000215, 0.007429, 0.013428,CHG_teosinte_landrace,S79,Fumarate,0.005999
+Fuma_Res_With_IBM_For_GWAS,-0.053754,0.042784,-0.015568,-0.096887,-0.03036, 0.253421, 0.099636,CHG_teosinte_landrace,S80,Fumarate,-0.153785
+Fuma_Res_With_IBM_For_GWAS,0.058177,0.042458,0.012929,-0.144126,-0.085421,-0.064211,-0.180195,CHG_teosinte_landrace,S84,Fumarate,-0.115983
+Fuma_Res_With_IBM_For_GWAS,0.004891,-0.012855,0.005683,0.000667,-0.009972, 0.004029,-0.007557,CHG_teosinte_landrace,S9,Fumarate,-0.011586
+Fuma_Res_With_IBM_For_GWAS,-0.013582,-0.016029,-0.005363,0.008403,-0.011497, 0.034348,-0.003719,CHG_teosinte_landrace,S91,Fumarate,-0.038068
+Fuma_Res_With_IBM_For_GWAS,0.000538,-0.025734,-0.031735,-0.018942,0.041642, 0.059142, 0.024911,CHG_teosinte_landrace,S95,Fumarate,-0.034231
+Fuma_Res_With_IBM_For_GWAS,-0.006145,0.014783,0.001151,-0.000747,-0.001261, 0.006253, 0.014034,CHG_teosinte_landrace,S32,Fumarate,0.007781
+Fuma_Res_With_IBM_For_GWAS,0.006608,0.004455,0.000841,-0.000988,-0.002187, 0.004973, 0.013703,CHG_teosinte_landrace,S8,Fumarate,0.008729
+Fuma_Res_With_IBM_For_GWAS,0.000842,0.003501,-0.000605,-0.00552,0.000726, 0.013364, 0.012309,CHG_teosinte_landrace,S81,Fumarate,-0.001056
+Fuma_Res_With_IBM_For_GWAS,0.006742,0.006413,-0.001163,-0.00288,0.003614,-0.010265, 0.002461,CHG_teosinte_landrace,S85,Fumarate,0.012726
+Fuma_Res_With_IBM_For_GWAS,0.036296,-0.008321,-0.061972,0.143388,-0.00317,-0.082429, 0.023793,CHG_teosinte_landrace,S87,Fumarate,0.106221
+Fuma_Res_With_IBM_For_GWAS,0.035063,-0.015466,0.037252,-0.037023,-0.007638, 0.087284, 0.099472,CHG_teosinte_landrace,S92,Fumarate,0.012188
+Fuma_Res_With_IBM_For_GWAS,0.057606,-0.122248,0.04124,-0.126955,0.218427,-0.125186,-0.057117,CHG_teosinte_landrace,S96,Fumarate,0.06807
+Fuma_Res_With_IBM_For_GWAS,-0.004843,-0.009406,-0.012907,0.007513,0.001112,-0.004316,-0.022846,CHG_teosinte_landrace,S33,Fumarate,-0.018531
+Fuma_Res_With_IBM_For_GWAS,-0.055448,-0.063703,-0.010263,0.007537,-0.00171, 0.029803,-0.093782,CHG_teosinte_landrace,S93,Fumarate,-0.123587
+Fuma_Res_With_IBM_For_GWAS,-0.015884,-0.002556,-0.00223,-0.028426,0.000169, 0.035158,-0.013770,CHG_teosinte_landrace,S97,Fumarate,-0.048927
+Fuma_Res_With_IBM_For_GWAS,0.036726,-0.006997,-0.004137,0.061318,0.003799,-0.115888,-0.025180,CHG_teosinte_landrace,S86,Fumarate,0.090709
+Fuma_Res_With_IBM_For_GWAS,-0.013069,-0.00178,0.012931,0.012221,0.001642,-0.000077, 0.011867,CHG_teosinte_landrace,S99,Fumarate,0.011945
+Fuma_Res_With_IBM_For_GWAS,-0.035197,-0.03906,0.007952,-0.018173,0.018409,-0.054081,-0.120150,CHG_teosinte_landrace,S98,Fumarate,-0.066069
+Fuma_Res_With_IBM_For_GWAS,0.013209,-0.003035,0.002244,0.007054,0.003476,-0.006917, 0.016031,CHG_teosinte_landrace,S34,Fumarate,0.022948
+Fuma2_Res_With_IBM_For_GWAS,0.01259,-0.00272,0.004338,-0.0012,-0.000831, 0.008686, 0.020863,CHG_teosinte_landrace,S87,NA,0.012177
+Fuma2_Res_With_IBM_For_GWAS,0.000396,-0.005042,0.058895,-0.024403,6.6e-05,-0.044601,-0.014690,CHG_teosinte_landrace,S24,NA,0.029912
+Fuma2_Res_With_IBM_For_GWAS,0.005766,-0.003906,0.001483,-0.007073,-0.006248, 0.017695, 0.007716,CHG_teosinte_landrace,S71,NA,-0.009978
+Fuma2_Res_With_IBM_For_GWAS,-0.02724,-0.032955,-0.133079,0.08015,-0.011294, 0.183330, 0.058912,CHG_teosinte_landrace,S1,NA,-0.124418
+Fuma2_Res_With_IBM_For_GWAS,0.010478,-0.025097,-0.017163,-0.042248,0.090176,-0.001799, 0.014346,CHG_teosinte_landrace,S56,NA,0.016146
+Fuma2_Res_With_IBM_For_GWAS,-0.035732,0.009125,-0.023112,-0.011174,-0.010057, 0.074153, 0.003202,CHG_teosinte_landrace,S14,NA,-0.07095
+Fuma2_Res_With_IBM_For_GWAS,0.004099,-0.015182,-0.005551,0.005136,-0.009598,-0.005589,-0.026687,CHG_teosinte_landrace,S40,NA,-0.021096
+Fuma2_Res_With_IBM_For_GWAS,0.011636,-0.000118,0.004192,-0.006308,0.000424,-0.006665, 0.003159,CHG_teosinte_landrace,S88,NA,0.009826
+Fuma2_Res_With_IBM_For_GWAS,-0.000394,0.009594,0.002894,9.7e-05,-0.001505, 0.006382, 0.017068,CHG_teosinte_landrace,S25,NA,0.010686
+Fuma2_Res_With_IBM_For_GWAS,0.002952,-0.006732,-0.001954,-0.04991,0.003996, 0.012589,-0.039060,CHG_teosinte_landrace,S72,NA,-0.051648
+Fuma2_Res_With_IBM_For_GWAS,-6.8e-05,0.005936,0.006933,-0.001744,0.005517,-0.004936, 0.011637,CHG_teosinte_landrace,S10,NA,0.016574
+Fuma2_Res_With_IBM_For_GWAS,-0.029686,-0.024165,0.035895,0.003756,0.016193, 0.009689, 0.011682,CHG_teosinte_landrace,S57,NA,0.00199300000000001
+Fuma2_Res_With_IBM_For_GWAS,0.005515,0.001356,-0.004759,0.005033,0.001224,-0.000046, 0.008321,CHG_teosinte_landrace,S15,NA,0.008369
+Fuma2_Res_With_IBM_For_GWAS,0.001028,-0.000202,0.005613,0.000965,0.001114, 0.000657, 0.009174,CHG_teosinte_landrace,S41,NA,0.008518
+Fuma2_Res_With_IBM_For_GWAS,-0.041312,-0.010282,-0.008559,0.020368,-0.015919, 0.046608,-0.009096,CHG_teosinte_landrace,S89,NA,-0.055704
+Fuma2_Res_With_IBM_For_GWAS,-0.042461,-0.042727,-0.018684,-0.026696,-0.004791, 0.027985,-0.107375,CHG_teosinte_landrace,S26,NA,-0.135359
+Fuma2_Res_With_IBM_For_GWAS,-0.004218,0.003267,0.002123,0.001311,0.000116, 0.006599, 0.009198,CHG_teosinte_landrace,S73,NA,0.002599
+Fuma2_Res_With_IBM_For_GWAS,0.101834,-0.006391,-0.034493,-0.045391,-0.012772, 0.034998, 0.037785,CHG_teosinte_landrace,S100,NA,0.002787
+Fuma2_Res_With_IBM_For_GWAS,0.001694,0.000578,0.001783,-0.001963,0.00283, 0.002234, 0.007157,CHG_teosinte_landrace,S58,NA,0.004922
+Fuma2_Res_With_IBM_For_GWAS,-0.004885,-0.001572,0.00104,0.002647,0.004229, 0.003319, 0.004778,CHG_teosinte_landrace,S16,NA,0.001459
+Fuma2_Res_With_IBM_For_GWAS,0.008477,-0.053164,-0.046534,0.02072,-0.04565, 0.066469,-0.049682,CHG_teosinte_landrace,S42,NA,-0.116151
+Fuma2_Res_With_IBM_For_GWAS,8.5e-05,-0.006271,-0.01206,0.038938,-0.020346, 0.004335, 0.004682,CHG_teosinte_landrace,S9,NA,0.000346000000000003
+Fuma2_Res_With_IBM_For_GWAS,-0.002247,-0.000695,0.009104,-0.001704,0.002812, 0.003195, 0.010465,CHG_teosinte_landrace,S27,NA,0.00727
+Fuma2_Res_With_IBM_For_GWAS,0.182093,-0.022945,-0.052202,-0.000519,0.055948, 0.071518, 0.233892,CHG_teosinte_landrace,S74,NA,0.162375
+Fuma2_Res_With_IBM_For_GWAS,0.02957,0.000729,-0.013033,0.028402,-0.003599,-0.010705, 0.031364,CHG_teosinte_landrace,S11,NA,0.042069
+Fuma2_Res_With_IBM_For_GWAS,-0.026913,0.000171,0.005867,-0.019032,0.003306, 0.033245,-0.003355,CHG_teosinte_landrace,S59,NA,-0.036601
+Fuma2_Res_With_IBM_For_GWAS,0.007512,-0.00381,0.001038,0.002827,0.00311, 0.006542, 0.017220,CHG_teosinte_landrace,S17,NA,0.010677
+Fuma2_Res_With_IBM_For_GWAS,-0.003284,0.000317,0.002335,-0.003481,0.001432, 0.015016, 0.012335,CHG_teosinte_landrace,S43,NA,-0.002681
+Fuma2_Res_With_IBM_For_GWAS,-0.112381,0.026252,0.00027,-0.00236,-0.012306, 0.145492, 0.044967,CHG_teosinte_landrace,S90,NA,-0.100525
+Fuma2_Res_With_IBM_For_GWAS,-0.00802,0.013663,-0.056035,-0.044913,0.008699, 0.042859,-0.043746,CHG_teosinte_landrace,S28,NA,-0.086606
+Fuma2_Res_With_IBM_For_GWAS,0.009177,0.002707,-0.006272,0.026841,-0.009852,-0.011326, 0.011275,CHG_teosinte_landrace,S75,NA,0.022601
+Fuma2_Res_With_IBM_For_GWAS,0.059619,0.007231,-0.003004,-0.025158,-0.082363, 0.018844,-0.024830,CHG_teosinte_landrace,S12,NA,-0.043675
+Fuma2_Res_With_IBM_For_GWAS,0.055596,0.066899,0.08335,0.01406,-0.107617,-0.139636,-0.027348,CHG_teosinte_landrace,S6,NA,0.112288
+Fuma2_Res_With_IBM_For_GWAS,0.001771,0.00468,0.003411,-0.001833,-0.001846, 0.004283, 0.010466,CHG_teosinte_landrace,S18,NA,0.006183
+Fuma2_Res_With_IBM_For_GWAS,-0.00054,0.003466,0.000365,0.010063,0.003458,-0.004987, 0.011826,CHG_teosinte_landrace,S44,NA,0.016812
+Fuma2_Res_With_IBM_For_GWAS,-0.001174,-0.004102,-0.010244,-0.020996,0.004536, 0.038517, 0.006537,CHG_teosinte_landrace,S91,NA,-0.03198
+Fuma2_Res_With_IBM_For_GWAS,-0.03722,0.001299,-0.00972,-0.020693,-0.00845, 0.072029,-0.002756,CHG_teosinte_landrace,S29,NA,-0.074784
+Fuma2_Res_With_IBM_For_GWAS,0.0108,-0.010221,-0.009772,-0.00538,-0.000313, 0.025160, 0.010274,CHG_teosinte_landrace,S76,NA,-0.014886
+Fuma2_Res_With_IBM_For_GWAS,-0.006285,-0.001012,-0.003264,-0.005069,0.001002,-0.002301,-0.016930,CHG_teosinte_landrace,S13,NA,-0.014628
+Fuma2_Res_With_IBM_For_GWAS,-0.049208,-0.018726,-0.087002,0.044484,-0.008054, 0.077360,-0.041145,CHG_teosinte_landrace,S60,NA,-0.118506
+Fuma2_Res_With_IBM_For_GWAS,0.006813,0.001225,-0.000281,0.0061,0.000961,-0.000249, 0.014570,CHG_teosinte_landrace,S19,NA,0.014818
+Fuma2_Res_With_IBM_For_GWAS,-0.008667,-0.008556,-0.007686,-0.002744,1e-05, 0.009513,-0.018129,CHG_teosinte_landrace,S45,NA,-0.027643
+Fuma2_Res_With_IBM_For_GWAS,-0.016389,0.002632,-0.00236,-0.018065,0.002518, 0.013013,-0.018652,CHG_teosinte_landrace,S92,NA,-0.031664
+Fuma2_Res_With_IBM_For_GWAS,-0.006198,0.010249,0.001906,0.006209,-0.002102, 0.008376, 0.018441,CHG_teosinte_landrace,S3,NA,0.010064
+Fuma2_Res_With_IBM_For_GWAS,0.001493,0.003699,0.000609,-0.001157,0.000374, 0.006976, 0.011993,CHG_teosinte_landrace,S77,NA,0.005018
+Fuma2_Res_With_IBM_For_GWAS,-0.069468,-0.038942,-0.054873,-0.054734,-0.033222, 0.325138, 0.073899,CHG_teosinte_landrace,S35,NA,-0.251239
+Fuma2_Res_With_IBM_For_GWAS,0.011108,0.003987,-0.004323,0.001568,0.004932,-0.003024, 0.014248,CHG_teosinte_landrace,S61,NA,0.017272
+Fuma2_Res_With_IBM_For_GWAS,0.026624,-0.03121,-0.035915,0.014706,0.002229, 0.003727,-0.019840,CHG_teosinte_landrace,S2,NA,-0.023566
+Fuma2_Res_With_IBM_For_GWAS,-0.0067,0.005382,-0.001196,-0.000452,-0.000723, 0.007231, 0.003541,CHG_teosinte_landrace,S46,NA,-0.003689
+Fuma2_Res_With_IBM_For_GWAS,-0.03443,-0.020071,-0.033545,-0.023347,0.002794, 0.135705, 0.027106,CHG_teosinte_landrace,S93,NA,-0.108599
+Fuma2_Res_With_IBM_For_GWAS,0.002382,0.002385,0.00342,-0.000385,-0.000633, 0.002717, 0.009886,CHG_teosinte_landrace,S30,NA,0.007169
+Fuma2_Res_With_IBM_For_GWAS,0.020053,-0.040267,-0.049578,0.062285,-0.058257,-0.013582,-0.079346,CHG_teosinte_landrace,S78,NA,-0.065764
+Fuma2_Res_With_IBM_For_GWAS,0.045619,0.141253,-0.058154,0.022053,0.04982,-0.186434, 0.014157,CHG_teosinte_landrace,S36,NA,0.200591
+Fuma2_Res_With_IBM_For_GWAS,-0.0034,0.006495,0.014227,0.003542,0.001045,-0.003341, 0.018568,CHG_teosinte_landrace,S62,NA,0.021909
+Fuma2_Res_With_IBM_For_GWAS,-0.030721,-0.024748,-0.003419,0.009536,0.266531,-0.047783, 0.169397,CHG_teosinte_landrace,S20,NA,0.217179
+Fuma2_Res_With_IBM_For_GWAS,0.00536,0.003081,0.000688,-0.006551,0.002196, 0.005940, 0.010712,CHG_teosinte_landrace,S47,NA,0.004774
+Fuma2_Res_With_IBM_For_GWAS,0.001849,0.006462,0.002052,-0.001458,0.005118,-0.000762, 0.013260,CHG_teosinte_landrace,S94,NA,0.014023
+Fuma2_Res_With_IBM_For_GWAS,0.001039,-0.043603,-0.001841,0.0168,-0.008418,-0.057216,-0.093238,CHG_teosinte_landrace,S31,NA,-0.036023
+Fuma2_Res_With_IBM_For_GWAS,0.003572,-0.000757,0.002056,0.000844,0.000778, 0.005526, 0.012019,CHG_teosinte_landrace,S79,NA,0.006493
+Fuma2_Res_With_IBM_For_GWAS,-0.011975,-0.030155,-0.005845,-0.133625,-0.012429, 0.168650,-0.025379,CHG_teosinte_landrace,S37,NA,-0.194029
+Fuma2_Res_With_IBM_For_GWAS,-0.032002,-0.014701,-0.01036,-0.072367,0.007936, 0.165300, 0.043805,CHG_teosinte_landrace,S63,NA,-0.121494
+Fuma2_Res_With_IBM_For_GWAS,-0.016575,0.214815,-0.100981,0.105106,-0.013938,-0.155917, 0.032510,CHG_teosinte_landrace,S21,NA,0.188427
+Fuma2_Res_With_IBM_For_GWAS,-0.015414,-0.007396,-0.072741,-0.041961,-0.036077, 0.162146,-0.011444,CHG_teosinte_landrace,S48,NA,-0.173589
+Fuma2_Res_With_IBM_For_GWAS,-0.052815,-0.018354,0.009225,-0.018786,-0.105735, 0.212875, 0.026410,CHG_teosinte_landrace,S95,NA,-0.186465
+Fuma2_Res_With_IBM_For_GWAS,-0.006592,0.014227,0.00163,-0.00122,-0.00105, 0.005652, 0.012646,CHG_teosinte_landrace,S32,NA,0.006995
+Fuma2_Res_With_IBM_For_GWAS,0.006735,0.004546,0.000761,-0.001835,-0.002555, 0.005427, 0.013081,CHG_teosinte_landrace,S8,NA,0.007652
+Fuma2_Res_With_IBM_For_GWAS,0.003481,0.000339,0.000594,-0.000949,-0.001498, 0.006611, 0.008577,CHG_teosinte_landrace,S38,NA,0.001967
+Fuma2_Res_With_IBM_For_GWAS,-0.003668,0.009178,-0.003536,0.036361,-0.03289,-0.012622,-0.007177,CHG_teosinte_landrace,S64,NA,0.005445
+Fuma2_Res_With_IBM_For_GWAS,-0.02072,0.023693,0.002982,-0.026028,-0.011817,-0.079196,-0.111086,CHG_teosinte_landrace,S22,NA,-0.03189
+Fuma2_Res_With_IBM_For_GWAS,0.011687,0.000554,0.000288,-0.001953,-0.001643, 0.002828, 0.011761,CHG_teosinte_landrace,S49,NA,0.008933
+Fuma2_Res_With_IBM_For_GWAS,0.00792,0.022219,-0.009014,-0.000922,0.004935,-0.041554,-0.016417,CHG_teosinte_landrace,S96,NA,0.025138
+Fuma2_Res_With_IBM_For_GWAS,0.001676,0.005767,-8e-04,-0.002598,0.007167,-0.001958, 0.009254,CHG_teosinte_landrace,S33,NA,0.011212
+Fuma2_Res_With_IBM_For_GWAS,-0.006794,-0.010757,-0.031089,0.051368,-0.185383, 0.013048,-0.169606,CHG_teosinte_landrace,S80,NA,-0.182655
+Fuma2_Res_With_IBM_For_GWAS,-0.04958,-0.009363,0.005306,0.00896,-0.002677, 0.012586,-0.034768,CHG_teosinte_landrace,S39,NA,-0.047354
+Fuma2_Res_With_IBM_For_GWAS,-0.034748,0.068503,0.007636,-0.024222,-0.024335, 0.073426, 0.066260,CHG_teosinte_landrace,S65,NA,-0.007166
+Fuma2_Res_With_IBM_For_GWAS,-0.028056,-0.031638,-0.009359,-0.027938,0.012542, 0.087267, 0.002819,CHG_teosinte_landrace,S23,NA,-0.084449
+Fuma2_Res_With_IBM_For_GWAS,0.332583,-0.0107,0.001271,0.019963,-0.021434,-0.147007, 0.174677,CHG_teosinte_landrace,S5,NA,0.321683
+Fuma2_Res_With_IBM_For_GWAS,-0.03143,0.007638,-0.016327,-0.015713,-0.004045, 0.033533,-0.026345,CHG_teosinte_landrace,S97,NA,-0.059877
+Fuma2_Res_With_IBM_For_GWAS,0.014104,-0.004019,0.001466,0.004383,0.00342,-0.006246, 0.013108,CHG_teosinte_landrace,S34,NA,0.019354
+Fuma2_Res_With_IBM_For_GWAS,0.000373,0.003685,-0.000851,-0.004822,0.000218, 0.012373, 0.010976,CHG_teosinte_landrace,S81,NA,-0.001397
+Fuma2_Res_With_IBM_For_GWAS,-0.017949,-0.058064,-0.019853,0.140376,-0.01765,-0.035695,-0.008836,CHG_teosinte_landrace,S4,NA,0.02686
+Fuma2_Res_With_IBM_For_GWAS,-0.020211,-0.030121,0.177851,-0.006616,0.010413,-0.091911, 0.039404,CHG_teosinte_landrace,S66,NA,0.131316
+Fuma2_Res_With_IBM_For_GWAS,0.002676,0.001699,0.003127,0.001725,0.001396,-0.000648, 0.009975,CHG_teosinte_landrace,S68,NA,0.010623
+Fuma2_Res_With_IBM_For_GWAS,-0.148283,0.023112,-0.074856,0.018597,-0.009233, 0.008833,-0.181829,CHG_teosinte_landrace,S50,NA,-0.190663
+Fuma2_Res_With_IBM_For_GWAS,-0.042303,0.009389,0.009969,0.000337,-0.029858, 0.081355, 0.028888,CHG_teosinte_landrace,S98,NA,-0.052466
+Fuma2_Res_With_IBM_For_GWAS,0.008688,0.01003,-0.000626,-0.006341,0.006953,-0.039578,-0.020875,CHG_teosinte_landrace,S54,NA,0.018704
+Fuma2_Res_With_IBM_For_GWAS,-0.009762,0.011333,-0.013818,0.041945,0.005642,-0.042285,-0.006945,CHG_teosinte_landrace,S82,NA,0.03534
+Fuma2_Res_With_IBM_For_GWAS,-0.010426,-0.035701,-0.026977,0.236108,0.108016,-0.085579, 0.185440,CHG_teosinte_landrace,S84,NA,0.27102
+Fuma2_Res_With_IBM_For_GWAS,0.008091,0.00213,-0.003922,-0.003257,0.002204, 0.007426, 0.012672,CHG_teosinte_landrace,S67,NA,0.005246
+Fuma2_Res_With_IBM_For_GWAS,0.006851,-0.004003,0.004228,0.001168,-0.002061, 0.009198, 0.015380,CHG_teosinte_landrace,S69,NA,0.006183
+Fuma2_Res_With_IBM_For_GWAS,-0.024891,0.002084,-0.008621,-0.008542,-0.011398, 0.056931, 0.005564,CHG_teosinte_landrace,S51,NA,-0.051368
+Fuma2_Res_With_IBM_For_GWAS,-0.009045,-0.001037,0.003126,0.00995,-0.001565,-0.005164,-0.003735,CHG_teosinte_landrace,S99,NA,0.001429
+Fuma2_Res_With_IBM_For_GWAS,-0.011481,0.021145,0.003428,-0.028592,0.009065,-0.015271,-0.021707,CHG_teosinte_landrace,S55,NA,-0.006435
+Fuma2_Res_With_IBM_For_GWAS,0.015414,0.002448,0.010342,0.008762,0.002571,-0.011621, 0.027917,CHG_teosinte_landrace,S83,NA,0.039537
+Fuma2_Res_With_IBM_For_GWAS,0.00057,0.000964,-0.024153,-0.007237,-0.010917, 0.006870,-0.033903,CHG_teosinte_landrace,S85,NA,-0.040773
+Fuma2_Res_With_IBM_For_GWAS,-0.047999,-0.04667,-0.038779,0.007416,-0.036432, 0.229250, 0.066785,CHG_teosinte_landrace,S70,NA,-0.162464
+Fuma2_Res_With_IBM_For_GWAS,0.000505,-0.011893,0.000989,-0.007981,-0.008547, 0.037801, 0.010875,CHG_teosinte_landrace,S7,NA,-0.026927
+Fuma2_Res_With_IBM_For_GWAS,-0.015163,-0.016209,-0.005588,-0.012042,-0.010524, 0.061591, 0.002064,CHG_teosinte_landrace,S52,NA,-0.059526
+Fuma2_Res_With_IBM_For_GWAS,-0.001771,-2.3e-05,0.002128,0.002472,0.000258, 0.005886, 0.008951,CHG_teosinte_landrace,S53,NA,0.003064
+Fuma2_Res_With_IBM_For_GWAS,-0.036133,0.006503,0.022069,-0.046724,-0.011268, 0.030322,-0.035231,CHG_teosinte_landrace,S86,NA,-0.065553
+Glut_Res_With_IBM_For_GWAS,0.015769,0.021449,-0.00358,-0.040315,-0.00458, 0.112439, 0.101181,CHG_teosinte_landrace,S12,Glutamate,-0.011257
+Glut_Res_With_IBM_For_GWAS,0.011719,0.015417,-0.008944,0.008043,-0.019134, 0.147594, 0.154695,CHG_teosinte_landrace,S21,Glutamate,0.007101
+Glut_Res_With_IBM_For_GWAS,0.010576,-0.003699,0.000731,0.02301,-0.002801, 0.141720, 0.169537,CHG_teosinte_landrace,S100,Glutamate,0.027817
+Glut_Res_With_IBM_For_GWAS,0.00215,-0.002245,-0.003023,-0.001874,-0.005228, 0.179500, 0.169281,CHG_teosinte_landrace,S20,Glutamate,-0.01022
+Glut_Res_With_IBM_For_GWAS,0.002357,0.009171,0.005291,-0.005119,-0.005234, 0.161851, 0.168317,CHG_teosinte_landrace,S22,Glutamate,0.006466
+Glut_Res_With_IBM_For_GWAS,-0.011973,-0.05163,0.037041,-0.009795,-0.00851, 0.241186, 0.196321,CHG_teosinte_landrace,S11,Glutamate,-0.044867
+Glut_Res_With_IBM_For_GWAS,-0.00451,0.018377,-0.000118,-0.006315,-0.006341, 0.164127, 0.165222,CHG_teosinte_landrace,S13,Glutamate,0.001093
+Glut_Res_With_IBM_For_GWAS,-0.004427,-2.3e-05,-0.004266,-0.009774,0.001507, 0.191398, 0.174414,CHG_teosinte_landrace,S1,Glutamate,-0.016983
+Glut_Res_With_IBM_For_GWAS,0.011869,-0.005454,-0.00291,-0.004037,0.00372, 0.159365, 0.162551,CHG_teosinte_landrace,S56,Glutamate,0.003188
+Glut_Res_With_IBM_For_GWAS,-0.008105,-0.000575,0.026188,-0.000835,-0.005686, 0.153371, 0.164358,CHG_teosinte_landrace,S24,Glutamate,0.010987
+Glut_Res_With_IBM_For_GWAS,0.021784,0.004572,-0.001891,0.004073,0.006444, 0.121040, 0.156022,CHG_teosinte_landrace,S61,Glutamate,0.034982
+Glut_Res_With_IBM_For_GWAS,0.019318,0.006234,0.013206,-0.008397,-0.003562, 0.131745, 0.158544,CHG_teosinte_landrace,S23,Glutamate,0.026799
+Glut_Res_With_IBM_For_GWAS,0.024612,0.017159,-0.000594,0.006714,-0.004247, 0.117155, 0.160800,CHG_teosinte_landrace,S25,Glutamate,0.043644
+Glut_Res_With_IBM_For_GWAS,0.052336,-0.005859,-0.009463,-0.022257,-0.078972,-0.007518,-0.071735,CHG_teosinte_landrace,S14,Glutamate,-0.064215
+Glut_Res_With_IBM_For_GWAS,-0.001833,-0.001846,-0.002675,0.01638,-0.000184, 0.159293, 0.169136,CHG_teosinte_landrace,S10,Glutamate,0.009842
+Glut_Res_With_IBM_For_GWAS,0.049662,0.000323,-0.00675,-0.00691,-0.049444, 0.082933, 0.069814,CHG_teosinte_landrace,S57,Glutamate,-0.013119
+Glut_Res_With_IBM_For_GWAS,0.039527,0.00272,-0.012563,7.9e-05,-0.000151, 0.146080, 0.175691,CHG_teosinte_landrace,S15,Glutamate,0.029612
+Glut_Res_With_IBM_For_GWAS,0.004543,0.002738,0.015571,-0.003805,-0.000752, 0.148032, 0.166326,CHG_teosinte_landrace,S62,Glutamate,0.018295
+Glut_Res_With_IBM_For_GWAS,-0.008545,0.001056,0.01214,0.006264,0.00315, 0.151217, 0.165282,CHG_teosinte_landrace,S68,Glutamate,0.014065
+Glut_Res_With_IBM_For_GWAS,0.000258,-0.002044,-0.002674,0.001109,-0.000875, 0.175009, 0.170785,CHG_teosinte_landrace,S26,Glutamate,-0.004226
+Glut_Res_With_IBM_For_GWAS,-0.011631,0.016998,0.004973,-0.008807,-0.00463, 0.170476, 0.167378,CHG_teosinte_landrace,S73,Glutamate,-0.003097
+Glut_Res_With_IBM_For_GWAS,0.010429,0.010989,0.006758,-0.000458,-0.005842, 0.145338, 0.167214,CHG_teosinte_landrace,S31,Glutamate,0.021876
+Glut_Res_With_IBM_For_GWAS,-0.026136,-0.013862,-0.04385,-0.078374,-0.006716, 0.298374, 0.129435,CHG_teosinte_landrace,S58,Glutamate,-0.168938
+Glut_Res_With_IBM_For_GWAS,0.023737,0.026693,0.004636,-0.01583,0.011093, 0.123618, 0.173946,CHG_teosinte_landrace,S16,Glutamate,0.050329
+Glut_Res_With_IBM_For_GWAS,0.013304,-0.008061,0.012979,-0.013249,-0.000891, 0.171229, 0.175311,CHG_teosinte_landrace,S63,Glutamate,0.004082
+Glut_Res_With_IBM_For_GWAS,0.03287,0.01572,0.002966,-0.016097,0.004848, 0.127798, 0.168105,CHG_teosinte_landrace,S69,Glutamate,0.040307
+Glut_Res_With_IBM_For_GWAS,0.002392,-0.00293,0.005867,-0.00651,0.012537, 0.161430, 0.172784,CHG_teosinte_landrace,S27,Glutamate,0.011356
+Glut_Res_With_IBM_For_GWAS,0.01124,0.003315,0.019924,-0.005352,0.003181, 0.138970, 0.171278,CHG_teosinte_landrace,S74,Glutamate,0.032308
+Glut_Res_With_IBM_For_GWAS,0.001662,0.006542,-0.000729,-0.010269,-0.004152, 0.172997, 0.166050,CHG_teosinte_landrace,S32,Glutamate,-0.006946
+Glut_Res_With_IBM_For_GWAS,0.025283,-0.024343,-0.02964,-0.02546,0.071627, 0.116706, 0.134173,CHG_teosinte_landrace,S59,Glutamate,0.017467
+Glut_Res_With_IBM_For_GWAS,0.032839,0.021132,0.026673,-0.005443,0.004068, 0.090447, 0.169716,CHG_teosinte_landrace,S17,Glutamate,0.079269
+Glut_Res_With_IBM_For_GWAS,0.023643,-0.004801,0.007968,-0.017621,-0.002806, 0.152619, 0.159002,CHG_teosinte_landrace,S64,Glutamate,0.006383
+Glut_Res_With_IBM_For_GWAS,0.006223,-0.001607,-0.001761,-0.010744,-0.000487, 0.179983, 0.171606,CHG_teosinte_landrace,S7,Glutamate,-0.008376
+Glut_Res_With_IBM_For_GWAS,0.00112,-0.00335,0.001515,0.011184,-0.007162, 0.167924, 0.171231,CHG_teosinte_landrace,S28,Glutamate,0.003307
+Glut_Res_With_IBM_For_GWAS,0.019089,0.000237,0.002817,-0.004888,-0.002712, 0.150659, 0.165201,CHG_teosinte_landrace,S75,Glutamate,0.014543
+Glut_Res_With_IBM_For_GWAS,-0.032162,-0.014221,-0.037841,-0.156386,-0.036587, 0.577435, 0.300238,CHG_teosinte_landrace,S33,Glutamate,-0.277197
+Glut_Res_With_IBM_For_GWAS,0.025197,-0.00722,0.018724,0.011314,-0.008683, 0.126024, 0.165356,CHG_teosinte_landrace,S6,Glutamate,0.039332
+Glut_Res_With_IBM_For_GWAS,0.008778,0.012172,-0.016231,-0.006159,-0.002129, 0.174288, 0.170720,CHG_teosinte_landrace,S18,Glutamate,-0.003569
+Glut_Res_With_IBM_For_GWAS,-0.051735,-0.008261,-0.007183,-0.038515,-0.016757,-0.009356,-0.131807,CHG_teosinte_landrace,S65,Glutamate,-0.122451
+Glut_Res_With_IBM_For_GWAS,-0.110913,0.005798,-0.012687,-0.00779,-0.061059, 0.289502, 0.102849,CHG_teosinte_landrace,S70,Glutamate,-0.186651
+Glut_Res_With_IBM_For_GWAS,0.011673,0.014353,0.000887,0.000672,0.005154,0.130872,0.163612,CHG_teosinte_landrace,S29,Glutamate,0.032739
+Glut_Res_With_IBM_For_GWAS,0.006265,-0.025122,-0.013684,-0.028768,-0.007255, 0.001299,-0.067266,CHG_teosinte_landrace,S76,Glutamate,-0.068564
+Glut_Res_With_IBM_For_GWAS,0.00991,-0.005781,0.012774,-0.001908,-0.001666, 0.160159, 0.173488,CHG_teosinte_landrace,S34,Glutamate,0.013329
+Glut_Res_With_IBM_For_GWAS,-0.004829,-0.005045,-0.001445,-0.005866,-0.005358, 0.194863, 0.172320,CHG_teosinte_landrace,S60,Glutamate,-0.022543
+Glut_Res_With_IBM_For_GWAS,0.016582,0.000665,-0.002404,-0.011716,0.00507, 0.158183, 0.166380,CHG_teosinte_landrace,S19,Glutamate,0.008197
+Glut_Res_With_IBM_For_GWAS,-0.007159,-0.00348,-0.002448,0.003001,-0.001797, 0.183312, 0.171428,CHG_teosinte_landrace,S66,Glutamate,-0.011883
+Glut_Res_With_IBM_For_GWAS,0.045222,-0.008775,-0.001992,-0.00743,-0.025517, 0.118176, 0.119684,CHG_teosinte_landrace,S71,Glutamate,0.001508
+Glut_Res_With_IBM_For_GWAS,0.064032,-0.012252,-0.007795,-0.024647,-0.039702, 0.226406, 0.206042,CHG_teosinte_landrace,S3,Glutamate,-0.020364
+Glut_Res_With_IBM_For_GWAS,0.040615,-0.011998,-0.002671,-0.037916,-0.012712, 0.115317, 0.090636,CHG_teosinte_landrace,S77,Glutamate,-0.024682
+Glut_Res_With_IBM_For_GWAS,0.016383,-0.030538,-0.012936,-0.012696,-0.006605, 0.066738, 0.020347,CHG_teosinte_landrace,S35,Glutamate,-0.046392
+Glut_Res_With_IBM_For_GWAS,0.006484,-0.001614,-0.002114,0.009897,-0.010237, 0.165347, 0.167763,CHG_teosinte_landrace,S82,Glutamate,0.002416
+Glut_Res_With_IBM_For_GWAS,0.012736,-0.002678,0.0254,0.003591,-0.001183, 0.121382, 0.159248,CHG_teosinte_landrace,S2,Glutamate,0.037866
+Glut_Res_With_IBM_For_GWAS,0.027273,0.006383,-0.009258,-0.008917,-0.00067, 0.150885, 0.165695,CHG_teosinte_landrace,S67,Glutamate,0.014811
+Glut_Res_With_IBM_For_GWAS,0.026194,-0.001201,-0.003272,0.005416,-0.002089, 0.138770, 0.163819,CHG_teosinte_landrace,S72,Glutamate,0.025048
+Glut_Res_With_IBM_For_GWAS,0.002162,0.018727,0.001801,0.004651,-0.003071, 0.137747, 0.162016,CHG_teosinte_landrace,S30,Glutamate,0.02427
+Glut_Res_With_IBM_For_GWAS,-0.015917,-0.000299,0.008239,-0.001201,0.016414, 0.150048, 0.157284,CHG_teosinte_landrace,S78,Glutamate,0.007236
+Glut_Res_With_IBM_For_GWAS,0.001811,0.00131,-0.011539,-0.016614,-0.010006, 0.187520, 0.152482,CHG_teosinte_landrace,S36,Glutamate,-0.035038
+Glut_Res_With_IBM_For_GWAS,0.009781,-0.000274,0.011795,-0.000817,-0.002557, 0.143403, 0.161331,CHG_teosinte_landrace,S83,Glutamate,0.017928
+Glut_Res_With_IBM_For_GWAS,-0.005225,0.007861,0.002153,-0.008056,0.003504, 0.159805, 0.160043,CHG_teosinte_landrace,S41,Glutamate,0.000236999999999999
+Glut_Res_With_IBM_For_GWAS,0.030728,-0.007925,-0.029074,-0.128907,-0.007355, 0.095012,-0.047522,CHG_teosinte_landrace,S89,Glutamate,-0.142533
+Glut_Res_With_IBM_For_GWAS,0.036074,0.032432,-0.003828,-0.003114,-0.000405, 0.093813, 0.154972,CHG_teosinte_landrace,S47,Glutamate,0.061159
+Glut_Res_With_IBM_For_GWAS,-0.041154,-0.030703,-0.158907,-0.040661,-0.00432, 0.331987, 0.056242,CHG_teosinte_landrace,S52,Glutamate,-0.275745
+Glut_Res_With_IBM_For_GWAS,-0.081777,-0.000997,-0.046581,-0.06803,-0.021215, 0.463722, 0.245121,CHG_teosinte_landrace,S79,Glutamate,-0.2186
+Glut_Res_With_IBM_For_GWAS,-0.035741,0.066453,-0.005141,-0.176339,0.105844, 0.547027, 0.502103,CHG_teosinte_landrace,S37,Glutamate,-0.044924
+Glut_Res_With_IBM_For_GWAS,-0.013624,-0.022014,-0.03725,-0.085764,-0.025123, 0.694019, 0.510244,CHG_teosinte_landrace,S84,Glutamate,-0.183775
+Glut_Res_With_IBM_For_GWAS,0.008087,-0.003613,0.003068,-0.001715,-0.003608, 0.154386, 0.156604,CHG_teosinte_landrace,S42,Glutamate,0.002219
+Glut_Res_With_IBM_For_GWAS,0.012484,-1e-05,0.007788,-0.002782,-0.004696, 0.159736, 0.172521,CHG_teosinte_landrace,S9,Glutamate,0.012784
+Glut_Res_With_IBM_For_GWAS,0.032435,0.002085,0.015959,-0.001886,-0.006241, 0.103664, 0.146016,CHG_teosinte_landrace,S48,Glutamate,0.042352
+Glut_Res_With_IBM_For_GWAS,0.018835,0.01565,-0.006541,-0.000342,0.001804, 0.144580, 0.173986,CHG_teosinte_landrace,S53,Glutamate,0.029406
+Glut_Res_With_IBM_For_GWAS,-0.002481,0.002705,0.004466,-0.004235,-0.002743, 0.167039, 0.164752,CHG_teosinte_landrace,S8,Glutamate,-0.002288
+Glut_Res_With_IBM_For_GWAS,0.014525,-0.03033,-0.012223,0.009209,-0.051503, 0.104196, 0.033875,CHG_teosinte_landrace,S38,Glutamate,-0.070322
+Glut_Res_With_IBM_For_GWAS,0.042263,0.007693,-0.005477,0.000724,-0.007808, 0.128476, 0.165872,CHG_teosinte_landrace,S85,Glutamate,0.037395
+Glut_Res_With_IBM_For_GWAS,0.004658,8.4e-05,0.001713,-0.016481,-0.006099, 0.171003, 0.154877,CHG_teosinte_landrace,S43,Glutamate,-0.016125
+Glut_Res_With_IBM_For_GWAS,-0.004223,0.008897,0.00896,0.009124,0.005496, 0.141124, 0.169378,CHG_teosinte_landrace,S90,Glutamate,0.028254
+Glut_Res_With_IBM_For_GWAS,0.042185,0.00549,0.013509,0.006334,0.001753,0.082163,0.151434,CHG_teosinte_landrace,S49,Glutamate,0.069271
+Glut_Res_With_IBM_For_GWAS,0.051236,0.002382,-0.023453,-0.023412,0.010607,-0.019356,-0.001997,CHG_teosinte_landrace,S54,Glutamate,0.01736
+Glut_Res_With_IBM_For_GWAS,0.039251,-0.001471,-0.004168,0.007495,0.001892, 0.127049, 0.170048,CHG_teosinte_landrace,S80,Glutamate,0.042999
+Glut_Res_With_IBM_For_GWAS,0.014412,-0.003317,0.002527,-0.005677,-0.007696, 0.165632, 0.165881,CHG_teosinte_landrace,S39,Glutamate,0.000248999999999999
+Glut_Res_With_IBM_For_GWAS,-0.005219,0.002056,0.002418,0.006197,-0.000763, 0.166234, 0.170922,CHG_teosinte_landrace,S86,Glutamate,0.004689
+Glut_Res_With_IBM_For_GWAS,-0.002321,0.028893,-0.001062,0.013483,0.004842, 0.135595, 0.179431,CHG_teosinte_landrace,S44,Glutamate,0.043835
+Glut_Res_With_IBM_For_GWAS,0.040042,-0.001733,-0.000542,-0.013004,0.004483, 0.136391, 0.165637,CHG_teosinte_landrace,S91,Glutamate,0.029246
+Glut_Res_With_IBM_For_GWAS,0.005816,-0.002142,-0.001972,-0.009683,0.005791, 0.173072, 0.170883,CHG_teosinte_landrace,S5,Glutamate,-0.00219
+Glut_Res_With_IBM_For_GWAS,0.05386,0.013278,-0.003903,0.00343,0.009011, 0.092676, 0.168352,CHG_teosinte_landrace,S55,Glutamate,0.075676
+Glut_Res_With_IBM_For_GWAS,0.027912,0.00874,0.008682,-0.001002,-8.3e-05, 0.115886, 0.160136,CHG_teosinte_landrace,S81,Glutamate,0.044249
+Glut_Res_With_IBM_For_GWAS,0.027398,0.001018,-0.000475,-0.003926,0.005671, 0.141188, 0.170874,CHG_teosinte_landrace,S4,Glutamate,0.029686
+Glut_Res_With_IBM_For_GWAS,0.024541,0.004717,0.015159,0.007747,-0.003112, 0.106985, 0.156036,CHG_teosinte_landrace,S87,Glutamate,0.049052
+Glut_Res_With_IBM_For_GWAS,-0.052781,-0.035701,-0.038004,0.069849,0.018538, 0.124128, 0.086029,CHG_teosinte_landrace,S45,Glutamate,-0.038099
+Glut_Res_With_IBM_For_GWAS,0.001806,0.001899,0.001727,0.005508,-0.001334, 0.161093, 0.170699,CHG_teosinte_landrace,S92,Glutamate,0.009606
+Glut_Res_With_IBM_For_GWAS,-0.05648,-0.011,-0.003216,-0.030979,-0.001681, 0.364478, 0.261123,CHG_teosinte_landrace,S50,Glutamate,-0.103356
+Glut_Res_With_IBM_For_GWAS,0.001177,0.005515,-0.004421,0.000914,-0.008596, 0.170901, 0.165491,CHG_teosinte_landrace,S98,Glutamate,-0.005411
+Glut_Res_With_IBM_For_GWAS,0.027304,-0.016533,0.022771,-0.013634,-0.028086, 0.095080, 0.086901,CHG_teosinte_landrace,S93,Glutamate,-0.008178
+Glut_Res_With_IBM_For_GWAS,0.135452,-0.031766,0.100045,-0.027787,-0.012579, 0.044097, 0.207462,CHG_teosinte_landrace,S40,Glutamate,0.163365
+Glut_Res_With_IBM_For_GWAS,0.007133,0.000425,0.006324,0.013131,-0.003359, 0.146968, 0.170622,CHG_teosinte_landrace,S88,Glutamate,0.023654
+Glut_Res_With_IBM_For_GWAS,0.003524,0.006708,0.012035,0.003398,0.00078,0.142114,0.168558,CHG_teosinte_landrace,S46,Glutamate,0.026445
+Glut_Res_With_IBM_For_GWAS,0.011638,-0.001884,0.002382,-0.01728,-0.005785, 0.178016, 0.167088,CHG_teosinte_landrace,S96,Glutamate,-0.010929
+Glut_Res_With_IBM_For_GWAS,-0.055902,-0.07276,-0.005769,-0.067022,-0.055442, 0.552212, 0.295318,CHG_teosinte_landrace,S51,Glutamate,-0.256895
+Glut_Res_With_IBM_For_GWAS,-2.4e-05,0.005675,0.019133,0.005914,0.010984, 0.134199, 0.175881,CHG_teosinte_landrace,S99,Glutamate,0.041682
+Glut_Res_With_IBM_For_GWAS,0.019649,0.013469,-0.001875,-0.000792,0.009221, 0.117875, 0.157547,CHG_teosinte_landrace,S94,Glutamate,0.039672
+Glut_Res_With_IBM_For_GWAS,0.012941,-0.000327,0.00393,-0.007588,-0.003052, 0.160292, 0.166198,CHG_teosinte_landrace,S95,Glutamate,0.005904
+Glut_Res_With_IBM_For_GWAS,0.004189,0.003361,-0.000298,-0.003678,-0.00452, 0.168776, 0.167829,CHG_teosinte_landrace,S97,Glutamate,-0.000946
+nlb_residuals,0.004543,0.003402,-0.005767,-0.009976,0.001392, 0.833400, 0.826994,CHG_teosinte_landrace,S56,Northern Leaf Blight,-0.006406
+nlb_residuals,0.005223,0.003311,-0.004976,0.009508,0.000347, 0.814223, 0.827635,CHG_teosinte_landrace,S20,Northern Leaf Blight,0.013413
+nlb_residuals,0.002005,-0.002233,0.008695,-0.00102,-0.002722, 0.822637, 0.827361,CHG_teosinte_landrace,S83,Northern Leaf Blight,0.004725
+nlb_residuals,0.001981,0.007817,0.006051,0.008849,-0.012108, 0.828133, 0.840723,CHG_teosinte_landrace,S100,Northern Leaf Blight,0.01259
+nlb_residuals,-0.006375,0.002706,-0.005698,-0.000299,-0.006924, 0.844049, 0.827458,CHG_teosinte_landrace,S68,Northern Leaf Blight,-0.01659
+nlb_residuals,0.030421,-0.008051,0.012873,-0.008863,0.001403, 0.799015, 0.826798,CHG_teosinte_landrace,S57,Northern Leaf Blight,0.027783
+nlb_residuals,-0.017748,-0.008878,0.005577,0.002701,-0.012822, 0.863097, 0.831927,CHG_teosinte_landrace,S21,Northern Leaf Blight,-0.03117
+nlb_residuals,0.003378,-0.004962,-0.006842,0.015814,-0.002372, 0.825273, 0.830289,CHG_teosinte_landrace,S69,Northern Leaf Blight,0.005016
+nlb_residuals,0.00257,0.003995,0.00424,-0.005142,0.006734, 0.815148, 0.827545,CHG_teosinte_landrace,S58,Northern Leaf Blight,0.012397
+nlb_residuals,-0.010038,0.006339,-0.00287,-0.000496,-0.000201, 0.833542, 0.826275,CHG_teosinte_landrace,S84,Northern Leaf Blight,-0.007266
+nlb_residuals,0.008815,-0.003001,0.003644,0.003105,-0.003768, 0.818025, 0.826820,CHG_teosinte_landrace,S11,Northern Leaf Blight,0.008795
+nlb_residuals,0.009703,-0.002766,0.001447,0.004368,-0.002379, 0.817989, 0.828361,CHG_teosinte_landrace,S59,Northern Leaf Blight,0.010373
+nlb_residuals,0.006819,0.014457,-0.0075,-0.012194,-0.007291, 0.826619, 0.820911,CHG_teosinte_landrace,S85,Northern Leaf Blight,-0.005709
+nlb_residuals,-7.3e-05,-0.001643,-0.002044,-0.012406,0.004242, 0.840284, 0.828361,CHG_teosinte_landrace,S22,Northern Leaf Blight,-0.011924
+nlb_residuals,0.003329,-0.026385,-0.000397,-0.004505,0.022709, 0.872782, 0.867534,CHG_teosinte_landrace,S7,Northern Leaf Blight,-0.005249
+nlb_residuals,0.008591,-0.002723,-0.010636,-0.014417,0.001495, 0.843194, 0.825503,CHG_teosinte_landrace,S73,Northern Leaf Blight,-0.01769
+nlb_residuals,0.014795,0.000842,0.004854,0.00429,-0.002923, 0.804750, 0.826608,CHG_teosinte_landrace,S75,Northern Leaf Blight,0.021858
+nlb_residuals,-0.003518,0.015875,0.001204,0.022969,0.005432, 0.783043, 0.825005,CHG_teosinte_landrace,S12,Northern Leaf Blight,0.041962
+nlb_residuals,0.034902,-0.004513,0.010789,-0.030794,-0.02252, 0.843232, 0.831096,CHG_teosinte_landrace,S6,Northern Leaf Blight,-0.012136
+nlb_residuals,0.013522,0.002576,-0.003235,0.013999,-0.003525, 0.804707, 0.828043,CHG_teosinte_landrace,S86,Northern Leaf Blight,0.023337
+nlb_residuals,0.001814,0.004503,0.003854,0.010704,-0.000424, 0.806985, 0.827436,CHG_teosinte_landrace,S23,Northern Leaf Blight,0.020451
+nlb_residuals,-0.014099,0.006473,0.005555,-0.001282,0.005113, 0.825845, 0.827606,CHG_teosinte_landrace,S70,Northern Leaf Blight,0.00176
+nlb_residuals,0.026375,-0.028831,-0.009599,-0.007328,0.002267, 0.846461, 0.829345,CHG_teosinte_landrace,S74,Northern Leaf Blight,-0.017116
+nlb_residuals,0.004888,0.004452,-0.003379,-0.007162,0.004836, 0.824610, 0.828244,CHG_teosinte_landrace,S76,Northern Leaf Blight,0.003635
+nlb_residuals,-0.001265,0.004011,-0.007115,-0.002801,-0.002592, 0.839401, 0.829640,CHG_teosinte_landrace,S13,Northern Leaf Blight,-0.009762
+nlb_residuals,-0.003188,0.010635,0.001234,0.000397,-0.010147, 0.825963, 0.824894,CHG_teosinte_landrace,S60,Northern Leaf Blight,-0.001069
+nlb_residuals,0.00786,0.002052,0.006283,-0.004024,-0.005632, 0.820755, 0.827293,CHG_teosinte_landrace,S87,Northern Leaf Blight,0.006539
+nlb_residuals,0.001981,-0.008058,-0.000589,-0.007951,-0.001245, 0.844387, 0.828525,CHG_teosinte_landrace,S24,Northern Leaf Blight,-0.015862
+nlb_residuals,0.021173,0.010896,0.000668,-0.008641,1.2e-05, 0.800162, 0.824270,CHG_teosinte_landrace,S71,Northern Leaf Blight,0.024108
+nlb_residuals,0.008997,0.009754,-0.004401,-0.003508,-0.0038, 0.819354, 0.826397,CHG_teosinte_landrace,S1,Northern Leaf Blight,0.007042
+nlb_residuals,0.001705,-0.005493,0.004676,-0.011126,0.006497, 0.832815, 0.829074,CHG_teosinte_landrace,S77,Northern Leaf Blight,-0.003741
+nlb_residuals,-0.011015,-0.006032,-0.013794,0.008247,-0.001963, 0.855325, 0.830768,CHG_teosinte_landrace,S14,Northern Leaf Blight,-0.024557
+nlb_residuals,0.024446,-0.01329,0.019905,-0.01049,-0.00735, 0.801486, 0.814707,CHG_teosinte_landrace,S61,Northern Leaf Blight,0.013221
+nlb_residuals,0.001229,-0.001262,0.007539,0.005652,-0.006114, 0.819969, 0.827013,CHG_teosinte_landrace,S88,Northern Leaf Blight,0.007044
+nlb_residuals,-0.061562,0.042445,0.008574,-0.027358,0.043737, 0.696777, 0.702615,CHG_teosinte_landrace,S25,Northern Leaf Blight,0.00583599999999999
+nlb_residuals,0.012801,0.003766,-0.003789,-0.012942,-0.00182, 0.830104, 0.828120,CHG_teosinte_landrace,S72,Northern Leaf Blight,-0.001984
+nlb_residuals,0.003514,0.004553,0.015658,0.003924,0.001879,0.796180,0.825707,CHG_teosinte_landrace,S10,Northern Leaf Blight,0.029528
+nlb_residuals,-0.016335,-0.002163,0.001344,-0.004474,0.00018, 0.849188, 0.827740,CHG_teosinte_landrace,S78,Northern Leaf Blight,-0.021448
+nlb_residuals,0.024373,-0.002681,-0.003516,-0.004377,-0.001577, 0.815494, 0.827716,CHG_teosinte_landrace,S15,Northern Leaf Blight,0.012222
+nlb_residuals,-0.005744,-0.006643,0.001908,-0.009999,-0.000872, 0.851442, 0.830092,CHG_teosinte_landrace,S62,Northern Leaf Blight,-0.02135
+nlb_residuals,-0.008894,0.007789,0.006176,0.010838,-0.006223, 0.815798, 0.825484,CHG_teosinte_landrace,S89,Northern Leaf Blight,0.009686
+nlb_residuals,0.009606,-0.001477,0.003951,-0.009938,0.002084, 0.823057, 0.827282,CHG_teosinte_landrace,S26,Northern Leaf Blight,0.004226
+nlb_residuals,-0.014223,0.005478,0.004299,0.008876,0.000716, 0.818907, 0.824053,CHG_teosinte_landrace,S94,Northern Leaf Blight,0.005146
+nlb_residuals,0.016198,0.007901,-0.002126,0.005165,0.000762, 0.798396, 0.826296,CHG_teosinte_landrace,S31,Northern Leaf Blight,0.0279
+nlb_residuals,-0.014055,-0.001615,-0.018409,-0.018803,0.00532, 0.868197, 0.820634,CHG_teosinte_landrace,S79,Northern Leaf Blight,-0.047562
+nlb_residuals,-0.005649,0.006851,-0.007522,0.015424,-0.004579, 0.821700, 0.826225,CHG_teosinte_landrace,S16,Northern Leaf Blight,0.004525
+nlb_residuals,-0.008352,-0.001707,0.006043,-0.003586,-0.004588, 0.839669, 0.827479,CHG_teosinte_landrace,S63,Northern Leaf Blight,-0.01219
+nlb_residuals,0.008278,-0.005662,-0.003382,0.008858,-0.002797, 0.822286, 0.827581,CHG_teosinte_landrace,S9,Northern Leaf Blight,0.005295
+nlb_residuals,0.004694,0.009367,0.00239,-0.013462,-0.004787, 0.828884, 0.827086,CHG_teosinte_landrace,S27,Northern Leaf Blight,-0.001798
+nlb_residuals,-0.040707,-0.007099,0.001097,-0.021517,-0.046279, 0.902894, 0.788389,CHG_teosinte_landrace,S95,Northern Leaf Blight,-0.114505
+nlb_residuals,-0.007235,0.004414,0.008198,0.006653,0.004346, 0.811554, 0.827930,CHG_teosinte_landrace,S32,Northern Leaf Blight,0.016376
+nlb_residuals,-0.005386,0.001134,0.000292,0.001511,-0.005443, 0.837199, 0.829307,CHG_teosinte_landrace,S8,Northern Leaf Blight,-0.007892
+nlb_residuals,-0.002441,0.002304,0.000511,0.005782,0.000504, 0.820230, 0.826890,CHG_teosinte_landrace,S17,Northern Leaf Blight,0.00666
+nlb_residuals,-0.065492,-0.017046,0.014742,-0.004137,-0.002425, 0.811612, 0.737254,CHG_teosinte_landrace,S64,Northern Leaf Blight,-0.074358
+nlb_residuals,0.004709,-0.005568,-0.00376,-0.087222,-0.009405, 0.922236, 0.820990,CHG_teosinte_landrace,S90,Northern Leaf Blight,-0.101246
+nlb_residuals,-0.008484,0.002134,0.009526,0.003254,-0.006716, 0.825708, 0.825422,CHG_teosinte_landrace,S28,Northern Leaf Blight,-0.000286
+nlb_residuals,0.028393,-0.000697,0.005035,0.004766,-0.005082, 0.793546, 0.825961,CHG_teosinte_landrace,S96,Northern Leaf Blight,0.032415
+nlb_residuals,0.022963,-0.002542,-0.003829,-0.001361,-0.000375, 0.811571, 0.826428,CHG_teosinte_landrace,S33,Northern Leaf Blight,0.014856
+nlb_residuals,0.027436,0.001895,0.004091,-0.00529,-0.006556, 0.802440, 0.824017,CHG_teosinte_landrace,S80,Northern Leaf Blight,0.021576
+nlb_residuals,-0.032246,0.001565,-0.007005,-0.011084,-0.026042, 0.890856, 0.816044,CHG_teosinte_landrace,S18,Northern Leaf Blight,-0.074812
+nlb_residuals,0.006781,0.004433,-0.001742,0.009308,-0.006358, 0.814227, 0.826648,CHG_teosinte_landrace,S65,Northern Leaf Blight,0.012422
+nlb_residuals,0.010631,0.014519,0.006769,-0.002735,0.010732, 0.785163, 0.825080,CHG_teosinte_landrace,S91,Northern Leaf Blight,0.039916
+nlb_residuals,-0.008765,0.001126,-0.002835,-0.010887,0.001747, 0.847392, 0.827779,CHG_teosinte_landrace,S29,Northern Leaf Blight,-0.019614
+nlb_residuals,-0.000418,0.005486,-0.004851,0.002236,0.003168, 0.823544, 0.829166,CHG_teosinte_landrace,S97,Northern Leaf Blight,0.005621
+nlb_residuals,0.015346,0.000375,-0.0031,0.001181,0.003011, 0.809237, 0.826051,CHG_teosinte_landrace,S34,Northern Leaf Blight,0.016813
+nlb_residuals,0.006514,0.004605,0.001939,-0.007921,-0.005435, 0.826301, 0.826002,CHG_teosinte_landrace,S81,Northern Leaf Blight,-0.000297999999999999
+nlb_residuals,0.005487,0.003877,9.7e-05,0.013534,-0.005295, 0.809548, 0.827249,CHG_teosinte_landrace,S19,Northern Leaf Blight,0.0177
+nlb_residuals,-0.004936,-0.026398,-0.014165,-0.021756,-0.021149, 0.953190, 0.864787,CHG_teosinte_landrace,S66,Northern Leaf Blight,-0.088404
+nlb_residuals,0.015272,0.00311,0.002138,-0.005243,-0.001423, 0.812417, 0.826270,CHG_teosinte_landrace,S92,Northern Leaf Blight,0.013854
+nlb_residuals,-0.053266,-0.04673,-0.009366,0.051014,-0.002294, 0.865676, 0.805034,CHG_teosinte_landrace,S3,Northern Leaf Blight,-0.060642
+nlb_residuals,0.010067,-0.004905,0.005989,-0.051925,-0.014192, 0.966832, 0.911866,CHG_teosinte_landrace,S98,Northern Leaf Blight,-0.054966
+nlb_residuals,0.015139,-0.002856,0.020578,0.003215,-0.001458, 0.792116, 0.826733,CHG_teosinte_landrace,S35,Northern Leaf Blight,0.034618
+nlb_residuals,0.017071,-0.006817,-0.005517,0.01256,0.00186, 0.807707, 0.826865,CHG_teosinte_landrace,S82,Northern Leaf Blight,0.019157
+nlb_residuals,-0.001334,0.000748,-0.003103,-0.026413,-0.005845, 0.862330, 0.826383,CHG_teosinte_landrace,S2,Northern Leaf Blight,-0.035947
+nlb_residuals,0.008477,0.011473,-0.001503,0.003807,-0.005648, 0.808733, 0.825338,CHG_teosinte_landrace,S67,Northern Leaf Blight,0.016606
+nlb_residuals,0.0026,0.005475,0.009658,0.001687,-0.001212, 0.808290, 0.826498,CHG_teosinte_landrace,S93,Northern Leaf Blight,0.018208
+nlb_residuals,-0.027087,0.002792,0.002129,-2.1e-05,-0.009717, 0.858166, 0.826262,CHG_teosinte_landrace,S30,Northern Leaf Blight,-0.031904
+nlb_residuals,0.011331,-0.006109,-0.004283,-0.006198,-0.000759, 0.832536, 0.826517,CHG_teosinte_landrace,S99,Northern Leaf Blight,-0.006018
+nlb_residuals,0.011315,-0.003381,-0.003419,-0.006338,-0.007708, 0.836070, 0.826538,CHG_teosinte_landrace,S36,Northern Leaf Blight,-0.009531
+nlb_residuals,0.006145,0.011057,-0.006649,-0.008447,-0.005103, 0.829367, 0.826370,CHG_teosinte_landrace,S38,Northern Leaf Blight,-0.002997
+nlb_residuals,0.013832,-0.006854,0.006755,-0.003169,-0.004745, 0.821495, 0.827314,CHG_teosinte_landrace,S41,Northern Leaf Blight,0.005819
+nlb_residuals,0.014114,-0.005444,0.001783,0.000846,-0.002096, 0.821240, 0.830443,CHG_teosinte_landrace,S43,Northern Leaf Blight,0.009203
+nlb_residuals,0.002318,0.00517,-0.002531,-0.009369,-7e-04, 0.830383, 0.825271,CHG_teosinte_landrace,S47,Northern Leaf Blight,-0.005112
+nlb_residuals,-0.001466,0.007291,0.021762,-0.008241,-0.006126, 0.813378, 0.826598,CHG_teosinte_landrace,S52,Northern Leaf Blight,0.01322
+nlb_residuals,-0.004952,-0.00349,0.009814,-0.016072,0.003508, 0.839843, 0.828651,CHG_teosinte_landrace,S54,Northern Leaf Blight,-0.011192
+nlb_residuals,0.012638,-0.005204,-0.009042,-0.081264,0.004858, 0.936675, 0.858662,CHG_teosinte_landrace,S37,Northern Leaf Blight,-0.078014
+nlb_residuals,0.023013,-0.002942,-0.003432,0.021715,-0.00435, 0.790187, 0.824191,CHG_teosinte_landrace,S39,Northern Leaf Blight,0.034004
+nlb_residuals,-0.008052,-0.000356,8e-04,0.013766,-6.6e-05, 0.823619, 0.829712,CHG_teosinte_landrace,S42,Northern Leaf Blight,0.006092
+nlb_residuals,0.034074,0.005008,0.001998,0.014947,-0.003519, 0.772444, 0.824951,CHG_teosinte_landrace,S44,Northern Leaf Blight,0.052508
+nlb_residuals,-0.005288,0.004672,-0.000521,0.000554,-0.005493, 0.833948, 0.827872,CHG_teosinte_landrace,S48,Northern Leaf Blight,-0.006076
+nlb_residuals,0.003931,0.008979,0.012139,-0.015017,-0.004751, 0.819430, 0.824710,CHG_teosinte_landrace,S53,Northern Leaf Blight,0.005281
+nlb_residuals,-0.001078,0.006793,0.015573,0.002226,-0.005875, 0.808668, 0.826307,CHG_teosinte_landrace,S55,Northern Leaf Blight,0.017639
+nlb_residuals,0.014456,0.02858,0.009919,0.011597,-0.005015, 0.762497, 0.822034,CHG_teosinte_landrace,S49,Northern Leaf Blight,0.059537
+nlb_residuals,0.02056,-0.000992,-0.002549,-0.001144,-0.005652, 0.814958, 0.825182,CHG_teosinte_landrace,S4,Northern Leaf Blight,0.010223
+nlb_residuals,0.013182,-0.008982,-0.007163,0.01618,-0.007386, 0.823224, 0.829055,CHG_teosinte_landrace,S46,Northern Leaf Blight,0.005831
+nlb_residuals,0.007542,0.021343,0.010193,0.006623,-0.00417, 0.784481, 0.826012,CHG_teosinte_landrace,S45,Northern Leaf Blight,0.041531
+nlb_residuals,-0.061431,-0.021808,0.002182,-0.048765,-0.020368, 0.946382, 0.796192,CHG_teosinte_landrace,S40,Northern Leaf Blight,-0.15019
+nlb_residuals,-0.007886,0.019787,0.00374,-0.00284,-0.000929, 0.813277, 0.825149,CHG_teosinte_landrace,S50,Northern Leaf Blight,0.011872
+nlb_residuals,0.009119,0.002585,0.000926,-0.012571,-0.003559, 0.830476, 0.826976,CHG_teosinte_landrace,S5,Northern Leaf Blight,-0.0035
+nlb_residuals,-0.003047,0.006095,0.002642,0.009088,-0.006367, 0.819069, 0.827481,CHG_teosinte_landrace,S51,Northern Leaf Blight,0.008411
+rpravg,-0.011366,-0.015371,-0.044811,-0.033092,-0.066868, 0.209317, 0.037809,CHG_teosinte_landrace,S20,Stalk strength,-0.171508
+rpravg,0.014134,-0.069267,-0.015656,0.010017,-0.011167, 0.185029, 0.113089,CHG_teosinte_landrace,S21,Stalk strength,-0.071939
+rpravg,0.011103,0.013318,-0.012908,-0.049362,0.013393, 0.117647, 0.093193,CHG_teosinte_landrace,S54,Stalk strength,-0.024456
+rpravg,-0.027488,-0.025215,-0.08834,-0.01511,-0.094226, 0.132153,-0.118226,CHG_teosinte_landrace,S37,Stalk strength,-0.250379
+rpravg,0.00907,0.011808,0.005757,0.00899,0.002422,0.204705,0.242752,CHG_teosinte_landrace,S36,Stalk strength,0.038047
+rpravg,0.023452,-0.001625,0.002649,0.001846,-0.00763, 0.222572, 0.241264,CHG_teosinte_landrace,S55,Stalk strength,0.018692
+rpravg,0.014064,3.5e-05,-0.011366,0.001427,-0.004731, 0.230790, 0.230219,CHG_teosinte_landrace,S38,Stalk strength,-0.000570999999999999
+rpravg,-0.000403,0.007589,0.001316,-0.019795,-0.007722, 0.252826, 0.233811,CHG_teosinte_landrace,S4,Stalk strength,-0.019015
+rpravg,0.016712,0.036745,0.004438,0.019441,0.001551,0.164086,0.242972,CHG_teosinte_landrace,S22,Stalk strength,0.078887
+rpravg,0.001515,0.04022,-0.005236,0.003492,-0.009035, 0.198755, 0.229712,CHG_teosinte_landrace,S24,Stalk strength,0.030956
+rpravg,-0.005004,-0.007813,0.002486,-0.02462,-0.003148, 0.274397, 0.236299,CHG_teosinte_landrace,S52,Stalk strength,-0.038099
+rpravg,0.016376,0.003379,0.017448,-0.007036,-0.007847, 0.205813, 0.228133,CHG_teosinte_landrace,S1,Stalk strength,0.02232
+rpravg,-0.0062,0.003826,-0.002487,0.012324,-0.002629, 0.231438, 0.236271,CHG_teosinte_landrace,S56,Stalk strength,0.004834
+rpravg,0.011531,-0.002309,0.021231,-0.014057,-0.004415, 0.243544, 0.255525,CHG_teosinte_landrace,S39,Stalk strength,0.011981
+rpravg,0.033632,0.003391,0.010722,-0.000792,-0.004358, 0.199272, 0.241867,CHG_teosinte_landrace,S40,Stalk strength,0.042595
+rpravg,0.005907,-0.009762,0.011222,-0.002555,-0.002471, 0.238157, 0.240499,CHG_teosinte_landrace,S23,Stalk strength,0.002341
+rpravg,-0.001569,0.009058,0.001539,-0.01682,-0.006363, 0.248961, 0.234805,CHG_teosinte_landrace,S25,Stalk strength,-0.014155
+rpravg,-0.017859,-0.009433,-0.047298,-0.044908,-0.054849, 0.324543, 0.150196,CHG_teosinte_landrace,S53,Stalk strength,-0.174347
+rpravg,0.006414,-0.003071,0.013325,0.009336,-5.8e-05, 0.208556, 0.234501,CHG_teosinte_landrace,S10,Stalk strength,0.025946
+rpravg,0.004167,-0.008458,0.011205,-0.009315,-0.016169, 0.269042, 0.250471,CHG_teosinte_landrace,S57,Stalk strength,-0.01857
+rpravg,-0.00533,-0.003672,0.012075,0.026265,0.000484, 0.211270, 0.241092,CHG_teosinte_landrace,S83,Stalk strength,0.029822
+rpravg,0.009037,-0.004763,-0.003096,-0.006905,-0.004154, 0.247421, 0.237541,CHG_teosinte_landrace,S41,Stalk strength,-0.009881
+rpravg,-0.117713,-0.040852,0.040525,-0.053229,-0.05402, 0.544229, 0.318939,CHG_teosinte_landrace,S68,Stalk strength,-0.225289
+rpravg,-0.00012,-0.040415,0.011967,0.016394,-0.013036,-0.036617,-0.061827,CHG_teosinte_landrace,S26,Stalk strength,-0.02521
+rpravg,0.013162,0.014804,-0.005623,-0.020253,0.00477, 0.238691, 0.245550,CHG_teosinte_landrace,S73,Stalk strength,0.00686
+rpravg,-0.025991,0.000593,-0.013089,-0.097906,0.00107, 0.211829, 0.076506,CHG_teosinte_landrace,S100,Stalk strength,-0.135323
+rpravg,-0.004035,0.001788,0.002263,-0.002874,0.009411, 0.231709, 0.238261,CHG_teosinte_landrace,S58,Stalk strength,0.006553
+rpravg,-0.005599,0.005909,-0.003979,-0.004312,-0.006708, 0.253628, 0.238939,CHG_teosinte_landrace,S84,Stalk strength,-0.014689
+rpravg,-0.040047,-0.09984,-0.086774,0.055103,0.019822, 0.273860, 0.122124,CHG_teosinte_landrace,S42,Stalk strength,-0.151736
+rpravg,0.049456,0.012669,0.021795,-0.013585,-0.005068, 0.186406, 0.251673,CHG_teosinte_landrace,S69,Stalk strength,0.065267
+rpravg,-0.01114,0.02381,-0.004133,-0.039479,-0.02149, 0.192964, 0.140531,CHG_teosinte_landrace,S27,Stalk strength,-0.052432
+rpravg,-0.13897,0.011178,-0.002694,-0.064676,0.031339, 0.140965,-0.022858,CHG_teosinte_landrace,S74,Stalk strength,-0.163823
+rpravg,-0.01226,-0.009593,0.012051,-0.00118,0.000941, 0.234903, 0.224861,CHG_teosinte_landrace,S11,Stalk strength,-0.010041
+rpravg,0.022259,0.001028,0.060225,0.000925,0.0077,0.158012,0.250148,CHG_teosinte_landrace,S59,Stalk strength,0.092137
+rpravg,-0.045247,0.124901,-0.008063,-0.032177,-0.014221, 0.134978, 0.160172,CHG_teosinte_landrace,S85,Stalk strength,0.025193
+rpravg,-0.110724,-0.015905,0.192988,-0.052342,-0.029115, 0.643062, 0.627964,CHG_teosinte_landrace,S43,Stalk strength,-0.015098
+rpravg,0.087602,-0.000909,0.017647,0.008832,0.012105, 0.133656, 0.258933,CHG_teosinte_landrace,S7,Stalk strength,0.125277
+rpravg,0.005249,0.008299,-0.002526,-0.000147,-0.006412, 0.236557, 0.241020,CHG_teosinte_landrace,S28,Stalk strength,0.004463
+rpravg,0.001083,0.007711,-0.009871,0.00593,-0.008838, 0.230411, 0.226425,CHG_teosinte_landrace,S75,Stalk strength,-0.003985
+rpravg,0.041818,-0.006454,-0.011725,-0.034603,-0.016526, 0.200910, 0.173419,CHG_teosinte_landrace,S12,Stalk strength,-0.02749
+rpravg,0.025002,-0.001144,2.6e-05,0.007382,-0.000124, 0.209910, 0.241051,CHG_teosinte_landrace,S6,Stalk strength,0.031142
+rpravg,-0.027038,-0.023162,-0.047139,-0.027324,-0.041929, 0.248740, 0.082149,CHG_teosinte_landrace,S86,Stalk strength,-0.166592
+rpravg,0.014531,0.009594,6.5e-05,-0.003095,0.015531, 0.205473, 0.242098,CHG_teosinte_landrace,S44,Stalk strength,0.036626
+rpravg,-0.011309,-0.010318,0.000497,-0.005422,-0.01658, 0.285469, 0.242337,CHG_teosinte_landrace,S70,Stalk strength,-0.043132
+rpravg,-0.002648,0.011034,0.009069,0.007782,-0.001505, 0.219174, 0.242906,CHG_teosinte_landrace,S29,Stalk strength,0.023732
+rpravg,0.011888,0.006821,0.01275,-0.003544,-0.004562, 0.227070, 0.250424,CHG_teosinte_landrace,S76,Stalk strength,0.023353
+rpravg,0.022066,0.006697,-0.005796,-0.011422,0.005681, 0.215216, 0.232441,CHG_teosinte_landrace,S13,Stalk strength,0.017226
+rpravg,0.011566,0.001219,-0.010994,0.023536,0.018218, 0.209751, 0.253295,CHG_teosinte_landrace,S60,Stalk strength,0.043545
+rpravg,-0.043847,0.020243,0.062753,-0.090945,-0.01794, 0.285907, 0.216170,CHG_teosinte_landrace,S87,Stalk strength,-0.069736
+rpravg,-0.001326,0.012284,0.002955,0.00015,0.006618, 0.218895, 0.239577,CHG_teosinte_landrace,S45,Stalk strength,0.020681
+rpravg,-0.022705,-0.01084,-0.038037,0.012965,-0.079984, 0.329593, 0.190993,CHG_teosinte_landrace,S71,Stalk strength,-0.138601
+rpravg,0.047365,-0.03023,-0.030969,-0.110198,-0.061876, 0.444363, 0.258455,CHG_teosinte_landrace,S3,Stalk strength,-0.185908
+rpravg,-0.014318,-0.033131,0.030212,0.054239,-0.020481,-0.053470,-0.036949,CHG_teosinte_landrace,S77,Stalk strength,0.016521
+rpravg,-0.014365,-0.001377,0.012352,0.007056,-0.001495, 0.239892, 0.242063,CHG_teosinte_landrace,S14,Stalk strength,0.002171
+rpravg,-0.04591,0.000209,-0.050241,-0.017037,-0.013684, 0.207280, 0.080618,CHG_teosinte_landrace,S61,Stalk strength,-0.126663
+rpravg,0.056815,0.006459,-0.013245,-0.049689,-0.007698, 0.233432, 0.226074,CHG_teosinte_landrace,S88,Stalk strength,-0.007358
+rpravg,-0.098138,-0.008826,-0.008856,-0.014236,-0.019766, 0.407325, 0.257504,CHG_teosinte_landrace,S46,Stalk strength,-0.149822
+rpravg,-0.083924,-0.03119,-0.011255,-0.030136,-0.053155, 0.560652, 0.350992,CHG_teosinte_landrace,S72,Stalk strength,-0.20966
+rpravg,0.008163,0.042241,0.010661,-0.006842,-0.000752, 0.189102, 0.242573,CHG_teosinte_landrace,S30,Stalk strength,0.053471
+rpravg,0.010675,0.040698,0.028018,0.002538,0.004921,0.161222,0.248073,CHG_teosinte_landrace,S78,Stalk strength,0.08685
+rpravg,0.011428,0.0097,0.00809,0.012905,-0.00316, 0.211056, 0.250018,CHG_teosinte_landrace,S15,Stalk strength,0.038963
+rpravg,0.023644,-0.001675,0.000307,-0.008561,-0.011452, 0.249926, 0.252190,CHG_teosinte_landrace,S62,Stalk strength,0.002263
+rpravg,0.118446,-0.029348,-0.010543,-0.026472,-0.021909, 0.207627, 0.237801,CHG_teosinte_landrace,S89,Stalk strength,0.030174
+rpravg,-0.009432,-0.001009,0.008672,-0.018743,-0.002772, 0.277397, 0.254114,CHG_teosinte_landrace,S47,Stalk strength,-0.023284
+rpravg,0.015021,0.006226,0.001599,0.012236,-0.006884, 0.205871, 0.234069,CHG_teosinte_landrace,S94,Stalk strength,0.028198
+rpravg,0.001921,0.001872,0.008091,-0.008505,-0.006484, 0.245341, 0.242236,CHG_teosinte_landrace,S31,Stalk strength,-0.003105
+rpravg,0.021059,0.002773,0.01802,0.003511,0.00506,0.185568,0.235992,CHG_teosinte_landrace,S79,Stalk strength,0.050423
+rpravg,-0.009027,0.007255,-0.008265,-0.021606,-0.007886, 0.263706, 0.224178,CHG_teosinte_landrace,S16,Stalk strength,-0.039529
+rpravg,-0.056225,-0.051567,-0.007057,-0.019521,-0.052936, 0.396505, 0.209199,CHG_teosinte_landrace,S63,Stalk strength,-0.187306
+rpravg,0.06027,0.00391,-0.006228,-0.004782,-0.009592, 0.192973, 0.236552,CHG_teosinte_landrace,S9,Stalk strength,0.043578
+rpravg,0.008502,0.028445,-0.003503,0.002006,-0.006166, 0.214690, 0.243974,CHG_teosinte_landrace,S48,Stalk strength,0.029284
+rpravg,0.093042,-0.046234,-0.013943,-0.036535,-0.056253, 0.092132, 0.032209,CHG_teosinte_landrace,S95,Stalk strength,-0.059923
+rpravg,-8.4e-05,-0.003633,0.008808,-0.008264,0.013794, 0.233086, 0.243706,CHG_teosinte_landrace,S32,Stalk strength,0.010621
+rpravg,0.053543,-0.008056,0.02987,0.076331,-0.019962, 0.050635, 0.182362,CHG_teosinte_landrace,S8,Stalk strength,0.131726
+rpravg,0.048985,0.01385,0.002376,0.024739,-0.008292, 0.178650, 0.260307,CHG_teosinte_landrace,S17,Stalk strength,0.081658
+rpravg,0.031577,-0.001016,0.009996,-0.005351,-0.001243, 0.214260, 0.248223,CHG_teosinte_landrace,S64,Stalk strength,0.033963
+rpravg,0.038026,0.030446,0.002221,0.00533,-0.001582, 0.180842, 0.255283,CHG_teosinte_landrace,S90,Stalk strength,0.074441
+rpravg,0.012981,-0.009499,0.011599,-0.010051,-0.003912, 0.246714, 0.247831,CHG_teosinte_landrace,S49,Stalk strength,0.001118
+rpravg,0.025426,0.009718,0.011396,-0.021473,-0.003733, 0.205494, 0.226827,CHG_teosinte_landrace,S96,Stalk strength,0.021334
+rpravg,-0.00146,0.00917,0.034322,0.028778,0.000374, 0.182171, 0.253354,CHG_teosinte_landrace,S33,Stalk strength,0.071184
+rpravg,-0.004673,-0.049072,-0.025138,-0.017308,-0.00125, 0.157795, 0.060353,CHG_teosinte_landrace,S80,Stalk strength,-0.097441
+rpravg,-0.04252,-0.133151,-0.019165,0.055593,-0.014261, 0.403169, 0.249665,CHG_teosinte_landrace,S18,Stalk strength,-0.153504
+rpravg,0.074106,-0.005914,-0.000385,0.027603,0.007587, 0.128720, 0.231717,CHG_teosinte_landrace,S65,Stalk strength,0.102997
+rpravg,0.006234,-0.002618,0.006009,0.003565,-0.005804, 0.230458, 0.237843,CHG_teosinte_landrace,S91,Stalk strength,0.007386
+rpravg,-0.001995,0.019635,-0.000915,0.00887,-0.019304, 0.228181, 0.234473,CHG_teosinte_landrace,S5,Stalk strength,0.006291
+rpravg,0.045173,-0.001286,-0.005084,-0.005791,0.000737, 0.201472, 0.235221,CHG_teosinte_landrace,S97,Stalk strength,0.033749
+rpravg,0.006198,0.003026,-0.006222,-0.014362,0.011555, 0.238279, 0.238474,CHG_teosinte_landrace,S34,Stalk strength,0.000194999999999999
+rpravg,-0.004054,0.044069,0.008458,0.005586,0.007542, 0.181653, 0.243253,CHG_teosinte_landrace,S81,Stalk strength,0.061601
+rpravg,0.010103,-0.011987,0.021852,-0.059695,-0.035221, 0.372511, 0.297563,CHG_teosinte_landrace,S19,Stalk strength,-0.074948
+rpravg,-0.002855,0.009878,-0.000467,0.016957,0.001346, 0.222468, 0.247327,CHG_teosinte_landrace,S66,Stalk strength,0.024859
+rpravg,0.019966,-0.001809,-0.005054,0.002653,0.006301, 0.216920, 0.238977,CHG_teosinte_landrace,S92,Stalk strength,0.022057
+rpravg,-0.000321,0.006946,0.000912,-0.008007,-0.007241, 0.244639, 0.236928,CHG_teosinte_landrace,S50,Stalk strength,-0.007711
+rpravg,-0.01394,-0.030984,-0.016076,-0.010572,-0.017399, 0.268362, 0.179391,CHG_teosinte_landrace,S98,Stalk strength,-0.088971
+rpravg,0.011333,-0.003844,0.012783,0.009982,-0.000399, 0.214477, 0.244331,CHG_teosinte_landrace,S35,Stalk strength,0.029855
+rpravg,0.098341,0.021485,0.001703,-0.003153,0.004456, 0.138325, 0.261156,CHG_teosinte_landrace,S82,Stalk strength,0.122832
+rpravg,0.040942,-0.004139,0.046629,0.025725,0.002481, 0.120053, 0.231690,CHG_teosinte_landrace,S2,Stalk strength,0.111638
+rpravg,-0.013415,-0.059471,0.002316,-0.058198,-0.024783, 0.381397, 0.227846,CHG_teosinte_landrace,S67,Stalk strength,-0.153551
+rpravg,0.005187,-0.00364,0.016163,0.004466,0.006332, 0.206319, 0.234827,CHG_teosinte_landrace,S93,Stalk strength,0.028508
+rpravg,0.029917,-0.005702,0.004987,0.012708,-0.007686, 0.216443, 0.250668,CHG_teosinte_landrace,S51,Stalk strength,0.034224
+rpravg,-0.002693,-0.004049,0.03284,0.014323,0.00732, 0.215664, 0.263405,CHG_teosinte_landrace,S99,Stalk strength,0.047741
