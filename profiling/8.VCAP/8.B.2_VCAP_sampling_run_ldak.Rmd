@@ -109,3 +109,53 @@ run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait),
 
 
 ```
+
+## 2-24-2019: 
+```{r}
+res <- read.csv("cache/h2_CG_landrace_maize.csv")
+t <- subset(res, h2 > 0.05) # 18
+
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait)[1:9], 
+                      runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CG_landrace_maize")
+
+res <- read.csv("cache/h2_CG_landrace_maize.csv")
+t <- subset(res, h2 > 0.05) # 18
+
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait)[10:18], 
+                      runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CG_landrace_maize")
+
+```
+
+#####################################################
+
+CHG teosinte_maize
+```{r}
+res <- read.csv("cache/h2_CHG_teosinte_maize.csv")
+t <- subset(res, h2 > 0.05) # 9
+
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait), 
+                      runinfo=c(TRUE, "jyanglab", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CHG_teosinte_maize")
+```
+
+CHG teosinte_landrace
+```{r}
+res <- read.csv("cache/h2_CHG_teosinte_landrace.csv")
+t <- subset(res, h2 > 0.05) # 7
+
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait), 
+                      runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CHG_teosinte_landrace")
+```
+
+CHG landrace_maize
+```{r}
+res <- read.csv("cache/h2_CHG_landrace_maize.csv")
+t <- subset(res, h2 > 0.05) # 8
+
+run_batch_ldak_sample(sid=1:100, traits= as.character(t$trait), 
+                      runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"), 
+                      dmr_patterns = "CHG_landrace_maize")
+```
