@@ -1,0 +1,67 @@
+---
+title: "Plot results"
+output: html_notebook
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+### Plot:
+
+```{r}
+library("beanplot")
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+
+
+plot_beans <- function(obs, bg, mytrait="asiavg"){
+  
+  bg1 <- subset(bg, trait %in% mytrait)
+  bg1 <- gather(data=bg1, key=k, value="var", 2:6)
+  
+  #### for trait perse
+  bg1$key <- gsub(".*_K", "K", bg1$k)
+  #bg1$key <- as.numeric(as.character(bg1$key))
+  bg1$var <- as.numeric(as.character(bg1$var))
+  
+  obs1 <- subset(obs, trait %in% mytrait)
+  obs1 <- gather(data=obs1, key=key, value="val", 2:6)
+  
+  yval <- range(c(obs1$val, bg1$var))
+  
+  beanplot(var ~ as.factor(key), data = bg1, ll = 0.04, cex=1.5, border = NA,
+         what=c(0, 1, 0, 1), col=c(c("antiquewhite3", "black")), cex=1, 
+         xlab="", ylab="Variance Explained", main= obs1$pretty_name[1], ylim=c(yval[1], yval[2]+0.02))
+  for(i in 1:nrow(obs1)){
+    lines(x=c(i-0.3, i+0.3), y=c(obs1$val[i], obs1$val[i]), lwd=2, col="red")
+  }
+}
+
+
+```
+
+
+### sampling results
+```{r}
+cg1 <- read.csv("cache/h2_CG_teosinte_maize.csv")
+s1 <- read.csv("cache/h2_CG_teosinte_maize_sample.csv")
+
+
+obs <- subset(cg1, h2 > 0.05)
+
+
+pdf("graphs/var_explained.pdf", width=8, height=8)
+for(i in 1:8){
+  plot_beans(obs, bg=s1, mytrait=as.character(obs$trait)[i])
+}
+dev.off()
+
+```
+
+
