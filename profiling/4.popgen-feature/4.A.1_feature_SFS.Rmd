@@ -163,3 +163,54 @@ for(i in 1:length(files)){
 }
 
 ```
+
+
+------------------------------
+hypo and hyper: Gene, up5k and down5k
+
+```{r}
+library("GenomicRanges")
+library("data.table")
+
+ob <- load("largedata/AGPv4_gf_hyper_hypo_updown5k.RData")
+# CG
+get_feature_sfs(pop1="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+                   pop2="largedata/mr_100bp/landrace_CpG_matrix_imp.csv",
+                   pop3="largedata/mr_100bp/elite_rm_CpG_matrix_imp.csv",
+                   features=c("hyper_gene", "hyper_up", "hyper_down", "hypo_gene","hypo_up","hypo_down"),
+                   f, outpath="largedata/msfs/gf3_sfs_interpop_CG_")
+
+# CHG  
+get_feature_sfs(pop1="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+                   pop2="largedata/mr_100bp/landrace_CHG_matrix_imp.csv",
+                   pop3="largedata/mr_100bp/elite_rm_CHG_matrix_imp.csv",
+                   features=c("hyper_gene", "hyper_up", "hyper_down", "hypo_gene","hypo_up","hypo_down"),
+                   f, outpath="largedata/msfs/gf3_sfs_interpop_CHG_")
+
+# CHH 
+get_feature_sfs(pop1="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv", 
+                   pop2="largedata/mr_100bp/landrace_CHH_matrix_imp.csv",
+                   pop3="largedata/mr_100bp/elite_rm_CHH_matrix_imp.csv",
+                   features=c("gene", "up", "down"),
+                   f, outpath="largedata/msfs/gf2_sfs_interpop_CHH_")
+```
+
+# fix 0 sites
+
+
+### CHH need to be modified:
+```{r}
+files <- list.files(path="largedata/msfs", pattern = "gf2_sfs_interpop_CHH", full.names = T)
+
+cg <- read.csv("largedata/msfs/gf2_sfs_interpop_CG_down.csv")
+for(i in 1:length(files)){
+  afile <- read.csv(files[i])
+  chh <- merge(cg, afile, by="ftb", all.x=T)
+  
+  chh[is.na(chh[, 3]), 3] <- 0
+  chh <- chh[, c(1,3)]
+  names(chh) <- c("ftb", "Freq")
+  write.table(chh, files[i], sep=",", row.names=FALSE, quote=FALSE)
+}
+
+```
