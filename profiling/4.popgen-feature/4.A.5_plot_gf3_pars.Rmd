@@ -1,0 +1,71 @@
+---
+title: "Plot par figures"
+output: html_notebook
+author: Jinliang Yang
+date: 02-26-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+### parameters:
+
+```{r}
+
+df0 <- read.csv("cache/gf3_par_msfs.csv")
+df0 <- subset(df0, context %in% "CG")
+
+df0 <- df0[, c("gf", "context", "type", "feature", "Nes")]
+
+df <- gather(data=df0, key=k, value="p", 5)
+  
+p <- ggplot(df, aes(x=type, y=p, fill=feature)) +
+    #facet_grid(. ~ type) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#1b85b8", "#559e83"),
+                        name="", labels=c("Down 5k", "Gene", "Up 5k")) +
+    scale_x_discrete(labels=c("Hyper","Hypo")) +
+    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+  #########
+p
+```
+
+```{r}
+
+df0 <- read.csv("cache/gf3_par_msfs.csv")
+df0 <- subset(df0, context %in% "CHG")
+
+df0 <- df0[, c("gf", "context", "type", "feature", "Nes")]
+
+df <- gather(data=df0, key=k, value="p", 5)
+  
+p <- ggplot(df, aes(x=type, y=p, fill=feature)) +
+    #facet_grid(. ~ type) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#1b85b8", "#559e83"),
+                        name="", labels=c("Down 5k", "Gene", "Up 5k")) +
+    scale_x_discrete(labels=c("Hyper","Hypo")) +
+    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+  #########
+p
+```
