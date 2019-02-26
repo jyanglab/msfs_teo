@@ -38,7 +38,18 @@ ob <- load("cache/sfs_teosinte_CHH.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:40)
 out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 #
+
+
 ```
+
+```{r}
+df1 <- rbind(out1, out2, out3)
+df1 <- as.data.frame(df1)
+names(df1) <- c("mu", "nu", "s")
+df1$pop <- "teosinte"
+```
+
+
 # Landrace
 
 ```{r}
@@ -62,6 +73,14 @@ out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 #
 ```
 
+```{r}
+df2 <- rbind(out1, out2, out3)
+df2 <- as.data.frame(df2)
+names(df2) <- c("mu", "nu", "s")
+df2$pop <- "landrace"
+```
+
+
 # Maize
 
 ```{r}
@@ -84,6 +103,16 @@ ob <- load("cache/sfs_elite_rm_CHH.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:28)
 out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 #
+```
+
+```{r}
+df3 <- rbind(out1, out2, out3)
+df3<- as.data.frame(df3)
+names(df3) <- c("mu", "nu", "s")
+df3$pop <- "maize"
+
+df <- rbind(df1, df2, df3)
+write.table(df, "cache/msfs_par_3pops.csv", sep=",", row.names = FALSE, quote=FALSE)
 ```
 
 

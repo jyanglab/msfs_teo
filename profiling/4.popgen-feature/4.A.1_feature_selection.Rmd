@@ -66,3 +66,54 @@ save(list="f", file="largedata/AGPv4_genomic_features.RData")
 
 
 
+```{r}
+get_gff_features2 <- function(gff_file="/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3", BP=5000){
+    #library(data.table)
+    gff <- read.delim(gff_file, comment.char = "#", header=FALSE)
+    names(gff) <- c("seqname", "source", "feature", "start", "end", "score",
+                    "strand", "frame", "attribute")
+    
+    ### get canonical genes on chr1:10
+    #info <- read.delim(anno_gene, header=TRUE)
+    #info <- subset(info, chromosome %in% paste0("chr", 1:10) & is_canonical == "yes" )
+    #message(sprintf("###>>> Number of canonical transcripts on chr1-10: [ %s ]", nrow(info)))
+    
+    gene <- subset(gff, feature=="gene")
+    gene$attribute <- gsub("ID=gene:", "", gene$attribute)
+    gene$attribute <- gsub(";.*", "", gene$attribute)
+    # gene <- subset(gene, attribute %in% info$gene_id)
+    
+    
+    up1 <- subset(gene, strand=="+")
+    up1$end <- up1$start - 1
+    up1$start <- up1$end - BP
+    up2 <- subset(gene, strand=="-")
+    up2$start <- up2$end + 1
+    up2$end<- up2$start + BP
+    upall <- rbind(up1, up2)
+    
+    dn1 <- subset(gene, strand=="+")
+    dn1$start <- dn1$end + 1
+    dn1$end <- dn1$start + BP
+    dn2 <- subset(gene, strand=="-")
+    dn2$end <- dn2$start - 1
+    dn2$start <- dn2$end - BP
+    dnall <- rbind(dn1, dn2)
+    
+    out <- list()
+    out[['gene']] <- gene
+    out[['up']] <- upall
+    out[['down']] <- dnall
+    
+    return(out)
+    
+}
+
+#######
+f <- get_gff_features2(gff_file="/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3", BP=5000)
+
+save(list="f", file="largedata/AGPv4_genomic_features_updown5k.RData")
+# 11Mb
+
+```
+

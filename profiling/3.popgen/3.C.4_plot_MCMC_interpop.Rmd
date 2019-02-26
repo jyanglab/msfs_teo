@@ -38,8 +38,18 @@ ob <- load("cache/interpop_CHH.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
 out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 #
+
+
 ```
 
 
+### parameters:
+
+```{r}
+df <- rbind(out1, out2, out3)
+df <- as.data.frame(df)
+names(df) <- c("mu", "nu", "s")
+write.table(df, "cache/msfs_par_interpop.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
 
 
