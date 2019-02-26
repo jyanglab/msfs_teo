@@ -114,7 +114,7 @@ for(i in 1:length(files)){
 
 ```
 
-###################
+------------------------------
 Gene, up5k and down5k
 
 ```{r}
@@ -144,3 +144,22 @@ get_feature_sfs(pop1="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv",
                    f, outpath="largedata/msfs/gf2_sfs_interpop_CHH_")
 ```
 
+# fix 0 sites
+
+
+### CHH need to be modified:
+```{r}
+files <- list.files(path="largedata/msfs", pattern = "gf2_sfs_interpop_CHH", full.names = T)
+
+cg <- read.csv("largedata/msfs/gf2_sfs_interpop_CG_down.csv")
+for(i in 1:length(files)){
+  afile <- read.csv(files[i])
+  chh <- merge(cg, afile, by="ftb", all.x=T)
+  
+  chh[is.na(chh[, 3]), 3] <- 0
+  chh <- chh[, c(1,3)]
+  names(chh) <- c("ftb", "Freq")
+  write.table(chh, files[i], sep=",", row.names=FALSE, quote=FALSE)
+}
+
+```
