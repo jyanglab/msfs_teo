@@ -1,4 +1,4 @@
-Type	chr	start	stop	q-value	mean_methylation_difference	#CpGs	p(MWU)	p(2D KS)	POP A	POP B	Compare
+Type	chr	start	stop	q-value	mean_methylation_difference	CpGs	p_MWU	p_2D_KS	POPA	POPB	Compare
 CG	1	209390	209725	2.90E-58	0.718428	20	3.50E-14	4.10E-64	0.77117	0.052741	Landrace/Maize
 CG	1	403764	404173	1.30E-57	-0.451792	40	4.90E-14	1.90E-63	0.36637	0.81816	Landrace/Maize
 CG	1	12931711	12931864	8.20E-06	0.421164	9	4.10E-14	1.20E-11	0.92036	0.4992	Landrace/Maize
