@@ -68,22 +68,9 @@ mean(d)
 ```{r}
 library("GenomicRanges")
 #library("data.table")
-library(plyr)
+#library(plyr)
 
-df1 <- dmr
-names(dmr)[4] <- "end"
-df2 <- hichip
-df2 <- data.frame(chr=c(hichip$Chr_1, hichip$Chr_2), 
-                  start=c(hichip$S1, hichip$S2),
-                  end=c(hichip$E1, hichip$E2))
-df2$id <- paste(df2$chr, df2$start, df2$end, sep="_")
 
-## unique anchors
-df2 <- df2[!duplicated(df2$id),]
-df2$bp <- df2$end - df2$start
-sum(df2$bp)
-
-tb <- table(df2$id)
 
 
 find_overlaps <- function(df1, df2){
@@ -100,25 +87,67 @@ find_overlaps <- function(df1, df2){
     tb <- findOverlaps(query=gr1, subject=gr2)
     tb <- as.matrix(tb)
     
-    out1 <- as.data.frame(grf[tb[,1]])
-    out2 <- as.data.frame(grc[tb[,2]])
+    out1 <- as.data.frame(gr1[tb[,1]])
+    out2 <- as.data.frame(gr2[tb[,2]])
     
-    out <- cbind(out1, out2[, "value"])
-    names(out)[8] <- "value"
-    
-    out$exonid <- paste(out$txid, out$exonid, sep="_")
-    
-    mtx <- ddply(out, .(txid), summarise,
-                 mean = mean(value, na.rm = TRUE),
-                 var = var(value, na.rm=TRUE))
-    mexon <- ddply(out, .(exonid), summarise,
-                 mean = mean(value, na.rm = TRUE),
-                 var = var(value, na.rm=TRUE))
-    
-    myout <- list(mtx, mexon)
+    myout <- list(out1, out2)
     return(myout)
 }
 
+
+
+#####
+names(tm)[4] <- "end"
+df1 <- tm
+
+
+df2 <- hichip
+df2 <- data.frame(chr=c(hichip$Chr_1, hichip$Chr_2), 
+                  start=c(hichip$S1, hichip$S2),
+                  end=c(hichip$E1, hichip$E2))
+df2$id <- paste(df2$chr, df2$start, df2$end, sep="_")
+
+## unique anchors
+df2 <- df2[!duplicated(df2$id),]
+df2$bp <- df2$end - df2$start
+sum(df2$bp)
+
+tb <- table(df2$id)
+
+### use the function
+out <- find_overlaps(df1, df2)
+
+out1 <- out[[1]]
+out1$uid <- paste(out1$seqnames, out1$start, out1$end, sep="_")
+df1$uid <- paste(df1$chr, df1$start, df1$end, sep="_")
+
+sub <- subset(df1, uid %in% out1$uid)
+
+
+### plot
+library("tidyr")
+library("ggplot2")
+
+d <- gather(sub[, c("Type", "POPA", "POPB")], key="pop", value="mr", 2:3)
+
+p1 <- ggplot2(d, )
+
+p <- ggplot(d, aes(x=Type, y=mr, fill=pop)) +
+    #facet_grid(. ~ type) +
+    geom_violin(trim=FALSE) +
+    geom_boxplot(width=0.1, position=position_dodge(0.9))+
+    theme_classic() +
+    labs(title="HiChIP anchors in the DMR", x="Context", y = "Methylation level")+
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#559e83"),
+                        name="", labels=c("Teosinte", "Maize")) +
+    #scale_x_discrete(labels=c("Hyper","Hypo")) +
+    theme(legend.position="top", axis.text=element_text(size=18), axis.title=element_text(size=18) )
+  #########
+p
 ```
 
 
