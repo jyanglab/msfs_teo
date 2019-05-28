@@ -1,7 +1,7 @@
-Feature	Length(bp)
-exon	70509340
+Feature	bp
+Exon	70509340
 Gene_down_5k	196419684
 Gene_up_5k	201902588
 Intergenic	316367436
-intron	89063142
+Intron	89063142
 TE	1524902531
