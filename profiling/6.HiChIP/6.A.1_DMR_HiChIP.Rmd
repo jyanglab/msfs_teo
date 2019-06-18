@@ -15,6 +15,8 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 # DMR and genomic features
 
 ```{r}
+d <- read.delim("cache/gen_body_overlap_TE.txt", header=T)
+
 
 ```
 
@@ -92,7 +94,7 @@ agpv4 = list("chr1" = 307041717,
         "chr9" = 159769782,
         "chr10" = 150982314)
 
-BioCircos(genome = agpv4, genomeFillColor = c("tomato2", "darkblue"))
+#BioCircos(genome = agpv4, genomeFillColor = c("tomato2", "darkblue"))
 
 
 hichip <- subset(hichip, Chr_1 %in% 1:10)
