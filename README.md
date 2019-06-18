@@ -4,6 +4,16 @@
 
 Changed to v4 genome
 
+
+### Major results:
+
+#### 1. DMR master file:
+`data/DMR_gene_feature_overlap_05232019.txt`
+
+#### 2. HiChIP master file:
+
+
+
 ### WGS data
 
 - from Wenbin:
