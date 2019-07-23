@@ -1,0 +1,113 @@
+---
+title: "Circos plot"
+output: html_notebook
+author: Jinliang Yang
+date: 05-23-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+
+```{r}
+dmr <- read.csv("data/2019-07-08-DMR.csv")
+dmr$diff <- dmr$POP.A - dmr$POP.B
+table(dmr$Compare)
+
+tm <- subset(dmr, Compare %in% "Teosinte/Maize")
+table(tm$Type)
+
+hist(tm$diff, col="blue", breaks = 50)
+
+sum(tm$diff > 0) #3828
+sum(tm$diff < 0) #1144
+
+
+lm <- subset(dmr, Compare %in% "Landrace/Maize")
+table(lm$Type)
+
+hist(lm$diff, col="blue", breaks = 50)
+
+tl <- subset(dmr, Compare %in% "Teosinte/Landrace")
+table(tl$Type)
+
+hist(tl$diff, col="blue", breaks = 50)
+
+```
+
+And the bp is also about 3x larger.
+
+```{r}
+tm$bp <- tm$stop - tm$start
+sum(subset(tm, diff > 0)$bp) #1719286
+sum(subset(tm, diff < 0)$bp) #482295
+
+```
+
+However, a preliminary analysis using genome-wide (chr10) 100-bp tiles, didn't see a clear difference.
+
+```{r}
+library("data.table")
+
+files <- list.files(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CG", pattern = "txt", full.names = TRUE)
+
+df1 <- fread(files[1], data.table=FALSE)
+df1$uid <- paste(df1$Chr, df1$Start, sep="_")
+df1 <- subset(df1, Chr == 10)
+
+
+for(i in 2:length(files)){
+  di <- fread(files[i], data.table=FALSE)
+  di$uid <- paste(di$Chr, di$Start, sep="_") 
+  df1 <- merge(df1, di[, c("uid", "Meth")], by="uid", all=TRUE)
+}
+
+
+files <- list.files(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CG", pattern = "txt", full.names = TRUE)
+
+df2 <- fread(files[1], data.table=FALSE)
+df2$uid <- paste(df2$Chr, df2$Start, sep="_")
+df2 <- subset(df2, Chr == 10)
+
+df <- merge(df1, df2[, c("uid", "Meth")], by="uid")
+df$diff <- df$Meth.x - df$Meth.y
+
+```
+
+
+## Plot DMR distribution
+
+
+```{r}
+library("plyr")
+
+BINSIZE=1000000
+tm1 <- subset(tm, chr == 10)
+tm1$bin <- round(tm1$start/BINSIZE,0)
+
+out <- ddply(tm1, .(bin), nrow)
+plot(out$V1, type="l")
+
+out <- ddply(tm1, .(bin), summarize,
+      sum=sum(bp))
+plot(out$sum, type="l")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
