@@ -1,0 +1,57 @@
+feature,DMR,overlap,ratio,source,Type
+Gene_up_5k,1088,3,0.28,Enchancer,hypo
+Gene_down_5k,1036,1,0.10,Enchancer,hypo
+Intergenic,1422,12,0.84,Enchancer,hypo
+TE,1805,16,0.89,Enchancer,hypo
+Exon,598,69,11.54,Chip peak,hypo
+Intron,441,20,4.54,Chip peak,hypo
+Gene_up_5k,1088,103,9.47,Chip peak,hypo
+Gene_down_5k,1036,109,10.52,Chip peak,hypo
+Intergenic,1422,200,14.06,Chip peak,hypo
+TE,1805,222,12.30,Chip peak,hypo
+Exon,598,49,8.19,Chia-pet,hypo
+Intron,441,14,3.17,Chia-pet,hypo
+Gene_up_5k,1088,101,9.28,Chia-pet,hypo
+Gene_down_5k,1036,101,9.75,Chia-pet,hypo
+Intergenic,1422,52,3.66,Chia-pet,hypo
+TE,1805,80,4.43,Chia-pet,hypo
+Exon,598,19,3.18,Shoot_MNaseHS,hypo
+Intron,441,5,1.13,Shoot_MNaseHS,hypo
+Gene_up_5k,1088,62,5.70,Shoot_MNaseHS,hypo
+Gene_down_5k,1036,56,5.41,Shoot_MNaseHS,hypo
+Intergenic,1422,117,8.23,Shoot_MNaseHS,hypo
+TE,1805,123,6.81,Shoot_MNaseHS,hypo
+Exon,598,23,3.85,Distal_regulatory_regions,hypo
+Intron,441,11,2.49,Distal_regulatory_regions,hypo
+Gene_up_5k,1088,28,2.57,Distal_regulatory_regions,hypo
+Gene_down_5k,1036,57,5.50,Distal_regulatory_regions,hypo
+Intergenic,1422,198,13.92,Distal_regulatory_regions,hypo
+TE,1805,187,10.36,Distal_regulatory_regions,hypo
+Gene_up_5k,1088,,,Enchancer,hyper
+Gene_down_5k,1036,,,Enchancer,hyper
+Intergenic,1422,,,Enchancer,hyper
+TE,1805,,,Enchancer,hyper
+Exon,598,105,17.56,Chip peak,hyper
+Intron,441,17,3.85,Chip peak,hyper
+Gene_up_5k,1088,31,2.85,Chip peak,hyper
+Gene_down_5k,1036,32,3.09,Chip peak,hyper
+Intergenic,1422,13,0.91,Chip peak,hyper
+TE,1805,40,2.22,Chip peak,hyper
+Exon,598,112,18.73,Chia-pet,hyper
+Intron,441,25,5.67,Chia-pet,hyper
+Gene_up_5k,1088,47,4.32,Chia-pet,hyper
+Gene_down_5k,1036,40,3.86,Chia-pet,hyper
+Intergenic,1422,5,0.35,Chia-pet,hyper
+TE,1805,30,1.66,Chia-pet,hyper
+Exon,598,8,1.34,Shoot_MNaseHS,hyper
+Intron,441,3,0.68,Shoot_MNaseHS,hyper
+Gene_up_5k,1088,6,0.55,Shoot_MNaseHS,hyper
+Gene_down_5k,1036,3,0.29,Shoot_MNaseHS,hyper
+Intergenic,1422,6,0.42,Shoot_MNaseHS,hyper
+TE,1805,5,0.28,Shoot_MNaseHS,hyper
+Exon,598,16,2.68,Distal_regulatory_regions,hyper
+Intron,441,1,0.23,Distal_regulatory_regions,hyper
+Gene_up_5k,1088,2,0.18,Distal_regulatory_regions,hyper
+Gene_down_5k,1036,7,0.68,Distal_regulatory_regions,hyper
+Intergenic,1422,13,0.91,Distal_regulatory_regions,hyper
+TE,1805,18,1.00,Distal_regulatory_regions,hyper
