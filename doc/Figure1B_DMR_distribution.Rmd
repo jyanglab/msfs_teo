@@ -1,0 +1,147 @@
+---
+title: "Circos plot"
+output: html_notebook
+author: Jinliang Yang
+date: 05-23-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+### results from Gen
+```{r}
+library("data.table")
+cg <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/CG_pop_meth_DMR_shoot_MNaseHS_Chia_pet2.txt", data.table=FALSE)
+names(cg)[7:9] <- c("DMR", "MNaseHS", "ChIA-PET")
+
+cg$DMR1 <- 1
+cg$MNase1 <- 1
+cg$chia1 <- 1
+
+cg[is.na(cg$DMR),]$DMR1 <- 0
+cg[is.na(cg$MNaseHS),]$MNase1 <- 0
+cg[is.na(cg$"ChIA-PET"),]$chia1 <- 0
+
+
+```
+```{r}
+library("GenomicRanges")
+
+assign_feature <- function(cg, gff, minbp=50L, feas){
+  # assign v4 gff genomic features to a table
+  # cg: table to be assigned [data.frame, =[,c("Chr", "Start", "End")]]
+  # gff: gff file [data.frame, =[,c("chr", "start", "end", "feature", "attribute")]]
+  # minbp: min overalp bp [num, =50L]
+  # feas: features to be assigned [chr, NULL]
+ 
+  grc <- with(cg, GRanges(seqnames=Chr, IRanges(start=Start, end=End)))
+  #table(gff$feature)
+  
+  for(i in 1:length(feas)){
+    message(sprintf("###>>>> Processing feature [%s]", feas[i]))
+    ### map features to the 100-bp tiles
+    f <- subset(gff, feature %in% feas[i])
+    grf <- with(f, GRanges(seqnames=chr, IRanges(start=start, end=end), att=attribute))
+    
+    ####### 
+    tb <- findOverlaps(query=grf, subject=grc, minoverlap=minbp)
+    tb <- as.matrix(tb)
+
+    cg$newf <- 0
+    cg[tb[,2],]$newf<- 1
+    names(cg)[ncol(cg)] <- feas[i]
+  }
+  return(cg)
+}
+
+gff <- read.delim("/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3", comment.char = "#", header=FALSE)
+names(gff) <- c("chr", "source", "feature", "start", "end", "score",
+                    "strand", "frame", "attribute")
+
+out <- assign_feature(cg, gff, minbp=50L, feas=c("exon", "five_prime_UTR", "three_prime_UTR", 
+                                            "lnc_RNA", "miRNA", "pre_miRNA", "ncRNA_gene", "snRNA"))
+
+
+head(subset(out, snRNA ==1))
+head(subset(gff, feature %in% "snRNA"))
+
+cg1 <- out[, 10:20]
+cg1$tot <- apply(cg1, 1, sum)
+cg2 <- subset(cg1, tot > 0)
+fwrite(cg2, "largedata/cg_pop_meth.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+    
+```
+
+
+```{r}
+library("UpSetR")
+library("ggplot2")
+
+cg1 <- fread("largedata/cg_pop_meth.csv", data.table=FALSE)
+
+upset(cg1, 
+      sets = c("DMR1", "MNase1", "chia1"), 
+      intersections=list(list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      order.by="DMR1", matrix.color="blue", point.size=5,
+      sets.bar.color=c("maroon","blue","orange"))
+
+
+#names(cg1)
+upset(cg1, 
+      sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      #intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA")),
+      #order.by="DMR1", 
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+upset(cg1, 
+      sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
+                         list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      #order.by="DMR1", 
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+
+upset(cg1, 
+      sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
+                         list("DMR1", "MNase1"), list("DMR1", "chia1", "five_prime_UTR")),
+      #order.by="DMR1", 
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+```
+
+
+
+```{r}
+#install.packages('UpSetR')
+library("UpSetR")
+library("ggplot2")
+
+movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), 
+                    header=T, sep=";" )
+
+require(ggplot2); require(plyr); require(gridExtra); require(grid);
+## Loading required package: ggplot2
+## Loading required package: plyr
+## Loading required package: gridExtra
+## Loading required package: grid
+upset(movies, 
+      sets = c("Action", "Comedy", "Drama"), 
+      order.by="degree", matrix.color="blue", point.size=5,
+      sets.bar.color=c("maroon","blue","orange"))
+```
+
+
+
+
+
+
