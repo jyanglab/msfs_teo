@@ -13,11 +13,38 @@ knitr::opts_knit$set(root.dir=normalizePath('../'))
 ```
 
 
-### results from Gen
+### DMR results from Gen
+
+Note some rows are duplicated in the 100-bp `data.table`.
+
+
 ```{r}
 library("data.table")
 cg <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/CG_pop_meth_DMR_shoot_MNaseHS_Chia_pet2.txt", data.table=FALSE)
-names(cg)[7:9] <- c("DMR", "MNaseHS", "ChIA-PET")
+#names(cg)[7:9] <- c("DMR", "MNaseHS", "ChIA-PET")
+cg$uid <- paste(cg$Chr, cg$Start, cg$End, sep="_")
+cg0 <- cg[!duplicated(cg$uid), c(1:6, ncol(cg)) ]
+
+
+
+
+length(unique(cg$uid))
+
+bed <- bed[!duplicated(bed$uid),]
+
+##  find the non-unique ids
+tb <- as.data.frame(table(cg$uid))
+table(tb$Freq)
+
+#       1        2        3        4        5        6        8       10
+# 20153572   884521     3710    19305        7     2141      119        2
+
+tb <- subset(tb, Freq > 1)
+sub <- subset(cg, uid %in% tb$Var1)
+
+mnase <- 
+
+
 
 cg$DMR1 <- 1
 cg$MNase1 <- 1
@@ -29,13 +56,52 @@ cg[is.na(cg$"ChIA-PET"),]$chia1 <- 0
 
 
 ```
+
+## Gen's annotation of V4 genome
+
+24 rows are duplicated, not a problem.
+Chr start from 0 (should be 1, all inclusive), but other bps (start and end) are inclusive.
+
+```{r}
+bed <- fread("data/07-23-2019genomic_feature.bed", data.table=FALSE)
+names(bed) <- c("chr", "start", "end", "feature")
+bed$uid <- paste(bed$chr, bed$start, bed$end, sep="_")
+length(unique(bed$uid))
+
+##  find the non-unique ids
+tb <- as.data.frame(table(bed$uid))
+tb <- subset(tb, Freq > 1)
+sub <- subset(bed, uid %in% tb$Var1)
+
+bed <- bed[!duplicated(bed$uid),]
+
+bed$bp <- bed$end - bed$start
+
+library("plyr")
+f <- ddply(bed, .(feature), summarise,
+           tot = sum(bp))
+#       feature        tot
+#1         Exon   65401079
+#2 Gene_down_5k  224979995
+#3   Gene_up_5k  224745042
+#4   Intergenic  316358525
+#5       Intron   89397790
+#6           TE 2567864865
+```
+
+Not terribly wrong, because there are overlaps.
+
+
+
+# Assign features for the 100-bp tiles
+
 ```{r}
 library("GenomicRanges")
 
 assign_feature <- function(cg, gff, minbp=50L, feas){
   # assign v4 gff genomic features to a table
   # cg: table to be assigned [data.frame, =[,c("Chr", "Start", "End")]]
-  # gff: gff file [data.frame, =[,c("chr", "start", "end", "feature", "attribute")]]
+  # gff: gff file [data.frame, =[,c("chr", "start", "end", "feature")]]
   # minbp: min overalp bp [num, =50L]
   # feas: features to be assigned [chr, NULL]
  
@@ -43,25 +109,86 @@ assign_feature <- function(cg, gff, minbp=50L, feas){
   #table(gff$feature)
   
   for(i in 1:length(feas)){
-    message(sprintf("###>>>> Processing feature [%s]", feas[i]))
+    
     ### map features to the 100-bp tiles
     f <- subset(gff, feature %in% feas[i])
-    grf <- with(f, GRanges(seqnames=chr, IRanges(start=start, end=end), att=attribute))
+    grf <- with(f, GRanges(seqnames=chr, IRanges(start=start, end=end), att=feature))
+    message(sprintf("###>>>> Processing feature [%s], query length [%s] and subject length [%s] ...", 
+                    feas[i], length(grc), length(grf)))
     
     ####### 
     tb <- findOverlaps(query=grf, subject=grc, minoverlap=minbp)
     tb <- as.matrix(tb)
 
     cg$newf <- 0
+    ## even for overlapped features, they will merge them together
     cg[tb[,2],]$newf<- 1
     names(cg)[ncol(cg)] <- feas[i]
   }
   return(cg)
 }
+```
 
+
+## Okay, let's assign genomics features to the 100-bp tiles
+
+```{r}
+out <- assign_feature(cg=cg0, gff=bed, minbp=50L, feas=c("Exon", "Gene_down_5k", "Gene_up_5k", "Intergenic", "Intron", "TE"))
+
+sum(out$TE)/nrow(out) #0.7240033
+sum(out$Intergenic)/nrow(out) #0.1502257
+sum(out$Intron)/nrow(out) #0.04232835
+sum(out$Exon)/nrow(out) #0.03078087
+sum(out$Gene_up_5k)/nrow(out) #0.09587195
+sum(out$Gene_down_5k)/nrow(out) #0.09324796
+
+```
+
+Merge with DMR.
+
+```{r}
+dmr <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/Input_file/CG_DMR.bed", data.table=FALSE)
+names(dmr) <- c("chr", "start", "end", "pop", "feature")
+dmr <- subset(dmr, pop %in% "Teosinte/Maize")
+dmr$bp <- dmr$end - dmr$start
+sum(dmr$bp) # 633967
+
+
+out2 <- assign_feature(cg=out, gff=dmr, minbp=50L, feas="CG")
+sum(out2$CG) #636300
+
+```
+
+
+Merge with MNaseHS.
+
+```{r}
+hs <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/Input_file/shoot_MNaseHS.Ranges_V4.bed", data.table=FALSE)
+names(hs) <- c("chr", "start", "end")
+
+hs$bp <- hs$end - hs$start
+sum(hs$bp) # 11050239
+mean(hs$bp) #44.7264
+range(hs$bp) #1 760
+
+out2 <- assign_feature(cg=out, gff=dmr, minbp=10L, feas="CG")
+sum(out2$CG) #636300
+
+```
+
+
+
+
+
+
+```{r}
 gff <- read.delim("/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3", comment.char = "#", header=FALSE)
 names(gff) <- c("chr", "source", "feature", "start", "end", "score",
                     "strand", "frame", "attribute")
+
+
+
+
 
 out <- assign_feature(cg, gff, minbp=50L, feas=c("exon", "five_prime_UTR", "three_prime_UTR", 
                                             "lnc_RNA", "miRNA", "pre_miRNA", "ncRNA_gene", "snRNA"))
