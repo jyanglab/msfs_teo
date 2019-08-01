@@ -59,7 +59,7 @@ cg[is.na(cg$"ChIA-PET"),]$chia1 <- 0
 
 ## Gen's annotation of V4 genome
 
-24 rows are duplicated, not a problem.
+24 rows are duplicated, not a big problem.
 Chr start from 0 (should be 1, all inclusive), but other bps (start and end) are inclusive.
 
 ```{r}
@@ -170,16 +170,34 @@ hs$bp <- hs$end - hs$start
 sum(hs$bp) # 11050239
 mean(hs$bp) #44.7264
 range(hs$bp) #1 760
+hs$feature <- "MNaseHS"
 
-out2 <- assign_feature(cg=out, gff=dmr, minbp=10L, feas="CG")
-sum(out2$CG) #636300
+out2 <- assign_feature(cg=out2, gff=hs, minbp=10L, feas="MNaseHS")
+sum(out2$MNaseHS) #26365500
 
 ```
 
 
+Merge with ChiA-PET.
+
+```{r}
+chia <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/Input_file/Chia_pet_shoot_interaction_anchor.bed", data.table=FALSE)
+names(chia) <- c("chr", "start", "end", "tissue")
+
+chia$bp <- chia$end - chia$start
+sum(chia$bp) # 267560871
+mean(chia$bp) # 6539.912
+range(chia$bp) # 446 51655
+chia$feature <- "chia"
+
+out2 <- assign_feature(cg=out2, gff=chia, minbp=50L, feas="chia")
+sum(out2$chia) # 181790300
+
+fwrite(out2, "largedata/cg_features_master_table.csv",  sep=",", row.names=FALSE, quote=FALSE)
+```
 
 
-
+Okay, haven't merge lnc_RNA yet.
 
 ```{r}
 gff <- read.delim("/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3", comment.char = "#", header=FALSE)
@@ -207,10 +225,75 @@ fwrite(cg2, "largedata/cg_pop_meth.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 
 ```{r}
+library("data.table")
 library("UpSetR")
 library("ggplot2")
 
-cg1 <- fread("largedata/cg_pop_meth.csv", data.table=FALSE)
+cg1 <- fread("largedata/cg_features_master_table.csv", data.table=FALSE)
+# 6363
+dim(subset(cg1, TE == 1 & CG ==1)) #2417   16
+dim(subset(cg1, CG == 1 & Intergenic ==1)) #1589   16
+
+## Define a gene region that is not TE or Intergenic
+cg1$Gene <- -9
+cg1$Gene <- cg1$TE + cg1$Intergenic
+cg1[cg1$Gene ==0, ]$Gene <- -9
+cg1[cg1$Gene > 0, ]$Gene <- 0
+cg1[cg1$Gene < 0, ]$Gene <- 1
+
+
+cg1$hypo <- 0
+cg1[cg1$CG == 1 & !is.na(cg1$mCG_Maize) & !is.na(cg1$mCG_Teosinte) & (cg1$mCG_Maize < cg1$mCG_Teosinte), ]$hypo <- 1
+#4062
+cg1$hyper <- 0
+cg1[cg1$CG == 1 & !is.na(cg1$mCG_Maize) & !is.na(cg1$mCG_Teosinte) & (cg1$mCG_Maize > cg1$mCG_Teosinte), ]$hyper <- 1
+#2159
+
+
+upset(cg1, 
+      #sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      intersections=list(list("hypo", "Intergenic"), list("hypo", "TE"), list("hypo", "Gene"),
+                         list("hyper", "Intergenic"), list("hyper", "TE"), list("hyper", "Gene")),
+      order.by=c("hypo", "hyper"),
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+
+
+upset(cg1, 
+      sets = c("Exon", "Gene_down_5k", "Gene_up_5k", "Intergenic", "Intron", "TE", "CG", "MNaseHS", "chia"),
+      #intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
+      #                   list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      order.by="CG", 
+      matrix.color="blue", point.size=5)
+
+
+
+
+
+
+cg2 <- subset(cg1, TE == 0 | Intergenic == 0)
+
+upset(cg2, 
+      #sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      intersections=list(list("hypo", "Gene_up_5k"), list("hypo", "Gene_down_5k"), list("hypo", "Exon"), list("hypo", "Intron"),
+                         list("hyper", "Gene_up_5k"), list("hyper", "Gene_down_5k"), list("hyper", "Exon"), list("hyper", "Intron")),
+      order.by=c("hypo", "hyper"),
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+
+
+
+upset(cg2, 
+      sets = c("Exon", "Gene_down_5k", "Gene_up_5k", "Intergenic", "Intron", "CG", "MNaseHS", "chia"),
+      #intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
+      #                   list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      order.by="CG", 
+      matrix.color="blue", point.size=5)
+
+
+
 
 upset(cg1, 
       sets = c("DMR1", "MNase1", "chia1"), 
@@ -227,45 +310,12 @@ upset(cg1,
       matrix.color="blue", point.size=5)
       #sets.bar.color=c("maroon","blue","orange"))
 
-upset(cg1, 
-      sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
-      intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
-                         list("DMR1", "MNase1"), list("DMR1", "chia1")),
-      #order.by="DMR1", 
-      matrix.color="blue", point.size=5)
-      #sets.bar.color=c("maroon","blue","orange"))
 
 
-upset(cg1, 
-      sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
-      intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
-                         list("DMR1", "MNase1"), list("DMR1", "chia1", "five_prime_UTR")),
-      #order.by="DMR1", 
-      matrix.color="blue", point.size=5)
-      #sets.bar.color=c("maroon","blue","orange"))
+
 
 ```
 
-
-
-```{r}
-#install.packages('UpSetR')
-library("UpSetR")
-library("ggplot2")
-
-movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), 
-                    header=T, sep=";" )
-
-require(ggplot2); require(plyr); require(gridExtra); require(grid);
-## Loading required package: ggplot2
-## Loading required package: plyr
-## Loading required package: gridExtra
-## Loading required package: grid
-upset(movies, 
-      sets = c("Action", "Comedy", "Drama"), 
-      order.by="degree", matrix.color="blue", point.size=5,
-      sets.bar.color=c("maroon","blue","orange"))
-```
 
 
 
