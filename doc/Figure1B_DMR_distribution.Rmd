@@ -272,15 +272,26 @@ upset(cg1,
 
 
 
-cg2 <- subset(cg1, TE == 0 | Intergenic == 0)
+cg2 <- subset(cg1, TE == 0 )
 
-upset(cg2, 
+cg3 <- subset(cg2, Intergenic == 0)
+
+
+
+upset(cg3, 
       #sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
-      intersections=list(list("hypo", "Gene_up_5k"), list("hypo", "Gene_down_5k"), list("hypo", "Exon"), list("hypo", "Intron"),
-                         list("hyper", "Gene_up_5k"), list("hyper", "Gene_down_5k"), list("hyper", "Exon"), list("hyper", "Intron")),
+      intersections=list(list("hypo", "Gene_up_5k"), list("hypo", "Gene_down_5k"), list("hypo", "Exon"), list("hypo", "Intron"), list("hypo","chia"), 
+                         list("hypo", "Exon", "chia"), list("hyper", "Exon", "chia"), 
+                         list("hyper", "Gene_up_5k"), list("hyper", "Gene_down_5k"), list("hyper", "Exon"), list("hyper", "Intron"), list("hyper","chia")),
       order.by=c("hypo", "hyper"),
       matrix.color="blue", point.size=5)
       #sets.bar.color=c("maroon","blue","orange"))
+
+dim(subset(cg3, hyper == 1 & Exon ==1)) #1589   16
+
+dim(subset(cg3, hypo == 1 & Exon ==1 & chia ==1)) #284   16
+
+dim(subset(cg3, hyper == 1 & Exon ==1 & chia ==1)) #473  16
 
 
 
@@ -319,6 +330,25 @@ upset(cg1,
 
 
 
+```{r}
+rna <- fread("data/expression_TEO_Maize.txt", data.table=FALSE)
+
+### Version 4 genome:
+tg <- read.table("data/163_CG_TEO_Maize_hyper_exon_Genes.txt", header=FALSE)
+names(tg) <- "V4"
+
+sub <- subset(rna, rna[,2] %in% tg$V4)
+
+hist(sub[, 3] - sub[, 4], breaks=50)
+
+hist(sub[, 5] - sub[, 6], breaks=50)
+
+
+hist(sub[, 7] - sub[, 8], breaks=50)
+
+t.test(sub[, 5], sub[, 6], pair=TRUE)
+t.test(rna[,5], rna[,6], pair=TRUE)
+```
 
 
 
