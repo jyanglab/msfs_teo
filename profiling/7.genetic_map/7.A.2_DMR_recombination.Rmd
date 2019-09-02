@@ -105,7 +105,7 @@ write.table(df, "cache/CG_CHG_DMR_rec_mb.csv", sep=",", row.names=FALSE, quote=F
 
 ```
 
-# Figure 1c
+# Figure 1A
 
 ```{r, eval=TRUE, fig.width=ht, fig.height=wt}
 

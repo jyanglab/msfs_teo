@@ -1,0 +1,47 @@
+---
+title: "DMR vs recombination"
+output: html_notebook
+author: Jinliang Yang
+date: 09-02-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+# Figure 1A
+
+```{r, eval=TRUE, fig.width=ht, fig.height=wt}
+df <- read.csv("cache/CG_CHG_DMR_rec_mb.csv")
+
+fsize=18
+p1 <- ggplot(df, aes(x=rate, y=size, col=type, linetype=type)) +
+    #labs(colour="Type") +
+    #geom_point(size=2, col="antiquewhite3") +
+    theme_bw() +
+    xlab("Crossover/Mb") +
+    ylab("CG & CHG DMR (base-pairs)") +
+    #scale_color_manual(values="grey") +
+    scale_color_manual(labels = c( "LR-MZ", "TEO-LR", "TEO-MZ"), values = c("#d8b365", "#5ab4ac", "red")) +
+    guides(linetype=FALSE, color=guide_legend(title="")) +
+    geom_smooth(method="lm", size=1.3) +
+    scale_linetype_manual(values=c(2, 2, 1)) +
+    theme(axis.text.y = element_text(angle = 90, hjust = 1),
+          axis.text=element_text(size=14),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.position=c(.5,.94),
+          legend.direction = "horizontal",
+          legend.text = element_text(size=14))
+p1
+
+pdf("graphs/Fig1A_recom.pdf", width=6, height=6)
+p1
+dev.off()
+```
+
+
