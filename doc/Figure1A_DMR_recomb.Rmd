@@ -16,6 +16,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../'))
 # Figure 1A
 
 ```{r, eval=TRUE, fig.width=ht, fig.height=wt}
+library("ggplot2")
 df <- read.csv("cache/CG_CHG_DMR_rec_mb.csv")
 
 fsize=18
@@ -42,6 +43,11 @@ p1
 pdf("graphs/Fig1A_recom.pdf", width=6, height=6)
 p1
 dev.off()
+```
+
+```{r}
+library(cowplot)
+plot_grid(p1, p1, labels = "AUTO", label_size = 12, )
 ```
 
 
