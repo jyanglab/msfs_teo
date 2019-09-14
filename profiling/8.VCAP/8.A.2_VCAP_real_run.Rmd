@@ -40,6 +40,7 @@ five mutually exclusive features:
 
 
 library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
+# /common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-05-2019
 run_batch_vcap <- function(
   input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
   dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize")){
@@ -83,11 +84,11 @@ run_batch_vcap <- function(
                  res_kinship=outdf$res
                  )
 
-  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE,"jyanglab", "5", "20G", "3:00:00"))
+  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE, "jclarke", "5", "20G", "3:00:00"))
 }
 
 run_batch_vcap(
-  input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
+  input_dir = "/common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-05-2019",
   dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
                   "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
                   "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
