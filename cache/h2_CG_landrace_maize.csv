@@ -1,42 +1,27 @@
 trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_ALL,pretty_name,h2
-AA_Res_With_IBM_For_GWAS,0,0,0,0,0, 0.458884, 0.382499,Total amino acids,0
 asiavg,0,0,0,0,0, 0.821417, 0.734220,Anthesis-silking interval,0
-Chla_Res_With_IBM_For_GWAS,0.075994,0.10577,0,0,0, 0.278711, 0.237262,Chlorophyll A,0.181764
-Chlb_Res_With_IBM_For_GWAS,0,0,0.136394,0.010951,0,-0.220323,-0.186507,Chlorophyll B,0.147345
-dtaavg,0,0,0,0,0, 0.837608, 0.750729,NA,0
-dtsavg,0,0.04212,0,0,0, 1.111278, 0.796860,NA,0.04212
-ehtavg,0.091221,0,0,0,0, 0.879969, 0.682399,Ear height,0.091221
+dtaavg,0,0,0,0,0, 0.825031, 0.780864,NA,0
+dtsavg,0.078402,0,0,0.017792,0, 1.038300, 0.837327,NA,0.096194
+ehtavg,0.196676,0,0,0,0, 0.881051, 0.773374,Ear height,0.196676
 ehtdivphtavg,0,0,0.000307,0,0, 1.270986, 0.491377,Ratio of ear height to total height,0.000307
-Fruc_Res_With_IBM_For_GWAS,0.043201,0,0,0,0, 0.157153,-0.633504,Fructose,0.043201
-Fuma_Res_With_IBM_For_GWAS,0,0.009266,0,0,0, 0.239771,-0.033278,Fumarate,0.009266
-Fuma2_Res_With_IBM_For_GWAS,0,0.03942,0,0,0, 0.054740,-0.162270,NA,0.03942
-Gluc_Res_With_IBM_For_GWAS,0,0,0.002155,0,0, 0.551513, 0.161454,Glucose,0.002155
-Glut_Res_With_IBM_For_GWAS,0.065261,0,0,0,0, 0.124119,-0.018358,Glutamate,0.065261
 Kwt_5loc_residuals,0,0,0.043944,0,0, 0.650228, 0.491446,100 Kernel weight,0.043944
-Mala_Res_With_IBM_For_GWAS,0.027715,0.011234,0,0,0, 0.647966, 0.360916,Malate,0.038949
-Nitr_Res_With_IBM_For_GWAS,0.010544,0,0,0,0, 0.060395, 0.004484,Nitrate,0.010544
-nlb_residuals,0,0.262385,0.00888,0,0, 0.717439, 0.820513,Northern Leaf Blight,0.271265
-nphavg,0,0,0.264305,0,0, 0.407392, 0.400844,Nodes per plant,0.264305
-nteavg,0,0.011785,0.024839,0,0, 0.825777, 0.765697,Nodes to ear,0.036624
+nlb_residuals,0,0.253425,0.008538,0,0, 0.696255, 0.855795,Northern Leaf Blight,0.261963
+nphavg,0,0.009719,0,0,0, 0.572209, 0.336434,Nodes per plant,0.009719
+nteavg,0,0.006641,0.015846,0,0, 0.839575, 0.737613,Nodes to ear,0.022487
 nttavg,0,0,0.022547,0,0, 0.732144, 0.403269,Nodes above ear,0.022547
 phtavg,0,0,0,0,0, 0.871920, 0.780467,Plant height,0
 phtdivdtravg,0,0,0,0,0, 0.883491, 0.798862,Height per day (until flowering),0
 phtdivnphavg,0,0,0,0.044178,0, 0.634804, 0.440084,Average internode length (whole plant),0.044178
 ppgddta_pop,0,0,0,0,0, 1.670295,-0.217076,Photoperiod growing-degree days to anthesis,0
 ppgddts_pop,0,0,0,0,0, 0.252219,-0.010697,Photoperiod Growing-degree days to silk,0
-Prot_Res_With_IBM_For_GWAS,0,0.064708,0,0,0, 0.207910, 0.055970,Protein,0.064708
-Residual_leaf_length_noIBM,0,0,0,0,0, 0.949432, 0.672473,Leaf length,0
-Residual_leaf_width_noIBM,0,0.004568,0,0.002093,0, 0.833756, 0.795180,Leaf width,0.006661
-residuals_distancebased_for_d2a,0.012606,0,0,0,0, 0.864987, 0.785809,Days to anthesis,0.012606
-residuals_distancebased_for_d2s,0.030451,0,0,0,0, 0.884513, 0.829152,Days to silk,0.030451
+Residual_leaf_length_noIBM,0.013515,0,0,0.037032,0.054836, 0.734175, 0.718793,Leaf length,0.105383
+Residual_leaf_width_noIBM,0,0.024524,0,0.024007,0, 0.784371, 0.729118,Leaf width,0.048531
+residuals_distancebased_for_d2a,0,0,0.08917,0,0, 0.887094, 0.808928,Days to anthesis,0.08917
+residuals_distancebased_for_d2s,0,0,0,5.2e-05,0, 0.926876, 0.805559,Days to silk,5.2e-05
 residuals_distancebased_for_slbv2,0,0.329389,0,0,0, 0.621126, 0.824549,Southern leaf blight,0.329389
-ResPrin1_Res_With_IBM_For_GWAS,0.106077,0,0,0,0, 0.444513, 0.236442,PCA of metabolites: PC1,0.106077
-ResPrin2_Res_With_IBM_For_GWAS,0,0,0.000153,0,0, 0.392841, 0.266404,PCA of metabolites: PC2,0.000153
 rpravg,0,0,0,0,0, 0.294004, 0.240996,Stalk strength,0
 sf_residuals_nopop,0.01386,0,0.161015,0,0, 0.732505, 0.811158,Cob diameter,0.174875
 so_residuals_nopop,0.023537,0.286546,0,0,0, 0.636937, 0.840073,Ear row number,0.310083
-Star_Res_With_IBM_For_GWAS,0,0,0.04714,0,0, 0.425753, 0.245561,Starch,0.04714
-Sucr_Res_With_IBM_For_GWAS,0.031414,0.484612,0,0,0, 0.066162, 0.474060,Sucrose,0.516026
 tassel_branches,0,0.411932,0,0,0, 0.552078, 0.819516,Tassel branch number,0.411932
 tassel_length,0,0,0.009092,0,0, 0.937807, 0.792236,Tassel length,0.009092
 thtavg,0,0,0,0,0, 0.738864, 0.660408,Height above ear,0
