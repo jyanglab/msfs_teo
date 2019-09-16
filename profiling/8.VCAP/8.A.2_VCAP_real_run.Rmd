@@ -111,9 +111,9 @@ Using R package `huskeR`:
 library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
 
 run_batch_ldak <- function(
-  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
-                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
-                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace")
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", 
+                  "CG_landrace_maize", "CHG_landrace_maize", 
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace")
   ){
   
   df <- data.frame()
@@ -130,7 +130,7 @@ run_batch_ldak <- function(
             row.names=FALSE, col.names=FALSE, quote=FALSE)
     
     output_h2 <- gsub("bedfile", "h2/", kinship_dir)
-    unlink(output_h2)
+    #unlink(gsub("bedfile", "h2/", kinship_dir))
     dir.create(output_h2, showWarnings = FALSE)
     tem <- data.frame(output=output_h2, klist=paste0(kinship_dir, "/kinlist.txt"), pheno=pheno)
     tem$output <- paste0(tem$output, gsub(".*\\/|.txt", "", tem$pheno))
@@ -141,9 +141,9 @@ run_batch_ldak <- function(
 }
 
 
-run_batch_ldak(dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
-                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
-                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
+run_batch_ldak(dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize",
+                  "CG_landrace_maize", "CHG_landrace_maize",
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace"))
 
 ```
 
