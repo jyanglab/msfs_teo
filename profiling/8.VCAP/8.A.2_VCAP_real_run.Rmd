@@ -130,13 +130,14 @@ run_batch_ldak <- function(
             row.names=FALSE, col.names=FALSE, quote=FALSE)
     
     output_h2 <- gsub("bedfile", "h2/", kinship_dir)
+    unlink(output_h2)
     dir.create(output_h2, showWarnings = FALSE)
     tem <- data.frame(output=output_h2, klist=paste0(kinship_dir, "/kinlist.txt"), pheno=pheno)
     tem$output <- paste0(tem$output, gsub(".*\\/|.txt", "", tem$pheno))
     df <- rbind(df, tem)
   }
   
-  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jyanglab", "2", "10G", "8:00:00"))
+  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"))
 }
 
 
