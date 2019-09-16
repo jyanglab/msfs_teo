@@ -1,43 +1,43 @@
 trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_ALL,pretty_name,h2
-AA_Res_With_IBM_For_GWAS,0,0.013757,0,0,0, 0.871095, 0.538923,Total amino acids,0.013757
-asiavg,0.000117,0.03317,0,0.013005,0.000208, 0.698539, 0.725995,Anthesis-silking interval,0.0465
-Chla_Res_With_IBM_For_GWAS,0.013195,0,0.019981,0,0, 0.316572, 0.328948,Chlorophyll A,0.033176
-Chlb_Res_With_IBM_For_GWAS,0,0,0.01305,0.002501,0, 0.031169, 0.021140,Chlorophyll B,0.015551
-dtaavg,0,0.011362,0.004942,0,0.016631, 0.779044, 0.792531,NA,0.032935
-dtsavg,0,0.00431,0,0,0.02312, 0.811213, 0.816998,NA,0.02743
-ehtavg,0.00105,0,0.021052,0.000527,0, 0.805567, 0.796639,Ear height,0.022629
-ehtdivphtavg,0.007552,0.00212,0.013904,0.000922,0, 0.726393, 0.745370,Ratio of ear height to total height,0.024498
-Fruc_Res_With_IBM_For_GWAS,0.00074,0.009157,0.011834,0.003643,0, 0.160507, 0.173891,Fructose,0.025374
-Fuma_Res_With_IBM_For_GWAS,0,0.003944,0.010692,0.003697,0, 0.010246, 0.012514,Fumarate,0.018333
-Fuma2_Res_With_IBM_For_GWAS,0,0.019376,0.016741,0.002689,0, 0.018425, 0.001830,NA,0.038806
-Gluc_Res_With_IBM_For_GWAS,0.008818,0.015082,0,0.002593,0, 0.331542, 0.337001,Glucose,0.026493
-Glut_Res_With_IBM_For_GWAS,0.006617,0.011252,0,0.012929,0, 0.158141, 0.138653,Glutamate,0.030798
-Kwt_5loc_residuals,0,0.024976,0,0,0, 0.672291, 0.635288,100 Kernel weight,0.024976
-Mala_Res_With_IBM_For_GWAS,0.021751,0,0,0,0, 0.263068, 0.258334,Malate,0.021751
-Nitr_Res_With_IBM_For_GWAS,0,0.00214,0.041953,0,0, 0.063992, 0.095230,Nitrate,0.044093
-nlb_residuals,0.012953,0.004259,0.008992,0,0, 0.822595, 0.827104,Northern Leaf Blight,0.026204
-nphavg,0,0,0.004834,0,0.006391, 0.777245, 0.765810,Nodes per plant,0.011225
-nteavg,0,0,0.030353,0,0, 0.789002, 0.752196,Nodes to ear,0.030353
-nttavg,0.005711,0.00396,0.004403,0.002092,0.013714,0.741991,0.771871,Nodes above ear,0.02988
-phtavg,0,0.004332,0.01149,0,0, 0.810778, 0.804573,Plant height,0.015822
-phtdivdtravg,0,0.01535,0,0,0, 0.772147, 0.765701,Height per day (until flowering),0.01535
-phtdivnphavg,0.008992,0.012393,0.007274,0.012579,0, 0.732213, 0.767800,Average internode length (whole plant),0.041238
-ppgddta_pop,0,0,0,0,0.094423, 0.775344, 0.623462,Photoperiod growing-degree days to anthesis,0.094423
-ppgddts_pop,0,0,0.06475,0,0.044921, 0.587516, 0.627782,Photoperiod Growing-degree days to silk,0.109671
-Prot_Res_With_IBM_For_GWAS,0,0.009792,0.024163,0,0, 0.204079, 0.196862,Protein,0.033955
-Residual_leaf_length_noIBM,0,0,0.025688,0.006925,0, 0.787247, 0.788468,Leaf length,0.032613
-Residual_leaf_width_noIBM,0.007342,0.012436,0,0,0, 0.797189, 0.795673,Leaf width,0.019778
-residuals_distancebased_for_d2a,0,0.008847,0.00408,0,0.020945, 0.773920, 0.789723,Days to anthesis,0.033872
-residuals_distancebased_for_d2s,0,0.003005,0.000335,0,0.025472, 0.799856, 0.813357,Days to silk,0.028812
-residuals_distancebased_for_slbv2,0,0.005152,0,0,0, 0.773247, 0.753180,Southern leaf blight,0.005152
-ResPrin1_Res_With_IBM_For_GWAS,0.053667,0.096864,0,0,0, 0.317947, 0.260849,PCA of metabolites: PC1,0.150531
-ResPrin2_Res_With_IBM_For_GWAS,0.005753,0.023174,0,0.023493,0, 0.350348, 0.378831,PCA of metabolites: PC2,0.05242
-rpravg,0.011204,0,0.030665,0.001313,0, 0.207266, 0.234367,Stalk strength,0.043182
-sf_residuals_nopop,0,0.015258,0,0,0.003671, 0.789226, 0.801877,Cob diameter,0.018929
-so_residuals_nopop,0,0.001944,0,0,0, 0.853027, 0.814577,Ear row number,0.001944
-Star_Res_With_IBM_For_GWAS,0.017722,0,0,0.013588,0, 0.398581, 0.406979,Starch,0.03131
-Sucr_Res_With_IBM_For_GWAS,0,0.006304,0,0,0, 0.208545, 0.182183,Sucrose,0.006304
-tassel_branches,0.000286,0.006623,0.004958,0.009007,0, 0.810425, 0.829310,Tassel branch number,0.020874
-tassel_length,0,0,0,0,0, 0.829662, 0.784613,Tassel length,0
-thtavg,0.00309,0.007919,0,0.000858,0.021579, 0.715763, 0.748279,Height above ear,0.033446
-thtdivnttavg,0.015338,0.166439,0,0,0, 0.590174, 0.662217,Average internode length (above ear),0.181777
+AA_Res_With_IBM_For_GWAS,0,0,0,0,0, 0.522963, 0.340783,Total amino acids,0
+asiavg,0.005549,0.002016,0,0,0, 0.734736, 0.724044,Anthesis-silking interval,0.007565
+Chla_Res_With_IBM_For_GWAS,0,0.077027,0,0,0, 0.301988, 0.335347,Chlorophyll A,0.077027
+Chlb_Res_With_IBM_For_GWAS,0.001508,0,0.053123,0,0, 0.200314, 0.137315,Chlorophyll B,0.054631
+dtaavg,0,0,0.052305,0,0, 0.831926, 0.776769,NA,0.052305
+dtsavg,0,0,0.015873,0,0, 0.847303, 0.818861,NA,0.015873
+ehtavg,0,0,0,0,0, 0.816899, 0.796100,Ear height,0
+ehtdivphtavg,0,0.05372,0,0,0, 0.895119, 0.732316,Ratio of ear height to total height,0.05372
+Fruc_Res_With_IBM_For_GWAS,0,0,0.024545,0,0, 0.138834, 0.044327,Fructose,0.024545
+Fuma_Res_With_IBM_For_GWAS,0.187461,0,0.116208,0,0,-0.003751, 0.166594,Fumarate,0.303669
+Fuma2_Res_With_IBM_For_GWAS,0,0,0,0,0, 0.183792,-0.072596,NA,0
+Gluc_Res_With_IBM_For_GWAS,0,0,0,0,0.00623, 0.324066, 0.215456,Glucose,0.00623
+Glut_Res_With_IBM_For_GWAS,0,0.071202,0,0,0,-0.020394, 0.002289,Glutamate,0.071202
+Kwt_5loc_residuals,0,0,0.002072,0,0.019812, 0.497529, 0.407207,100 Kernel weight,0.021884
+Mala_Res_With_IBM_For_GWAS,0,0,0.095343,0,0, 0.103618, 0.041090,Malate,0.095343
+Nitr_Res_With_IBM_For_GWAS,0,0.113456,0,0,0.02597, 0.025731, 0.090400,Nitrate,0.139426
+nlb_residuals,0,0.006741,0,0,0, 0.980290, 0.774507,Northern Leaf Blight,0.006741
+nphavg,0,0.001606,0,0.004466,0, 0.765233, 0.765062,Nodes per plant,0.006072
+nteavg,0,0.006968,0,0,0, 0.844147, 0.700533,Nodes to ear,0.006968
+nttavg,0.00056,0,0.006272,0.034737,0, 0.753003, 0.750360,Nodes above ear,0.041569
+phtavg,0,0,0,0,0, 0.822508, 0.808340,Plant height,0
+phtdivdtravg,0,0,0.001407,0,0, 0.783814, 0.768668,Height per day (until flowering),0.001407
+phtdivnphavg,0,0.080611,0,0,0, 0.845614, 0.722913,Average internode length (whole plant),0.080611
+ppgddta_pop,0,0,0,0.283307,0, 0.413730, 0.389085,Photoperiod growing-degree days to anthesis,0.283307
+ppgddts_pop,0,0,0,0,0, 0.757288, 0.577925,Photoperiod Growing-degree days to silk,0
+Prot_Res_With_IBM_For_GWAS,0,0.037509,0,0,0, 0.215410, 0.097269,Protein,0.037509
+Residual_leaf_length_noIBM,0,0,0,0,0, 0.916540, 0.790090,Leaf length,0
+Residual_leaf_width_noIBM,0,0,0.339997,0,0, 0.663746, 0.783511,Leaf width,0.339997
+residuals_distancebased_for_d2a,0,0,0.042593,0,0, 0.836932, 0.615754,Days to anthesis,0.042593
+residuals_distancebased_for_d2s,0,0,0,0.021764,0, 0.958814, 0.811555,Days to silk,0.021764
+residuals_distancebased_for_slbv2,0.004465,0,0,0,0, 0.677750, 0.519242,Southern leaf blight,0.004465
+ResPrin1_Res_With_IBM_For_GWAS,0,0.021521,0,0,0, 0.275132, 0.246974,PCA of metabolites: PC1,0.021521
+ResPrin2_Res_With_IBM_For_GWAS,0.002729,0.000349,0,0.006549,0, 0.373081, 0.376751,PCA of metabolites: PC2,0.009627
+rpravg,0,0,0,0,0, 0.542354, 0.400312,Stalk strength,0
+sf_residuals_nopop,0.008368,0.004023,0,0,0, 0.802937, 0.802268,Cob diameter,0.012391
+so_residuals_nopop,0,0,0.081673,0,0, 0.825138, 0.793561,Ear row number,0.081673
+Star_Res_With_IBM_For_GWAS,0,0,0,0,0, 0.666164, 0.527302,Starch,0
+Sucr_Res_With_IBM_For_GWAS,0,0.003081,0,0,0.047884, 0.189659, 0.148011,Sucrose,0.050965
+tassel_branches,0.002618,0,0,4e-04,0, 0.831029, 0.829301,Tassel branch number,0.003018
+tassel_length,0,0.007682,0,0,0.001741, 0.787758, 0.786708,Tassel length,0.009423
+thtavg,0,0.014081,0,0,0.005484, 0.708085, 0.663744,Height above ear,0.019565
+thtdivnttavg,0,0,0,0,0, 0.678772, 0.514623,Average internode length (above ear),0
