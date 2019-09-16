@@ -1,42 +1,27 @@
 trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_K6,Her_ALL,pretty_name,h2
-AA_Res_With_IBM_For_GWAS,0,0.025034,0,0,0, 0.489056, 0.375307,Total amino acids,0.025034
 asiavg,0,0,0.003846,0,0.003732, 0.732682, 0.726260,Anthesis-silking interval,0.007578
-Chla_Res_With_IBM_For_GWAS,0.025792,0,0,0.001756,0.014438, 0.293945, 0.325365,Chlorophyll A,0.041986
-Chlb_Res_With_IBM_For_GWAS,0,0.001353,0.00118,0.020623,0.003447,-0.023624,-0.026490,Chlorophyll B,0.026603
 dtaavg,0.020419,0,0.003963,0,0.023641, 0.757919, 0.793802,NA,0.048023
 dtsavg,0.009615,0,0.00394,0,0.025656, 0.786719, 0.816423,NA,0.039211
 ehtavg,0.011961,0.003032,0,0,0.000966, 0.791993, 0.797046,Ear height,0.015959
 ehtdivphtavg,0.02282,0,0,0,0.001259, 0.734452, 0.746378,Ratio of ear height to total height,0.024079
-Fruc_Res_With_IBM_For_GWAS,0,0,0.038516,0,0, 0.302176, 0.188534,Fructose,0.038516
-Fuma_Res_With_IBM_For_GWAS,0,0,0,0,0.006693, 0.011050, 0.007387,Fumarate,0.006693
-Fuma2_Res_With_IBM_For_GWAS,0,0,0.036231,0.020575,0, 0.035059,-0.022286,NA,0.056806
-Gluc_Res_With_IBM_For_GWAS,0,0.021418,0,0,0.005749, 0.354213, 0.330954,Glucose,0.027167
-Glut_Res_With_IBM_For_GWAS,0.101625,0.132354,0,0,0, 0.096113, 0.114456,Glutamate,0.233979
 Kwt_5loc_residuals,0,0.009619,0,0,0, 0.648532, 0.638457,100 Kernel weight,0.009619
-Mala_Res_With_IBM_For_GWAS,0.003789,0,0,0,0.032336, 0.245849, 0.260562,Malate,0.036125
-Nitr_Res_With_IBM_For_GWAS,0.003192,0,0.010664,0,0, 0.104996, 0.106311,Nitrate,0.013856
-nlb_residuals,0.019389,0,0.029768,0,0.006572, 0.869513, 0.842103,Northern Leaf Blight,0.055729
+nlb_residuals,0.024515,0,0.017658,0,0.04753, 0.845904, 0.861453,Northern Leaf Blight,0.089703
 nphavg,0,0.006833,0,0,0.00264, 0.770420, 0.763452,Nodes per plant,0.009473
 nteavg,0.00431,0.012126,0,0,0, 0.755764, 0.754860,Nodes to ear,0.016436
-nttavg,0.006373,0,0.027049,0,0, 0.808859, 0.735194,Nodes above ear,0.033422
+nttavg,0.02176,0,0.009711,0,0, 0.841995, 0.735874,Nodes above ear,0.031471
 phtavg,0.001218,0,0.009108,0,0.000114, 0.806544, 0.806615,Plant height,0.01044
 phtdivdtravg,0,0,0.005691,0,0, 0.779662, 0.767709,Height per day (until flowering),0.005691
 phtdivnphavg,0,0,0.011979,0,0, 0.773739, 0.770371,Average internode length (whole plant),0.011979
 ppgddta_pop,0.022528,0.00033,0,0,0.025414, 0.605969, 0.625678,Photoperiod growing-degree days to anthesis,0.048272
-ppgddts_pop,0.010941,0.031164,0,0,0.019846, 0.608547, 0.624129,Photoperiod Growing-degree days to silk,0.061951
-Prot_Res_With_IBM_For_GWAS,0.007083,0,0.013008,0,0.002864, 0.175631, 0.187094,Protein,0.022955
+ppgddts_pop,0.008538,0.031172,0,0,0.020242, 0.607729, 0.620525,Photoperiod Growing-degree days to silk,0.059952
 Residual_leaf_length_noIBM,0,0.01236,0,0,0, 0.873694, 0.814685,Leaf length,0.01236
 Residual_leaf_width_noIBM,0,0.023334,0,0.004412,0, 0.801397, 0.801555,Leaf width,0.027746
 residuals_distancebased_for_d2a,0.019247,0,0.000985,0.004341,0.024772, 0.751407, 0.790303,Days to anthesis,0.049345
 residuals_distancebased_for_d2s,0.01385,0,0.00165,0.000546,0.021094, 0.787922, 0.812082,Days to silk,0.03714
 residuals_distancebased_for_slbv2,0.008263,0.001735,0.002967,0,0, 0.756434, 0.752985,Southern leaf blight,0.012965
-ResPrin1_Res_With_IBM_For_GWAS,0.043797,0,0.000352,0,0.019953, 0.187420, 0.228277,PCA of metabolites: PC1,0.064102
-ResPrin2_Res_With_IBM_For_GWAS,0,0.00696,0.028322,0,0.010327, 0.353844, 0.377864,PCA of metabolites: PC2,0.045609
 rpravg,0.05362,0,0,0,0.035734, 0.330586, 0.217054,Stalk strength,0.089354
 sf_residuals_nopop,0,0.001171,0,0.001577,0, 0.804745, 0.801395,Cob diameter,0.002748
 so_residuals_nopop,0.033318,0,0.048891,0,0.03926, 0.796573, 0.817334,Ear row number,0.121469
-Star_Res_With_IBM_For_GWAS,0,0.020672,0.008783,0,0.001631, 0.399724, 0.404931,Starch,0.031086
-Sucr_Res_With_IBM_For_GWAS,0.028233,0.039217,0,0,3.3e-05, 0.090352, 0.129197,Sucrose,0.067483
 tassel_branches,0,0,0.004421,0,0, 0.875438, 0.727948,Tassel branch number,0.004421
 tassel_length,0,0.001631,0.013074,0,0.000768, 0.805649, 0.786125,Tassel length,0.015473
 thtavg,0,0.006978,0.001377,0,0, 0.751073, 0.747766,Height above ear,0.008355

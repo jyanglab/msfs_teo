@@ -17,7 +17,7 @@ ppgddts_pop,0,0,0,0,0.080397, 0.452213, 0.317755,Photoperiod Growing-degree days
 Residual_leaf_length_noIBM,0,0.005977,0.003568,0,0, 0.793437, 0.792203,Leaf length,0.009545
 Residual_leaf_width_noIBM,0.00546,0.001019,0,0,0.010805, 0.793995, 0.800167,Leaf width,0.017284
 residuals_distancebased_for_d2a,0,0.031869,0,0,0.02075, 0.825757, 0.798908,Days to anthesis,0.052619
-residuals_distancebased_for_d2s,0,0,0.013827,0,0, 0.847087, 0.813959,Days to silk,0.013827
+residuals_distancebased_for_d2s,0,0,0.000529,0,0, 0.832558, 0.796659,Days to silk,0.000529
 residuals_distancebased_for_slbv2,0.034242,0,0,0,0.116342, 0.805048, 0.818113,Southern leaf blight,0.150584
 rpravg,0,0.012708,0,0,0, 0.280045, 0.181197,Stalk strength,0.012708
 sf_residuals_nopop,0,0.001679,0.007912,0,0.001935, 0.795414, 0.800143,Cob diameter,0.011526
