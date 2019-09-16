@@ -7,11 +7,11 @@ ehtdivphtavg,0.080211,0.182811,0,0,0.030322, 0.660189, 0.800727,Ratio of ear hei
 Kwt_5loc_residuals,0,0.019341,0,0,0, 0.669078, 0.626964,100 Kernel weight,0.019341
 nlb_residuals,0,0,0.335425,0,0.192299, 0.572928, 0.763467,Northern Leaf Blight,0.527724
 nphavg,0.115546,0,0.008127,0,0.03435, 0.870280, 0.724353,Nodes per plant,0.158023
-nteavg,0,0.053024,0,0,0, 0.766603, 0.728722,Nodes to ear,0.053024
-nttavg,0,0,0,0,0, 0.851312, 0.754807,Nodes above ear,0
-phtavg,0,0.014833,0,0,0, 0.923376, 0.813448,Plant height,0.014833
-phtdivdtravg,0,0,0,0,0, 1.536799,-0.317855,Height per day (until flowering),0
-phtdivnphavg,0.232026,0,0,0,0, 0.518111, 0.352793,Average internode length (whole plant),0.232026
+nteavg,0,0.001492,0,0,0, 0.796578, 0.752038,Nodes to ear,0.001492
+nttavg,0,0,0,0,0, 0.922321, 0.770927,Nodes above ear,0
+phtavg,0,0.030246,0,0.006583,0, 0.873527, 0.685951,Plant height,0.036829
+phtdivdtravg,0.241657,0,0,0,0, 1.273666, 0.364209,Height per day (until flowering),0.241657
+phtdivnphavg,0.216216,0,0,0,0, 0.749382, 0.713946,Average internode length (whole plant),0.216216
 ppgddta_pop,0,0.136092,0,0,0, 0.751213, 0.630033,Photoperiod growing-degree days to anthesis,0.136092
 ppgddts_pop,0,0,0.019338,0.026426,0, 0.660065, 0.510537,Photoperiod Growing-degree days to silk,0.045764
 Residual_leaf_length_noIBM,0.023953,0.036028,0,0,0, 0.845686, 0.803099,Leaf length,0.059981
