@@ -10,7 +10,7 @@ nphavg,0,0,0,0,0, 0.925495, 0.772818,Nodes per plant,0
 nteavg,0.053402,0,0,0,0, 0.817471, 0.711483,Nodes to ear,0.053402
 nttavg,0.072255,0,0,0,0.013202, 0.717220, 0.666998,Nodes above ear,0.085457
 phtavg,0,0.221527,0.001911,0.000611,0, 0.737126, 0.824093,Plant height,0.224049
-phtdivdtravg,0,0.156957,0.02931,0,0, 0.844962, 0.705926,Height per day (until flowering),0.186267
+phtdivdtravg,0,0,0,0,0, 0.928808, 0.799845,Height per day (until flowering),0
 phtdivnphavg,0.123398,0,0.000677,0,0, 0.750422, 0.782343,Average internode length (whole plant),0.124075
 ppgddta_pop,0,0,0.039339,0,0, 0.781601, 0.415610,Photoperiod growing-degree days to anthesis,0.039339
 ppgddts_pop,0.172736,0,0,0,0, 0.608036, 0.597439,Photoperiod Growing-degree days to silk,0.172736
@@ -23,6 +23,6 @@ rpravg,0.192003,0,0,0,0, 0.280069, 0.082156,Stalk strength,0.192003
 sf_residuals_nopop,0,0.056199,0,0,0, 0.921004, 0.794881,Cob diameter,0.056199
 so_residuals_nopop,0,0.087804,0,0,0.113135, 0.630961, 0.518455,Ear row number,0.200939
 tassel_branches,0,0,0,0,0, 0.937248, 0.802228,Tassel branch number,0
-tassel_length,0,0.019375,0.005915,0,0.00408, 0.856027, 0.787933,Tassel length,0.02937
+tassel_length,0,0,0.002241,0.004629,0.014012, 0.787880, 0.780570,Tassel length,0.020882
 thtavg,0,0.181018,0,0,0, 0.384407, 0.180271,Height above ear,0.181018
 thtdivnttavg,0,0.25546,0.070468,0,0, 0.716015, 0.628241,Average internode length (above ear),0.325928
