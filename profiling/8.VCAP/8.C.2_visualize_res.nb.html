@@ -1781,8 +1781,10 @@ $(document).ready(function () {
 <p>CG teosinte and maize</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGRmKFwiZ3JhcGhzL2JhcnBsb3RfQ0dfdGVvc2ludGVfbWFpemUucGRmXCIsIHdpZHRoID0gOCwgaGVpZ2h0PTgpXG5teWJhcnBsb3QoZGY9Y2cxKVxuZGV2Lm9mZigpICBcblxuYGBgIn0= -->
-<pre class="r"><code>pdf(&quot;graphs/barplot_CG_teosinte_maize.pdf&quot;, width = 8, height=8)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2cxIDwtIHJlYWQuY3N2KFwiY2FjaGUvaDJfQ0dfdGVvc2ludGVfbWFpemUuY3N2XCIpXG5cbnBkZihcImdyYXBocy9iYXJwbG90X0NHX3Rlb3NpbnRlX21haXplLnBkZlwiLCB3aWR0aCA9IDgsIGhlaWdodD04KVxubXliYXJwbG90KGRmPWNnMSlcbmRldi5vZmYoKSAgXG5cbmBgYCJ9 -->
+<pre class="r"><code>cg1 &lt;- read.csv(&quot;cache/h2_CG_teosinte_maize.csv&quot;)
+
+pdf(&quot;graphs/barplot_CG_teosinte_maize.pdf&quot;, width = 8, height=8)
 mybarplot(df=cg1)
 dev.off()  
 </code></pre>
