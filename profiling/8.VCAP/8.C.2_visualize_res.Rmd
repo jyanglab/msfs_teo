@@ -51,9 +51,9 @@ mybarplot <- function(df){
     theme_bw() +
     xlab("") +
     ylab("") +
-    geom_hline(yintercept=0.1, linetype="dotted") +
+    geom_hline(yintercept=0.05, linetype="dotted") +
     scale_x_discrete(position = "top") +
-    geom_vline(xintercept=0.1, linetype="dotted") +
+    geom_vline(xintercept=0.05, linetype="dotted") +
     # https://www.color-hex.com/color-palette/73961
     scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
                       name=c(""),
