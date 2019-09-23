@@ -2,7 +2,7 @@
 title: "DMR results from Gen"
 output: html_notebook
 author: Jinliang Yang
-date: 02-07-2019
+date: 09-20-2019
 ---
 
 
@@ -16,7 +16,9 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 ```{r}
 ## Using R/QTL
-alldmr <- read.delim("data/all_DMRs.txt")
+d <- read.delim("doc/Table_S_DMRs.csv", header=TRUE, sep=",")
+dim(d)
+# 2709753
 
 
 gene_dmr <- read.delim("data/all_DMR_overp_genes.txt")

@@ -68,17 +68,17 @@ mybarplot <- function(df){
 
 cg1 <- read.csv("cache/h2_CG_teosinte_maize.csv")
 
-pdf("graphs/barplot_CG_teosinte_maize.pdf", width = 8, height=8)
+pdf("graphs/barplot_CG_teosinte_maize.pdf", width = 10, height=6)
 mybarplot(df=cg1)
 dev.off()  
 
 cg2 <- read.csv("cache/h2_CG_teosinte_landrace.csv")
-pdf("graphs/barplot_CG_teosinte_landrace.pdf", width = 8, height=8)
+pdf("graphs/barplot_CG_teosinte_landrace.pdf", width = 10, height=6)
 mybarplot(df=cg2)
 dev.off()  
 
 cg3 <- read.csv("cache/h2_CG_landrace_maize.csv")
-pdf("graphs/barplot_CG_landrace_maize.pdf", width = 8, height=8)
+pdf("graphs/barplot_CG_landrace_maize.pdf", width = 10, height=6)
 mybarplot(df=cg3)
 dev.off()  
 
@@ -87,12 +87,12 @@ dev.off()
 ```{r}
 chg1 <- read.csv("cache/h2_CHG_teosinte_maize.csv")
 
-pdf("graphs/barplot_CHG_teosinte_maize.pdf", width = 8, height=8)
+pdf("graphs/barplot_CHG_teosinte_maize.pdf", width = 8, height=4)
 mybarplot(df=chg1)
 dev.off()  
 
 chg2 <- read.csv("cache/h2_CHG_teosinte_landrace.csv")
-pdf("graphs/barplot_CHG_teosinte_landrace.pdf", width = 8, height=8)
+pdf("graphs/barplot_CHG_teosinte_landrace.pdf", width = 8, height=4)
 mybarplot(df=chg2)
 dev.off()  
 
