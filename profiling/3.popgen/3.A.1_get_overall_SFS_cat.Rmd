@@ -1,6 +1,6 @@
 ---
-title: "Calculate overall SFSs and their distributions"
-output: html_notebook
+title: "Cat 10 chrs to chrall"
+output: NULL
 author: Jinliang Yang
 date: 11-30-2018
 ---
@@ -17,7 +17,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ### `/common/jyanglab/shared/Gen_Xu/mr_basepair`
 - This one contains the methylation ratio at base-pair level
 
-### `/common/jyanglab/shared/Gen_Xu/mr_100bptile`
+### `/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile`
 - This one contains the methylation ratio at 100-bp tile
 
 
@@ -71,9 +71,9 @@ cat_mr <- function(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG
 library("data.table")
 ##########
 ### Teosinte 
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CHG", outdir="largedata/mr_100bp/teosinte/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CHH", outdir="largedata/mr_100bp/teosinte/")
 
 
 ### Landrace
@@ -83,9 +83,9 @@ cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Landrace/CHH", outdir="
 
 
 ### Elite
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/elite/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/elite/")
-cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/elite/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CG", outdir="largedata/mr_100bp/maize/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHG", outdir="largedata/mr_100bp/maize/")
+cat_mr(path="/common/jyanglab/shared/Gen_Xu/mr_100bptile/Elite_Maize/CHH", outdir="largedata/mr_100bp/maize/")
 
 
 ```
