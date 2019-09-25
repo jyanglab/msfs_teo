@@ -63,17 +63,20 @@ getcat <- function(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptil
 
 ### apply the function:
 getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CG", outpath="largedata/mr_100bp/teosinte", context="CpG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CHG", outpath="largedata/mr_100bp/teosinte", context="CHG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CHH", outpath="largedata/mr_100bp/teosinte", context="CHH")
 
-getcat(path="largedata/mr_100bp/teosinte", context="CHG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/teosinte", context="CHH", cols=3:22, BINSIZE=100)
 ### apply the function to landrace
-getcat(path="largedata/mr_100bp/landrace", context="CpG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/landrace", context="CHG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/landrace", context="CHH", cols=3:22, BINSIZE=100)
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Landrace/CG", outpath="largedata/mr_100bp/landrace", context="CpG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Landrace/CHG", outpath="largedata/mr_100bp/landrace", context="CHG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Landrace/CHH", outpath="largedata/mr_100bp/landrace", context="CHH")
+
+
 ### apply the function to maize
-getcat(path="largedata/mr_100bp/elite", context="CpG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/elite", context="CHG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/elite", context="CHH", cols=3:22, BINSIZE=100)
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CG", outpath="largedata/mr_100bp/maize", context="CpG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CHG", outpath="largedata/mr_100bp/maize", context="CHG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CHH", outpath="largedata/mr_100bp/maize", context="CHH")
+
 
 ``` 
   

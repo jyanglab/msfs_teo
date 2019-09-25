@@ -31,6 +31,18 @@ out <- doimpute(mx, ncols=2:17, binsize=1000)
 
 ```
 
+### Landrace
+```{r}
+library("huskeR")
+run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1, 
+           rcodes = "profiling/3.popgen/3.A.4_setup_ajob_land.R",
+           arrayshid = "slurm-script/run_land_array.sh",
+           email="yangjl0930@gmail.com", 
+            runinfo = c(TRUE, "jclarke", 10, "30G", "24:00:00"))
+#
+```
+
+
 
 ### Teosinte
 ```{r}
@@ -43,16 +55,7 @@ run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1
 #
 ```
 
-### Landrace
-```{r}
-library("huskeR")
-run_Rcode(inputdf=data.frame(file=1:3, out=10), outdir="slurm-script", cmdno = 1, 
-           rcodes = "profiling/3.popgen/3.A.4_setup_ajob_land.R",
-           arrayshid = "slurm-script/run_land_array.sh",
-           email="yangjl0930@gmail.com", 
-            runinfo = c(TRUE, "jclarke", 10, "30G", "24:00:00"))
-#
-```
+
 
 ### Maize
 ```{r}

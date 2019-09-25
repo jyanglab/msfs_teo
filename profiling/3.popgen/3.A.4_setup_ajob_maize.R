@@ -14,7 +14,7 @@ source("lib/doimpute.R")
 library("data.table")
 library("plyr")
 
-files <- list.files(path="largedata/mr_100bp", pattern="elite_rm_", full.names=TRUE)
+files <- list.files(path="largedata/mr_100bp", pattern="maize_", full.names=TRUE)
 
 mx <- fread(files[JOBID], data.table=FALSE)
 out <- doimpute(mx, ncols=2:15, binsize=1000)
