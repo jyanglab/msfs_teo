@@ -19,6 +19,10 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 - 1000,000 runs
 ```{r, eval=FALSE}
+library(devtools)
+withr::with_libpaths(new = "/home/jyanglab/jyang21/bin/Rlib", install_github('yangjl/huskeR'))
+# .libPaths()
+
 library("huskeR")
 run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
            rcodes = "profiling/3.popgen/3.B.2_setup_MCMC_teo.R",
@@ -30,10 +34,11 @@ run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
 
 ### Landrace:
 ```{r, eval=FALSE}
-library("huskeR")
+library(huskeR)
 run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
            rcodes = "profiling/3.popgen/3.B.2_setup_MCMC_land.R",
-           arrayshid = "slurm-script/run_MCMC_land_array.sh",
+           #arrayshid = "slurm-script/run_MCMC_land_array.sh",
+           base_shid ="run_MCMC_land",
            email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "10G", "36:00:00"))
 
 #
@@ -44,7 +49,7 @@ run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
 library("huskeR")
 run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
            rcodes = "profiling/3.popgen/3.B.2_setup_MCMC_maize.R",
-           arrayshid = "slurm-script/run_MCMC_land_array.sh",
+           base_shid ="run_MCMC_maize",
            email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "10G", "36:00:00"))
 
 #
