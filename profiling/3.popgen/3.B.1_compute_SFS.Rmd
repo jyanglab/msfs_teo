@@ -71,6 +71,7 @@ getsfs(impfile="largedata/mr_100bp/maize_CpG_matrix_imp.csv",
        cols=4:17, outfile="cache/sfs_maize_CpG.csv")
 getsfs(impfile="largedata/mr_100bp/maize_CHG_matrix_imp.csv", 
        cols=4:17, outfile="cache/sfs_maize_CHG.csv")
+#
 getsfs(impfile="largedata/mr_100bp/maize_CHH_matrix_imp.csv", 
        cols=4:17, outfile="cache/sfs_maize_CHH.csv")
 #
