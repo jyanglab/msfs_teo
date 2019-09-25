@@ -1,6 +1,6 @@
 ---
 title: "Step5: run array job for NA imputation"
-output: html_notebook
+output: NULL
 author: Jinliang Yang
 date: 12-12-2018
 ---

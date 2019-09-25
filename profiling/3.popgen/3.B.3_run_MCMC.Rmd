@@ -1,6 +1,6 @@
 ---
 title: "Run MCMC BC"
-output: html_notebook
+output: NULL
 author: Jinliang Yang
 date: 01-30-2019
 ---
