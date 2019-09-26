@@ -1,0 +1,142 @@
+---
+title: "Genomic feature selection (interactive anchor) using AGPV4 Annotation"
+output: NULL
+author: Jinliang Yang
+date: 09-26-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+### Merge three populations
+
+```{r}
+library("data.table")
+
+### merge CG sites
+df1 <- fread("largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", data.table=FALSE)
+df2 <- fread("largedata/mr_100bp/landrace_CpG_matrix_imp.csv", data.table=FALSE)
+df3 <- fread("largedata/mr_100bp/maize_CpG_matrix_imp.csv", data.table=FALSE)
+df <- merge(df1, df2[, -2:-3], by="uid")
+df <- merge(df, df3[, -2:-3], by="uid")    
+
+fwrite(df, "largedata/mr_100bp/pop3_CpG_matrix_imp.csv", sep=",", row.names=FALSE, quote=FALSE)    
+
+
+### merge CHG sites
+library("data.table")
+df1 <- fread("largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", data.table=FALSE)
+df2 <- fread("largedata/mr_100bp/landrace_CHG_matrix_imp.csv", data.table=FALSE)
+df3 <- fread("largedata/mr_100bp/maize_CHG_matrix_imp.csv", data.table=FALSE)
+df <- merge(df1, df2[, -2:-3], by="uid")
+df <- merge(df, df3[, -2:-3], by="uid")    
+
+fwrite(df, "largedata/mr_100bp/pop3_CHG_matrix_imp.csv", sep=",", row.names=FALSE, quote=FALSE)    
+
+### merge CHG sites
+library("data.table")
+df1 <- fread("largedata/mr_100bp/teosinte_CHH_matrix_imp.csv", data.table=FALSE)
+df2 <- fread("largedata/mr_100bp/landrace_CHH_matrix_imp.csv", data.table=FALSE)
+df3 <- fread("largedata/mr_100bp/maize_CHH_matrix_imp.csv", data.table=FALSE)
+df <- merge(df1, df2[, -2:-3], by="uid")
+df <- merge(df, df3[, -2:-3], by="uid")    
+
+fwrite(df, "largedata/mr_100bp/pop3_CHH_matrix_imp.csv", sep=",", row.names=FALSE, quote=FALSE)    
+             
+```
+
+
+
+-----------------
+Note, require `R/3.5` or above for the following step:
+
+```{r}
+library("GenomicRanges")
+library("data.table")
+
+getcount <- function(x, mmin=0.3, mmax=0.7){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+get_feature_sfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv", 
+                   feature_file="data/Chia_pet_shoot_interaction_anchor.bed", 
+                   out_file="cache/features/interactive_anchor_sfs_pops.csv"){
+    
+    df <- fread(pops_file, data.table=FALSE)
+    
+    
+    ########### Methylation file
+    chr <- df[, 1:3]
+    chr$start <- as.numeric(as.character(df$pos)) - 100+1
+    chr$end <- as.numeric(as.character(df$pos))
+    gr1 = with(chr, GRanges(seqnames=chr, IRanges(start=start, end=end), strand="+", uid=uid))
+    
+    ########### feature file
+    
+    f <- fread(feature_file, data.table=FALSE)
+    names(f) <- c("chr", "start", "end", "type")
+    f$uid <- paste(f$chr, f$start, sep="_")
+    
+    gr0 = with(f, GRanges(seqnames=chr, IRanges(start=start, end=end), strand="+", geneid=uid ))
+    feature <- gr0
+    ex1 = findOverlaps(feature, gr1)
+    out <- gr1[subjectHits(ex1)]
+    
+    mydf <- subset(df, uid %in% mcols(out)$uid)
+    message(sprintf("###>>> [%s] rows and [%s] cols for this feature, compute sfs...", nrow(mydf), ncol(mydf)))
+    
+    #########
+    #df <- as.data.frame(df)
+    ftb <- apply(mydf[, -1:-3], 1, getcount)
+    sfs <- table(ftb)
+    #outfile <- paste0(outpath, fi, ".csv")
+    write.table(sfs, out_file, sep=",", row.names=FALSE, quote=FALSE)
+    
+    
+}
+
+
+get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv", 
+                   feature_file="data/Chia_pet_shoot_interaction_anchor.bed", 
+                   out_file="cache/features/interactive_anchor_sfs_pops_CG.csv")
+
+get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv", 
+                   feature_file="data/Chia_pet_shoot_interaction_anchor.bed", 
+                   out_file="cache/features/interactive_anchor_sfs_pops_CHG.csv")
+
+get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CHH_matrix_imp.csv", 
+                   feature_file="data/Chia_pet_shoot_interaction_anchor.bed", 
+                   out_file="cache/features/interactive_anchor_sfs_pops_CHH.csv")
+
+
+```
+
+
+### fix 0 sites
+
+
+### CHH need to be modified:
+```{r}
+files <- list.files(path="cache/", pattern = "gf_sfs_interpop_CHH", full.names = T)
+
+cg <- read.csv("cache/gf_sfs_interpop_CG_exon.csv")
+for(i in 1:length(files)){
+  afile <- read.csv(files[i])
+  chh <- merge(cg, afile, by="ftb", all.x=T)
+  
+  chh[is.na(chh[, 3]), 3] <- 0
+  chh <- chh[, c(1,3)]
+  names(chh) <- c("ftb", "Freq")
+  write.table(chh, files[i], sep=",", row.names=FALSE, quote=FALSE)
+}
+
+```
+
