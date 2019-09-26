@@ -46,6 +46,7 @@ out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 df1 <- rbind(out1, out2, out3)
 df1 <- as.data.frame(df1)
 names(df1) <- c("mu", "nu", "s")
+df1$type <- c("CG", "CHG", "CHH")
 df1$pop <- "teosinte"
 ```
 
@@ -77,6 +78,7 @@ out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 df2 <- rbind(out1, out2, out3)
 df2 <- as.data.frame(df2)
 names(df2) <- c("mu", "nu", "s")
+df2$type <- c("CG", "CHG", "CHH")
 df2$pop <- "landrace"
 ```
 
@@ -88,18 +90,18 @@ df2$pop <- "landrace"
 source("lib/mplots.R")
 source("lib/mcmcbc.R")
 
-ob <- load("cache/sfs_elite_rm_CpG.RData")
+ob <- load("cache/sfs_maize_CpG.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:28)
 out1 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 #
 
-ob <- load("cache/sfs_elite_rm_CHG.RData")
+ob <- load("cache/sfs_maize_CHG.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:28)
 out2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 # posterior mu [ 4.60934455109854e-07 ], nu [ 6.77645732778247e-07 ] and s [ 1.79033264284426e-06 ]
 
 
-ob <- load("cache/sfs_elite_rm_CHH.RData")
+ob <- load("cache/sfs_maize_CHH.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:28)
 out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 #
@@ -109,10 +111,11 @@ out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
 df3 <- rbind(out1, out2, out3)
 df3<- as.data.frame(df3)
 names(df3) <- c("mu", "nu", "s")
+df3$type <- c("CG", "CHG", "CHH")
 df3$pop <- "maize"
 
 df <- rbind(df1, df2, df3)
-write.table(df, "cache/msfs_par_3pops.csv", sep=",", row.names = FALSE, quote=FALSE)
+write.table(df, "cache/table_msfs_par_3pops.csv", sep=",", row.names = FALSE, quote=FALSE)
 ```
 
 

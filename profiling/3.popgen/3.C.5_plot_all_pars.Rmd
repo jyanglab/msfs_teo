@@ -54,20 +54,21 @@ chh1 <- chh1 +
   ggtitle("CHH") + ylab("") + labs(x="Number of methylated alleles") 
 
 p <- plot_grid(cg1, chg1, chh1, ncol=1, rel_heights = c(1, 1, 1), align="v")
+p
 
-pdf("graphs/Figure1_sfs_interpop.pdf", width=9, height=9)
+pdf("graphs/Figure_sfs_interpop.pdf", width=9, height=9)
 ggdraw(p) + draw_plot_label(c("A", "B", "C"), c(0, 0, 0), c(1, 2/3, 1/3), size=20)
 dev.off()
 
-pdf("graphs/Figure1_mcmc_cg.pdf", width=12, height=9)
+pdf("graphs/Fig_mcmc_cg.pdf", width=12, height=9)
 ggdraw(cg2) + draw_plot_label(c("D"), x=0, y=1, size=20)
 dev.off()
 
-pdf("graphs/Figure1_mcmc_chg.pdf", width=8, height=5)
+pdf("graphs/Fig_mcmc_chg.pdf", width=12, height=9)
 ggdraw(chg2) + draw_plot_label(c("E"), x=0, y=1, size=20)
 dev.off()
 
-pdf("graphs/Figure1_mcmc_chh.pdf", width=8, height=5)
+pdf("graphs/Fig_mcmc_chh.pdf", width=12, height=9)
 ggdraw(chh2) + draw_plot_label(c("F"), x=0, y=1, size=20)
 dev.off()
 
@@ -82,20 +83,22 @@ plot_grid(cg1, ncol=1, align="v")
 
 ```{r}
 library("tidyr")
-df1 <- read.csv("cache/msfs_par_interpop.csv")
+df1 <- read.csv("cache/table_msfs_par_interpop.csv")
 df1$pop <- "crosspop"
-df2 <- read.csv("cache/msfs_par_3pops.csv")
+df2 <- read.csv("cache/table_msfs_par_3pops.csv")
+df2
 
 df0 <- rbind(df1, df2)
 df0$mu <- -log10(df0$mu)
 df0$nu <- -log10(df0$nu)
-df0$s <- df0$s * 150000
+df0$s <- df0$s * 150000 +0.1
 
 
 df <- gather(data=df0, key=k, value="p", 1:3)
   
 p <- ggplot(df, aes(x=k, y=p, fill=pop)) +
     geom_bar(stat="identity", position=position_dodge()) +
+    facet_grid(. ~ type) +
     theme_bw() +
     xlab("") +
     ylab("") +
@@ -109,6 +112,11 @@ p <- ggplot(df, aes(x=k, y=p, fill=pop)) +
     theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
   #########
 p
+
+pdf("graphs/Fig_pars.pdf", width=12, height=5)
+ggdraw(p) + draw_plot_label(c("E"), x=0, y=1, size=20)
+dev.off()
+
 ```
 
 
