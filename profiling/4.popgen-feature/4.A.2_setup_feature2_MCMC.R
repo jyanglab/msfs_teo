@@ -12,7 +12,7 @@ print(JOBID)
 source("lib/mplots.R")
 source("lib/mcmcbc.R")
 
-files <- list.files(path="largedata/msfs", pattern="gf2_sfs_", full.names=TRUE)
+files <- list.files(path="cache/features", pattern=".csv", full.names=TRUE)
 sfs <- read.csv(files[JOBID])
 
 set.seed(12345679)
