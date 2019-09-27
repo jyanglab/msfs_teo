@@ -26,18 +26,18 @@ source("lib/mcmcbc.R")
 ob <- load("cache/interpop_CpG.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
 out1 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
-#
+# posterior mu [ 1.30559512528457e-06 ], nu [ 5.58672378104241e-08 ] and s [ 1.41280309789766e-05 ]
 
 ob <- load("cache/interpop_CHG.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
 out2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
-# posterior mu [ 4.60934455109854e-07 ], nu [ 6.77645732778247e-07 ] and s [ 1.79033264284426e-06 ]
+# posterior mu [ 2.93528994835948e-06 ], nu [ 1.00452008499057e-07 ] and s [ 1.57231160388082e-05 ]
 
 
 ob <- load("cache/interpop_CHH.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)
 out3 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8))
-#
+# posterior mu [ 4.35832012973341e-05 ], nu [ 1.32690522162011e-07 ] and s [ 8.23674955927584e-10 ]
 
 
 ```
