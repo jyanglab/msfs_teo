@@ -16,44 +16,21 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 
 ### Genomic feature:
-gene, exon, intron
+
+run all features: 33 jobs
 
 - 1000,000 runs
 ```{r, eval=FALSE}
-library("huskeR", lib.loc="/home/jyanglab/jyang21/R/x86_64-pc-linux-gnu-library/3.5")
-run_Rcode(inputdf=data.frame(file=1:12, out=1), outdir="slurm-script", cmdno=1,
+library("huskeR")
+files <- list.files(path="cache/features", pattern=".csv", full.names=TRUE)
+
+run_Rcode(inputdf=data.frame(file=1:33, out=1), outdir="slurm-script", cmdno=1,
           rcodes = "profiling/4.popgen-feature/4.A.2_setup_feature_MCMC.R",
           rversion="3.5",
-          arrayshid = "slurm-script/run_MCMC_interpop_array.sh",
-          email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "4G", "36:00:00"))
+          base_shid = "MCMC_pops",
+          email="yangjl0930@gmail.com", runinfo = c(TRUE, "jclarke", 2, "10G", "36:00:00"))
 
 
 ```
 
-### Genomic feature2:
-gene, up5k and down5k
 
-- 100,000 runs
-```{r, eval=FALSE}
-library("huskeR", lib.loc="~/R/x86_64-pc-linux-gnu-library/3.5")
-run_Rcode(inputdf=data.frame(file=1:9, out=1), outdir="slurm-script", cmdno=1,
-          rcodes = "profiling/4.popgen-feature/4.A.2_setup_feature2_MCMC.R",
-          rversion="3.5",
-          arrayshid = "slurm-script/run_MCMC_interpop_array.sh",
-          email="yangjl0930@gmail.com", runinfo = c(TRUE, "jclarke", 2, "4G", "36:00:00"))
-
-```
-
-### Genomic feature3:
-gene, up5k and down5k
-
-- 100,000 runs
-```{r, eval=FALSE}
-library("huskeR", lib.loc="~/R/x86_64-pc-linux-gnu-library/3.5")
-run_Rcode(inputdf=data.frame(file=1:12, out=1), outdir="slurm-script", cmdno=1,
-          rcodes = "profiling/4.popgen-feature/4.A.2_setup_feature3_MCMC.R",
-          rversion="3.5",
-          arrayshid = "slurm-script/run_MCMC_interpop_array.sh",
-          email="yangjl0930@gmail.com", runinfo = c(TRUE, "jclarke", 2, "4G", "36:00:00"))
-
-```
