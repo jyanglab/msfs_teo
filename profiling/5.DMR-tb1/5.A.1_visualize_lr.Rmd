@@ -1,6 +1,6 @@
 ---
 title: "Geo Location of the landrace samples"
-output: html_notebook
+output: NULL
 author: Jinliang Yang
 ---
 
