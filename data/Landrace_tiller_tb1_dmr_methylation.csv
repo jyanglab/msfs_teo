@@ -1,0 +1,18 @@
+ID,Phenotype,CG methylation level within DMR,T
+PI-620859, has tillers,0.00617284,1
+PI-620856," has tillers, one very large",0.017857143,0
+PI-620842, no tillers,0.027777778,0
+PI-620784, no tillers,0.034722222,0
+PI-620773, no tillers,0.041666667,0
+PI-620774, no tillers,0.045454545,0
+PI-620860, no tillers,0.052083333,0
+PI-628503, no tillers,0.055555556,0
+PI-628514, large tillers,0.058823529,1
+PI-620819, seems to have one small tiller,0.059649123,0
+AMES-8235, has tillers,0.098888889,1
+PI-620797, no tillers,0.308333333,0
+PI-620767, has tillers,0.888632873,1
+PI-620785, has tillers,0.899285714,1
+PI-620821, did not germinate,0.915517241,NA
+PI-620834, did not germinate,0.918981481,NA
+PI-620846, has tillers,0.958531746,1
