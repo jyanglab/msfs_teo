@@ -1,151 +1,51 @@
-pretty_name,h2,od,k,var
-Anthesis-silking interval,0,1,non-DMR,-0.821417
-Plant height,0,2,non-DMR,-0.87192
-Height per day (until flowering),0,3,non-DMR,-0.883491
-Photoperiod growing-degree days to anthesis,0,4,non-DMR,-1.670295
-Photoperiod Growing-degree days to silk,0,5,non-DMR,-0.252219
-Leaf length,0,6,non-DMR,-0.949432
-Stalk strength,0,7,non-DMR,-0.294004
-Height above ear,0,8,non-DMR,-0.738864
-Ratio of ear height to total height,0.000307,9,non-DMR,-1.270986
-Average internode length (above ear),0.004351,10,non-DMR,-0.790434
-Leaf width,0.006661,11,non-DMR,-0.833756
-Tassel length,0.009092,12,non-DMR,-0.937807
-Days to anthesis,0.012606,13,non-DMR,-0.864987
-Nodes above ear,0.022547,14,non-DMR,-0.732144
-Days to silk,0.030451,15,non-DMR,-0.884513
-Nodes to ear,0.036624,16,non-DMR,-0.825777
-100 Kernel weight,0.043944,17,non-DMR,-0.650228
-Average internode length (whole plant),0.044178,18,non-DMR,-0.634804
-Ear height,0.091221,19,non-DMR,-0.879969
-Cob diameter,0.174875,20,non-DMR,-0.732505
-Nodes per plant,0.264305,21,non-DMR,-0.407392
-Northern Leaf Blight,0.271265,22,non-DMR,-0.717439
-Ear row number,0.310083,23,non-DMR,-0.636937
-Southern leaf blight,0.329389,24,non-DMR,-0.621126
-Tassel branch number,0.411932,25,non-DMR,-0.552078
-Anthesis-silking interval,0,1,DMR,0
-Plant height,0,2,DMR,0
-Height per day (until flowering),0,3,DMR,0
-Photoperiod growing-degree days to anthesis,0,4,DMR,0
-Photoperiod Growing-degree days to silk,0,5,DMR,0
-Leaf length,0,6,DMR,0
-Stalk strength,0,7,DMR,0
-Height above ear,0,8,DMR,0
-Ratio of ear height to total height,0.000307,9,DMR,0
-Average internode length (above ear),0.004351,10,DMR,0
-Leaf width,0.006661,11,DMR,0
-Tassel length,0.009092,12,DMR,0
-Days to anthesis,0.012606,13,DMR,0.012606
-Nodes above ear,0.022547,14,DMR,0
-Days to silk,0.030451,15,DMR,0.030451
-Nodes to ear,0.036624,16,DMR,0
-100 Kernel weight,0.043944,17,DMR,0
-Average internode length (whole plant),0.044178,18,DMR,0
-Ear height,0.091221,19,DMR,0.091221
-Cob diameter,0.174875,20,DMR,0.01386
-Nodes per plant,0.264305,21,DMR,0
-Northern Leaf Blight,0.271265,22,DMR,0
-Ear row number,0.310083,23,DMR,0.023537
-Southern leaf blight,0.329389,24,DMR,0
-Tassel branch number,0.411932,25,DMR,0
-Anthesis-silking interval,0,1,DMR,0
-Plant height,0,2,DMR,0
-Height per day (until flowering),0,3,DMR,0
-Photoperiod growing-degree days to anthesis,0,4,DMR,0
-Photoperiod Growing-degree days to silk,0,5,DMR,0
-Leaf length,0,6,DMR,0
-Stalk strength,0,7,DMR,0
-Height above ear,0,8,DMR,0
-Ratio of ear height to total height,0.000307,9,DMR,0
-Average internode length (above ear),0.004351,10,DMR,0
-Leaf width,0.006661,11,DMR,0.004568
-Tassel length,0.009092,12,DMR,0
-Days to anthesis,0.012606,13,DMR,0
-Nodes above ear,0.022547,14,DMR,0
-Days to silk,0.030451,15,DMR,0
-Nodes to ear,0.036624,16,DMR,0.011785
-100 Kernel weight,0.043944,17,DMR,0
-Average internode length (whole plant),0.044178,18,DMR,0
-Ear height,0.091221,19,DMR,0
-Cob diameter,0.174875,20,DMR,0
-Nodes per plant,0.264305,21,DMR,0
-Northern Leaf Blight,0.271265,22,DMR,0.262385
-Ear row number,0.310083,23,DMR,0.286546
-Southern leaf blight,0.329389,24,DMR,0.329389
-Tassel branch number,0.411932,25,DMR,0.411932
-Anthesis-silking interval,0,1,DMR,0
-Plant height,0,2,DMR,0
-Height per day (until flowering),0,3,DMR,0
-Photoperiod growing-degree days to anthesis,0,4,DMR,0
-Photoperiod Growing-degree days to silk,0,5,DMR,0
-Leaf length,0,6,DMR,0
-Stalk strength,0,7,DMR,0
-Height above ear,0,8,DMR,0
-Ratio of ear height to total height,0.000307,9,DMR,0.000307
-Average internode length (above ear),0.004351,10,DMR,0
-Leaf width,0.006661,11,DMR,0
-Tassel length,0.009092,12,DMR,0.009092
-Days to anthesis,0.012606,13,DMR,0
-Nodes above ear,0.022547,14,DMR,0.022547
-Days to silk,0.030451,15,DMR,0
-Nodes to ear,0.036624,16,DMR,0.024839
-100 Kernel weight,0.043944,17,DMR,0.043944
-Average internode length (whole plant),0.044178,18,DMR,0
-Ear height,0.091221,19,DMR,0
-Cob diameter,0.174875,20,DMR,0.161015
-Nodes per plant,0.264305,21,DMR,0.264305
-Northern Leaf Blight,0.271265,22,DMR,0.00888
-Ear row number,0.310083,23,DMR,0
-Southern leaf blight,0.329389,24,DMR,0
-Tassel branch number,0.411932,25,DMR,0
-Anthesis-silking interval,0,1,DMR,0
-Plant height,0,2,DMR,0
-Height per day (until flowering),0,3,DMR,0
-Photoperiod growing-degree days to anthesis,0,4,DMR,0
-Photoperiod Growing-degree days to silk,0,5,DMR,0
-Leaf length,0,6,DMR,0
-Stalk strength,0,7,DMR,0
-Height above ear,0,8,DMR,0
-Ratio of ear height to total height,0.000307,9,DMR,0
-Average internode length (above ear),0.004351,10,DMR,0
-Leaf width,0.006661,11,DMR,0.002093
-Tassel length,0.009092,12,DMR,0
-Days to anthesis,0.012606,13,DMR,0
-Nodes above ear,0.022547,14,DMR,0
-Days to silk,0.030451,15,DMR,0
-Nodes to ear,0.036624,16,DMR,0
-100 Kernel weight,0.043944,17,DMR,0
-Average internode length (whole plant),0.044178,18,DMR,0.044178
-Ear height,0.091221,19,DMR,0
-Cob diameter,0.174875,20,DMR,0
-Nodes per plant,0.264305,21,DMR,0
-Northern Leaf Blight,0.271265,22,DMR,0
-Ear row number,0.310083,23,DMR,0
-Southern leaf blight,0.329389,24,DMR,0
-Tassel branch number,0.411932,25,DMR,0
-Anthesis-silking interval,0,1,DMR,0
-Plant height,0,2,DMR,0
-Height per day (until flowering),0,3,DMR,0
-Photoperiod growing-degree days to anthesis,0,4,DMR,0
-Photoperiod Growing-degree days to silk,0,5,DMR,0
-Leaf length,0,6,DMR,0
-Stalk strength,0,7,DMR,0
-Height above ear,0,8,DMR,0
-Ratio of ear height to total height,0.000307,9,DMR,0
-Average internode length (above ear),0.004351,10,DMR,0.004351
-Leaf width,0.006661,11,DMR,0
-Tassel length,0.009092,12,DMR,0
-Days to anthesis,0.012606,13,DMR,0
-Nodes above ear,0.022547,14,DMR,0
-Days to silk,0.030451,15,DMR,0
-Nodes to ear,0.036624,16,DMR,0
-100 Kernel weight,0.043944,17,DMR,0
-Average internode length (whole plant),0.044178,18,DMR,0
-Ear height,0.091221,19,DMR,0
-Cob diameter,0.174875,20,DMR,0
-Nodes per plant,0.264305,21,DMR,0
-Northern Leaf Blight,0.271265,22,DMR,0
-Ear row number,0.310083,23,DMR,0
-Southern leaf blight,0.329389,24,DMR,0
-Tassel branch number,0.411932,25,DMR,0
+pretty_name,od,k,var
+Anthesis-silking interval,1,DMR,0
+Plant height,2,DMR,0
+Height per day (until flowering),3,DMR,0
+Photoperiod growing-degree days to anthesis,4,DMR,0
+Photoperiod Growing-degree days to silk,5,DMR,0
+Leaf length,6,DMR,0
+Stalk strength,7,DMR,0
+Height above ear,8,DMR,0
+Ratio of ear height to total height,9,DMR,0.000307
+Average internode length (above ear),10,DMR,0.004351
+Leaf width,11,DMR,0.006661
+Tassel length,12,DMR,0.009092
+Days to anthesis,13,DMR,0.012606
+Nodes above ear,14,DMR,0.022547
+Days to silk,15,DMR,0.030451
+Nodes to ear,16,DMR,0.036624
+100 Kernel weight,17,DMR,0.043944
+Average internode length (whole plant),18,DMR,0.044178
+Ear height,19,DMR,0.091221
+Cob diameter,20,DMR,0.174875
+Nodes per plant,21,DMR,0.264305
+Northern Leaf Blight,22,DMR,0.271265
+Ear row number,23,DMR,0.310083
+Southern leaf blight,24,DMR,0.329389
+Tassel branch number,25,DMR,0.411932
+Anthesis-silking interval,1,non-DMR,-0.821417
+Plant height,2,non-DMR,-0.87192
+Height per day (until flowering),3,non-DMR,-0.883491
+Photoperiod growing-degree days to anthesis,4,non-DMR,-1.670295
+Photoperiod Growing-degree days to silk,5,non-DMR,-0.252219
+Leaf length,6,non-DMR,-0.949432
+Stalk strength,7,non-DMR,-0.294004
+Height above ear,8,non-DMR,-0.738864
+Ratio of ear height to total height,9,non-DMR,-1.270986
+Average internode length (above ear),10,non-DMR,-0.790434
+Leaf width,11,non-DMR,-0.833756
+Tassel length,12,non-DMR,-0.937807
+Days to anthesis,13,non-DMR,-0.864987
+Nodes above ear,14,non-DMR,-0.732144
+Days to silk,15,non-DMR,-0.884513
+Nodes to ear,16,non-DMR,-0.825777
+100 Kernel weight,17,non-DMR,-0.650228
+Average internode length (whole plant),18,non-DMR,-0.634804
+Ear height,19,non-DMR,-0.879969
+Cob diameter,20,non-DMR,-0.732505
+Nodes per plant,21,non-DMR,-0.407392
+Northern Leaf Blight,22,non-DMR,-0.717439
+Ear row number,23,non-DMR,-0.636937
+Southern leaf blight,24,non-DMR,-0.621126
+Tassel branch number,25,non-DMR,-0.552078

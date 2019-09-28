@@ -34,8 +34,9 @@ library("ggplot2")
 
 mybarplot <- function(df){
   
-  df <- df[order(df$h2, decreasing = TRUE),]
-  p <- ggplot(df, aes(x=pretty_name, y=var, fill=k), position = position_stack(reverse = TRUE)) +
+  #df <- df[order(df$h2, decreasing = TRUE),]
+  p <- ggplot(df, aes(x=factor(pretty_name, levels=subset(df, k%in%"DMR")$pretty_name), 
+                      y=var, fill=k), position = position_stack(reverse = TRUE)) +
     geom_bar(stat="identity") +
     coord_flip() +
     theme_bw() +
@@ -77,38 +78,20 @@ dev.off()
 ```
 
 ```{r}
-chg1 <- read.csv("cache/h2_CHG_teosinte_maize.csv")
+chg1 <- read.csv("cache/h2_CHG_teosinte_maize_cleaned.csv")
 
-pdf("graphs/barplot_CHG_teosinte_maize.pdf", width = 8, height=4)
+pdf("graphs/barplot_CHG_teosinte_maize_cleaned.pdf", width = 8, height=4)
 mybarplot(df=chg1)
 dev.off()  
 
-chg2 <- read.csv("cache/h2_CHG_teosinte_landrace.csv")
-pdf("graphs/barplot_CHG_teosinte_landrace.pdf", width = 8, height=4)
+chg2 <- read.csv("cache/h2_CHG_teosinte_maize_cleaned.csv")
+pdf("graphs/barplot_CHG_teosinte_landrace_cleaned.pdf", width = 8, height=4)
 mybarplot(df=chg2)
 dev.off()  
 
-chg3 <- read.csv("cache/h2_CHG_landrace_maize.csv")
-pdf("graphs/barplot_CHG_landrace_maize.pdf", width = 8, height=8)
+chg3 <- read.csv("cache/h2_CHG_teosinte_maize_cleaned.csv")
+pdf("graphs/barplot_CHG_landrace_maize_cleaned.pdf", width = 8, height=8)
 mybarplot(df=chg3)
 dev.off()  
 ```
 
-
-
-### sampling results
-```{r}
-cg1 <- read.csv("cache/h2_CG_teosinte_maize.csv")
-s1 <- read.csv("cache/h2_CG_teosinte_maize_sample.csv")
-
-
-obs <- subset(cg1, h2 > 0.05)
-
-
-pdf("graphs/var_explained.pdf", width=8, height=8)
-for(i in 1:16){
-  plot_beans(obs, bg=s1, mytrait=as.character(obs$trait)[i])
-}
-dev.off()
-
-```

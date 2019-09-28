@@ -1,235 +1,79 @@
-pretty_name,h2,od,k,var
-Nodes to ear,0,1,non-DMR,-0.872436
-Photoperiod growing-degree days to anthesis,0,2,non-DMR,-0.929693
-Leaf width,0,3,non-DMR,-2.972543
-Ear height,0.000347,4,non-DMR,-0.820928
-Height per day (until flowering),0.005431,5,non-DMR,-1.031532
-Fructose,0.006391,6,non-DMR,-0.228491
-Tassel length,0.010345,7,non-DMR,-1.423156
-Fumarate,0.015167,8,non-DMR,-0.013404
-Cob diameter,0.023944,9,non-DMR,-0.703417
-Stalk strength,0.043593,10,non-DMR,-0.146903
-PCA of metabolites: PC2,0.263202,11,non-DMR,-2.839544
-Photoperiod Growing-degree days to silk,0.377768,12,non-DMR,-0.625827
-Protein,0.542013,13,non-DMR,-0.190394
-Chlorophyll B,1.224722,14,non-DMR,-0.027146
-Nitrate,1.230922,15,non-DMR,-0.030553
-Malate,1.251171,16,non-DMR,-0.041436
-Nodes above ear,1.25502,17,non-DMR,-0.03705
-Average internode length (above ear),1.264898,18,non-DMR,-0.095328
-Glucose,1.296152,19,non-DMR,-0.071596
-Ratio of ear height to total height,1.300481,20,non-DMR,-0.113709
-Nodes per plant,1.311704,21,non-DMR,-0.12357
-PCA of metabolites: PC1,1.34045,22,non-DMR,-0.072243
-Northern Leaf Blight,1.34778,23,non-DMR,-0.180615
-Anthesis-silking interval,1.358207,24,non-DMR,-0.156169
-Ear row number,1.358735,25,non-DMR,-0.120277
-Starch,1.37637,26,non-DMR,-0.119405
-Height above ear,1.413169,27,non-DMR,-0.218106
-Total amino acids,1.429853,28,non-DMR,-0.163076
-Average internode length (whole plant),1.434772,29,non-DMR,-0.208936
-Chlorophyll A,1.451967,30,non-DMR,-0.127194
-Days to silk,1.484254,31,non-DMR,-0.298684
-Days to anthesis,1.54232,32,non-DMR,-0.337169
-Plant height,1.651468,33,non-DMR,-0.388513
-Tassel branch number,1.682386,34,non-DMR,-0.415976
-Glutamate,1.774429,35,non-DMR,-0.092005
-Southern leaf blight,1.821213,36,non-DMR,-0.444235
-Sucrose,3.780329,37,non-DMR,-0.118897
-100 Kernel weight,4.096922,38,non-DMR,-1.900224
-Leaf length,22.028863,39,non-DMR,-16.810841
-Nodes to ear,0,1,DMR,0
-Photoperiod growing-degree days to anthesis,0,2,DMR,0
-Leaf width,0,3,DMR,0
-Ear height,0.000347,4,DMR,0
-Height per day (until flowering),0.005431,5,DMR,0
-Fructose,0.006391,6,DMR,0
-Tassel length,0.010345,7,DMR,0
-Fumarate,0.015167,8,DMR,0
-Cob diameter,0.023944,9,DMR,0
-Stalk strength,0.043593,10,DMR,0
-PCA of metabolites: PC2,0.263202,11,DMR,0.005036
-Photoperiod Growing-degree days to silk,0.377768,12,DMR,0
-Protein,0.542013,13,DMR,0
-Chlorophyll B,1.224722,14,DMR,1.224722
-Nitrate,1.230922,15,DMR,1.230922
-Malate,1.251171,16,DMR,1.251171
-Nodes above ear,1.25502,17,DMR,1.25502
-Average internode length (above ear),1.264898,18,DMR,1.233411
-Glucose,1.296152,19,DMR,1.295877
-Ratio of ear height to total height,1.300481,20,DMR,1.299092
-Nodes per plant,1.311704,21,DMR,1.282053
-PCA of metabolites: PC1,1.34045,22,DMR,1.338177
-Northern Leaf Blight,1.34778,23,DMR,1.346363
-Anthesis-silking interval,1.358207,24,DMR,1.352048
-Ear row number,1.358735,25,DMR,1.346442
-Starch,1.37637,26,DMR,1.37637
-Height above ear,1.413169,27,DMR,1.4113
-Total amino acids,1.429853,28,DMR,1.4269
-Average internode length (whole plant),1.434772,29,DMR,1.385151
-Chlorophyll A,1.451967,30,DMR,1.448657
-Days to silk,1.484254,31,DMR,1.459546
-Days to anthesis,1.54232,32,DMR,1.533154
-Plant height,1.651468,33,DMR,1.600035
-Tassel branch number,1.682386,34,DMR,1.604982
-Glutamate,1.774429,35,DMR,1.76172
-Southern leaf blight,1.821213,36,DMR,1.818941
-Sucrose,3.780329,37,DMR,3.470158
-100 Kernel weight,4.096922,38,DMR,3.979804
-Leaf length,22.028863,39,DMR,21.7559
-Nodes to ear,0,1,DMR,0
-Photoperiod growing-degree days to anthesis,0,2,DMR,0
-Leaf width,0,3,DMR,0
-Ear height,0.000347,4,DMR,0
-Height per day (until flowering),0.005431,5,DMR,0
-Fructose,0.006391,6,DMR,0.004396
-Tassel length,0.010345,7,DMR,0.001421
-Fumarate,0.015167,8,DMR,0.013793
-Cob diameter,0.023944,9,DMR,0.000314
-Stalk strength,0.043593,10,DMR,0
-PCA of metabolites: PC2,0.263202,11,DMR,0
-Photoperiod Growing-degree days to silk,0.377768,12,DMR,0
-Protein,0.542013,13,DMR,0
-Chlorophyll B,1.224722,14,DMR,0
-Nitrate,1.230922,15,DMR,0
-Malate,1.251171,16,DMR,0
-Nodes above ear,1.25502,17,DMR,0
-Average internode length (above ear),1.264898,18,DMR,0.022414
-Glucose,1.296152,19,DMR,0
-Ratio of ear height to total height,1.300481,20,DMR,0
-Nodes per plant,1.311704,21,DMR,0.012636
-PCA of metabolites: PC1,1.34045,22,DMR,0
-Northern Leaf Blight,1.34778,23,DMR,0
-Anthesis-silking interval,1.358207,24,DMR,0.000755
-Ear row number,1.358735,25,DMR,0.001095
-Starch,1.37637,26,DMR,0
-Height above ear,1.413169,27,DMR,0.001869
-Total amino acids,1.429853,28,DMR,0.001145
-Average internode length (whole plant),1.434772,29,DMR,0.036043
-Chlorophyll A,1.451967,30,DMR,0
-Days to silk,1.484254,31,DMR,0.023053
-Days to anthesis,1.54232,32,DMR,0.009041
-Plant height,1.651468,33,DMR,0.051433
-Tassel branch number,1.682386,34,DMR,0
-Glutamate,1.774429,35,DMR,0
-Southern leaf blight,1.821213,36,DMR,0
-Sucrose,3.780329,37,DMR,0
-100 Kernel weight,4.096922,38,DMR,0.114204
-Leaf length,22.028863,39,DMR,0
-Nodes to ear,0,1,DMR,0
-Photoperiod growing-degree days to anthesis,0,2,DMR,0
-Leaf width,0,3,DMR,0
-Ear height,0.000347,4,DMR,0
-Height per day (until flowering),0.005431,5,DMR,0
-Fructose,0.006391,6,DMR,0
-Tassel length,0.010345,7,DMR,0
-Fumarate,0.015167,8,DMR,0
-Cob diameter,0.023944,9,DMR,0.009144
-Stalk strength,0.043593,10,DMR,0.043593
-PCA of metabolites: PC2,0.263202,11,DMR,0.258166
-Photoperiod Growing-degree days to silk,0.377768,12,DMR,0.377768
-Protein,0.542013,13,DMR,0.537584
-Chlorophyll B,1.224722,14,DMR,0
-Nitrate,1.230922,15,DMR,0
-Malate,1.251171,16,DMR,0
-Nodes above ear,1.25502,17,DMR,0
-Average internode length (above ear),1.264898,18,DMR,0.009003
-Glucose,1.296152,19,DMR,0
-Ratio of ear height to total height,1.300481,20,DMR,0
-Nodes per plant,1.311704,21,DMR,0.008371
-PCA of metabolites: PC1,1.34045,22,DMR,0.001569
-Northern Leaf Blight,1.34778,23,DMR,0
-Anthesis-silking interval,1.358207,24,DMR,0.003792
-Ear row number,1.358735,25,DMR,0
-Starch,1.37637,26,DMR,0
-Height above ear,1.413169,27,DMR,0
-Total amino acids,1.429853,28,DMR,0
-Average internode length (whole plant),1.434772,29,DMR,0.002178
-Chlorophyll A,1.451967,30,DMR,0.00331
-Days to silk,1.484254,31,DMR,0.000643
-Days to anthesis,1.54232,32,DMR,0
-Plant height,1.651468,33,DMR,0
-Tassel branch number,1.682386,34,DMR,0.042225
-Glutamate,1.774429,35,DMR,0
-Southern leaf blight,1.821213,36,DMR,0.002272
-Sucrose,3.780329,37,DMR,0.201238
-100 Kernel weight,4.096922,38,DMR,0.000221
-Leaf length,22.028863,39,DMR,0.145052
-Nodes to ear,0,1,DMR,0
-Photoperiod growing-degree days to anthesis,0,2,DMR,0
-Leaf width,0,3,DMR,0
-Ear height,0.000347,4,DMR,0
-Height per day (until flowering),0.005431,5,DMR,0.005431
-Fructose,0.006391,6,DMR,0
-Tassel length,0.010345,7,DMR,0
-Fumarate,0.015167,8,DMR,0.001374
-Cob diameter,0.023944,9,DMR,0.014486
-Stalk strength,0.043593,10,DMR,0
-PCA of metabolites: PC2,0.263202,11,DMR,0
-Photoperiod Growing-degree days to silk,0.377768,12,DMR,0
-Protein,0.542013,13,DMR,0.004429
-Chlorophyll B,1.224722,14,DMR,0
-Nitrate,1.230922,15,DMR,0
-Malate,1.251171,16,DMR,0
-Nodes above ear,1.25502,17,DMR,0
-Average internode length (above ear),1.264898,18,DMR,7e-05
-Glucose,1.296152,19,DMR,0.000275
-Ratio of ear height to total height,1.300481,20,DMR,0.001389
-Nodes per plant,1.311704,21,DMR,0.00795
-PCA of metabolites: PC1,1.34045,22,DMR,0.000704
-Northern Leaf Blight,1.34778,23,DMR,0
-Anthesis-silking interval,1.358207,24,DMR,0.001612
-Ear row number,1.358735,25,DMR,0.009284
-Starch,1.37637,26,DMR,0
-Height above ear,1.413169,27,DMR,0
-Total amino acids,1.429853,28,DMR,0
-Average internode length (whole plant),1.434772,29,DMR,0.001793
-Chlorophyll A,1.451967,30,DMR,0
-Days to silk,1.484254,31,DMR,0.001012
-Days to anthesis,1.54232,32,DMR,0.000125
-Plant height,1.651468,33,DMR,0
-Tassel branch number,1.682386,34,DMR,0
-Glutamate,1.774429,35,DMR,0.012709
-Southern leaf blight,1.821213,36,DMR,0
-Sucrose,3.780329,37,DMR,0.070578
-100 Kernel weight,4.096922,38,DMR,0.002693
-Leaf length,22.028863,39,DMR,0.054978
-Nodes to ear,0,1,DMR,0
-Photoperiod growing-degree days to anthesis,0,2,DMR,0
-Leaf width,0,3,DMR,0
-Ear height,0.000347,4,DMR,0.000347
-Height per day (until flowering),0.005431,5,DMR,0
-Fructose,0.006391,6,DMR,0.001995
-Tassel length,0.010345,7,DMR,0.008924
-Fumarate,0.015167,8,DMR,0
-Cob diameter,0.023944,9,DMR,0
-Stalk strength,0.043593,10,DMR,0
-PCA of metabolites: PC2,0.263202,11,DMR,0
-Photoperiod Growing-degree days to silk,0.377768,12,DMR,0
-Protein,0.542013,13,DMR,0
-Chlorophyll B,1.224722,14,DMR,0
-Nitrate,1.230922,15,DMR,0
-Malate,1.251171,16,DMR,0
-Nodes above ear,1.25502,17,DMR,0
-Average internode length (above ear),1.264898,18,DMR,0
-Glucose,1.296152,19,DMR,0
-Ratio of ear height to total height,1.300481,20,DMR,0
-Nodes per plant,1.311704,21,DMR,0.000694
-PCA of metabolites: PC1,1.34045,22,DMR,0
-Northern Leaf Blight,1.34778,23,DMR,0.001417
-Anthesis-silking interval,1.358207,24,DMR,0
-Ear row number,1.358735,25,DMR,0.001914
-Starch,1.37637,26,DMR,0
-Height above ear,1.413169,27,DMR,0
-Total amino acids,1.429853,28,DMR,0.001808
-Average internode length (whole plant),1.434772,29,DMR,0.009607
-Chlorophyll A,1.451967,30,DMR,0
-Days to silk,1.484254,31,DMR,0
-Days to anthesis,1.54232,32,DMR,0
-Plant height,1.651468,33,DMR,0
-Tassel branch number,1.682386,34,DMR,0.035179
-Glutamate,1.774429,35,DMR,0
-Southern leaf blight,1.821213,36,DMR,0
-Sucrose,3.780329,37,DMR,0.038355
-100 Kernel weight,4.096922,38,DMR,0
-Leaf length,22.028863,39,DMR,0.072933
+pretty_name,od,k,var
+Nodes to ear,1,DMR,0
+Photoperiod growing-degree days to anthesis,2,DMR,0
+Leaf width,3,DMR,0
+Ear height,4,DMR,0.000347
+Height per day (until flowering),5,DMR,0.005431
+Fructose,6,DMR,0.006391
+Tassel length,7,DMR,0.010345
+Fumarate,8,DMR,0.015167
+Cob diameter,9,DMR,0.023944
+Stalk strength,10,DMR,0.043593
+PCA of metabolites: PC2,11,DMR,0.263202
+Photoperiod Growing-degree days to silk,12,DMR,0.377768
+Protein,13,DMR,0.542013
+Chlorophyll B,14,DMR,1.224722
+Nitrate,15,DMR,1.230922
+Malate,16,DMR,1.251171
+Nodes above ear,17,DMR,1.25502
+Average internode length (above ear),18,DMR,1.264898
+Glucose,19,DMR,1.296152
+Ratio of ear height to total height,20,DMR,1.300481
+Nodes per plant,21,DMR,1.311704
+PCA of metabolites: PC1,22,DMR,1.34045
+Northern Leaf Blight,23,DMR,1.34778
+Anthesis-silking interval,24,DMR,1.358207
+Ear row number,25,DMR,1.358735
+Starch,26,DMR,1.37637
+Height above ear,27,DMR,1.413169
+Total amino acids,28,DMR,1.429853
+Average internode length (whole plant),29,DMR,1.434772
+Chlorophyll A,30,DMR,1.451967
+Days to silk,31,DMR,1.484254
+Days to anthesis,32,DMR,1.54232
+Plant height,33,DMR,1.651468
+Tassel branch number,34,DMR,1.682386
+Glutamate,35,DMR,1.774429
+Southern leaf blight,36,DMR,1.821213
+Sucrose,37,DMR,3.780329
+100 Kernel weight,38,DMR,4.096922
+Leaf length,39,DMR,22.028863
+Nodes to ear,1,non-DMR,-0.872436
+Photoperiod growing-degree days to anthesis,2,non-DMR,-0.929693
+Leaf width,3,non-DMR,-2.972543
+Ear height,4,non-DMR,-0.820928
+Height per day (until flowering),5,non-DMR,-1.031532
+Fructose,6,non-DMR,-0.228491
+Tassel length,7,non-DMR,-1.423156
+Fumarate,8,non-DMR,-0.013404
+Cob diameter,9,non-DMR,-0.703417
+Stalk strength,10,non-DMR,-0.146903
+PCA of metabolites: PC2,11,non-DMR,-2.839544
+Photoperiod Growing-degree days to silk,12,non-DMR,-0.625827
+Protein,13,non-DMR,-0.190394
+Chlorophyll B,14,non-DMR,-0.027146
+Nitrate,15,non-DMR,-0.030553
+Malate,16,non-DMR,-0.041436
+Nodes above ear,17,non-DMR,-0.03705
+Average internode length (above ear),18,non-DMR,-0.095328
+Glucose,19,non-DMR,-0.071596
+Ratio of ear height to total height,20,non-DMR,-0.113709
+Nodes per plant,21,non-DMR,-0.12357
+PCA of metabolites: PC1,22,non-DMR,-0.072243
+Northern Leaf Blight,23,non-DMR,-0.180615
+Anthesis-silking interval,24,non-DMR,-0.156169
+Ear row number,25,non-DMR,-0.120277
+Starch,26,non-DMR,-0.119405
+Height above ear,27,non-DMR,-0.218106
+Total amino acids,28,non-DMR,-0.163076
+Average internode length (whole plant),29,non-DMR,-0.208936
+Chlorophyll A,30,non-DMR,-0.127194
+Days to silk,31,non-DMR,-0.298684
+Days to anthesis,32,non-DMR,-0.337169
+Plant height,33,non-DMR,-0.388513
+Tassel branch number,34,non-DMR,-0.415976
+Glutamate,35,non-DMR,-0.092005
+Southern leaf blight,36,non-DMR,-0.444235
+Sucrose,37,non-DMR,-0.118897
+100 Kernel weight,38,non-DMR,-1.900224
+Leaf length,39,non-DMR,-16.810841
