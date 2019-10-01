@@ -1,0 +1,77 @@
+---
+title: "Figure 5"
+output: NULL
+author: Jinliang Yang
+date: 10-01-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+```{r}
+source("lib/mplots.R")
+source("lib/mcmcbc.R")
+
+ob <- load("cache/interpop_CpG.RData")
+cg1 <- sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102, plot=FALSE)
+cg2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8), plot=FALSE)
+# posterior mu [ 1.30559512528457e-06 ], nu [ 5.58672378104241e-08 ] and s [ 1.41280309789766e-05 ]
+
+ob <- load("cache/interpop_CHG.RData")
+chg1 <- sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102, plot=FALSE)
+chg2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8), plot=FALSE)
+# posterior mu [ 2.93528994835948e-06 ], nu [ 1.00452008499057e-07 ] and s [ 1.57231160388082e-05 ]
+
+ob <- load("cache/interpop_CHH.RData")
+chh1 <- sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102, plot=FALSE)
+chh2 <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E8), plot=FALSE)
+# posterior mu [ 4.35832012973341e-05 ], nu [ 1.32690522162011e-07 ] and s [ 8.23674955927584e-10 ]
+
+### SFS and transposons
+### cowplot: combined
+#library(grid)
+# values=c("#8b7d6b", "#3b5998")
+cg1 <- cg1 + 
+  theme(legend.position = c(0.05, 0.9), legend.title=element_blank(), plot.title = element_text(size=20)) + 
+  scale_fill_manual(values=c("#d9534f", "#428bca")) + 
+  scale_size_manual(values=c(5, 3)) + ggtitle("CG") + ylab("")
+
+chg1 <- chg1 + theme(plot.title = element_text(size=20)) + 
+  scale_fill_manual(values=c("#d9534f", "#428bca"))  + 
+  scale_size_manual(values=c(5, 3))  + ggtitle("CHG")
+
+chh1 <- chh1 +
+  theme(plot.title = element_text(size=20)) + 
+  scale_fill_manual(values=c("#d9534f", "#428bca")) + 
+  scale_size_manual(values=c(5, 3))  + 
+  ggtitle("CHH") + ylab("") + labs(x="Number of methylated alleles") 
+
+p <- plot_grid(cg1, chg1, ncol=1, rel_heights = c(1, 1), align="v")
+p
+
+pdf("graphs/Figure_sfs_interpop_CG_CHG.pdf", width=9, height=9)
+ggdraw(p) + draw_plot_label(c("A", "B"), c(0, 0), c(1, 1/2), size=20)
+dev.off()
+
+pdf("graphs/Fig_mcmc_cg.pdf", width=12, height=9)
+ggdraw(cg2) + draw_plot_label(c("D"), x=0, y=1, size=20)
+dev.off()
+
+pdf("graphs/Fig_mcmc_chg.pdf", width=12, height=9)
+ggdraw(chg2) + draw_plot_label(c("E"), x=0, y=1, size=20)
+dev.off()
+
+pdf("graphs/Fig_mcmc_chh.pdf", width=12, height=9)
+ggdraw(chh2) + draw_plot_label(c("F"), x=0, y=1, size=20)
+dev.off()
+
+plot_grid(cg1, ncol=1, align="v")
+
+
+```
+
