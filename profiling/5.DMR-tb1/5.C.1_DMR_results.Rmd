@@ -20,6 +20,7 @@ d <- read.delim("doc/Table_S_DMRs.csv", header=TRUE, sep=",")
 dim(d)
 # 2709753
 
+subset(d, chr ==4 & start > 203000000 & stop < 204000000)
 
 gene_dmr <- read.delim("data/all_DMR_overp_genes.txt")
 gene_dmr <- gene_dmr[order(abs(gene_dmr$mean_methylation_difference), decreasing = T),]
