@@ -1,0 +1,75 @@
+---
+title: "Clean VCAP results"
+output: NULL
+date: 09-28-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+## get Results
+                                                                                             V1
+1       largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_body_overlap.bed.kinship
+2 largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_downstr_5k_overlap.bed.kinship
+3   largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_upstr_5k_overlap.bed.kinship
+4     largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_intergenic_overlap.bed.kinship
+5             largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_TE_overlap.bed.kinship
+6                                            largedata/VCAP/CG_landrace_maize/bedfile/rest_geno
+
+
+### Bar plot
+
+CG teosinte and maize
+```{r}
+
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+
+
+clean_VCAP_data <- function(infile="cache/h2_CG_teosinte_maize.csv", outfile="cache/h2_CG_teosinte_maize_cleaned.csv"){
+  cg1 <- read.csv(infile)
+  cg1 <- subset(cg1, !is.na(pretty_name))
+  cg1$trait <- as.character(cg1$trait)
+  cg1$pretty_name <- as.character(cg1$pretty_name)
+  #cg1[is.na(cg1$pretty_name), ]$pretty_name <- cg1[is.na(cg1$pretty_name), ]$trait
+  subcg1 <- cg1[, c("pretty_name", "h2", "Her_K6", "Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5")]
+  subcg1 <- subcg1[order(subcg1$h2, decreasing = F),]
+  subcg1$Her_K6 <- -abs(subcg1$Her_K6)
+  subcg1$od <- 1:nrow(subcg1)
+  
+  #subcg1 <- subcg1[order(subcg1$h2, decreasing = TRUE),]
+  
+  subcg1$pretty_name <- factor(subcg1$pretty_name,  levels=subcg1$pretty_name)
+  df <- gather(data=subcg1[, c(1:3, ncol(subcg1))], key=k, value="var", 2:3)
+  
+  df[!(df$k %in% "Her_K6"), ]$k <- "DMR"
+  df[df$k %in% "Her_K6", ]$k <- "non-DMR"
+  write.table(df, outfile, sep=",", row.names=FALSE, quote=FALSE)
+
+}
+
+
+
+
+clean_VCAP_data(infile="cache/h2_CG_teosinte_maize.csv", outfile="cache/h2_CG_teosinte_maize_cleaned.csv")
+clean_VCAP_data(infile="cache/h2_CHG_teosinte_maize.csv", outfile="cache/h2_CHG_teosinte_maize_cleaned.csv")
+clean_VCAP_data(infile="cache/h2_CHH_teosinte_maize.csv", outfile="cache/h2_CHH_teosinte_maize_cleaned.csv")
+
+clean_VCAP_data(infile="cache/h2_CG_teosinte_landrace.csv", outfile="cache/h2_CG_teosinte_landrace_cleaned.csv")
+clean_VCAP_data(infile="cache/h2_CHG_teosinte_landrace.csv", outfile="cache/h2_CHG_teosinte_landrace_cleaned.csv")
+clean_VCAP_data(infile="cache/h2_CHH_teosinte_landrace.csv", outfile="cache/h2_CHH_teosinte_landrace_cleaned.csv")
+
+
+clean_VCAP_data(infile="cache/h2_CG_landrace_maize.csv", outfile="cache/h2_CG_landrace_maize_cleaned.csv")
+clean_VCAP_data(infile="cache/h2_CHG_landrace_maize.csv", outfile="cache/h2_CHG_landrace_maize_cleaned.csv")
+clean_VCAP_data(infile="cache/h2_CHH_landrace_maize.csv", outfile="cache/h2_CHH_landrace_maize_cleaned.csv")
+
+
+```
+

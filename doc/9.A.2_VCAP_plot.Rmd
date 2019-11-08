@@ -1,0 +1,97 @@
+---
+title: "VCAP results"
+output: NULL
+date: 09-28-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('..//')) 
+#library(tidyverse)
+```
+
+
+## get Results
+                                                                                             V1
+1       largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_body_overlap.bed.kinship
+2 largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_downstr_5k_overlap.bed.kinship
+3   largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_gen_upstr_5k_overlap.bed.kinship
+4     largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_intergenic_overlap.bed.kinship
+5             largedata/VCAP/CG_landrace_maize/bedfile/CG_landrace_maize_TE_overlap.bed.kinship
+6                                            largedata/VCAP/CG_landrace_maize/bedfile/rest_geno
+
+
+### Bar plot
+
+CG teosinte and maize
+```{r}
+
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+
+
+mybarplot <- function(df){
+  
+  #df <- df[order(df$h2, decreasing = TRUE),]
+  p <- ggplot(df, aes(x=factor(pretty_name, levels=subset(df, k%in%"DMR")$pretty_name), 
+                      y=var, fill=k), position = position_stack(reverse = TRUE)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    geom_hline(yintercept=0.05, linetype="dotted") +
+    scale_x_discrete(position = "top") +
+    geom_vline(xintercept=0.05, linetype="dotted") +
+    # https://www.color-hex.com/color-palette/73961
+    
+    scale_fill_manual(values=c("#cc4141", "#d3d3d3"),
+                      name=c(""),
+                      labels=c("DMR", "Genome - DMR")) +
+    
+    
+    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+  #########
+  return(p)
+}
+
+
+
+cg1 <- read.csv("cache/h2_CG_teosinte_maize_cleaned.csv")
+
+pdf("graphs/barplot_CG_teosinte_maize_nofeature.pdf", width = 10, height=6)
+mybarplot(df=cg1)
+dev.off()  
+
+cg2 <- read.csv("cache/h2_CG_teosinte_landrace_cleaned.csv")
+pdf("graphs/barplot_CG_teosinte_landrace_nofeature_cleaned.pdf", width = 10, height=6)
+mybarplot(df=cg2)
+dev.off()  
+
+cg3 <- read.csv("cache/h2_CG_landrace_maize_cleaned.csv")
+pdf("graphs/barplot_CG_landrace_maize_nofeature_cleaned.pdf", width = 10, height=6)
+mybarplot(df=cg3)
+dev.off()  
+
+```
+
+```{r}
+chg1 <- read.csv("cache/h2_CHG_teosinte_maize_cleaned.csv")
+
+pdf("graphs/barplot_CHG_teosinte_maize_cleaned.pdf", width = 8, height=4)
+mybarplot(df=chg1)
+dev.off()  
+
+chg2 <- read.csv("cache/h2_CHG_teosinte_maize_cleaned.csv")
+pdf("graphs/barplot_CHG_teosinte_landrace_cleaned.pdf", width = 8, height=4)
+mybarplot(df=chg2)
+dev.off()  
+
+chg3 <- read.csv("cache/h2_CHG_teosinte_maize_cleaned.csv")
+pdf("graphs/barplot_CHG_landrace_maize_cleaned.pdf", width = 8, height=8)
+mybarplot(df=chg3)
+dev.off()  
+```
+
