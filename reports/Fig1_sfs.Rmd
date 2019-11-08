@@ -65,7 +65,7 @@ pdf("graphs/Figure1_mcmc_cg.pdf", width=12, height=9)
 ggdraw(cg2) + draw_plot_label(c("D"), x=0, y=1, size=20)
 dev.off()
 
-pdf("graphs/Figure1_mcmc_chg.pdf", width=8, height=5)
+pdf("graphs/Figure1_mcmc_chg.pdf", width=12, height=9)
 ggdraw(chg2) + draw_plot_label(c("E"), x=0, y=1, size=20)
 dev.off()
 

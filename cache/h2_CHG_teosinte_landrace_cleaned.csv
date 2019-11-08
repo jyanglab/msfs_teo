@@ -1,0 +1,51 @@
+pretty_name,od,k,var
+Ear row number,1,DMR,0
+Days to silk,2,DMR,0.000529
+Tassel length,3,DMR,0.002771
+Photoperiod growing-degree days to anthesis,4,DMR,0.003023
+Anthesis-silking interval,5,DMR,0.007589
+Leaf length,6,DMR,0.009545
+Cob diameter,7,DMR,0.011526
+Tassel branch number,8,DMR,0.011621
+Stalk strength,9,DMR,0.012708
+Height above ear,10,DMR,0.01367
+Northern Leaf Blight,11,DMR,0.014069
+Plant height,12,DMR,0.016808
+Leaf width,13,DMR,0.017284
+Height per day (until flowering),14,DMR,0.021826
+Ear height,15,DMR,0.022193
+Average internode length (above ear),16,DMR,0.023709
+Nodes per plant,17,DMR,0.027795
+Nodes above ear,18,DMR,0.035189
+Nodes to ear,19,DMR,0.03621
+Average internode length (whole plant),20,DMR,0.039208
+Ratio of ear height to total height,21,DMR,0.043478
+100 Kernel weight,22,DMR,0.051725
+Days to anthesis,23,DMR,0.052619
+Photoperiod Growing-degree days to silk,24,DMR,0.080397
+Southern leaf blight,25,DMR,0.150584
+Ear row number,1,non-DMR,-0.932096
+Days to silk,2,non-DMR,-0.832558
+Tassel length,3,non-DMR,-0.797262
+Photoperiod growing-degree days to anthesis,4,non-DMR,-0.861909
+Anthesis-silking interval,5,non-DMR,-0.730464
+Leaf length,6,non-DMR,-0.793437
+Cob diameter,7,non-DMR,-0.795414
+Tassel branch number,8,non-DMR,-0.830476
+Stalk strength,9,non-DMR,-0.280045
+Height above ear,10,non-DMR,-0.788627
+Northern Leaf Blight,11,non-DMR,-0.835741
+Plant height,12,non-DMR,-0.799001
+Leaf width,13,non-DMR,-0.793995
+Height per day (until flowering),14,non-DMR,-0.757972
+Ear height,15,non-DMR,-0.782615
+Average internode length (above ear),16,non-DMR,-0.687929
+Nodes per plant,17,non-DMR,-0.855367
+Nodes above ear,18,non-DMR,-0.965175
+Nodes to ear,19,non-DMR,-0.763424
+Average internode length (whole plant),20,non-DMR,-0.770432
+Ratio of ear height to total height,21,non-DMR,-0.792761
+100 Kernel weight,22,non-DMR,-0.608214
+Days to anthesis,23,non-DMR,-0.825757
+Photoperiod Growing-degree days to silk,24,non-DMR,-0.452213
+Southern leaf blight,25,non-DMR,-0.805048

@@ -1,0 +1,51 @@
+pretty_name,od,k,var
+Cob diameter,1,DMR,0.002748
+Tassel branch number,2,DMR,0.004421
+Height per day (until flowering),3,DMR,0.005691
+Anthesis-silking interval,4,DMR,0.007578
+Height above ear,5,DMR,0.008355
+Nodes per plant,6,DMR,0.009473
+100 Kernel weight,7,DMR,0.009619
+Plant height,8,DMR,0.01044
+Average internode length (whole plant),9,DMR,0.011979
+Leaf length,10,DMR,0.01236
+Southern leaf blight,11,DMR,0.012965
+Tassel length,12,DMR,0.015473
+Ear height,13,DMR,0.015959
+Nodes to ear,14,DMR,0.016436
+Ratio of ear height to total height,15,DMR,0.024079
+Leaf width,16,DMR,0.027746
+Nodes above ear,17,DMR,0.033422
+Average internode length (above ear),18,DMR,0.034424
+Days to silk,19,DMR,0.03714
+Photoperiod growing-degree days to anthesis,20,DMR,0.048272
+Days to anthesis,21,DMR,0.049345
+Northern Leaf Blight,22,DMR,0.055729
+Photoperiod Growing-degree days to silk,23,DMR,0.061951
+Stalk strength,24,DMR,0.089354
+Ear row number,25,DMR,0.121469
+Cob diameter,1,non-DMR,-0.804745
+Tassel branch number,2,non-DMR,-0.875438
+Height per day (until flowering),3,non-DMR,-0.779662
+Anthesis-silking interval,4,non-DMR,-0.732682
+Height above ear,5,non-DMR,-0.751073
+Nodes per plant,6,non-DMR,-0.77042
+100 Kernel weight,7,non-DMR,-0.648532
+Plant height,8,non-DMR,-0.806544
+Average internode length (whole plant),9,non-DMR,-0.773739
+Leaf length,10,non-DMR,-0.873694
+Southern leaf blight,11,non-DMR,-0.756434
+Tassel length,12,non-DMR,-0.805649
+Ear height,13,non-DMR,-0.791993
+Nodes to ear,14,non-DMR,-0.755764
+Ratio of ear height to total height,15,non-DMR,-0.734452
+Leaf width,16,non-DMR,-0.801397
+Nodes above ear,17,non-DMR,-0.808859
+Average internode length (above ear),18,non-DMR,-0.672637
+Days to silk,19,non-DMR,-0.787922
+Photoperiod growing-degree days to anthesis,20,non-DMR,-0.605969
+Days to anthesis,21,non-DMR,-0.751407
+Northern Leaf Blight,22,non-DMR,-0.869513
+Photoperiod Growing-degree days to silk,23,non-DMR,-0.608547
+Stalk strength,24,non-DMR,-0.330586
+Ear row number,25,non-DMR,-0.796573
