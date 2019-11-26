@@ -1,6 +1,6 @@
 ---
 title: "Run VCAP through huskeR"
-output: html_notebook
+output: NULL
 date: 02-22-2019
 author: "Jinliang Yang"
 ---
