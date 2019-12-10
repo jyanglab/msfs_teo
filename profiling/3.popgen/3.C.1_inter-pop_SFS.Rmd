@@ -82,3 +82,27 @@ write.table(chh, "cache/interpop_CHH.csv", sep=",", row.names=FALSE, quote=FALSE
 t <- read.table("cache/interpop_CpG.csv")
 ```
 
+## Plot supplementary figure for CHH
+
+```{r}
+library(ggplot2)
+
+chh <- read.csv("cache/interpop_CHH.csv")
+fsize=18
+p <- ggplot(chh, aes(x=f, y=Freq, fill="blue")) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          labs(y="Frequency", x="Number of Haplotypes", title="CHH") + 
+          theme(legend.position="none") +
+          #scale_y_log10() +
+          theme(#axis.text=element_text(size=fsize),
+                axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize))
+
+pdf("graphs/sfig_CHH_msfs.pdf", width=10, height=5)
+p
+dev.off()
+```
+
