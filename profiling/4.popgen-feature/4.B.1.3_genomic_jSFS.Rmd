@@ -1,0 +1,151 @@
+---
+title: "Genomic data jSFS using ANGSD"
+output: NULL
+author: Jinliang Yang
+date: 12-12-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+```{r}
+sfs <- read.table("data/angsd/MZ.sfs", header=FALSE)
+df <- data.frame(nchr=1:29, ncount=t(sfs))
+df <- df[c(-1, -nrow(df)), ]
+df$nchr <- 1:nrow(df)
+
+library(ggplot2)
+fsize=12
+p <- ggplot(df, aes(x=as.factor(nchr), y=ncount, fill="red")) +
+    #facet_grid(. ~ type) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#1b85b8")) +
+    #                   name="", labels=c("TEO", "LR", "MZ")) +
+    #scale_x_discrete(labels=c("Hyper","Hypo")) +
+    #theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+    theme(#axis.text.x=element_blank(), #axis.ticks.x=element_blank(),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize)) +
+      xlab("Chromosomes") + 
+      ylab("Count")
+p
+```
+
+
+
+```{r}
+sfs <- read.table("data/angsd/TEO.sfs", header=FALSE)
+df <- data.frame(nchr=1:41, ncount=t(sfs))
+df <- df[c(-1, -nrow(df)), ]
+df$nchr <- 1:nrow(df)
+
+library(ggplot2)
+fsize=12
+p <- ggplot(df, aes(x=as.factor(nchr), y=ncount, fill="red")) +
+    #facet_grid(. ~ type) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#1b85b8")) +
+    #                   name="", labels=c("TEO", "LR", "MZ")) +
+    #scale_x_discrete(labels=c("Hyper","Hypo")) +
+    #theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+    theme(#axis.text.x=element_blank(), #axis.ticks.x=element_blank(),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize)) +
+      xlab("Chromosomes") + 
+      ylab("Count")
+p
+```
+
+```{r}
+sfs <- read.table("data/angsd/LR.sfs", header=FALSE)
+df <- data.frame(nchr=1:length(sfs), ncount=t(sfs))
+df <- df[c(-1, -nrow(df)), ]
+df$nchr <- 1:nrow(df)
+
+library(ggplot2)
+fsize=12
+p <- ggplot(df, aes(x=as.factor(nchr), y=ncount, fill="red")) +
+    #facet_grid(. ~ type) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#1b85b8")) +
+    #                   name="", labels=c("TEO", "LR", "MZ")) +
+    #scale_x_discrete(labels=c("Hyper","Hypo")) +
+    #theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+    theme(#axis.text.x=element_blank(), #axis.ticks.x=element_blank(),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize)) +
+      xlab("Chromosomes") + 
+      ylab("Count")
+p
+```
+
+### Plot the results
+
+
+### CHH need to be modified:
+```{r, eval=FALSE}
+library(ggplot2)
+
+out0 <- subset(out, pop %in% c("teosinte", "maize"))
+fsize=18
+p <- ggplot(out0, aes(x=as.factor(bin), y=Freq, fill=pop)) +
+    #facet_grid(. ~ type) +
+    geom_bar(stat="identity", position=position_dodge()) +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    # https://www.color-hex.com/color-palette/73961
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
+    #                  name=c(""),
+    #                  labels=c("Gene", "Down 5k", "Up 5k", "Intergenic", "TE", "Rest")) +
+    scale_fill_manual(values=c("#ae5a41", "#1b85b8")) +
+    #                   name="", labels=c("TEO", "LR", "MZ")) +
+    #scale_x_discrete(labels=c("Hyper","Hypo")) +
+    #theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+    theme(#axis.text.x=element_blank(), #axis.ticks.x=element_blank(),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize)) +
+      xlab("Sites (bin)") + 
+      ylab("Freq (100-bp tile)")
+  #########
+
+pdf("graphs/jmSFS_teo_mz_DMRs.pdf", width=8, height=5)
+p
+dev.off()
+```
+
+
