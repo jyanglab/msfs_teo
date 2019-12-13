@@ -111,8 +111,20 @@ p <- ggplot(df, aes(x=as.factor(nchr), y=ncount, fill="red")) +
 p
 ```
 
-### Plot the results
+### Plot the 2D results
 
+```{r}
+sfs <- read.table("data/angsd/TEO.MZ.jsfs", header=FALSE)
+# TEO 20 MZ 14
+
+df0 <- matrix(data=sfs, nrow=41, ncol=29, byrow=TRUE)
+df <- df[-1, c(-1, -ncol(df0))]
+df <- apply(df, 1, as.numeric)
+
+heatmap(df, Colv = NA, Rowv = NA, scale="column")
+
+
+```
 
 ### CHH need to be modified:
 ```{r, eval=FALSE}
