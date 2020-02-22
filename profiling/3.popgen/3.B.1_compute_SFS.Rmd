@@ -77,4 +77,3 @@ getsfs(impfile="largedata/mr_100bp/maize_CHH_matrix_imp.csv",
 #
 ```
 
-
