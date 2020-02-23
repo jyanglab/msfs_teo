@@ -1,0 +1,43 @@
+---
+title: "Start to compute SFS"
+output: NULL
+author: Jinliang Yang
+date: 09-25-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+------------------
+
+# Sensitivity test plot
+
+```{r}
+
+files <- list.files(path="cache", pattern="sfs_teosinte_CpG", full.names = TRUE)
+
+df <- data.frame()
+for(i in 1:4){
+    msfs <- read.csv(files[i], header=TRUE)
+    msfs$cutoff <- files[i]
+    df <- rbind(df, msfs)
+}
+
+#GAMMA
+library(ggplot2)
+splot <- ggplot(df, aes(x=f, y=Freq, fill=cutoff)) + 
+        geom_bar(stat="identity", position=position_dodge()) +
+        #geom_histogram(aes(prior.s),bins=30,alpha=0.2,fill=cbPalette[1])+
+        #scale_y_log10()+ 
+        ylab("") + 
+        theme(axis.text=element_text(size=10),axis.title=element_text(size=10)) + xlab("")
+splot    
+    
+
+```
+
