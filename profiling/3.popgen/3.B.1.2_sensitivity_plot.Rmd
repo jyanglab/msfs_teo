@@ -22,7 +22,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 files <- list.files(path="cache", pattern="sfs_teosinte_CpG", full.names = TRUE)
 
 df <- data.frame()
-for(i in 1:4){
+for(i in 2:6){
     msfs <- read.csv(files[i], header=TRUE)
     msfs$cutoff <- files[i]
     df <- rbind(df, msfs)
