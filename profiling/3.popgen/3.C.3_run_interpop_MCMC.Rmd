@@ -22,9 +22,9 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 library("huskeR")
 run_Rcode(inputdf=data.frame(file=1:3, out=1), outdir="slurm-script", cmdno=1,
            rcodes = "profiling/3.popgen/3.C.2_setup_MCMC_interpop.R",
-           base_shid ="run_interpop",
-           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "10G", "36:00:00"))
-
+            rversion = "3.5",
+           base_shid ="run_msfs",
+           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "5G", "36:00:00"))
 
 ```
 
