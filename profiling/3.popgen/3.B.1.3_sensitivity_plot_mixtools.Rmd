@@ -1,0 +1,88 @@
+---
+title: "Mixtools for results vis"
+output: NULL
+author: Jinliang Yang
+date: 02-23-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+```{bash}
+# replace FOLDERNAME with the file or folder you wish to remove from the given git repository.
+git filter-branch -f --index-filter "git rm -rf --cached --ignore-unmatch cache/s-test_teo.RData" -- --all
+
+# Once this is done run the following commands to clean up the local repository:
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git gc --prune=now
+git gc --aggressive --prune=now
+
+# Now push all the changes to the remote repository:
+git push --all --force
+```
+
+------------------
+
+# Sensitivity test plot
+
+```{r}
+library("data.table")
+library(mixtools)
+
+impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv"
+
+dt <- fread(impfile, data.table=FALSE)
+# https://www.r-bloggers.com/fitting-mixture-distributions-with-the-r-package-mixtools/
+
+res <- normalmixEM(x=dt$CpG_JRIAL2A, mu=c(0.01, 0.5, 0.8), k =3)
+#lambda The final mixing proportions.
+#mu The final mean parameters.
+#sigma The final standard deviations. If arbmean = FALSE, then only the smallest standard
+#deviation is returned. See scale below
+
+save(list="res", file="largedata/s-test_teo.RData")
+
+lambda <- summary(res)
+mycutoff <- quantile(dt$CpG_JRIAL2A, cumsum(res$lambda))
+
+
+pdf("graphs/SFig_cutoff_cg.pdf", width=12, height=6)
+par(mfrow=c(1,2))
+plot(res, which=1, lwd1=3, col1 ="bisque4")
+plot(res, which=2, breaks=50, xlab2="Methylation level (CG context)")
+lines(density(dt$CpG_JRIAL2A), lty=2, lwd=1.5)
+dev.off()
+
+
+#################
+library(mixtools)
+library(data.table)
+
+files <- list.files(path="largedata/COMET_CHG/CHG_COMET/", pattern="COMET.csv", full.names = TRUE)
+dt <- fread(files[1], data.table=FALSE)
+res <- normalmixEM(x=dt$meth, mu=c(0.01, 0.5, 0.8), k =3)
+mycutoff <- quantile(dt$meth, cumsum(res$lambda))
+out <- data.frame(id=files[1], q1=mycutoff[1], q2=mycutoff[2], q3=mycutoff[3])
+for(i in 2:20){
+    dt <- fread(files[i], data.table=FALSE)
+    res <- normalmixEM(x=dt$meth, mu=c(0.01, 0.5, 0.8), k =3)
+    tem <- quantile(dt$meth, cumsum(res$lambda))
+    print(tem)
+    out2 <- data.frame(id=files[i], q1=tem[1], q2=tem[2], q3=tem[3])
+    out <- rbind(out, out2)
+}
+
+write.table(out, "cache/chg_cutoff.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+cutoff <- read.csv("cache/chg_cutoff.csv")
+
+
+
+```
+
+
