@@ -30,14 +30,50 @@ for(i in 2:6){
 
 #GAMMA
 library(ggplot2)
-splot <- ggplot(df, aes(x=f, y=Freq, fill=cutoff)) + 
+splot1 <- ggplot(df, aes(x=f, y=Freq, fill=cutoff)) + 
         geom_bar(stat="identity", position=position_dodge()) +
         #geom_histogram(aes(prior.s),bins=30,alpha=0.2,fill=cbPalette[1])+
         #scale_y_log10()+ 
-        ylab("") + 
-        theme(axis.text=element_text(size=10),axis.title=element_text(size=10)) + xlab("")
-splot    
-    
+        xlab("Number of Haplotypes") +
+        ylab("Number of Sites") +
+        ggtitle("CG") +
+        scale_fill_discrete(name = "Cutoffs", labels = c("<0.2, >0.8", "<0.25, >0.75", "<0.35, >0.65", "<0.4, >0.6", "<0.3, >0.7")) +
+        theme(legend.position = c(0.2, 0.6),
+              axis.text=element_text(size=15),
+              axis.title=element_text(size=15))
+splot1    
 
+
+#### for CHG sites
+files <- list.files(path="cache", pattern="sfs_teosinte_CHG", full.names = TRUE)
+
+df <- data.frame()
+for(i in 2:6){
+    msfs <- read.csv(files[i], header=TRUE)
+    msfs$cutoff <- files[i]
+    df <- rbind(df, msfs)
+}
+
+#GAMMA
+#library(ggplot2)
+splot2 <- ggplot(df, aes(x=f, y=Freq, fill=cutoff)) + 
+        geom_bar(stat="identity", position=position_dodge()) +
+        #geom_histogram(aes(prior.s),bins=30,alpha=0.2,fill=cbPalette[1])+
+        #scale_y_log10()+ 
+        xlab("Number of Haplotypes") +
+        ylab("Number of Sites") +
+        ggtitle("CHG") +
+        #scale_fill_discrete(name = "Cutoffs", labels = c("<0.2, >0.8", "<0.25, >0.75", "<0.35, >0.65", "<0.4, >0.6", "<0.3, >0.7")) +
+        theme(legend.position = "none",
+              axis.text=element_text(size=15),
+              axis.title=element_text(size=15))
+splot2    
+
+library(cowplot)
+plot_grid(splot1, splot2, labels = c('A', 'B'), label_size = 12)
+
+pdf("graphs/SFig_cutoffs_cg_chg.pdf", width=10, height=3)
+plot_grid(splot1, splot2, labels = c('A', 'B'), label_size = 12)
+dev.off()
 ```
 
