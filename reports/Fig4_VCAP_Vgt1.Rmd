@@ -1,0 +1,132 @@
+---
+title: "Fig4_VCAP_Vgt1_DMR"
+author: "Gen"
+date: "2020/2/25"
+output: html_document
+---
+```{r}
+library(data.table)
+####Fig4A-B VCAP
+d1=fread("../cache/fig4_VCAP_Vgt1/h2_CG_teosinte_maize_cleaned.txt",head=T,na.str="NA",data.table=F)
+d2=fread("../cache/fig4_VCAP_Vgt1/h2_CG_landrace_maize_cleaned.txt",head=T,na.str="NA",data.table=F)
+col=c(colours()[136],"gray")
+
+pdf("VCAP_teosinte_maize2.pdf",height = 8,width = 4)
+par(mfrow=c(2,1),mar=c(4,2,1,2))
+x=barplot(t(as.matrix(d1[,-1])),beside = F,col=col,space = 0.8,border =col,horiz=T,xlim=c(0,1),cex.names=0.4)
+box(col="gray")
+text(rep(.4,length(x)),x,d1[,1],adj=0,cex=0.5)
+
+x=barplot(t(as.matrix(d2[,-1])),beside = F,col=col,space = 0.8,border =col,horiz=T,xlim=c(0,1),xlab=expression(italic("h")^"2"))
+box(col="gray")
+text(rep(.5,length(x)),x,d2[,1],adj=0,cex=0.5)
+dev.off()
+
+####Fig4C  methylation level at vgt1-MDR region
+pdf("CG_vgt1.pdf",height = 4,width = 4)
+par(mar=c(0,2,0,1),mfrow=c(52,1))
+i="../cache/fig4_VCAP_Vgt1/vgt1"
+inf1=paste(i,".Teo_Lan_mCG.txt",sep = "")
+inf2=paste(i,".Teo_Maize_mCG.txt",sep = "")
+d11=fread(inf1, header=T,data.table=F,na.strin="NA")
+d22=fread(inf2, header=T,data.table=F,na.strin="NA")
+gd=fread("../cache/fig4_VCAP_Vgt1/DMR_Gene.txt", header=T,data.table=F)
+d11[,2]=d11[,2]/1e6;d22[,2]=d22[,2]/1e6;
+start=135.969;end=135.9697
+for(i in 3:22)
+{
+  plot(d11[,2],d11[,i],pch=16,type="h",col="#E39500",lwd=1,ylim=c(0,1),xlim=c(start,end),cex=0.5,axes=F,xlab="",ylab="T")
+  abline(v=c(gd[,3]/1e6,gd[,4]/1e6,gd[,7]/1e6,gd[,8]/1e6),col="red",lwd=1,lty=1)
+  box(lwd=0.5,col="gray")
+  
+}
+
+
+for(i in 23:39)
+{
+  plot(d11[,2],d11[,i],pch=16,type="h",col="#43A178",lwd=1,ylim=c(0,1),xlim=c(start,end),cex=0.5,axes=F,xlab="",ylab="M")
+  abline(v=c(gd[,3]/1e6,gd[,4]/1e6,gd[,7]/1e6,gd[,8]/1e6),col="red",lwd=1,lty=1)
+  box(lwd=.5,col="gray")
+}
+
+for(i in 23:36)
+{
+  plot(d22[,2],d22[,i],pch=16,type="h",col="#53B3E9",lwd=1,xlim=c(start,end),ylim=c(0,1),cex=0.5,axes=F,xlab="",ylab="M")
+  abline(v=c(gd[,3]/1e6,gd[,4]/1e6,gd[,7]/1e6,gd[,8]/1e6),col="red",lwd=1,lty=1)
+  box(lwd=.5,col="gray")
+}
+
+dev.off()
+###########
+out="Interaction_vgt1_chip.pdf"
+pdf(out,height = 5,width = 4)
+par(mfrow=c(3,1),mar=c(2,2,1,2))
+##plot interaction
+start=135.92;end=136.02
+inf="../cache/fig4_VCAP_Vgt1/Vgt1.intreaction.txt";col="#E39500";minp=start;maxp=end
+d1=fread(inf,head=T,na.str="NA",data.table=F)
+d1[,2]=d1[,2]/1e6;d1[,3]=d1[,3]/1e6;d1[,5]=d1[,5]/1e6;d1[,6]=d1[,6]/1e6
+d1=d1[d1[,2]>=minp & d1[,6]<=maxp,]
+lim=c(minp,maxp)
+plot(1,1,xlim=lim,ylim=c(0,4),axes = F,xlab="",ylab="")
+abline(h=1,lwd=2)
+gd=fread("../cache/fig4_VCAP_Vgt1/DMR_Gene.txt", header=T,data.table=F) 
+
+for(j in 1:nrow(d1))
+{
+  s=spline(c((d1[j,2]+d1[j,3])/2,(d1[j,3]+d1[j,5])/2,(d1[j,6]+d1[j,5])/2),c(1,6,1),n=201)
+  x=s$x
+  y=spline(c(1,3,5),c(5,6,5),n=201)$y-4
+  points( x,y,type="l",lwd=2,col=col) 
+}
+rect(d1[,2],0.95,d1[,3],1.05,col="#E39500",border = "#E39500")
+rect(d1[,5],0.95,d1[,6],1.05,col="#E39500",border = "#E39500")
+rect(gd[,3]/1e6,0.8,gd[,4]/1e6,1.2,col="gray",border = "gray")
+rect(gd[,7]/1e6,0.8,gd[,8]/1e6,1.2,col="red",border = "red")
+
+
+##plot Chip resluts
+dp_f=list.files(path="../cache/fig4_VCAP_Vgt1/",pattern = "depth.txt")
+i=dp_f[1]
+ i=paste("../cache/fig4_VCAP_Vgt1/",i,sep="")
+  d1=fread(i,head=F,na.str="NA",data.table=F)
+  d1=d1[d1[,2]>=start*1e6 & d1[,2]<=end*1e6,]
+  plot(d1[,2]/1e6,d1[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,main="H3K27ac")
+ # axis(1,las=1,at=c(start,135.96,135.99,end),cex.axis=1.5)
+  axis(2,tick=0.03,las=1)
+
+i=dp_f[2]
+ i=paste("../cache/fig4_VCAP_Vgt1/",i,sep="")
+  d1=fread(i,head=F,na.str="NA",data.table=F)
+  d1=d1[d1[,2]>=start*1e6 & d1[,2]<=end*1e6,]
+  plot(d1[,2]/1e6,d1[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,main="H3K4me3")
+ # axis(1,las=1,at=c(start,135.96,135.99,end),cex.axis=1.5)
+  axis(2,tick=0.03,las=1)
+
+dev.off()
+
+
+
+###Fig 4E barplot for LUC results
+d=fread("../cache/fig4_VCAP_Vgt1/LUC_results.txt",head=T,na.str="NA",data.table=F)
+pdf("LUC_Vgt1.pdf",height = 2,width = 5)
+par(mfrow=c(1,1),mar=c(2,2,0,1))
+d=rbind(d[2:1,])
+bar=barplot(d[1:2,2],width=1,space = 0.6,horiz =T,xlim=c(0,0.4),las=1,col=c("gray","white"),border =c("white","black"))
+#bar=barplot(d[1:2,2],width=1,space = 0.6,horiz =T,xlim=c(0,0.4),las=1,col=c("#F4B183","#9DC3E6"),border ="white")
+bar=as.vector(bar)
+plot.error <- function(x, y, sd, len = 1, col = "black",lwd, horiz = T) {
+  len <- len * 0.05
+  if (!horiz) {
+    arrows(x0 = x, y0 = y, x1 = x, y1 = y - sd, col = col, angle = 90, length = len,lwd=lwd)
+    arrows(x0 = x, y0 = y, x1 = x, y1 = y + sd, col = col, angle = 90, length = len,lwd=lwd)
+  } else {
+    arrows(x0 = y, y0 = x, x1 = y - sd, y1 = x, col = col, angle = 90, length = len,lwd=lwd)
+    arrows(x0 = y, y0 = x, x1 = y + sd, y1 = x, col = col, angle = 90, length = len,lwd=lwd)
+  }
+}
+for (i in 1:2){plot.error(bar[i], d[i,2 ], sd = d[i, 3],lwd=1.5)}
+dev.off()
+
+```
+
