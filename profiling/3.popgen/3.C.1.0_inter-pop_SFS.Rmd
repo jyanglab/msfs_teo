@@ -1,5 +1,5 @@
 ---
-title: "Start to compute SFS"
+title: "Start to compute SFS for each population and across populations"
 output: NULL
 author: Jinliang Yang
 date: 01-28-2019
@@ -38,9 +38,22 @@ get_inter_sfs <- function(pop1="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv",
     df1$f <- apply(df1[, -1:-3], 1, het_getcount)
     df2$f <- apply(df2[, -1:-3], 1, het_getcount)
     df3$f <- apply(df3[, -1:-3], 1, homo_getcount)
-    f <- df1$f + df2$f + df3$f
+    
+    df <- merge(df1[, c("uid", "f")], df2[, c("uid", "f")], by="uid")
+    df <- merge(df, df3[, c("uid", "f")], by="uid")
+    
+    f1 <- table(df$f.x)
+    write.table(f1, paste0(outfile, "_teo.csv"), sep=",", row.names=FALSE, quote=FALSE)
+    
+    f2 <- table(df$f.y)
+    write.table(f2, paste0(outfile, "_land.csv"), sep=",", row.names=FALSE, quote=FALSE)
+    
+    f3 <- table(df$f)
+    write.table(f3, paste0(outfile, "_mz.csv"), sep=",", row.names=FALSE, quote=FALSE)
+    
+    f <- df$f.x + df$f.y + df$f
     sfs <- table(f)
-    write.table(sfs, outfile, sep=",", row.names=FALSE, quote=FALSE)
+    write.table(sfs, paste0(outfile, "_pops.csv"), sep=",", row.names=FALSE, quote=FALSE)
 }
 
 het_getcount <- function(x, mmin=0.3, mmax=0.7){
@@ -65,20 +78,18 @@ homo_getcount <- function(x){
 get_inter_sfs(pop1="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
               pop2="largedata/mr_100bp/landrace_CpG_matrix_imp.csv",
               pop3="largedata/mr_100bp/maize_CpG_matrix_imp.csv",
-              outfile="cache/interpop_CpG.csv")
+              outfile="cache/mcmc_res/new_msfs_CG")
 
 get_inter_sfs(pop1="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
               pop2="largedata/mr_100bp/landrace_CHG_matrix_imp.csv",
               pop3="largedata/mr_100bp/maize_CHG_matrix_imp.csv",
-              outfile="cache/interpop_CHG.csv")
+              outfile="cache/mcmc_res/new_msfs_CHG")
 
-get_inter_sfs(pop1="largedata/mr_100bp/teosinte_CHH_matrix_imp.csv", 
-              pop2="largedata/mr_100bp/landrace_CHH_matrix_imp.csv",
-              pop3="largedata/mr_100bp/maize_CHH_matrix_imp.csv",
-              outfile="cache/interpop_CHH.csv")
-#
+
 ```
 
+
+-----------------
 
 ### CHH need to be modified:
 ```{r}
