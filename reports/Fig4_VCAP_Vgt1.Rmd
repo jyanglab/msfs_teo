@@ -11,7 +11,7 @@ d1=fread("../cache/fig4_VCAP_Vgt1/h2_CG_teosinte_maize_cleaned.txt",head=T,na.st
 d2=fread("../cache/fig4_VCAP_Vgt1/h2_CG_landrace_maize_cleaned.txt",head=T,na.str="NA",data.table=F)
 col=c(colours()[136],"gray")
 
-pdf("VCAP_teosinte_maize2.pdf",height = 8,width = 4)
+#pdf("VCAP_teosinte_maize2.pdf",height = 8,width = 4)
 par(mfrow=c(2,1),mar=c(4,2,1,2))
 x=barplot(t(as.matrix(d1[,-1])),beside = F,col=col,space = 0.8,border =col,horiz=T,xlim=c(0,1),cex.names=0.4)
 box(col="gray")
@@ -20,10 +20,12 @@ text(rep(.4,length(x)),x,d1[,1],adj=0,cex=0.5)
 x=barplot(t(as.matrix(d2[,-1])),beside = F,col=col,space = 0.8,border =col,horiz=T,xlim=c(0,1),xlab=expression(italic("h")^"2"))
 box(col="gray")
 text(rep(.5,length(x)),x,d2[,1],adj=0,cex=0.5)
-dev.off()
+#dev.off()
+```
 
+```{r}
 ####Fig4C  methylation level at vgt1-MDR region
-pdf("CG_vgt1.pdf",height = 4,width = 4)
+#pdf("CG_vgt1.pdf",height = 4,width = 4)
 par(mar=c(0,2,0,1),mfrow=c(52,1))
 i="../cache/fig4_VCAP_Vgt1/vgt1"
 inf1=paste(i,".Teo_Lan_mCG.txt",sep = "")
@@ -56,10 +58,13 @@ for(i in 23:36)
   box(lwd=.5,col="gray")
 }
 
-dev.off()
-###########
+#dev.off()
+```
+
+```{r}
+#####Interaction and chip-seq data at vgt1 region
 out="Interaction_vgt1_chip.pdf"
-pdf(out,height = 5,width = 4)
+#pdf(out,height = 5,width = 4)
 par(mfrow=c(3,1),mar=c(2,2,1,2))
 ##plot interaction
 start=135.92;end=136.02
@@ -102,18 +107,17 @@ i=dp_f[2]
   plot(d1[,2]/1e6,d1[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,main="H3K4me3")
  # axis(1,las=1,at=c(start,135.96,135.99,end),cex.axis=1.5)
   axis(2,tick=0.03,las=1)
+#dev.off()
+```
 
-dev.off()
 
-
-
+```{r}
 ###Fig 4E barplot for LUC results
 d=fread("../cache/fig4_VCAP_Vgt1/LUC_results.txt",head=T,na.str="NA",data.table=F)
-pdf("LUC_Vgt1.pdf",height = 2,width = 5)
-par(mfrow=c(1,1),mar=c(2,2,0,1))
+#pdf("LUC_Vgt1.pdf",height = 2,width = 5)
+par(mfrow=c(1,1),mar=c(4,7,0,1))
 d=rbind(d[2:1,])
-bar=barplot(d[1:2,2],width=1,space = 0.6,horiz =T,xlim=c(0,0.4),las=1,col=c("gray","white"),border =c("white","black"))
-#bar=barplot(d[1:2,2],width=1,space = 0.6,horiz =T,xlim=c(0,0.4),las=1,col=c("#F4B183","#9DC3E6"),border ="white")
+bar=barplot(d[1:2,2],width=1,space = 0.6,horiz =T,xlim=c(0,0.4),las=1,col=c("gray","white"),border =c("white","black"),xlab="LUC/REN",names=c("Control","vgt1-DMR"))
 bar=as.vector(bar)
 plot.error <- function(x, y, sd, len = 1, col = "black",lwd, horiz = T) {
   len <- len * 0.05
@@ -126,7 +130,8 @@ plot.error <- function(x, y, sd, len = 1, col = "black",lwd, horiz = T) {
   }
 }
 for (i in 1:2){plot.error(bar[i], d[i,2 ], sd = d[i, 3],lwd=1.5)}
-dev.off()
-
+#dev.off()
 ```
+
+
 
