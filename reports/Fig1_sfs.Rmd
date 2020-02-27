@@ -88,7 +88,9 @@ df2 <- get_numus(obfile="cache/mcmc_res/new_msfs_CHG_pops.RData", burnin=0.2, Ne
 df2$context <- "CHG"
 
 df <- rbind(df1, df2)
-    
+df$log <- 10^-(df$mn)
+#df$logsd <- 10^-(df$sd)
+       
 ```
 
 # Plot for the posterior estimates
