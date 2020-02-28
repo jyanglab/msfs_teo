@@ -4,7 +4,7 @@ author: "Gen"
 date: "2020/2/25"
 output: html_document
 ---
-```{r}
+```{r fig.height=8,fig.width=5}
 library(data.table)
 ####Fig4A-B VCAP
 d1=fread("../cache/fig4_VCAP_Vgt1/h2_CG_teosinte_maize_cleaned.txt",head=T,na.str="NA",data.table=F)
