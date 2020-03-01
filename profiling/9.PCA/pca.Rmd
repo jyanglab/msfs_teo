@@ -17,8 +17,8 @@ d=merge(d,M_CG,by=c("Chr","Pos"))
 pca=princomp(d[,-c(1:2)])
 #summary(pca,loadings=TRUE) 
 #screeplot(pca,type="lines")
-pca.var <- pca$sdev^2 # calculate the percent of variation
-pca.var.per <- round(pca.var/sum(pca.var)*100,1) 
+pca.var <- pca$sdev^2 
+pca.var.per <- round(pca.var/sum(pca.var)*100,1) # calculate the percent of variation
 
 pc=loadings(pca)
 PCA1 = pca$loadings[,1]
@@ -40,8 +40,8 @@ pca=d1=princomp(d[,-c(1:2)])
 pc=loadings(pca)
 PCA1 = pca$loadings[,1]
 PCA2 = pca$loadings[,2]
-pca.var <- pca$sdev^2 # calculate the percent of variation
-pca.var.per <- round(pca.var/sum(pca.var)*100,1) 
+pca.var <- pca$sdev^2 
+pca.var.per <- round(pca.var/sum(pca.var)*100,1) # calculate the percent of variation
 
 #tiff("CHG_pca.tiff",width=210,height=100,res=600,units="mm")
 par(mar=c(4,4,2,2),mfrow=c(1,2))
@@ -58,7 +58,7 @@ col=vector(length=51)
 col[which(pc$POP=="TEO")]="blue"
 col[which(pc$POP=="LR")]="green"
 col[which(pc$POP=="MZ")]="red"
-var=pc[,6]*100/sum(pc[,6])
+var=pc[,6]*100/sum(pc[,6]) # calculate the percent of variation
 
 #tiff("CG_pca.tiff",width=110,height=100,res=600,units="mm")
 par(mar=c(4,4,2,2),mfrow=c(1,2))
