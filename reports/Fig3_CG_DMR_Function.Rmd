@@ -13,7 +13,7 @@ par(mar=c(2,4,1,0),mfrow=c(1,1))
 d=fread("../cache/fig3_CG_DMR/barplot_DMR_Feature.txt",head=T,data.table=F)
 barplot(d[,2],space=c(0,0,1,0,1,0,1,0,1,0,1,0),width=0.6,col=d[,5],las=1,cex.axis=1,border=d[,5],ylim=c(0,0.07),ylab="Normalized space (100%)",tck=-0.03,names=c(d[,1][-12],""))
 
-legend("topright",c("Hyper-DMR","Hypo-DMR","Anchor-DMR overlap"),ncol = 1,pch=22,col=c("#E39500","#43A178","black"),border =c("#E39500","#43A178","black"),bty="n",cex=1,seg.len=0.1,angle = c(0,0,45), density=c(0,0,20))
+legend("topright",c("Hyper-DMR","Hypo-DMR","Anchor-DMR overlap"),ncol = 1,pch=22,col=c("#53B3E9","#43A178","black"),border =c("#53B3E9","#43A178","black"),bty="n",cex=1,seg.len=0.1,angle = c(0,0,45), density=c(0,0,20))
 
 par(new=T)
 barplot(d[,3],width=0.6,col="black",space=c(0,0,1,0,1,0,1,0,1,0,1,0),axes=F,border="black",ylim=c(0,0.07),angle=45,density = 20)
@@ -71,10 +71,10 @@ for(j in 3:3)
   s=spline(c((I1[j,3]+I1[j,4])/2,(I1[j,4]+I1[j,6])/2,(I1[j,6]+I1[j,7])/2),c(1,6,1),n=201)
   x=s$x
   y=spline(c(1,3,5),c(5,6,5),n=201)$y-4
-  points( x,y,type="l",lwd=3,col="#E39500") 
+  points( x,y,type="l",lwd=3,col="#53B3E9") 
 }
-rect(I1[,4],0.95,I1[,3],1.05,col="#E39500",border = "#E39500")
-rect(I1[,7],0.95,I1[,6],1.05,col="#E39500",border = "#E39500")
+rect(I1[,4],0.95,I1[,3],1.05,col="#53B3E9",border = "#53B3E9")
+rect(I1[,7],0.95,I1[,6],1.05,col="#53B3E9",border = "#53B3E9")
 rect(-gd[,4]/1e6-0.006,0.8,-gd[,3]/1e6-0.006,1.2,col="gray",border = "gray")
 rect(-gd[,8]/1e6,0.8,-gd[,7]/1e6,1.2,col="red",border = "red")
 ###########
