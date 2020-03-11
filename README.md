@@ -1,6 +1,6 @@
 # Welcome to `Evolution of DNA methylation ` project
 
-This is a research repo for our project entitled "**Adaptive evolution of DNA methylation reshaped gene regulation in maize**". The preprint manuscript could be found via [bioRxiv](http://biorxiv.org/content/early/2016/12/05/086132).
+This is a research repo for our project entitled "**Adaptive evolution of DNA methylation reshaped gene regulation in maize**".
 
 ## Introduction
 In this study, we leveraged whole-genome sequencing (WGS) and whole-genome bisulfite sequencing (WGBS) on populations of modern maize, landrace, and teosinte Zea mays ssp. parviglumis to investigate the adaptive and phenotypic consequences of methylation variation in maize.
