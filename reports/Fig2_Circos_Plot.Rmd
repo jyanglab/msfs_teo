@@ -1,0 +1,84 @@
+---
+title: "Circos_plot"
+author: "Gen"
+date: "2020/2/25"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+library(circlize)
+library(data.table)
+##File Chromosome_v4.txt contains basic information of each chromosome in reference genome
+data<-read.table("../cache/fig2_circos/Chromosome_v4.txt",head=T,stringsAsFactors=FALSE,sep='\t') 
+#pdf("circos.pdf",height = 8,width = 8)
+par(mar=c(0,0,0,0))
+circos.genomicInitialize(data,plotType="NULL")
+circos.track(ylim = c(0, 1), panel.fun = function(x, y) {
+  chr = CELL_META$sector.index
+  xlim = CELL_META$xlim
+  ylim = CELL_META$ylim
+  circos.rect(xlim[1], 0, xlim[2], 1, border = NA,col = colours()[407])
+  circos.text(mean(xlim), mean(ylim), chr, cex = 1, col = "black",font = 2,
+              facing = "inside", niceFacing = TRUE)
+}, track.height = 0.13, bg.border = NA)
+
+max=250
+sw=fread("../cache/fig2_circos/selective_sweep.txt", header=T,data.table=F)
+sw=sw[sw[,5]=="TEO/MZ" ,-5]
+sw=sw[sw[,4]<max,]
+sw[,1]=paste("Chr",sw[,1],sep = "")
+bg.col <- rep(colours()[c(407,140)], 5)
+col=vector(length=nrow(sw))
+ch=sw[,1]
+ch=gsub("Chr","",ch)
+col=ifelse(as.numeric(ch)%%2==1,"darkblue", "darkred")
+circos.genomicTrackPlotRegion(sw,panel.fun = function(region, value, ...){
+  circos.genomicLines(region, value, type = "h",col="darkblue",...)}
+  ,bg.col =bg.col, bg.border = "white",track.height = 0.15
+)
+
+###File known_gene.txt contains genes located at TEO-MZ selective sweeps
+kn=fread("../cache/fig2_circos/known_gene.txt", header=F,data.table=F) 
+kn=kn[,-5]
+for(j in 1:5)
+{circos.points((kn[j,2]+kn[j,3])/2,220,sector.index=paste("Chr",kn[j,1],sep=""),col="red",pch=16,bg = "red",cex=0.6,track.index =2)}
+
+###Files Ablined_gdis.txt cotains genetic distance and Centromere_v4.txt contains the pericentromeric regions.
+gdis=fread("../cache/fig2_circos/Ablined_gdis.txt", header=T,data.table=F)
+cent=fread("../cache/fig2_circos/Centromere_v4.txt", header=T,data.table=F)
+gdis[,1]=paste("Chr",gdis[,1],sep="")
+circos.genomicTrackPlotRegion(gdis,panel.fun = function(region, value, ...){
+  circos.genomicLines(region, value, type = "l",col="skyblue",lwd=1,area = T,border ="cyan3",...)
+ 
+   }
+  ,bg.col ="white", bg.border = "white",track.height = 0.15
+)
+for(i in 1:10)
+{
+  circos.rect(cent[i,2],0,cent[i,3],0.2,sector.index=paste("Chr",i,sep=""),col="red",border="red",track.index =3)
+}
+
+
+###Files 1mb_CG_DMR.txt and 1mb_CHG_DMR.txt caculated DMR number within 1 Mb windown across the whole genome
+dmr=fread("../cache/fig2_circos/1mb_CG_DMR.txt", header=T,data.table=F) 
+f=colorRamp2(breaks=c(0:10),color=c(colours()[1],colorRampPalette(c("burlywood1", "brown1"))(10)))
+circos.genomicTrackPlotRegion(dmr, stack = TRUE,
+                              panel.fun = function(region, value, ...) {
+                                circos.genomicRect(region, value, col = f(value[[1]]), border = NA, ...)
+                              },bg.border=NA,track.height = 0.15)
+
+dmr=fread("../cache/fig2_circos/1mb_CHG_DMR.txt", header=T,data.table=F) 
+f=colorRamp2(breaks=c(0:10),color=c(colours()[1],colorRampPalette(c("burlywood1", "brown1"))(10)))
+circos.genomicTrackPlotRegion(dmr, stack = TRUE,
+                              panel.fun = function(region, value, ...) {
+                                circos.genomicRect(region, value, col = f(value[[1]]), border = NA, ...)
+                              },bg.border=NA,track.height = 0.15)
+
+
+
+#dev.off()
+
+```
+

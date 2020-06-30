@@ -1,0 +1,116 @@
+---
+title: "Fig3_CG_DMR_functions"
+author: "Gen"
+date: "2020/2/25"
+output: html_document
+---
+
+```{r}
+library(data.table)
+##########Fig3a#####DMR VS Genomic_feature
+#pdf("hyper_hypo_DMR_VS_Genomic_feature.pdf",width=8,height=6)
+par(mar=c(2,4,1,0),mfrow=c(1,1))
+d=fread("../cache/fig3_CG_DMR/barplot_DMR_Feature.txt",head=T,data.table=F)
+barplot(d[,2],space=c(0,0,1,0,1,0,1,0,1,0,1,0),width=0.6,col=d[,5],las=1,cex.axis=1,border=d[,5],ylim=c(0,0.07),ylab="Normalized space (100%)",tck=-0.03,names=c(d[,1][-12],""))
+
+legend("topright",c("Hyper-DMR","Hypo-DMR","Anchor-DMR overlap"),ncol = 1,pch=22,col=c("#53B3E9","#43A178","black"),border =c("#53B3E9","#43A178","black"),bty="n",cex=1,seg.len=0.1,angle = c(0,0,45), density=c(0,0,20))
+
+par(new=T)
+barplot(d[,3],width=0.6,col="black",space=c(0,0,1,0,1,0,1,0,1,0,1,0),axes=F,border="black",ylim=c(0,0.07),angle=45,density = 20)
+#dev.off()
+```
+
+```{r}
+########Fig2b########Enrichment analisis of DMR at genic regions
+d=fread("../cache/fig3_CG_DMR/CG_TEO_MZ_DMR_overlap_Gene_bin.txt",head=T,na.str="NA",data.table=F)
+hyper=d[d[,12]<0,]
+f_hyper=as.data.frame(table(hyper[,10]))
+id=as.numeric(gsub("bin","",f_hyper[,1]))
+f_hyper=cbind(id,f_hyper)
+f_hyper=f_hyper[order(f_hyper[,1]),]
+#pdf("CG_TEO_MAI_hyper_DMR_Genic_bin_freq.pdf",height = 6,width = 9)
+par(mar=c(4,4,1,0))
+plot(f_hyper[,1],f_hyper[,3],pch=16,cex=1,col="skyblue",type="b",cex.axis=1,xlab="Bin",ylab="DMR number",las=1,cex.lab=1,tck=-0.03,axes=F)
+axis(1,at=c(1:30))
+axis(2)
+abline(v=c(11,20),col="red",lwd=1.5,lty=2)
+box()
+#dev.off() 
+```
+
+```{r}
+###########Fig3c### Physical interactions and chromatin profiles aroundZm00001d018036gene
+gd=fread("../cache/fig3_CG_DMR/DMR_Gene.txt", header=T,data.table=F) 
+ra=range(gd[1,c(3:4,7:8)])
+out="Interaction_Zm00001d018036_2.pdf"
+#pdf(out,height = 8,width = 10)
+par(mfrow=c(6,1),mar=c(2,4,1.5,1))
+I1=fread("../cache/fig3_CG_DMR/interaction.txt",head=T,na.str="NA",data.table=F) 
+I1=cbind(I1[,c(13,1)],-I1[,3],-I1[,2],I1[,4],-I1[,6:5])
+I1=I1[I1[,2]==I1[,5]&I1[,1]=="Zm00001d018036",]
+I1[,3]=I1[,3]/1e6;I1[,4]=I1[,4]/1e6;I1[,6]=I1[,6]/1e6;I1[,7]=I1[,7]/1e6;
+start=-212.66;end=-212.56
+lim=c(start,end)
+I1=I1[I1[,6]>=start & I1[,4]<=end,]
+plot(1,1,xlim=lim,ylim=c(0,4),axes = F,xlab="",ylab="")
+abline(h=1,lwd=2)
+
+x=dim(I1[,c(3,6)])[1];y=dim(I1[,c(3,6)])[2]
+#rect(as.vector(as.matrix(I1[,c(3,6)])),rep(0.95,x*y),as.vector(as.matrix(I1[,c(4,7)])),rep(1.05,x*y),col="blue",border = "blue")
+for(j in 1:nrow(I1))
+{
+ s=spline(c((I1[j,3]+I1[j,4])/2,(I1[j,4]+I1[j,6])/2,(I1[j,6]+I1[j,7])/2),c(1,6,1),n=201)
+  x=s$x
+  y=spline(c(1,3,5),c(5,6,5),n=201)$y-4
+  points( x,y,type="l",lwd=2,col="gray") 
+}
+
+for(j in 3:3)
+{
+  
+  s=spline(c((I1[j,3]+I1[j,4])/2,(I1[j,4]+I1[j,6])/2,(I1[j,6]+I1[j,7])/2),c(1,6,1),n=201)
+  x=s$x
+  y=spline(c(1,3,5),c(5,6,5),n=201)$y-4
+  points( x,y,type="l",lwd=3,col="#53B3E9") 
+}
+rect(I1[,4],0.95,I1[,3],1.05,col="#53B3E9",border = "#53B3E9")
+rect(I1[,7],0.95,I1[,6],1.05,col="#53B3E9",border = "#53B3E9")
+rect(-gd[,4]/1e6-0.006,0.8,-gd[,3]/1e6-0.006,1.2,col="gray",border = "gray")
+rect(-gd[,8]/1e6,0.8,-gd[,7]/1e6,1.2,col="red",border = "red")
+###########
+
+H3K27ac=fread("../cache/fig3_CG_DMR/Leaf_H3K27ac.txt",head=F,na.str="NA",data.table=F) 
+H3K27ac=cbind(H3K27ac[,1],-(H3K27ac[,2]+H3K27ac[,3])/2e6,H3K27ac[,4])
+H3K4me3=fread("../cache/fig3_CG_DMR/Leaf_H3K4me3.txt",head=F,na.str="NA",data.table=F) 
+H3K4me3=cbind(H3K4me3[,1],-(H3K4me3[,2]+H3K4me3[,3])/2e6,H3K4me3[,4])
+starr=fread("../cache/fig3_CG_DMR/starr-rna.dup.txt",head=F,na.str="NA",data.table=F) 
+starr=cbind(starr[,1],-(starr[,2]+starr[,3])/2e6,starr[,4])
+starr_in=fread("../cache/fig3_CG_DMR/starr-scaled-input.txt",head=F,na.str="NA",data.table=F) 
+starr_in=cbind(starr_in[,1],-(starr_in[,2]+starr_in[,3])/2e6,starr_in[,4])
+
+dmr_col=adjustcolor(colours()[142], alpha.f = 0.2)
+gene_col=adjustcolor(colours()[70], alpha.f = 0.2)
+plot(H3K27ac[,2],H3K27ac[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,ylim=c(0,max(H3K27ac[,3])),main="H3K27ac",ylab="")
+axis(2,las=1)
+rect(-gd[1,8]/1e6,0,-gd[1,7]/1e6,max(H3K27ac[,3]),col=dmr_col,border = dmr_col)
+rect(-gd[1,4]/1e6,0,-gd[1,3]/1e6,max(H3K27ac[,3]),col=gene_col,border = gene_col)
+
+plot(H3K4me3[,2],H3K4me3[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,ylim=c(0,max(H3K4me3[,3])),main="H3K4me3",ylab="")
+axis(2,las=1)
+rect(-gd[1,8]/1e6,0,-gd[1,7]/1e6,max(H3K4me3[,3]),col=dmr_col,border = dmr_col)
+rect(-gd[1,4]/1e6,0,-gd[1,3]/1e6,max(H3K4me3[,3]),col=gene_col,border = gene_col)
+
+plot(starr[,2],starr[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,ylim=c(0,200),ylab="",main="STARR-RNA")
+axis(2,las=1)
+rect(-gd[1,8]/1e6,0,-gd[1,7]/1e6,max(starr[,3]),col=dmr_col,border = dmr_col)
+rect(-gd[1,4]/1e6,0,-gd[1,3]/1e6,max(starr[,3]),col=gene_col,border = gene_col)
+
+plot(starr_in[,2],starr_in[,3],xlim=c(start,end),type="h",col=colours()[95],axes = F,ylim=c(0,max(starr_in[,3])),ylab="",main="STARR-input",xlab="Chr5 (Mb)")
+axis(2,las=1)
+axis(1,las=1)
+rect(-gd[1,8]/1e6,0,-gd[1,7]/1e6,max(starr_in[,3]),col=dmr_col,border = dmr_col)
+rect(-gd[1,4]/1e6,0,-gd[1,3]/1e6,max(starr_in[,3]),col=gene_col,border = gene_col)
+#dev.off()
+```
+
+

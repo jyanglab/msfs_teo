@@ -1,6 +1,6 @@
 ---
 title: "Run VCAP through huskeR"
-output: html_notebook
+output: NULL
 date: 02-22-2019
 author: "Jinliang Yang"
 ---
@@ -40,6 +40,7 @@ five mutually exclusive features:
 
 
 library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
+# /common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-05-2019
 run_batch_vcap <- function(
   input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
   dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize")){
@@ -82,15 +83,23 @@ run_batch_vcap <- function(
                  genome_kinship="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/kinship/NAM_HM31_MAF02mnCnt2500_WholeGenomeCentered_IBS_SqrMatrix.txt",
                  res_kinship=outdf$res
                  )
-
-  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE,"jyanglab", "5", "20G", "3:00:00"))
+  message(sprintf("###>>> results will be in %s", outdf$res[1]))
+  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "run_vcap", runinfo = c(TRUE, "jclarke", "5", "20G", "3:00:00"))
 }
 
+# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
 run_batch_vcap(
-  input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
-  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
-                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
-                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
+  input_dir = "/common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-11-2019/CG",
+  dmr_patterns = c("CG_teosinte_maize",  "CG_landrace_maize",  "CG_teosinte_landrace"))
+
+run_batch_vcap(
+  input_dir = "/common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-11-2019/CHG",
+  dmr_patterns = c("CHG_teosinte_maize",  "CHG_landrace_maize",  "CHG_teosinte_landrace"))
+
+###>>> results will be in largedata/VCAP/CHH_teosinte_maize/bedfile/rest_geno
+run_batch_vcap(
+  input_dir = "/common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-11-2019/CHH",
+  dmr_patterns = c("CHH_teosinte_maize",  "CHH_landrace_maize",  "CHH_teosinte_landrace"))
 
 ```
 
@@ -102,9 +111,9 @@ Using R package `huskeR`:
 library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
 
 run_batch_ldak <- function(
-  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
-                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
-                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace")
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", 
+                  "CG_landrace_maize", "CHG_landrace_maize", 
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace")
   ){
   
   df <- data.frame()
@@ -121,19 +130,20 @@ run_batch_ldak <- function(
             row.names=FALSE, col.names=FALSE, quote=FALSE)
     
     output_h2 <- gsub("bedfile", "h2/", kinship_dir)
+    #unlink(gsub("bedfile", "h2/", kinship_dir))
     dir.create(output_h2, showWarnings = FALSE)
     tem <- data.frame(output=output_h2, klist=paste0(kinship_dir, "/kinlist.txt"), pheno=pheno)
     tem$output <- paste0(tem$output, gsub(".*\\/|.txt", "", tem$pheno))
     df <- rbind(df, tem)
   }
   
-  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jyanglab", "2", "10G", "8:00:00"))
+  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jclarke", "2", "10G", "8:00:00"))
 }
 
 
-run_batch_ldak(dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize",
-                  "CG_landrace_maize", "CHG_landrace_maize", "CHH_landrace_maize",
-                  "CG_teosinte_landrace", "CHG_teosinte_landrace", "CHH_teosinte_landrace"))
+run_batch_ldak(dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize",
+                  "CG_landrace_maize", "CHG_landrace_maize",
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace"))
 
 ```
 

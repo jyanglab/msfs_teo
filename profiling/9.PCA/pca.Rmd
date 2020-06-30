@@ -1,0 +1,71 @@
+---
+title: "PCA"
+author: "Gen"
+date: "2020/2/29"
+output: html_document
+---
+```{r fig.width=8,fig.height=4}
+library(data.table)
+T_CG=fread("../../data/pca/Teo_CpG_1Mb_meth.txt", header=T,data.table=F)
+T_CHG=fread("../../data/pca/Teo_CHG_1Mb_meth.txt", header=T,data.table=F)
+L_CG=fread("../../data/pca/LR_CpG_1Mb_meth.txt", header=T,data.table=F)
+L_CHG=fread("../../data/pca/LR_CHG_1Mb_meth.txt", header=T,data.table=F)
+M_CG=fread("../../data/pca/MaiZe_CpG_1Mb_meth.txt", header=T,data.table=F)
+M_CHG=fread("../../data/pca/MaiZe_CHG_1Mb_meth.txt", header=T,data.table=F)
+d=merge(T_CG,L_CG,by=c("Chr","Pos"))
+d=merge(d,M_CG,by=c("Chr","Pos"))
+pca=princomp(d[,-c(1:2)])
+#summary(pca,loadings=TRUE) 
+#screeplot(pca,type="lines")
+pca.var <- pca$sdev^2 
+pca.var.per <- round(pca.var/sum(pca.var)*100,1) # calculate the percent of variation
+
+pc=loadings(pca)
+PCA1 = pca$loadings[,1]
+PCA2 = pca$loadings[,2]
+
+#tiff("CG_pca.tiff",width=210,height=100,res=600,units="mm")
+par(mar=c(4,4,2,2),mfrow=c(1,2))
+plot(PCA1,PCA2,col="white",xlab="PC1 (90.9%)",ylab="PC2 (1.4%)",main="CG")
+text(PCA1,PCA2,labels=gsub("CpG_","",colnames(d)[-c(1:2)]),col=c(rep("blue",20),rep("green",17),rep("red",14)),cex=.6)
+screeplot(pca,type="lines",col="blue",lwd=2)
+#dev.off()
+```
+```{r fig.width=8,fig.height=4}
+d=merge(T_CHG,L_CHG,by=c("Chr","Pos"))
+d=merge(d,M_CHG,by=c("Chr","Pos"))
+pca=d1=princomp(d[,-c(1:2)])
+#summary(pca,loadings=TRUE) 
+#screeplot(pca,type="lines")
+pc=loadings(pca)
+PCA1 = pca$loadings[,1]
+PCA2 = pca$loadings[,2]
+pca.var <- pca$sdev^2 
+pca.var.per <- round(pca.var/sum(pca.var)*100,1) # calculate the percent of variation
+
+#tiff("CHG_pca.tiff",width=210,height=100,res=600,units="mm")
+par(mar=c(4,4,2,2),mfrow=c(1,2))
+plot(PCA1,PCA2,col="white",xlab="PC1 (94.2%)",ylab="PC2 (0.9%)",main="CHG")
+text(PCA1,PCA2,labels=gsub("CHG_","",colnames(d)[-c(1:2)]),col=c(rep("blue",20),rep("green",17),rep("red",14)),cex=.6)
+screeplot(pca,type="lines",col="blue",lwd=2)
+#dev.off()
+```
+
+```{r fig.width=8,fig.height=4}
+library(data.table)
+pc=fread("../../data/pca/WGS_PC.txt", header=T,data.table=F)
+col=vector(length=51)
+col[which(pc$POP=="TEO")]="blue"
+col[which(pc$POP=="LR")]="green"
+col[which(pc$POP=="MZ")]="red"
+var=pc[,6]*100/sum(pc[,6]) # calculate the percent of variation
+
+#tiff("CG_pca.tiff",width=110,height=100,res=600,units="mm")
+par(mar=c(4,4,2,2),mfrow=c(1,2))
+plot(pc[,3],pc[,4],col="white",xlab="PC1 (9.2%)",ylab="PC2 (3.1%)",main="WGS")
+text(pc[,3],pc[,4],labels=pc[,1],col=col,cex=.6)
+#dev.off()
+plot(pc[1:10,6],col="blue",lwd=2,type="b",ylab="Eigenval",xlab="PCs")
+
+```
+

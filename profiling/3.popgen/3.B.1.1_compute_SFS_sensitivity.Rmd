@@ -1,0 +1,257 @@
+---
+title: "Start to compute SFS"
+output: NULL
+author: Jinliang Yang
+date: 09-25-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+------------------
+
+# Sensitivity test
+
+### get_SFS function
+
+```{r, eval=FALSE}
+library("data.table")
+
+getsfs <- function(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+                   cols=4:23,
+                   outfile="cache/teosinte_CpG.csv"){
+    
+    df <- fread(impfile, data.table=FALSE)
+    #.SD is a data.table and holds all the values of all columns, except the one specified in by.
+    #df <- as.data.table(df)
+    #res <- cg[, lapply(.SD, mymean), by=bin, .SDcols = paste0("V",3:22)]
+    
+    #df <- as.data.frame(df)
+    f <- apply(df[, cols], 1, getcount)
+    sfs <- table(f)
+    write.table(sfs, outfile, sep=",", row.names=FALSE, quote=FALSE)
+}
+
+
+```
+
+## Teosinte
+
+### test1
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.1, mmax=0.9){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CpG_0.1_0.9.csv")
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHG_0.1_0.9.csv")
+
+```
+
+
+### test2
+
+```{r}
+getcount <- function(x, mmin=0.2, mmax=0.8){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CpG_0.2_0.8.csv")
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHG_0.2_0.8.csv")
+
+```
+
+```{r}
+getcount <- function(x, mmin=0.25, mmax=0.75){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CpG_0.25_0.75.csv")
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHG_0.25_0.75.csv")
+
+```
+
+### test4
+
+```{r}
+getcount <- function(x, mmin=0.4, mmax=0.6){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CpG_0.4_0.6.csv")
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHG_0.4_0.6.csv")
+
+```
+
+```{r}
+getcount <- function(x, mmin=0.35, mmax=0.65){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CpG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CpG_0.35_0.65.csv")
+
+getsfs(impfile="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv", 
+       cols=4:23, outfile="cache/sfs_teosinte_CHG_0.35_0.65.csv")
+
+```
+
+
+---------------
+
+## Landrace
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.1, mmax=0.9){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CpG_0.1_0.9.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CHG_0.1_0.9.csv")
+#
+```
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.2, mmax=0.8){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CpG_0.2_0.8.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CHG_0.2_0.8.csv")
+#
+```
+
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.25, mmax=0.75){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CpG_0.25_0.75.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CHG_0.25_0.75.csv")
+#
+```
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.35, mmax=0.65){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CpG_0.35_0.65.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CHG_0.35_0.65.csv")
+#
+```
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.4, mmax=0.6){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    return(2*n2+n1)
+}
+getsfs(impfile="largedata/mr_100bp/landrace_CpG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CpG_0.4_0.6.csv")
+getsfs(impfile="largedata/mr_100bp/landrace_CHG_matrix_imp.csv", 
+       cols=4:20, outfile="cache/sfs_landrace_CHG_0.4_0.6.csv")
+#
+```
+------------------
+
+## Maize
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.5, mmax=0.5){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    # return(2*n2+n1)
+    return(n2)
+}
+
+getsfs(impfile="largedata/mr_100bp/maize_CpG_matrix_imp.csv", 
+       cols=4:17, outfile="cache/sfs_maize_CpG_0.5_0.5.csv")
+getsfs(impfile="largedata/mr_100bp/maize_CHG_matrix_imp.csv", 
+       cols=4:17, outfile="cache/sfs_maize_CHG_0.5_0.5.csv")
+#
+```
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.4, mmax=0.6){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    # return(2*n2+n1)
+    return(n2)
+}
+
+getsfs(impfile="largedata/mr_100bp/maize_CpG_matrix_imp.csv", 
+       cols=4:17, outfile="cache/sfs_maize_CpG_0.4_0.6.csv")
+getsfs(impfile="largedata/mr_100bp/maize_CHG_matrix_imp.csv", 
+       cols=4:17, outfile="cache/sfs_maize_CHG_0.4_0.6.csv")
+#
+```
+
+```{r, eval=FALSE}
+getcount <- function(x, mmin=0.3, mmax=0.7){
+    n0 <- sum(x < mmin) #0
+    n2 <- sum(x > mmax) #2
+    n1 <- sum(x >= mmin & x <= mmax) #1
+    # return(2*n2+n1)
+    return(n2)
+}
+
+getsfs(impfile="largedata/mr_100bp/maize_CpG_matrix_imp.csv", 
+       cols=4:17, outfile="cache/sfs_maize_CpG_0.3_0.7.csv")
+getsfs(impfile="largedata/mr_100bp/maize_CHG_matrix_imp.csv", 
+       cols=4:17, outfile="cache/sfs_maize_CHG_0.3_0.7.csv")
+#
+```

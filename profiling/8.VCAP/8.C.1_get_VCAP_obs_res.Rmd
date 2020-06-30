@@ -59,17 +59,16 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
 
 ```{r}
 get_h2(pwd="largedata/VCAP/CG_teosinte_maize/h2", outfile="cache/h2_CG_teosinte_maize.csv")
-
 get_h2(pwd="largedata/VCAP/CHG_teosinte_maize/h2", outfile="cache/h2_CHG_teosinte_maize.csv")
-get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
+#get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
 
 get_h2(pwd="largedata/VCAP/CG_teosinte_landrace/h2", outfile="cache/h2_CG_teosinte_landrace.csv")
 get_h2(pwd="largedata/VCAP/CHG_teosinte_landrace/h2", outfile="cache/h2_CHG_teosinte_landrace.csv")
-get_h2(pwd="largedata/VCAP/CHH_teosinte_landrace/h2", outfile="cache/h2_CHH_teosinte_landrace.csv")
+#get_h2(pwd="largedata/VCAP/CHH_teosinte_landrace/h2", outfile="cache/h2_CHH_teosinte_landrace.csv") # no results
 
 get_h2(pwd="largedata/VCAP/CG_landrace_maize/h2", outfile="cache/h2_CG_landrace_maize.csv")
 get_h2(pwd="largedata/VCAP/CHG_landrace_maize/h2", outfile="cache/h2_CHG_landrace_maize.csv")
-get_h2(pwd="largedata/VCAP/CHH_landrace_maize/h2", outfile="cache/h2_CHH_landrace_maize.csv")
+#get_h2(pwd="largedata/VCAP/CHH_landrace_maize/h2", outfile="cache/h2_CHH_landrace_maize.csv") # no results
 
 
 ```

@@ -32,7 +32,7 @@ sum(mx[!is.na(mx[,idx]), idx] != imp[!is.na(mx[,idx]), idx+2]) # 0 good
 ```
 
 
-### Check Teosinte imputation results
+### Check Maize imputation results
 
 ```{r, eval=FALSE}
 library(data.table)

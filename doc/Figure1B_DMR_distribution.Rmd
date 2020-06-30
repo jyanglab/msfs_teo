@@ -1,0 +1,354 @@
+---
+title: "Circos plot"
+output: html_notebook
+author: Jinliang Yang
+date: 05-23-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+### DMR results from Gen
+
+Note some rows are duplicated in the 100-bp `data.table`.
+
+
+```{r}
+library("data.table")
+cg <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/CG_pop_meth_DMR_shoot_MNaseHS_Chia_pet2.txt", data.table=FALSE)
+#names(cg)[7:9] <- c("DMR", "MNaseHS", "ChIA-PET")
+cg$uid <- paste(cg$Chr, cg$Start, cg$End, sep="_")
+cg0 <- cg[!duplicated(cg$uid), c(1:6, ncol(cg)) ]
+
+
+
+
+length(unique(cg$uid))
+
+bed <- bed[!duplicated(bed$uid),]
+
+##  find the non-unique ids
+tb <- as.data.frame(table(cg$uid))
+table(tb$Freq)
+
+#       1        2        3        4        5        6        8       10
+# 20153572   884521     3710    19305        7     2141      119        2
+
+tb <- subset(tb, Freq > 1)
+sub <- subset(cg, uid %in% tb$Var1)
+
+mnase <- 
+
+
+
+cg$DMR1 <- 1
+cg$MNase1 <- 1
+cg$chia1 <- 1
+
+cg[is.na(cg$DMR),]$DMR1 <- 0
+cg[is.na(cg$MNaseHS),]$MNase1 <- 0
+cg[is.na(cg$"ChIA-PET"),]$chia1 <- 0
+
+
+```
+
+## Gen's annotation of V4 genome
+
+24 rows are duplicated, not a big problem.
+Chr start from 0 (should be 1, all inclusive), but other bps (start and end) are inclusive.
+
+```{r}
+bed <- fread("data/07-23-2019genomic_feature.bed", data.table=FALSE)
+names(bed) <- c("chr", "start", "end", "feature")
+bed$uid <- paste(bed$chr, bed$start, bed$end, sep="_")
+length(unique(bed$uid))
+
+##  find the non-unique ids
+tb <- as.data.frame(table(bed$uid))
+tb <- subset(tb, Freq > 1)
+sub <- subset(bed, uid %in% tb$Var1)
+
+bed <- bed[!duplicated(bed$uid),]
+
+bed$bp <- bed$end - bed$start
+
+library("plyr")
+f <- ddply(bed, .(feature), summarise,
+           tot = sum(bp))
+#       feature        tot
+#1         Exon   65401079
+#2 Gene_down_5k  224979995
+#3   Gene_up_5k  224745042
+#4   Intergenic  316358525
+#5       Intron   89397790
+#6           TE 2567864865
+```
+
+Not terribly wrong, because there are overlaps.
+
+
+
+# Assign features for the 100-bp tiles
+
+```{r}
+library("GenomicRanges")
+
+assign_feature <- function(cg, gff, minbp=50L, feas){
+  # assign v4 gff genomic features to a table
+  # cg: table to be assigned [data.frame, =[,c("Chr", "Start", "End")]]
+  # gff: gff file [data.frame, =[,c("chr", "start", "end", "feature")]]
+  # minbp: min overalp bp [num, =50L]
+  # feas: features to be assigned [chr, NULL]
+ 
+  grc <- with(cg, GRanges(seqnames=Chr, IRanges(start=Start, end=End)))
+  #table(gff$feature)
+  
+  for(i in 1:length(feas)){
+    
+    ### map features to the 100-bp tiles
+    f <- subset(gff, feature %in% feas[i])
+    grf <- with(f, GRanges(seqnames=chr, IRanges(start=start, end=end), att=feature))
+    message(sprintf("###>>>> Processing feature [%s], query length [%s] and subject length [%s] ...", 
+                    feas[i], length(grc), length(grf)))
+    
+    ####### 
+    tb <- findOverlaps(query=grf, subject=grc, minoverlap=minbp)
+    tb <- as.matrix(tb)
+
+    cg$newf <- 0
+    ## even for overlapped features, they will merge them together
+    cg[tb[,2],]$newf<- 1
+    names(cg)[ncol(cg)] <- feas[i]
+  }
+  return(cg)
+}
+```
+
+
+## Okay, let's assign genomics features to the 100-bp tiles
+
+```{r}
+out <- assign_feature(cg=cg0, gff=bed, minbp=50L, feas=c("Exon", "Gene_down_5k", "Gene_up_5k", "Intergenic", "Intron", "TE"))
+
+sum(out$TE)/nrow(out) #0.7240033
+sum(out$Intergenic)/nrow(out) #0.1502257
+sum(out$Intron)/nrow(out) #0.04232835
+sum(out$Exon)/nrow(out) #0.03078087
+sum(out$Gene_up_5k)/nrow(out) #0.09587195
+sum(out$Gene_down_5k)/nrow(out) #0.09324796
+
+```
+
+Merge with DMR.
+
+```{r}
+dmr <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/Input_file/CG_DMR.bed", data.table=FALSE)
+names(dmr) <- c("chr", "start", "end", "pop", "feature")
+dmr <- subset(dmr, pop %in% "Teosinte/Maize")
+dmr$bp <- dmr$end - dmr$start
+sum(dmr$bp) # 633967
+
+
+out2 <- assign_feature(cg=out, gff=dmr, minbp=50L, feas="CG")
+sum(out2$CG) #636300
+
+```
+
+
+Merge with MNaseHS.
+
+```{r}
+hs <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/Input_file/shoot_MNaseHS.Ranges_V4.bed", data.table=FALSE)
+names(hs) <- c("chr", "start", "end")
+
+hs$bp <- hs$end - hs$start
+sum(hs$bp) # 11050239
+mean(hs$bp) #44.7264
+range(hs$bp) #1 760
+hs$feature <- "MNaseHS"
+
+out2 <- assign_feature(cg=out2, gff=hs, minbp=10L, feas="MNaseHS")
+sum(out2$MNaseHS) #26365500
+
+```
+
+
+Merge with ChiA-PET.
+
+```{r}
+chia <- fread("/common/jyanglab/shared/Gen_Xu/Meth_DMR_MNase_ChIA-PET/Input_file/Chia_pet_shoot_interaction_anchor.bed", data.table=FALSE)
+names(chia) <- c("chr", "start", "end", "tissue")
+
+chia$bp <- chia$end - chia$start
+sum(chia$bp) # 267560871
+mean(chia$bp) # 6539.912
+range(chia$bp) # 446 51655
+chia$feature <- "chia"
+
+out2 <- assign_feature(cg=out2, gff=chia, minbp=50L, feas="chia")
+sum(out2$chia) # 181790300
+
+fwrite(out2, "largedata/cg_features_master_table.csv",  sep=",", row.names=FALSE, quote=FALSE)
+```
+
+
+Okay, haven't merge lnc_RNA yet.
+
+```{r}
+gff <- read.delim("/common/jyanglab/shared/dbcenter/B73_V4_Annotation_file/maize-genome-V4.gff3", comment.char = "#", header=FALSE)
+names(gff) <- c("chr", "source", "feature", "start", "end", "score",
+                    "strand", "frame", "attribute")
+
+
+
+
+
+out <- assign_feature(cg, gff, minbp=50L, feas=c("exon", "five_prime_UTR", "three_prime_UTR", 
+                                            "lnc_RNA", "miRNA", "pre_miRNA", "ncRNA_gene", "snRNA"))
+
+
+head(subset(out, snRNA ==1))
+head(subset(gff, feature %in% "snRNA"))
+
+cg1 <- out[, 10:20]
+cg1$tot <- apply(cg1, 1, sum)
+cg2 <- subset(cg1, tot > 0)
+fwrite(cg2, "largedata/cg_pop_meth.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+    
+```
+
+
+```{r}
+library("data.table")
+library("UpSetR")
+library("ggplot2")
+
+cg1 <- fread("largedata/cg_features_master_table.csv", data.table=FALSE)
+# 6363
+dim(subset(cg1, TE == 1 & CG ==1)) #2417   16
+dim(subset(cg1, CG == 1 & Intergenic ==1)) #1589   16
+
+## Define a gene region that is not TE or Intergenic
+cg1$Gene <- -9
+cg1$Gene <- cg1$TE + cg1$Intergenic
+cg1[cg1$Gene ==0, ]$Gene <- -9
+cg1[cg1$Gene > 0, ]$Gene <- 0
+cg1[cg1$Gene < 0, ]$Gene <- 1
+
+
+cg1$hypo <- 0
+cg1[cg1$CG == 1 & !is.na(cg1$mCG_Maize) & !is.na(cg1$mCG_Teosinte) & (cg1$mCG_Maize < cg1$mCG_Teosinte), ]$hypo <- 1
+#4062
+cg1$hyper <- 0
+cg1[cg1$CG == 1 & !is.na(cg1$mCG_Maize) & !is.na(cg1$mCG_Teosinte) & (cg1$mCG_Maize > cg1$mCG_Teosinte), ]$hyper <- 1
+#2159
+
+
+upset(cg1, 
+      #sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      intersections=list(list("hypo", "Intergenic"), list("hypo", "TE"), list("hypo", "Gene"),
+                         list("hyper", "Intergenic"), list("hyper", "TE"), list("hyper", "Gene")),
+      order.by=c("hypo", "hyper"),
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+
+
+upset(cg1, 
+      sets = c("Exon", "Gene_down_5k", "Gene_up_5k", "Intergenic", "Intron", "TE", "CG", "MNaseHS", "chia"),
+      #intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
+      #                   list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      order.by="CG", 
+      matrix.color="blue", point.size=5)
+
+
+
+
+
+
+cg2 <- subset(cg1, TE == 0 )
+
+cg3 <- subset(cg2, Intergenic == 0)
+
+
+
+upset(cg3, 
+      #sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      intersections=list(list("hypo", "Gene_up_5k"), list("hypo", "Gene_down_5k"), list("hypo", "Exon"), list("hypo", "Intron"), list("hypo","chia"), 
+                         list("hypo", "Exon", "chia"), list("hyper", "Exon", "chia"), 
+                         list("hyper", "Gene_up_5k"), list("hyper", "Gene_down_5k"), list("hyper", "Exon"), list("hyper", "Intron"), list("hyper","chia")),
+      order.by=c("hypo", "hyper"),
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+dim(subset(cg3, hyper == 1 & Exon ==1)) #1589   16
+
+dim(subset(cg3, hypo == 1 & Exon ==1 & chia ==1)) #284   16
+
+dim(subset(cg3, hyper == 1 & Exon ==1 & chia ==1)) #473  16
+
+
+
+
+upset(cg2, 
+      sets = c("Exon", "Gene_down_5k", "Gene_up_5k", "Intergenic", "Intron", "CG", "MNaseHS", "chia"),
+      #intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA"),
+      #                   list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      order.by="CG", 
+      matrix.color="blue", point.size=5)
+
+
+
+
+upset(cg1, 
+      sets = c("DMR1", "MNase1", "chia1"), 
+      intersections=list(list("DMR1", "MNase1"), list("DMR1", "chia1")),
+      order.by="DMR1", matrix.color="blue", point.size=5,
+      sets.bar.color=c("maroon","blue","orange"))
+
+
+#names(cg1)
+upset(cg1, 
+      sets = c("DMR1", "MNase1","chia1","exon","five_prime_UTR","three_prime_UTR","lnc_RNA"),
+      #intersections=list(list("DMR1", "five_prime_UTR"), list("DMR1", "three_prime_UTR"), list("DMR1", "lnc_RNA")),
+      #order.by="DMR1", 
+      matrix.color="blue", point.size=5)
+      #sets.bar.color=c("maroon","blue","orange"))
+
+
+
+
+
+```
+
+
+
+
+```{r}
+rna <- fread("data/expression_TEO_Maize.txt", data.table=FALSE)
+
+### Version 4 genome:
+tg <- read.table("data/163_CG_TEO_Maize_hyper_exon_Genes.txt", header=FALSE)
+names(tg) <- "V4"
+
+sub <- subset(rna, rna[,2] %in% tg$V4)
+
+hist(sub[, 3] - sub[, 4], breaks=50)
+
+hist(sub[, 5] - sub[, 6], breaks=50)
+
+
+hist(sub[, 7] - sub[, 8], breaks=50)
+
+t.test(sub[, 5], sub[, 6], pair=TRUE)
+t.test(rna[,5], rna[,6], pair=TRUE)
+```
+
+
+

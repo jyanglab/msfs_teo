@@ -12,11 +12,59 @@ irsync -rKV i:/iplant/home/yangjl/BS_teo/teo20_VCF_AGPv4 /lustre/work/jyanglab/j
 # QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0
 
 # get fastq data to iplant
-irsync -rKV i:/iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/ /common/jyanglab/shared/dbcenter/teosinte_20parents/
+nohup irsync -rKV i:/iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-7_R1.fastq.gz /common/jyanglab/shared/dbcenter/teosinte_20parents/ & 
+nohup irsync -rKV i:/iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-7_R2.fastq.gz /common/jyanglab/shared/dbcenter/teosinte_20parents/ &
+
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-7_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-7_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-8_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-8_R2.fastq.gz & 
+
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-1_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-1_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-2_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-2_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-3_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-3_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-4_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-4_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-5_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-5_R2.fastq.gz & 
+
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-6_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-6_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-9_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-9_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-10_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-10_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-11_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-11_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-12_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-12_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-13_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-13_R2.fastq.gz & 
+
+
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-14_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-14_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-15_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-15_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-16_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-16_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-17_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-17_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-18_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-18_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-19_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-19_R2.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-20_R1.fastq.gz & 
+nohup iget -P /iplant/home/rossibarra/rare_alleles_seq/teosinte_20parents/JRIAL2/JRIAL2_fastq/JRIAL2-20_R2.fastq.gz & 
+
+
 
 
 # get data back to Gen BAM
-irsync -rKV i:/iplant/home/yangjl/BS_teo/bam_dedup /common/jyanglab/shared/dbcenter/BS_teo/bam_dedup/
+nohup irsync -rKV i:/iplant/home/yangjl/BS_teo/bam_dedup /common/jyanglab/shared/dbcenter/BS_teo/bam_dedup/ & 
 
 # get data back to Gen fastq
 irsync -rKV i:/iplant/home/yangjl/BS_teo/WGBS_fastq_lz4 /common/jyanglab/shared/dbcenter/BS_teo/WGBS_fastq

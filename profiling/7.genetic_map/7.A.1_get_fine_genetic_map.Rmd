@@ -11,41 +11,62 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 #library(tidyverse)
 ```
 
+### V2 => V4
 
+```{r}
+v2 <- read.csv("data/ISU_integrated_IBM_AGPv2_training.csv")
+
+v2$Physical <- as.numeric(as.character(gsub(",", "", v2$Physical)))
+v2 <- v2[, c("Chr", "Physical", "Physical", "Marker")]
+v2$Physical <- v2$Physical -1
+write.table(v2, "data/ISU_v2.bed", sep="\t", row.names=FALSE, quote=FALSE)
+```
+
+```{r}
+v4 <- read.csv("data/ISU_v2_v4.bed", sep="\t", header=FALSE)
+
+v2 <- read.csv("data/ISU_integrated_IBM_AGPv2_training.csv")
+
+map <- merge(v2, v4, by.x="Marker", by.y="V4")
+sum(map$Chr != map$V1) #32
+map <- subset(map, Chr == V1)
+map <- map[, c(1:4, 7)]
+names(map)[4:5] <- c("v2", "v4")
+write.table(map, "data/ISU_integrated_IBM_v2_v4.txt", sep="\t", row.names=FALSE, quote=FALSE)
+```
 
 # purpose: using p2g to find the genetic map of a give physical pos
 
 ```{r}
-test_p2g <- function(chr=9){
+
+
+use_p2g <- function(BINSIZE=100000){
   source("lib/p2g.R")
-  train <- read.csv("data/ISU_integrated_IBM_AGPv2_training.csv")
-  train$Physical <- as.numeric(as.character(gsub(",", "", train$Physical)))
+  train <- read.table("data/ISU_integrated_IBM_v2_v4.txt", header=TRUE)
+  #train$Physical <- as.numeric(as.character(gsub(",", "", train$Physical)))
   ### test the proformance of the function using the training data
+  names(train)[5] <- "Physical"
   
-  predict <- subset(train, Chr == chr)[, -3]
-  #predict <- data.frame(marker=c("A", "B", "C"), chr=1, Physical=c(467, 41238467, 164555621)) 
-  out <- p2g(predict, train)
-  res <- merge(train, out, by.x="Marker", by.y="marker")
+  ### read run
+  cl <- read.csv("data/chr_length_B73v4.csv")
+  df <- data.frame()
+  for(i in 1:10){
+    tem <- data.frame(marker=1, chr=i, Physical=1:round(cl[cl$Chr ==i,]$BP/BINSIZE,0))
+    tem$Physical <- tem$Physical*BINSIZE
+    tem$marker <- paste(tem$chr, round(tem$Physical/BINSIZE,0), sep="_")
+    out2 <- p2g(tem, train)
+    df <- rbind(df, out2)
+  }
   
-  message(sprintf("###>>> p2g testing results: correlation R2 = [ %s ]", cor(res$Genetic, res$genetic)))
+  return(df)
 }
 
-use_p2g <- function(){
-  source("libp2g.R")
-  train <- read.csv("data/ISU_integrated_IBM_AGPv2_training.csv")
-  train$Physical <- as.numeric(as.character(gsub(",", "", train$Physical)))
-  ### test the proformance of the function using the training data
-  
-  predict <- subset(train, Chr == chr)[, -3]
-  #predict <- data.frame(marker=c("A", "B", "C"), chr=1, Physical=c(467, 41238467, 164555621)) 
-  out <- p2g(predict, train)
-  res <- merge(train, out, by.x="Marker", by.y="marker")
-  
-  message(sprintf("###>>> p2g testing results: correlation R2 = [ %s ]", cor(res$Genetic, res$genetic)))
-}
-
-
+df <- use_p2g(BINSIZE=100000)
+write.table(df, "data/v4_physical_genetic.csv", sep=",", row.names=FALSE)
 ```
+
+
+
 
 
 

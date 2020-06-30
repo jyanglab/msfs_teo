@@ -1,0 +1,19 @@
+pretty_name	DMR	non-DMR
+Plant height	0.01044	0.806544
+Average internode length (whole plant)	0.011979	0.773739
+Leaf length	0.01236	0.873694
+Southern leaf blight	0.012965	0.756434
+Tassel length	0.015473	0.805649
+Ear height	0.015959	0.791993
+Nodes to ear	0.016436	0.755764
+Ratio of ear height to total height	0.024079	0.734452
+Leaf width	0.027746	0.801397
+Nodes above ear	0.033422	0.808859
+Average internode length (above ear)	0.034424	0.672637
+Days to silk	0.03714	0.787922
+Photoperiod growing-degree days to anthesis	0.048272	0.605969
+Days to anthesis	0.049345	0.751407
+Northern Leaf Blight	0.055729	0.869513
+Photoperiod Growing-degree days to silk	0.061951	0.608547
+Stalk strength	0.089354	0.330586
+Ear row number	0.121469	0.796573

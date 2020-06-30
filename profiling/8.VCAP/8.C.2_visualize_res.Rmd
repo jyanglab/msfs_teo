@@ -51,9 +51,9 @@ mybarplot <- function(df){
     theme_bw() +
     xlab("") +
     ylab("") +
-    geom_hline(yintercept=0.1, linetype="dotted") +
+    geom_hline(yintercept=0.05, linetype="dotted") +
     scale_x_discrete(position = "top") +
-    geom_vline(xintercept=0.1, linetype="dotted") +
+    geom_vline(xintercept=0.05, linetype="dotted") +
     # https://www.color-hex.com/color-palette/73961
     scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),
                       name=c(""),
@@ -68,22 +68,39 @@ mybarplot <- function(df){
 
 cg1 <- read.csv("cache/h2_CG_teosinte_maize.csv")
 
-pdf("graphs/barplot_CG_teosinte_maize.pdf", width = 8, height=8)
+pdf("graphs/barplot_CG_teosinte_maize.pdf", width = 10, height=6)
 mybarplot(df=cg1)
 dev.off()  
 
 cg2 <- read.csv("cache/h2_CG_teosinte_landrace.csv")
-pdf("graphs/barplot_CG_teosinte_landrace.pdf", width = 8, height=8)
+pdf("graphs/barplot_CG_teosinte_landrace.pdf", width = 10, height=6)
 mybarplot(df=cg2)
 dev.off()  
 
 cg3 <- read.csv("cache/h2_CG_landrace_maize.csv")
-pdf("graphs/barplot_CG_landrace_maize.pdf", width = 8, height=8)
+pdf("graphs/barplot_CG_landrace_maize.pdf", width = 10, height=6)
 mybarplot(df=cg3)
 dev.off()  
 
 ```
 
+```{r}
+chg1 <- read.csv("cache/h2_CHG_teosinte_maize.csv")
+
+pdf("graphs/barplot_CHG_teosinte_maize.pdf", width = 8, height=4)
+mybarplot(df=chg1)
+dev.off()  
+
+chg2 <- read.csv("cache/h2_CHG_teosinte_landrace.csv")
+pdf("graphs/barplot_CHG_teosinte_landrace.pdf", width = 8, height=4)
+mybarplot(df=chg2)
+dev.off()  
+
+chg3 <- read.csv("cache/h2_CHG_landrace_maize.csv")
+pdf("graphs/barplot_CHG_landrace_maize.pdf", width = 8, height=8)
+mybarplot(df=chg3)
+dev.off()  
+```
 
 
 

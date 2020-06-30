@@ -1,0 +1,162 @@
+---
+title: "fig5_tb1"
+author: "Gen"
+date: "2020/2/27"
+output: html_document
+---
+
+```{r}
+library(data.table)
+#Plot levels of mCG for the DMR in each individual at tb1-DMR loci
+d=fread("../cache/fig5_tb1/tb1.Teo_Lan_input.txt",header=T,data.table=F,na.strin="NA")
+d1=fread("../cache/fig5_tb1/tb1.Teo_Maize_input.txt", header=T,data.table=F,na.strin="NA")
+par(mar=c(0,2,0,1),mfrow=c(52,1))
+start=270512569-1000
+end=270513049+800
+
+for(i in 3:22)
+{
+  plot(d[,2],d[,i],pch=16,type="h",col="#E39500",lwd=1,ylim=c(0,1),xlim=c(start,end),cex=0.5,axes=F,xlab="",ylab="T")
+  abline(v=c(270420676,270489676,270512569,270513049,270554776),col="red",lwd=1,lty=1)
+  box(lwd=0.5,col="gray")
+  
+}
+
+
+for(i in 23:39)
+{
+  plot(d[,2],d[,i],pch=16,type="h",col="#43A178",lwd=1,ylim=c(0,1),xlim=c(start,end),cex=0.5,axes=F,xlab="",ylab="M")
+  abline(v=c(270420676,270489676,270512569,270513049,270554776),col="red",lwd=1,lty=1)
+  box(lwd=.5,col="gray")
+}
+
+for(i in 23:36)
+{
+  plot(d1[,2],d1[,i],pch=16,type="h",col="#53B3E9",lwd=1,xlim=c(start,end),ylim=c(0,1),cex=0.5,axes=F,xlab="",ylab="M")
+  abline(v=c(270420676,270489676,270512569,270513049,270554776),col="red",lwd=1,lty=1)
+  box(lwd=.5,col="gray")
+}
+```
+
+```{r fig.height=10,fig.width=6}
+par(mfrow=c(10,1),mar=c(2,2,0,2))
+start=270.48;end=270.568
+inf="../cache/fig5_tb1/tb1.intreaction.txt";minp=start;maxp=end
+d1=fread(inf,head=T,na.str="NA",data.table=F)
+d1[,2]=d1[,2]/1e6;d1[,3]=d1[,3]/1e6;d1[,5]=d1[,5]/1e6;d1[,6]=d1[,6]/1e6
+d1=d1[d1[,2]>=minp & d1[,6]<=maxp,]
+lim=c(minp,maxp)
+##plot TEO interaction
+plot(1,1,xlim=lim,ylim=c(0,4),axes = F,xlab="",ylab="")
+abline(h=1,lwd=2)
+gd=fread("../cache/fig5_tb1/DMR_Gene.txt", header=T,data.table=F) 
+d2=d1[d1[,10]=="TEO",]
+s=spline(c((d2[1,2]+d2[1,3])/2,(d2[1,3]+d2[1,5])/2,(d2[1,6]+d2[1,5])/2),c(1,6,1),n=201)
+x=s$x
+y=spline(c(1,3,5),c(5,6,5),n=201)$y-4
+points( x,y,type="l",lwd=2,col="#E39500") 
+rect(d2[1,2],0.9,d2[1,3],1.1,col="#E39500",border = "#E39500")
+rect(d2[1,5],0.9,d2[1,6],1.1,col="#E39500",border = "#E39500")
+rect(gd[2,3]/1e6,0.8,gd[2,4]/1e6,1.2,col="gray",border = "gray")
+rect(gd[,7]/1e6,0.8,gd[,8]/1e6,1.2,col="red",border = "red")
+
+##plot maize interaction
+plot(1,1,xlim=lim,ylim=c(0,4),axes = F,xlab="",ylab="")
+abline(h=1,lwd=2)
+d1=d1[d1[,10]=="B73",]
+for(j in 1:nrow(d1))
+{
+  s=spline(c((d1[j,2]+d1[j,3])/2,(d1[j,3]+d1[j,5])/2,(d1[j,6]+d1[j,5])/2),c(1,6,1),n=201)
+  x=s$x
+  y=spline(c(1,3,5),c(5,6,5),n=201)$y-4
+  points( x,y,type="l",lwd=2,col="#53B3E9") 
+}
+rect(d1[,2],0.9,d1[,3],1.1,col="#53B3E9",border ="#53B3E9")
+rect(d1[,5],0.9,d1[,6],1.1,col="#53B3E9",border = "#53B3E9")
+rect(gd[2,3]/1e6,0.8,gd[2,4]/1e6,1.2,col="gray",border = "gray")
+rect(gd[1,3]/1e6+0.0029,1,gd[1,4]/1e6-0.0029,-1.6,col="gray",border = "gray")
+rect(gd[,7]/1e6,0.8,gd[,8]/1e6,1.2,col="red",border = "red")
+######################
+i="../cache/fig5_tb1/tb1"
+inf1=paste(i,".Teo_Lan_input.txt",sep = "")
+inf2=paste(i,".Teo_Maize_input.txt",sep = "")
+d11=fread(inf1, header=T,data.table=F,na.strin="NA")
+d22=fread(inf2, header=T,data.table=F,na.strin="NA")
+teo=d11[,c(1:2,3:22)]
+teo=cbind(teo[,c(1:2)],apply(teo[,3:22],1,mean,na.rm=T))
+colnames(teo)[3]="Mean_methy"
+
+land=d11[,c(1:2,23:39)]
+land=cbind(land[,c(1:2)],apply(land[,3:19],1,mean,na.rm=T))
+colnames(land)[3]="Mean_methy"
+
+mai=d22[,c(1:2,23:36)]
+mai=cbind(mai[,c(1:2)],apply(mai[,3:16],1,mean,na.rm=T))
+colnames(mai)[3]="Mean_methy"
+teo[,2]=teo[,2]/1e6
+land[,2]=land[,2]/1e6
+mai[,2]=mai[,2]/1e6
+
+plot(teo[,2],teo[,3],pch=16,type="h",col="#E39500",lwd=.5,ylim=c(0,1),xlim=c(start,end),cex=1,axes=F,xlab="",ylab="Teosinte")
+abline(v=c(gd[,3]/1e6,gd[,4]/1e6,gd[,7]/1e6,gd[,8]/1e6),col="red",lwd=1,lty=2)
+axis(2,las=1,cex.axis=1)
+
+
+plot(land[,2],land[,3],pch=16,type="h",col="#43A178",lwd=.5,ylim=c(0,1),xlim=c(start,end),cex=1,axes=F,xlab="",ylab="Landrace")
+abline(v=c(gd[,3]/1e6,gd[,4]/1e6,gd[,7]/1e6,gd[,8]/1e6),col="red",lwd=1,lty=2)
+axis(2,las=1,ylab="Landrace)",cex.axis=1)
+
+plot(mai[,2],mai[,3],pch=16,type="h",col="#53B3E9",lwd=.5,ylim=c(0,1),xlim=c(start,end),cex=1,axes=F,xlab="bp",ylab="Modern maize")
+abline(v=c(gd[,3]/1e6,gd[,4]/1e6,gd[,7]/1e6,gd[,8]/1e6),col="red",lwd=1,lty=2)
+axis(2,las=1,cex.axis=1)
+#dev.off()
+###########
+#out="Interaction_tb1_chip2.tiff"
+#tiff(out,res=600,units = "mm",height = 80,width = 210)
+#par(mfrow=c(3,1),mar=c(2,3,1,2))
+dp_f=list.files(path="../cache/fig5_tb1/",pattern = "bw")
+start=270.48;end=270.568
+###plot chip-seq in teosinte
+dp_f1=dp_f[c(3,5)]
+for(i in dp_f1)
+{
+  i=paste("../cache/fig5_tb1/",i,sep="")
+  d1=fread(i,head=F,na.str="NA",data.table=F)
+  d1=d1[d1[,2]/1e6>=start & d1[,3]/1e6<=end,]
+  plot((d1[,2]+d1[,3])/2/1e6,d1[,4],xlim=c(start,end),type="h",col="#E39500",axes = F,ylim=c(0,max(d1[,4])))
+  axis(2,las=1)
+}
+
+###plot chip-seq in B73
+dp_f2=dp_f[c(1,2)]
+for(i in dp_f2)
+{ i=paste("../cache/fig5_tb1/",i,sep="")
+  d1=fread(i,head=F,na.str="NA",data.table=F)
+  d1=d1[d1[,2]/1e6>=start & d1[,3]/1e6<=end,]
+  plot((d1[,2]+d1[,3])/2/1e6,d1[,4],xlim=c(start,end),type="h",col="#53B3E9",axes = F,ylim=c(0,max(d1[,4])))
+  axis(2,las=1)
+}
+
+plot(1,1,xlim=c(start,end),ylim=c(0,4),axes = F,xlab="",ylab="")
+axis(1,cex.axis=1.5,at=c(270.48,270.50,270.52,270.54,270.56))
+```
+
+```{r}
+#plot luc results
+d=fread("../cache/fig5_tb1/LUC_results.txt",head=T,na.str="NA",data.table=F)
+par(mfrow=c(1,1),mar=c(7,4,2,1))
+d=rbind(d[c(1,3),])
+bar=barplot(d[1:2,2],width=1,space = 0.6,horiz =F,ylim=c(0,0.3),las=1,col=c("gray","gray"),border =c("white","gray"),ylab="LUC/REN",names=c("Control","tb1-DMR"))
+bar=as.vector(bar)
+plot.error <- function(x, y, sd, len = 1, col = "black",lwd, horiz = F) {
+  len <- len * 0.05
+  if (!horiz) {
+    arrows(x0 = x, y0 = y, x1 = x, y1 = y - sd, col = col, angle = 90, length = len,lwd=lwd)
+    arrows(x0 = x, y0 = y, x1 = x, y1 = y + sd, col = col, angle = 90, length = len,lwd=lwd)
+  } else {
+    arrows(x0 = y, y0 = x, x1 = y - sd, y1 = x, col = col, angle = 90, length = len,lwd=lwd)
+    arrows(x0 = y, y0 = x, x1 = y + sd, y1 = x, col = col, angle = 90, length = len,lwd=lwd)
+  }
+}
+for (i in 1:2){plot.error(bar[i], d[i,2 ], sd = d[i, 3],lwd=1.5)}
+```

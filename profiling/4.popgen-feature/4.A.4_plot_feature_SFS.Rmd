@@ -1,6 +1,6 @@
 ---
 title: "Plot genomic feature MCMC BC"
-output: html_notebook
+output: NULL
 author: Jinliang Yang
 date: 02-08-2019
 ---
@@ -24,6 +24,26 @@ CG
 
 source("lib/mplots.R")
 source("lib/mcmcbc.R")
+
+
+rd <- list.files(path="cache/features", pattern="RData", full.names=TRUE)
+
+out2 <- data.frame()
+for(i in 1:length(rd)){
+  ob <- load(rd[i])
+  out <- mplot(res, burnin=0.2, rates=c(1E8,1E8,1E5))
+  outdf <- data.frame(mu=out[1], nu=out[2], s=out[3])
+  
+  outdf$file <- rd[i]
+  out2 <- rbind(out2, outdf)
+}
+out2$Nes <- 150000*out2$s
+
+out2$feature <- gsub(".*interpop_|.*pops_|.RData", "", out2$file)
+out2$context <- gsub("_.*", "", out2$feature)
+
+
+
 
 ob <- load("largedata/msfs/gf2_sfs_interpop_CG_down.RData")
 sfsplot(res,burnin=0.2,rates=c(1E8,1E8,1E8), sfsplot="plotmean", Ne=150000, k=0:102)

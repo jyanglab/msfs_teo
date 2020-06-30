@@ -1,0 +1,252 @@
+---
+title: "Circos plot"
+output: html_notebook
+author: Jinliang Yang
+date: 05-23-2019
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+```{r}
+install.packages('UpSetR')
+library("UpSetR")
+
+movies <- read.csv( system.file("extdata", "movies.csv", package = "UpSetR"), 
+                    header=T, sep=";" )
+
+require(ggplot2); require(plyr); require(gridExtra); require(grid);
+## Loading required package: ggplot2
+## Loading required package: plyr
+## Loading required package: gridExtra
+## Loading required package: grid
+upset(movies, 
+      sets = c("Action", "Comedy", "Drama"), 
+      order.by="degree", matrix.color="blue", point.size=5,
+      sets.bar.color=c("maroon","blue","orange"))
+```
+
+
+```{r}
+library(ggplot2)
+d <- read.csv("data/DMR_vs_open_chromatin.csv")
+d[d$Type=="hyper",]$DMR <- -d[d$Type=="hyper",]$DMR
+
+
+d1 <- subset(d, Type == "hypo")
+ggplot(d1, aes(x=feature, y=ratio, fill=source)) + 
+  geom_bar(stat="identity", position=position_dodge())+
+  scale_fill_brewer(palette="Paired")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+dmr <- read.csv("data/2019-07-08-DMR.csv")
+dmr$diff <- dmr$POP.A - dmr$POP.B
+table(dmr$Compare)
+
+tm <- subset(dmr, Compare %in% "Teosinte/Maize")
+table(tm$Type)
+
+hist(tm$diff, col="blue", breaks = 50)
+
+sum(tm$diff > 0) #3828
+sum(tm$diff < 0) #1144
+
+
+lm <- subset(dmr, Compare %in% "Landrace/Maize")
+table(lm$Type)
+
+hist(lm$diff, col="blue", breaks = 50)
+
+tl <- subset(dmr, Compare %in% "Teosinte/Landrace")
+table(tl$Type)
+
+hist(tl$diff, col="blue", breaks = 50)
+
+
+
+
+```
+
+And the bp is also about 3x larger.
+
+```{r}
+tm$bp <- tm$stop - tm$start
+sum(subset(tm, diff > 0)$bp) #1719286
+sum(subset(tm, diff < 0)$bp) #482295
+
+```
+
+However, a preliminary analysis using genome-wide (chr10) 100-bp tiles, didn't see a clear difference.
+
+```{r}
+library("data.table")
+
+files <- list.files(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CG", pattern = "txt", full.names = TRUE)
+
+df1 <- fread(files[1], data.table=FALSE)
+df1$uid <- paste(df1$Chr, df1$Start, sep="_")
+df1 <- subset(df1, Chr == 10)
+
+
+for(i in 2:length(files)){
+  di <- fread(files[i], data.table=FALSE)
+  di$uid <- paste(di$Chr, di$Start, sep="_") 
+  df1 <- merge(df1, di[, c("uid", "Meth")], by="uid", all=TRUE)
+}
+
+
+files <- list.files(path="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CG", pattern = "txt", full.names = TRUE)
+
+df2 <- fread(files[1], data.table=FALSE)
+df2$uid <- paste(df2$Chr, df2$Start, sep="_")
+df2 <- subset(df2, Chr == 10)
+
+df <- merge(df1, df2[, c("uid", "Meth")], by="uid")
+df$diff <- df$Meth.x - df$Meth.y
+
+```
+
+
+## Plot DMR distribution
+
+
+```{r}
+library("plyr")
+xp <- read.csv("data/07-23-2019-XP-CLR_result.csv")
+
+pdf("graphs/dmr_sweeps.pdf", height=5, width=10)
+for(i in 1:10){
+  tm1 <- subset(tm, chr == i)
+  plot(x=-1000, y=0, pch=16, col="blue", cex=2*tm1$diff, ylim=c(-300, 300), xlim=c(0, max(tm1$start)), xlab=paste0("Chr", i))
+
+  #lines(out$bin*BINSIZE,  type="l")
+  xptm1 <- subset(xp, Comparison %in% "Teosinte/Maize" & Chr == i)
+  abline(v= xptm1$Start, col="grey")
+
+  sub1 <- subset(tm1, diff < 0)
+  sub2 <- subset(tm1, diff > 0)
+  
+  points(sub1$start, y=log10(sub1$q.value), pch=16, col="red", cex=2*tm1$diff)
+  points(sub2$start, y=-log10(sub2$q.value), pch=16, col="blue", cex=2*tm1$diff)
+}
+
+dev.off()
+
+
+```
+
+
+
+
+
+```{r}
+
+out <- ddply(tm1, .(bin), nrow)
+plot(out$V1, type="l")
+
+BINSIZE=1000000
+tm1 <- subset(tm, chr == 1)
+tm1$bin <- round(tm1$start/BINSIZE,0)
+
+tm1$bp <- tm1$stop - tm1$start
+out <- ddply(tm1, .(bin), summarize, sum=sum(bp))
+plot(out$sum, type="l")
+```
+
+
+```{r}
+
+BINSIZE=1000000
+#tm1 <- subset(tm, chr == 7)
+tm$bin <- round(tm$start/BINSIZE,0)
+
+tm$bp <- tm$stop - tm$start
+out <- ddply(tm, .(chr, bin), summarize, sum=sum(bp))
+#plot(out$sum, type="l")
+out$binid <- paste(out$chr, out$bin, sep="_")
+
+map <- read.csv("data/mgerp_cm.csv")
+d <- merge(out, map,  by.x= "binid", by.y="bin")
+
+
+plot(x=d$gen, y=d$sum)
+
+cor.test(x=d$gen, y=d$sum)
+##########################
+plotmgerp <- function(mgerp, getpdf, outfile, ...){
+    
+    #mgerp <- read.csv("cache/mgerp_cm.csv")
+    
+    mgerp <- mgerp[order(mgerp$gen),]
+    plx <- predict(loess(mgerp$mgerp ~ mgerp$gen), se=T)
+    x <- mgerp$gen
+    y <- mgerp$mgerp
+    
+    plot(x, y, ...)
+    lines(mgerp$gen, plx$fit, col="cornflowerblue", lwd=2)
+    lines(mgerp$gen, plx$fit - qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+    lines(mgerp$gen, plx$fit + qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+    
+    if(getpdf == TRUE){
+        pdf(outfile, width=wt, height=ht)
+        par(mar=c(5,5,4,2))
+        plot(x, y, ...)
+        lines(mgerp$gen, plx$fit, col="cornflowerblue", lwd=2)
+        lines(mgerp$gen, plx$fit - qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+        lines(mgerp$gen, plx$fit + qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+        
+        dev.off()
+    }
+}
+mgerp <- read.csv("cache/mgerp_cm.csv")
+plotmgerp(mgerp=d, getpdf=TRUE, outfile="graphs/Fig1d.pdf",
+        pch=16, col="antiquewhite3", xlab="Recombination Rate (cM/Mb)", ylab="GERP Score", 
+        main="", cex.axis=fs, cex.lab=fs)
+```
+
+
+
+
+```{r}
+xp <- read.csv("data/07-23-2019-XP-CLR_result.csv")
+xptm1 <- subset(xp, Comparison %in% "Teosinte/Maize")
+xptm1$y <- 10
+
+plot(tm1$start, y=-log10(tm1$q.value), pch=16, col="blue", cex=2*tm1$diff, ylim=c(-300, 300))
+sub <- subset(tm1, diff < 0)
+points(sub$start, y=log10(sub$q.value), pch=16, col="red", cex=2*tm1$diff)
+lines(out$bin*BINSIZE,  type="l")
+
+out <- ddply(tm1, .(bin), nrow)
+
+plot(out$V1, type="l")
+points(x=xptm1$Start, y=xptm1$y, pch=16, col="red")
+```
+
+
+
+
+
+
+
+

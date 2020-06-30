@@ -1,0 +1,14 @@
+pretty_name	DMR	non-DMR
+Days to anthesis	0.012606	0.864987
+Nodes above ear	0.022547	0.732144
+Days to silk	0.030451	0.884513
+Nodes to ear	0.036624	0.825777
+100 Kernel weight	0.043944	0.650228
+Average internode length (whole plant)	0.044178	0.634804
+Ear height	0.091221	0.879969
+Cob diameter	0.174875	0.732505
+Nodes per plant	0.264305	0.407392
+Northern Leaf Blight	0.271265	0.717439
+Ear row number	0.310083	0.636937
+Southern leaf blight	0.329389	0.621126
+Tassel branch number	0.411932	0.552078

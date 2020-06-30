@@ -1,0 +1,184 @@
+---
+title: "Geo Location of the landrace samples"
+output: html_notebook
+author: Jinliang Yang
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+# purpose: using p2g to find the genetic map of a give physical pos
+
+```{r}
+
+dmr <- read.csv("data/2019-07-08-DMR.csv")
+dmr$diff <- dmr$POP.A - dmr$POP.B
+table(dmr$Compare)
+
+tm <- subset(dmr, Compare %in% "Teosinte/Maize")
+table(tm$Type)
+
+hist(tm$diff, col="blue", breaks = 50)
+
+sum(tm$diff > 0) #3828
+sum(tm$diff < 0) #1144
+
+
+lm <- subset(dmr, Compare %in% "Landrace/Maize")
+table(lm$Type)
+
+hist(lm$diff, col="blue", breaks = 50)
+
+tl <- subset(dmr, Compare %in% "Teosinte/Landrace")
+table(tl$Type)
+
+hist(tl$diff, col="blue", breaks = 50)
+
+```
+
+
+### V2 => V4
+
+
+```{r}
+m <- read.csv("data/v4_physical_genetic.csv", header=TRUE)
+m <- m[order(m$chr, m$physical), ]
+
+BINSIZE = 1000000
+m$bin <- paste(m$chr, round(m$physical/BINSIZE,0), sep="_")
+
+library("plyr")
+mr <- ddply(m, .(bin), summarise,
+            rate = max(genetic) - min(genetic))
+
+mr$chr <- gsub("_.*", "", mr$bin)
+mr$pos <- gsub(".*_", "", mr$bin)
+chr1 <- subset(mr, chr == 1)
+plot(chr1$pos, chr1$rate)
+
+mr <- subset(mr, rate < 7.5)
+```
+
+
+## Merge cross-over/Mb and DMR bases per Mb
+
+```{r}
+### teosinte and landrace
+tl <- subset(tl, Type == "CG" | Type == "CHG")
+tl$bin <- paste(tl$chr, round(tl$start/BINSIZE,0), sep="_")
+out <- ddply(tl, .(bin), summarise,
+             size=sum(stop - start))
+
+df1 <- merge(out, mr, by="bin")
+cor.test(df1$rate, df1$size)
+df1$type = "TL"
+
+### teosinte and maize
+tm <- subset(tm, Type == "CG" | Type == "CHG")
+tm$bin <- paste(tm$chr, round(tm$start/BINSIZE,0), sep="_")
+out <- ddply(tm, .(bin), summarise,
+             size=sum(stop - start))
+
+df2 <- merge(out, mr, by="bin")
+cor.test(df2$rate, df2$size)
+df2$type = "TM"
+
+### landrace and maize
+lm <- subset(lm, Type == "CG" | Type == "CHG")
+lm <- subset(lm, Type == "CHG")
+lm$bin <- paste(lm$chr, round(lm$start/BINSIZE,0), sep="_")
+out <- ddply(lm, .(bin), summarise,
+             size=sum(stop - start))
+
+df3 <- merge(out, mr, by="bin")
+cor.test(df3$rate, df3$size)
+df3$type = "LM"
+
+df <- rbind(df1, df2, df3)
+write.table(df, "cache/CG_CHG_DMR_rec_mb.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+# Figure 1A
+
+```{r, eval=TRUE, fig.width=ht, fig.height=wt}
+
+fsize=18
+p1 <- ggplot(df, aes(x=rate, y=size, col=type)) +
+    #labs(colour="Traits") +
+    #geom_point(size=2, col="antiquewhite3") +
+    theme_bw() +
+    xlab("Recombination/Mb") +
+    ylab("DMR (bp)") +
+    #scale_color_manual(values="grey") +
+    #scale_linetype_manual(values=lty1) +
+    guides(colour=FALSE, linetype=FALSE) +
+    geom_smooth(method="lm", size=1.3) +
+    theme(axis.text.y = element_text(angle = 90, hjust = 1),
+          axis.text=element_text(size=fsize),
+          axis.title=element_text(size=fsize, face="bold"),
+          legend.title = element_text(size=fsize, face="bold"),
+          legend.text = element_text(size=fsize))
+p1
+
+
+
+df$q <- -9
+df[df$rate < quantile(df$rate, probs=0.1), ]$q <- "Q1"
+df[df$rate < quantile(df$rate, probs=0.25), ]$q <- "Q1"
+df[df$rate >= quantile(df$rate, probs=0.25) & df$rate <= quantile(df$rate, probs=0.5), ]$q <- "Q2"
+df[df$rate > quantile(df$rate, probs=0.5) & df$rate <= quantile(df$rate, probs=0.75), ]$q <- "Q3"
+df[df$rate > quantile(df$rate, probs=0.75), ]$q <- "Q4"
+
+
+
+
+
+library(ggplot2)
+
+p <- ggplot(data=df, aes(x=q, y=size, fill=q)) +
+  geom_violin(trim=TRUE, fill='#A4A4A4', color="darkred")+
+  geom_boxplot(width=0.1) + theme_minimal()
+p
+# Use custom colors
+#p + scale_fill_manual(values=c('#999999','#E69F00'))
+# Use brewer color palettes
+p + scale_fill_brewer(palette="Blues")
+
+
+
+plotReg <- function(df, outfile, ...){
+  #snptab <- read.csv("cache/daf_gerp2.csv")
+  
+  plx <- predict(loess(df$rate ~ df$size), se=T)
+  
+  x <- df$rate
+  y <- df$size
+  #plot(x,y)
+  plot(x, y, pch=16, col="antiquewhite3", xlab="GERP Score", ylab="Allele Frequency", )
+  lines(df$rate, plx$fit, col="cornflowerblue", lwd=2)
+  lines(df$rate, plx$fit - qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+  lines(df$rate, plx$fit + qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+  
+  if(getpdf == TRUE){
+    pdf(outfile, width=wt, height=ht)
+    par(mar=c(5,5,4,2))
+    plot(x, y, ...)
+    lines(snptab$GERP2, plx$fit, col="cornflowerblue", lwd=2)
+    lines(snptab$GERP2, plx$fit - qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+    lines(snptab$GERP2, plx$fit + qt(0.975,plx$df)*plx$se, lty=2, lwd=2, col="black")
+  
+    dev.off()
+  }
+}
+plotReg(getpdf, outfile="graphs/Fig1b_v3.pdf",
+        pch=16, col="antiquewhite3", xlab="GERP Score", ylab="Allele Frequency", 
+        main="", cex.axis=fs, cex.lab=fs)
+```
+

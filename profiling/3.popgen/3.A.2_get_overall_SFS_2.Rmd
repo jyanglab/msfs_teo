@@ -1,8 +1,8 @@
 ---
-title: "Calculate overall SFSs and their distributions: step2"
-output: html_notebook
+title: "Combine all samples together"
+output: NULL
 author: Jinliang Yang
-date: 12-12-2018
+date: 09-23-2019
 ---
 
 
@@ -17,7 +17,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ### `/common/jyanglab/shared/Gen_Xu/mr_basepair`
 - This one contains the methylation ratio at base-pair level
 
-### `/common/jyanglab/shared/Gen_Xu/mr_100bptile`
+### `/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile`
 - This one contains the methylation ratio at 100-bp tile
 
 
@@ -33,9 +33,10 @@ and then conduct sensitivity test to show cutoff not very sensitive
 ```{r, eval=FALSE}
 library("data.table")
 
-getcat <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100){
+getcat <- function(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CG", 
+                   outpath="largedata/mr_100bp/teosinte", context="CpG"){
     
-    files <- list.files(path=path, pattern=context, full.names = TRUE)  
+    files <- list.files(path=inpath, pattern=context, full.names = TRUE)  
     message(sprintf("###>>> found [ %s ] files with pattern=[%s]", length(files), context))
     
     
@@ -47,6 +48,7 @@ getcat <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22,
     fout <- f1[, c("uid", fid)]
         
     for(i in 2:length(files)){
+        message(sprintf("###>>> processing [ %s ] sample ...", i))
         fi <- fread(files[i], data.table=FALSE)
         fi$uid <- paste(fi$Chr, fi$Start, fi$End, sep="_")
         fid <- gsub(".*\\/|\\..*", "", files[i])
@@ -54,23 +56,27 @@ getcat <- function(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22,
         fout <- merge(fout, fi[, c("uid", fid)], by="uid", all=TRUE)
     }
  
-    outfile <- paste0(path, "_", context, "_matrix.csv")   
+    outfile <- paste0(outpath, "_", context, "_matrix.csv")   
     fwrite(fout,  outfile, sep=",", row.names=FALSE, quote=FALSE)   
 }
 
 
 ### apply the function:
-getcat(path="largedata/mr_100bp/teosinte", context="CpG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/teosinte", context="CHG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/teosinte", context="CHH", cols=3:22, BINSIZE=100)
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CG", outpath="largedata/mr_100bp/teosinte", context="CpG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CHG", outpath="largedata/mr_100bp/teosinte", context="CHG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Teosinte/CHH", outpath="largedata/mr_100bp/teosinte", context="CHH")
+
 ### apply the function to landrace
-getcat(path="largedata/mr_100bp/landrace", context="CpG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/landrace", context="CHG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/landrace", context="CHH", cols=3:22, BINSIZE=100)
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Landrace/CG", outpath="largedata/mr_100bp/landrace", context="CpG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Landrace/CHG", outpath="largedata/mr_100bp/landrace", context="CHG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Landrace/CHH", outpath="largedata/mr_100bp/landrace", context="CHH")
+
+
 ### apply the function to maize
-getcat(path="largedata/mr_100bp/elite", context="CpG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/elite", context="CHG", cols=3:22, BINSIZE=100)
-getcat(path="largedata/mr_100bp/elite", context="CHH", cols=3:22, BINSIZE=100)
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CG", outpath="largedata/mr_100bp/maize", context="CpG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CHG", outpath="largedata/mr_100bp/maize", context="CHG")
+getcat(inpath="/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/Maize/CHH", outpath="largedata/mr_100bp/maize", context="CHH")
+
 
 ``` 
   
