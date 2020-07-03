@@ -14,7 +14,7 @@ source("lib/mcmcbc.R")
 
 #files <- list.files(path="cache/mcmc_res", pattern="new_msfs", full.names=TRUE)
 df <- read.csv("slurm-script/slurm_ne_parameters.csv")
-sfs <- read.csv(df$file[JOBID])
+sfs <- read.csv(as.character(df$file[JOBID]))
 
 set.seed(1234567+df$rep[JOBID])
 # If acceptance too high, increase these values to explore wider space. If acceptance too low, decrease.
