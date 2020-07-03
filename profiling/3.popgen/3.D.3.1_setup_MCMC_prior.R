@@ -16,7 +16,7 @@ source("lib/mcmcbc.R")
 df <- read.csv("slurm-script/slurm_rates_parameters.csv")
 sfs <- read.csv(as.character(df$file[JOBID]))
 
-set.seed(1234567+df$rep[JOBID])
+set.seed(1234567)
 # If acceptance too high, increase these values to explore wider space. If acceptance too low, decrease.
 res <- MCMCBC(my_sfs=sfs$Freq, rates=c(df$rates[JOBID],df$rates[JOBID],df$rates[JOBID]), 
               sd=c(df$sd[JOBID], df$sd[JOBID], df$sd[JOBID]), k=0:(nrow(sfs)-1),
