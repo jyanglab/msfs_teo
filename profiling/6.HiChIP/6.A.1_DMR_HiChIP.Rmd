@@ -12,7 +12,6 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 #library(tidyverse)
 ```
 
-<<<<<<< HEAD
 # DMR and genomic features
 
 ```{r}
@@ -22,10 +21,6 @@ d <- read.delim("cache/gen_body_overlap_TE.txt", header=T)
 ```
 
 
-
-
-=======
->>>>>>> 4b12d96055180c21deeaad9dcb780f8ec32593d0
 
 
 ## DMR
