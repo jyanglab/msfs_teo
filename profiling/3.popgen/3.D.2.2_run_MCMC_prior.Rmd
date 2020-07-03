@@ -23,7 +23,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 library("huskeR")
 
 # control file
-files <- list.files(path="cache/mcmc_revise", pattern="new_msfs", full.names=TRUE)
+files <- list.files(path="cache/mcmc_revise", pattern="pops.csv", full.names=TRUE)
 # Ne = 50,000, 100,000, 500,000, and 1,000,000
 # rep = 10 each
 df1 <- data.frame(file=rep(files, each=5),
