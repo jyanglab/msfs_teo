@@ -1,0 +1,51 @@
+---
+title: "Run interpop MCMC BC"
+output: NULL
+author: Jinliang Yang
+date: 07-03-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+
+### Teosinte:
+
+- 1000,000 runs
+```{r, eval=FALSE}
+# devtools::install_github("yangjl/huskeR")
+library("huskeR")
+
+# control file
+files <- list.files(path="cache/mcmc_revise", pattern="new_msfs", full.names=TRUE)
+# Ne = 50,000, 100,000, 500,000, and 1,000,000
+# rep = 10 each
+df1 <- data.frame(file=rep(files, each=5),
+                 rates=rep(c(1e10, 1e8, 1e6, 1e4, 1e2), times=2), 
+                 sd=0.05)
+df2 <- data.frame(file=rep(files, each=3),
+                 rates=1e6, 
+                 sd=rep(c(0.01, 0.05, 0.1), times=2))
+df <- rbind(df1, df2)
+df$out <- paste0(gsub(".csv", "", df$file), "_", df$rates, "_", df$sd, ".RData")
+write.table(df, "slurm-script/slurm_rates_parameters.csv", sep=",", row.names=FALSE)
+
+
+
+## run code
+run_Rcode(inputdf=data.frame(file=1:80, out=1), outdir="slurm-script", cmdno=1,
+           rcodes = "profiling/3.popgen/3.D.1_setup_MCMC_ne.R",
+            rversion = "3.5",
+           base_shid ="ne_msfs",
+           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 1, "4G", "48:00:00"))
+
+```
+
+
+
