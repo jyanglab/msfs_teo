@@ -40,7 +40,7 @@ write.table(df, "slurm-script/slurm_rates_parameters.csv", sep=",", row.names=FA
 
 ## run code
 run_Rcode(inputdf=data.frame(file=1:16, out=1), outdir="slurm-script", cmdno=1,
-           rcodes = "profiling/3.popgen/3.D.3.1_setup_MCMC_prior.R",
+           rcodes = "profiling/3.popgen/3.D.2.1_setup_MCMC_prior.R",
             rversion = "3.5",
            base_shid ="ne_msfs",
            email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 1, "4G", "48:00:00"))
