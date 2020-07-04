@@ -13,14 +13,14 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ```
 
 
-
 Note, require `R/3.5` or above for the following step:
 
 ```{r}
 
 get_feature_sfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
                    features=c("gene", "exon", "five", "three"),
-                   f, outpath="cache/gf_sfs_interpop_"){
+                   ftbed="data/genomic_feature.bed", outpath="cache/gf_sfs_interpop_"){
+    ## ftbed: feature file in bed format: headers [seqname, start, end, attribute]
     
     df <- fread(pops_file, data.table=FALSE)
     
@@ -30,9 +30,14 @@ get_feature_sfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.cs
     chr$end <- as.numeric(as.character(df$pos))
     gr1 = with(chr, GRanges(seqnames=chr, IRanges(start=start, end=end), strand="+", uid=uid))
     
+    ######### feature file in bed
+    bed <- read.table(ftbed)
+    bed$start <- bed$start + 1
+    names(bed) <- c("seqname", "start", "end", "attribute")
     
     for(fi in features){
-      gr0 = with(f[[fi]], GRanges(seqnames=seqname, IRanges(start=start, end=end), strand="+", geneid=attribute ))
+      myf <- subset(bed, attribute %in% fi)
+      gr0 = with(myf, GRanges(seqnames=seqname, IRanges(start=start, end=end), strand="+", geneid=attribute ))
       feature <- gr0
       ex1 = findOverlaps(feature, gr1)
       out <- gr1[subjectHits(ex1)]
@@ -60,47 +65,20 @@ getcount <- function(x, mmin=0.3, mmax=0.7){
 library("GenomicRanges")
 library("data.table")
 
-ob <- load("largedata/AGPv4_genomic_features.RData")
+# ob <- load("largedata/AGPv4_genomic_features.RData")
 
 # CG
 get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
-                   features=c("gene", "exon", "five", "three"),
-                   f, outpath="cache/features/gf_sfs_interpop_CG_")
+                   features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
+                   ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/gf_sfs_pop3_CG_")
 
 # CHG  
 get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv",
-                   features=c("gene", "exon", "five", "three"),
-                   f, outpath="cache/features/gf_sfs_interpop_CHG_")
-
-# CHH  
-get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CHH_matrix_imp.csv",
-                   features=c("gene", "exon", "five", "three"),
-                   f, outpath="cache/features/gf_sfs_interpop_CHH_")
-  
+                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
+                ftbed="data/genomic_feature_Gen_v4.bed", outpath="cache/features/gf_sfs_pop3_CG_")
 
 ```
 
-
-### fix 0 sites
-
-
-### CHH need to be modified:
-```{r}
-files <- list.files(path="cache/features", pattern = "gf_sfs_interpop_CHH", full.names = T)
-files <- files[grep(".csv", files)]
-
-cg <- read.csv("cache/features/gf_sfs_interpop_CG_exon.csv")
-for(i in 1:length(files)){
-  afile <- read.csv(files[i])
-  chh <- merge(cg, afile, by="ftb", all.x=T)
-  
-  chh[is.na(chh[, 3]), 3] <- 0
-  chh <- chh[, c(1,3)]
-  names(chh) <- c("ftb", "Freq")
-  write.table(chh, files[i], sep=",", row.names=FALSE, quote=FALSE)
-}
-
-```
 
 
 ------------------------------
