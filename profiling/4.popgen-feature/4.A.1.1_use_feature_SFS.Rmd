@@ -13,7 +13,7 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 ```
 
 
-Note, require `R/3.5` or above for the following step:
+Note, require `R/3.6` or above for the following step:
 
 ```{r}
 
@@ -24,7 +24,7 @@ get_feature_sfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.cs
     
     df <- fread(pops_file, data.table=FALSE)
     
-    ###########
+    ########### methylation file
     chr <- df[, 1:3]
     chr$start <- as.numeric(as.character(df$pos)) - 100+1
     chr$end <- as.numeric(as.character(df$pos))
@@ -32,9 +32,10 @@ get_feature_sfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.cs
     
     ######### feature file in bed
     bed <- read.table(ftbed)
-    bed$start <- bed$start + 1
+   
     names(bed) <- c("seqname", "start", "end", "attribute")
-    
+    bed$start <- bed$start + 1
+     
     for(fi in features){
       myf <- subset(bed, attribute %in% fi)
       gr0 = with(myf, GRanges(seqnames=seqname, IRanges(start=start, end=end), strand="+", geneid=attribute ))
@@ -43,7 +44,7 @@ get_feature_sfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.cs
       out <- gr1[subjectHits(ex1)]
     
       mydf <- subset(df, uid %in% mcols(out)$uid)
-      message(sprintf("###>>> [%s] rows and [%s] cols for feature [%s], sfs...", nrow(mydf), ncol(mydf), fi))
+      message(sprintf("###>>> [%s] rows and [%s] cols for feature [ %s ], sfs...", nrow(mydf), ncol(mydf), fi))
       #########
       #df <- as.data.frame(df)
       ftb <- apply(mydf[, -1:-3], 1, getcount)
@@ -76,7 +77,7 @@ get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
 get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv",
                 features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
                 ftbed="data/genomic_feature_Gen_v4.bed", outpath="cache/features/gf_sfs_pop3_CG_")
-
+#
 ```
 
 
