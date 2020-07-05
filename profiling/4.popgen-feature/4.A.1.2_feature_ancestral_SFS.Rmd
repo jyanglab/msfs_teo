@@ -63,7 +63,7 @@ get_feature_dsfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.c
       mydf2 <- subset(mydf, s0 > 0.7)
       ftb2 <- apply(mydf2[, cols], 1, getcount2)
       
-      ftb <- c(ft1, ftb2)
+      ftb <- c(ftb1, ftb2)
       sfs <- table(ftb)
       outfile <- paste0(outpath, fi, ".csv")
       write.table(sfs, outfile, sep=",", row.names=FALSE, quote=FALSE)
@@ -100,7 +100,7 @@ get_feature_dsfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
 
 # CHG  
 get_feature_dsfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv",
-                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
+                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=4:54, 
                 ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/dsfs_pop3_gf_CHG_")
 #
 ```
