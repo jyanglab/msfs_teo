@@ -22,15 +22,18 @@ run all features: 33 jobs
 - 1000,000 runs
 ```{r, eval=FALSE}
 library("huskeR")
-files <- list.files(path="largedata/revise_features", pattern="CHG", full.names=TRUE)
+#files <- list.files(path="largedata/revise_features", pattern="CHG", full.names=TRUE)
+
+# derived SFS
+files <- list.files(path="largedata/revise_features", pattern="csv", full.names=TRUE)
 
 # Ne = 50,000, 100,000, 500,000, and 1,000,000
 # rep = 10 each
-df <- data.frame(file=rep(files, each=4), ne=rep(c(50000, 100000, 500000, 1000000), times=6))
+df <- data.frame(file=rep(files, each=4), ne=rep(c(50000, 100000, 500000, 1000000), times=24))
 df$out <- paste0(gsub(".csv", "", df$file), "_", df$ne, "_ft", ".RData")
 write.table(df, "slurm-script/slurm_feature_parameters.csv", sep=",", row.names=FALSE)
 
-run_Rcode(inputdf=data.frame(file=1:24, out=1), outdir="slurm-script", cmdno=1,
+run_Rcode(inputdf=data.frame(file=1:48, out=1), outdir="slurm-script", cmdno=1,
           rcodes = "profiling/4.popgen-feature/4.B.1_setup_feature_MCMC.R",
           rversion="3.6",
           base_shid = "ft_mcmc",
