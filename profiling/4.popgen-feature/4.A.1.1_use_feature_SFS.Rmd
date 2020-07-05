@@ -70,13 +70,13 @@ library("data.table")
 
 # CG
 get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
-                   features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
-                   ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/gf_sfs_pop3_CG_")
+                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
+                ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/gf_sfs_pop3_CG_")
 
 # CHG  
 get_feature_sfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv",
                 features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"),
-                ftbed="data/genomic_feature_Gen_v4.bed", outpath="cache/features/gf_sfs_pop3_CG_")
+                ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/gf_sfs_pop3_CHG_")
 #
 ```
 
