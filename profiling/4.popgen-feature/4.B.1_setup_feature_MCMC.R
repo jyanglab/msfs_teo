@@ -20,7 +20,7 @@ sfs <- read.csv(as.character(df$file[JOBID]))
 set.seed(12345)
 # If acceptance too high, increase these values to explore wider space. If acceptance too low, decrease.
 res <- MCMCBC(my_sfs=sfs$Freq, rates=c(1E6,1E6,1E6), sd=c(0.05,0.05,0.05), k=0:(nrow(sfs)-1),
-              conditional=FALSE, Ne=df$ne[JOBID], ngen=1000000, verbose=TRUE)
+              conditional=FALSE, Ne=df$ne[JOBID], ngen=100000, verbose=TRUE)
 
 #####
 #out <- gsub("cache", "largedata", files[JOBID])
