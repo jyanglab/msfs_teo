@@ -57,33 +57,26 @@ get_feature_dsfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.c
     
       # avg ancestral < 0.3: unmethylated
       mydf1 <- subset(mydf, s0 < 0.3)
-      ftb1 <- apply(mydf1[, cols], 1, getcount1)
+      ftb1 <- apply(mydf1[, cols], 1, getcount)
+      sfs1 <- table(ftb1)
+      outfile1 <- paste0(outpath, fi, "_teo-hypo.csv")
+      write.table(sfs1, outfile1, sep=",", row.names=FALSE, quote=FALSE)
       
       # avg ancestral > 0.7: methylated
       mydf2 <- subset(mydf, s0 > 0.7)
-      ftb2 <- apply(mydf2[, cols], 1, getcount2)
-      
-      ftb <- c(ftb1, ftb2)
-      sfs <- table(ftb)
-      outfile <- paste0(outpath, fi, ".csv")
-      write.table(sfs, outfile, sep=",", row.names=FALSE, quote=FALSE)
+      ftb2 <- apply(mydf2[, cols], 1, getcount)
+      sfs2 <- table(ftb2)
+      outfile2 <- paste0(outpath, fi, "_teo-hyper.csv")
+      write.table(sfs1, outfile1, sep=",", row.names=FALSE, quote=FALSE)
     }
     
 }
 ## ancestral is 0: unmethylated
-getcount1 <- function(x, mmin=0.3, mmax=0.7){
+getcount <- function(x, mmin=0.3, mmax=0.7){
     #n0 <- sum(x < mmin) #0
-    n2 <- sum(x > mmax) #2 => methylated is derived allele
+    n2 <- sum(x > mmax) #2 
     n1 <- sum(x >= mmin & x <= mmax) #1
     return(2*n2+n1)
-}
-
-## ancestral is 1: methylated
-getcount2 <- function(x, mmin=0.3, mmax=0.7){
-    n0 <- sum(x < mmin) #0 => unmethylated is the derived alleles
-    #n2 <- sum(x > mmax) #2
-    n1 <- sum(x >= mmin & x <= mmax) #1
-    return(2*n0+n1) # number of derived alleles
 }
 
 
@@ -95,13 +88,13 @@ library("data.table")
 
 # CG
 get_feature_dsfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
-                   features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=24:54, 
-                   ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_dmsfs/dsfs_pop3_gf_CG_")
+                   features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=4:54, 
+                   ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_ft_sep/dsfs_pop3_gf_CG_")
 
 # CHG  
 get_feature_dsfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv",
-                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=24:54, 
-                ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_dmsfs/dsfs_pop3_gf_CHG_")
+                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=4:54, 
+                ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_ft_sep/dsfs_pop3_gf_CHG_")
 #
 ```
 

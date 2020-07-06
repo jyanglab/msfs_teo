@@ -14,7 +14,7 @@ source("lib/mcmcbc.R")
 
 
 #files <- list.files(path="cache/mcmc_res", pattern="new_msfs", full.names=TRUE)
-df <- read.csv("slurm-script/slurm_feature_parameters.csv")
+df <- read.csv("slurm-script/slurm_feature_parameters_dmsfs.csv")
 sfs <- read.csv(as.character(df$file[JOBID]))
 
 set.seed(12345)
