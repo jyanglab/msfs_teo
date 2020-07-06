@@ -67,7 +67,7 @@ get_feature_dsfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.c
       ftb2 <- apply(mydf2[, cols], 1, getcount)
       sfs2 <- table(ftb2)
       outfile2 <- paste0(outpath, fi, "_teo-hyper.csv")
-      write.table(sfs1, outfile1, sep=",", row.names=FALSE, quote=FALSE)
+      write.table(sfs2, outfile2, sep=",", row.names=FALSE, quote=FALSE)
     }
     
 }

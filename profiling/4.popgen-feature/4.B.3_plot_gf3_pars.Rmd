@@ -73,6 +73,36 @@ write.table(out, "cache/response_ne_feature.csv", sep=",", row.names=FALSE, quot
 
 ```
 
+## Feature seperately
+
+```{r}
+### files
+files <- list.files("largedata/revise_ft_sep", pattern="RData", full.names = T)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  ne <- gsub("_ft.RData", "", files[i])
+  ne <- as.numeric(as.character(gsub(".*_", "", ne)))
+  df11 <- get_numus(obfile=files[i], burnin=0.2, Ne=ne)
+  df11$par <- files[i]
+  df11$ne <- ne
+  out <- rbind(out, df11)
+}
+
+out$class <- gsub(".*\\/|_pop3.*", "", out$par)
+out$teo <- gsub(".*teo-", "", out$par)
+out$teo <- gsub("_.*", "", out$teo)
+
+out$context <- gsub(".*pop3_|.*gf_", "", out$par)
+out$ft <- gsub(".*G_", "", out$context)
+out$context <- gsub("_.*", "", out$context)
+out$ft <- gsub("_teo.*", "", out$ft)
+
+write.table(out, "cache/response_sep_feature.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+
 
 ### plot the results:
 
@@ -80,7 +110,7 @@ write.table(out, "cache/response_ne_feature.csv", sep=",", row.names=FALSE, quot
 ```{r}
 library("tidyr")
 library("ggplot2")
-df <- read.csv("cache/response_ne_feature.csv")
+df <- read.csv("cache/response_sep_feature.csv")
 
 #df <- gather(data=df0, key=k, value="p", 1:3)
 
@@ -89,6 +119,8 @@ fsize=18
 df$ne <- factor(df$ne, levels = c("50000", "1e+05", "5e+05", "1e+06"))
 
 df1 <- subset(df, class %in% "dsfs")
+
+df1 <- df
 p1 <- ggplot(df1, aes(x=type, y=mn, fill=ne)) +
     geom_bar(stat="identity", position=position_dodge()) +
     facet_grid( ft ~ context) +
