@@ -118,9 +118,9 @@ df <- read.csv("cache/response_sep_feature.csv")
 fsize=18
 df$ne <- factor(df$ne, levels = c("50000", "1e+05", "5e+05", "1e+06"))
 
-df1 <- subset(df, class %in% "dsfs")
+df1 <- subset(df, teo %in% "hyper")
 
-df1 <- df
+
 p1 <- ggplot(df1, aes(x=type, y=mn, fill=ne)) +
     geom_bar(stat="identity", position=position_dodge()) +
     facet_grid( ft ~ context) +
@@ -147,7 +147,8 @@ p1
 ```
 
 ```{r}
-df2 <- subset(df, class %in% "gf_sfs")
+df2 <- subset(df, teo %in% "hypo")
+
 p2 <- ggplot(df2, aes(x=type, y=mn, fill=ne)) +
     geom_bar(stat="identity", position=position_dodge()) +
     facet_grid( ft ~ context) +
@@ -177,11 +178,11 @@ p2
 
 ```{r}
 library("cowplot")
-pdf("graphs/SFig_Ne_feature_dsfs.pdf", width=8, height=6)
+pdf("graphs/SFig_Ne_feature_teo-hyper.pdf", width=8, height=6)
 plot_grid(p1, ncol=1, labels = NULL, label_size = 26)
 dev.off()
 
-pdf("graphs/SFig_Ne_feature_regular.pdf", width=8, height=6)
+pdf("graphs/SFig_Ne_feature_teo-hypo.pdf", width=8, height=6)
 plot_grid(p2, ncol=1, labels = NULL, label_size = 26)
 dev.off()
 ```

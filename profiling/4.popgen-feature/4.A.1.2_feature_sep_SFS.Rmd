@@ -54,20 +54,25 @@ get_feature_dsfs <- function(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.c
       
       # ancestral allele status
       mydf$s0 <- apply(mydf[, 4:23], 1, mean)
-    
+      
+      tem <- data.frame(ftb=1:(length(cols)*2),a=0)
       # avg ancestral < 0.3: unmethylated
       mydf1 <- subset(mydf, s0 < 0.3)
       ftb1 <- apply(mydf1[, cols], 1, getcount)
       sfs1 <- table(ftb1)
+      sfs1 <- merge(tem, sfs1, by.x="ftb", by.y="ftb1", all.x=TRUE)
+      sfs1[is.na(sfs1$Freq), ]$Freq <- 0
       outfile1 <- paste0(outpath, fi, "_teo-hypo.csv")
-      write.table(sfs1, outfile1, sep=",", row.names=FALSE, quote=FALSE)
+      write.table(sfs1[, -2], outfile1, sep=",", row.names=FALSE, quote=FALSE)
       
       # avg ancestral > 0.7: methylated
       mydf2 <- subset(mydf, s0 > 0.7)
       ftb2 <- apply(mydf2[, cols], 1, getcount)
       sfs2 <- table(ftb2)
+      sfs2 <- merge(tem, sfs2, by.x="ftb", by.y="ftb2", all.x=TRUE)
+      sfs2[is.na(sfs2$Freq), ]$Freq <- 0
       outfile2 <- paste0(outpath, fi, "_teo-hyper.csv")
-      write.table(sfs2, outfile2, sep=",", row.names=FALSE, quote=FALSE)
+      write.table(sfs2[, -2], outfile2, sep=",", row.names=FALSE, quote=FALSE)
     }
     
 }
