@@ -6,4 +6,4 @@ largedata/
 slurm-log/
 slurm-script/
 .DS_Store
-
+*/.DS_Store

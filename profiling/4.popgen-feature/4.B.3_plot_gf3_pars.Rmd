@@ -1,6 +1,6 @@
 ---
 title: "Plot par figures"
-output: html_notebook
+output: NULL
 author: Jinliang Yang
 date: 02-26-2019
 ---
@@ -103,7 +103,7 @@ p1 <- ggplot(df1, aes(x=type, y=mn, fill=ne)) +
     #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63")) +
     #labs(fill = "Dose (mg)") +
     scale_x_discrete(labels=c("-log10(mu)","-log10(nu)", "Ne*s")) +
-    theme(legend.position = c(0.9, 0.7), plot.title = element_text(size=20), axis.text=element_text(size=15),
+    theme(legend.position = "top", plot.title = element_text(size=20), axis.text=element_text(size=15),
           strip.text.x = element_text(size = 20, face = "bold"),
           axis.title=element_text(size=fsize, face="bold"),
                 legend.title = element_text(size=fsize, face="bold"),
@@ -130,7 +130,7 @@ p2 <- ggplot(df2, aes(x=type, y=mn, fill=ne)) +
     #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63")) +
     #labs(fill = "Dose (mg)") +
     scale_x_discrete(labels=c("-log10(mu)","-log10(nu)", "Ne*s")) +
-    theme(legend.position = c(0.9, 0.7), plot.title = element_text(size=20), axis.text=element_text(size=15),
+    theme(legend.position = "top", plot.title = element_text(size=20), axis.text=element_text(size=15),
           strip.text.x = element_text(size = 20, face = "bold"),
           axis.title=element_text(size=fsize, face="bold"),
                 legend.title = element_text(size=fsize, face="bold"),
@@ -145,7 +145,11 @@ p2
 
 ```{r}
 library("cowplot")
-pdf("graphs/SFig_Ne.pdf", width=12, height=5)
+pdf("graphs/SFig_Ne_feature_dsfs.pdf", width=8, height=6)
 plot_grid(p1, ncol=1, labels = NULL, label_size = 26)
+dev.off()
+
+pdf("graphs/SFig_Ne_feature_regular.pdf", width=8, height=6)
+plot_grid(p2, ncol=1, labels = NULL, label_size = 26)
 dev.off()
 ```

@@ -95,13 +95,13 @@ library("data.table")
 
 # CG
 get_feature_dsfs(pops_file="largedata/mr_100bp/pop3_CpG_matrix_imp.csv",
-                   features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=4:54, 
-                   ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/dsfs_pop3_gf_CG_")
+                   features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=24:54, 
+                   ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/dmsfs/dsfs_pop3_gf_CG_")
 
 # CHG  
 get_feature_dsfs(pops_file="largedata/mr_100bp/pop3_CHG_matrix_imp.csv",
-                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=4:54, 
-                ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/revise_features/dsfs_pop3_gf_CHG_")
+                features=c("Exon","Gene_down_5k","Gene_up_5k","Intergenic","Intron","TE"), cols=24:54, 
+                ftbed="data/genomic_feature_Gen_v4.bed", outpath="largedata/dmsfs/dsfs_pop3_gf_CHG_")
 #
 ```
 
