@@ -20,11 +20,22 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 - 1000,000 runs
 ```{r, eval=FALSE}
 library("huskeR")
+
+# derived SFS
+#files <- list.files(path="largedata/revise_ft_sep", pattern="csv", full.names=TRUE)
+files <- list.files(path="largedata/revise_fig1", pattern="pops.csv", full.names=TRUE)
+
+# Ne = 50,000, 100,000, 500,000, and 1,000,000
+# rep = 10 each
+df <- data.frame(file=rep(files, each=4), ne=rep(c(50000, 100000, 500000, 1000000), times=2))
+df$out <- paste0(gsub(".csv", "", df$file), "_", df$ne, "_ft", ".RData")
+write.table(df, "slurm-script/slurm_parameters_fig1.csv", sep=",", row.names=FALSE)
+
 run_Rcode(inputdf=data.frame(file=1:8, out=1), outdir="slurm-script", cmdno=1,
            rcodes = "profiling/3.popgen/3.C.2_setup_MCMC_interpop.R",
-            rversion = "3.5",
+          rversion = "3.6",
            base_shid ="run_msfs",
-           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 2, "5G", "36:00:00"))
+           email="yangjl0930@gmail.com", runinfo = c(TRUE, "jyanglab", 1, "4G", "36:00:00"))
 
 ```
 
