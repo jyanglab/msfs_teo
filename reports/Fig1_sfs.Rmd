@@ -103,7 +103,7 @@ pn <- ggplot(df, aes(x=type, y=mn, fill=context)) +
     facet_grid( context ~ ., switch="both") +
     xlab("Posterior Estimates") +
     ylab("Value") +
-    geom_errorbar(aes(ymin=mn-sd*100, ymax=mn+sd*100), width=.2,
+    geom_errorbar(aes(ymin=mn-sd, ymax=mn+sd), width=.2,
                  position=position_dodge(.9)) +
     # https://www.color-hex.com/color-palette/73961
     #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63", "#d3d3d3"),

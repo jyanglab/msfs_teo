@@ -1,0 +1,100 @@
+---
+title: "Run interpop MCMC BC"
+output: NULL
+author: Jinliang Yang
+date: 07-03-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+```{r}
+
+
+sfs_err <- function(df, err1, err2){
+  df$newsfs <- 0
+  
+  # get methylated sites
+  sites <- rbinom(n=df$sfs[1], size=102, prob=0.001)
+  df1 <- as.data.frame(table(sites))
+  
+  df <- merge(df, df1, by="sites", all.x=TRUE)
+  df[is.na(df$Freq),]$Freq <- 0
+  df$newsfs <- df$newsfs + df$Freq
+  df <- df[, 1:3]
+  
+  for(i in 2:102){
+    # for unmethylated sites n, how many of them wrongly chariterized as methylated sites
+    a0 <- rbinom(n=df$sfs[i], size=102-df$sites[i], prob=err1)
+    df0 <- as.data.frame(table(a0))
+    df0$a0 <- as.numeric(as.character(df0$a0)) + df$sites[i]
+    df <- merge(df, df0, by.x="sites", by.y="a0", all.x=TRUE)
+    df[is.na(df$Freq),]$Freq <- 0
+    df$newsfs <- df$newsfs + df$Freq
+    df <- df[, 1:3]
+    
+    # for methylated sites n, how many of them wrongly chariterized as unmethylated sites
+    a1 <- rbinom(n=df$sfs[i], size=df$sites[i], prob=err2)
+    df1 <- as.data.frame(table(a1))
+    df1$a1 <- abs(as.numeric(as.character(df1$a1)) - df$sites[i])
+    df <- merge(df, df1, by.x="sites", by.y="a1", all.x=TRUE)
+    df[is.na(df$Freq),]$Freq <- 0
+    df$newsfs <- df$newsfs + df$Freq
+    df <- df[, 1:3]
+  }
+  
+   # for methylated sites n, how many of them wrongly chariterized as unmethylated sites
+    a1 <- rbinom(n=df$sfs[103], size=102, prob=err2)
+    df1 <- as.data.frame(table(a1))
+    df1$a1 <- abs(as.numeric(as.character(df1$a1)) - 102)
+    df <- merge(df, df1, by.x="sites", by.y="a1", all.x=TRUE)
+    df[is.na(df$Freq),]$Freq <- 0
+    df$newsfs <- df$newsfs + df$Freq
+    df <- df[, 1:3]
+    
+  return(df)
+}
+
+# methylated sites incorrectly genotyped as unmethylated sites
+err1 <- 0.001
+# unmethylated sites incorrectly genotyped as methylated sites
+err2 <- 0.001
+
+```
+
+
+```{r, eval=FALSE}
+ob <- load("cache/interpop_CpG.RData")
+names(res)
+sfs <- res$post_sfs
+df <- data.frame(sites=0:102, sfs=sfs)
+
+out <- sfs_err(df, err1, err2)
+```
+
+## plot barplot
+
+```{r}
+library(ggplot2)
+
+outdf <- gather(out, key="type", value="sfs", 2:3)
+p <- ggplot(outdf, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          labs(y="Frequency", x=NULL) + 
+          theme(legend.position="none") +
+          #scale_y_log10() +
+          theme(#axis.text=element_text(size=fsize),
+                axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize))
+p
+
+```
+
