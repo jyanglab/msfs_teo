@@ -1,0 +1,77 @@
+---
+title: "Run interpop MCMC BC"
+output: NULL
+author: Jinliang Yang
+date: 07-03-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+```{r, eval=FALSE}
+ob <- load("cache/revise_fig1/new_msfs_CG_pops_50000_ft.RData")
+names(res)
+
+df <- data.frame(sites=0:88, ob_sfs=res$my_sfs, post_sfs=res$post_sfs)
+```
+
+## plot barplot
+
+```{r}
+library(ggplot2)
+
+
+outdf <- gather(df, key="type", value="sfs", 2:3)
+p1 <- ggplot(outdf, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          labs(y="Frequency", x=NULL) + 
+          theme(legend.position="none") +
+          #scale_y_log10() +
+          theme(#axis.text=element_text(size=fsize),
+                axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize))
+p1
+
+```
+
+```{r, eval=FALSE}
+ob <- load("cache/interpop_CHG.RData")
+names(res)
+sfs <- res$post_sfs
+df <- data.frame(sites=0:102, sfs=sfs)
+
+# methylated sites incorrectly genotyped as unmethylated sites
+err1 <- 0.002
+# unmethylated sites incorrectly genotyped as methylated sites
+err2 <- 0.0001
+
+out2 <- sfs_err(df, err1, err2)
+```
+
+
+```{r}
+out2$newsfs <- out2$newsfs/2
+outdf <- gather(out, key="type", value="sfs", 2:3)
+p2 <- ggplot(outdf, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          labs(y="Frequency", x=NULL) + 
+          theme(legend.position="none") +
+          #scale_y_log10() +
+          theme(#axis.text=element_text(size=fsize),
+                axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize))
+p2
+
+```
