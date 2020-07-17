@@ -71,10 +71,21 @@ write.table(out, "cache/response_ne.csv", sep=",", row.names=FALSE, quote=FALSE)
 library("tidyr")
 library(ggplot2)
 df <- read.csv("cache/response_ne.csv")
-df$context <- gsub(".*new_msfs_|_pops.*", "", df0$par)
+df$context <- gsub(".*new_msfs_|_pops.*", "", df$par)
 #df <- gather(data=df0, key=k, value="p", 1:3)
+df$val <- 10^-(df$mn)
+df <- df[order(df$val),-5]
+subset(df, context %in% "CG" & type == "mu")
+subset(df, context %in% "CHG" & type == "mu")
 
+subset(df, context %in% "CG" & type == "nu")
+subset(df, context %in% "CHG" & type == "nu")
 
+subset(df, context %in% "CG" & type == "s")
+subset(df, context %in% "CHG" & type == "s")
+```
+
+```{r}
 fsize=18
 df$ne <- factor(df$ne, levels = c("50000", "1e+05", "5e+05", "1e+06"))
 

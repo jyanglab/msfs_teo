@@ -71,6 +71,11 @@ pdf("graphs/barplot_CHG_landrace_maize.pdf", width = 8, height=8)
 mybarplot(df=chg3)
 dev.off()  
 
+
+cg <- read.csv("cache/h2-interact-dmr/h2_CG-Teosinte_Maize.csv")
+chg <- read.csv("cache/h2-interact-dmr/h2_CHG-Teosinte_Maize.csv")
+
+cg2 <- read.csv("cache/h2-interact-dmr/h2_CG-Landrace_Maize.csv")
 ```
 
 CG teosinte and landrace
