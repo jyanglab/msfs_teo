@@ -1,0 +1,28 @@
+trait,Her_K1,Her_K2,Her_K3,Her_Top,Her_ALL,pretty_name,h2
+asiavg,0.001426,0,0.72438,0,0.725079,Anthesis-silking interval,0.725806
+dtaavg,0,0,0.798806,0,0.790169,NA,0.798806
+dtsavg,0,0,0.818535,0,0.816169,NA,0.818535
+ehtavg,0.0045,0,0.854515,0,0.808596,Ear height,0.859015
+ehtdivphtavg,0.000481,0,0.74703,0,0.746729,Ratio of ear height to total height,0.747511
+Kwt_5loc_residuals,0,2.5e-05,0.640053,0,0.637854,100 Kernel weight,0.640078
+nlb_residuals,0,0,0.833284,0,0.829137,Northern Leaf Blight,0.833284
+nphavg,0,0,0.766513,0,0.76513,Nodes per plant,0.766513
+nteavg,0,0,0.800663,0,0.690398,Nodes to ear,0.800663
+nttavg,0,0.000736,0.801113,0,0.754408,Nodes above ear,0.801849
+phtavg,0,0.000261,0.809638,0,0.807562,Plant height,0.809899
+phtdivdtravg,0,0,0.775315,0,0.770778,Height per day (until flowering),0.775315
+phtdivnphavg,0,0.000956,0.769413,0,0.770319,Average internode length (whole plant),0.770369
+ppgddta_pop,0,0.011597,0.578378,0,0.579132,Photoperiod growing-degree days to anthesis,0.589975
+ppgddts_pop,0,0.083159,0.602358,0,0.596454,Photoperiod Growing-degree days to silk,0.685517
+Residual_leaf_length_noIBM,0.000426,0.003184,0.785138,0,0.788748,Leaf length,0.788748
+Residual_leaf_width_noIBM,0.003815,0,0.794665,0,0.797654,Leaf width,0.79848
+residuals_distancebased_for_d2a,0,0.017031,0.807863,0,0.78265,Days to anthesis,0.824894
+residuals_distancebased_for_d2s,0,0,0.813896,0,0.811357,Days to silk,0.813896
+residuals_distancebased_for_slbv2,0,0,0.77965,0,0.722857,Southern leaf blight,0.77965
+rpravg,0,0,0.385478,0,0.217514,Stalk strength,0.385478
+sf_residuals_nopop,0.002633,0.009707,0.789026,0,0.801366,Cob diameter,0.801366
+so_residuals_nopop,0.001062,0.004424,0.809738,0,0.815224,Ear row number,0.815224
+tassel_branches,0,0.001966,0.833821,0,0.828784,Tassel branch number,0.835787
+tassel_length,0,0.000463,0.785378,0,0.783681,Tassel length,0.785841
+thtavg,0,0.00445,0.746007,0,0.748245,Height above ear,0.750457
+thtdivnttavg,0,0.005019,0.699222,0,0.70071,Average internode length (above ear),0.704241
