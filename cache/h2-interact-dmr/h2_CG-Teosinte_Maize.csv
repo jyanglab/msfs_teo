@@ -1,0 +1,28 @@
+trait,Her_K1,Her_K2,Her_K3,Her_Top,Her_ALL,pretty_name,h2
+asiavg,0.000101,0.000696,0.723965,0,0.724761,Anthesis-silking interval,0.724762
+dtaavg,0,0.025216,0.768876,0,0.793084,NA,0.794092
+dtsavg,0,0.023954,0.79336,0,0.81674,NA,0.817314
+ehtavg,0,0.00048,0.805167,0,0.797969,Ear height,0.805647
+ehtdivphtavg,0,0,0.750382,0,0.746598,Ratio of ear height to total height,0.750382
+Kwt_5loc_residuals,0.000997,0,0.736473,0,0.674118,100 Kernel weight,0.73747
+nlb_residuals,0,0,0.844112,0,0.82486,Northern Leaf Blight,0.844112
+nphavg,0.001825,0,0.787047,0,0.769815,Nodes per plant,0.788872
+nteavg,0.00227,0,0.766804,0,0.755349,Nodes to ear,0.769074
+nttavg,0,0,0.792986,0,0.772082,Nodes above ear,0.792986
+phtavg,0,0,0.827579,0,0.80769,Plant height,0.827579
+phtdivdtravg,0,0,0.785225,0,0.770683,Height per day (until flowering),0.785225
+phtdivnphavg,0.00037,9.2e-05,0.769883,0,0.770345,Average internode length (whole plant),0.770345
+ppgddta_pop,0.005724,0.020964,0.597497,0,0.624185,Photoperiod growing-degree days to anthesis,0.624185
+ppgddts_pop,0.005607,0.030164,0.594287,0,0.630057,Photoperiod Growing-degree days to silk,0.630058
+Residual_leaf_length_noIBM,0,0,0.796793,0,0.788905,Leaf length,0.796793
+Residual_leaf_width_noIBM,0,0.005718,0.799546,0,0.798488,Leaf width,0.805264
+residuals_distancebased_for_d2a,0,0.029784,0.761532,0,0.790146,Days to anthesis,0.791316
+residuals_distancebased_for_d2s,0.000826,0.023319,0.788562,0,0.812707,Days to silk,0.812707
+residuals_distancebased_for_slbv2,0,0,0.766339,0,0.753852,Southern leaf blight,0.766339
+rpravg,0,0,0.272431,0,0.241879,Stalk strength,0.272431
+sf_residuals_nopop,0,0,0.809042,0,0.801484,Cob diameter,0.809042
+so_residuals_nopop,0,0,0.836558,0,0.813856,Ear row number,0.836558
+tassel_branches,0,0,0.849808,0,0.828852,Tassel branch number,0.849808
+tassel_length,0.006077,0,0.819513,0,0.777007,Tassel length,0.82559
+thtavg,0,0,0.764523,0,0.748184,Height above ear,0.764523
+thtdivnttavg,0.010835,0,0.681009,0,0.686377,Average internode length (above ear),0.691844

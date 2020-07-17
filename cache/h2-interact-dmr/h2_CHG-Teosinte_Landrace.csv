@@ -1,0 +1,28 @@
+trait,Her_K1,Her_K2,Her_K3,Her_Top,Her_ALL,pretty_name,h2
+asiavg,0.006796,0,0.720542,0,0.72492,Anthesis-silking interval,0.727338
+dtaavg,0,0,0.80792,0,0.79167,NA,0.80792
+dtsavg,0,0,0.824411,0,0.814887,NA,0.824411
+ehtavg,0.009698,0,0.792391,0,0.798412,Ear height,0.802089
+ehtdivphtavg,0,0,0.764299,0,0.744644,Ratio of ear height to total height,0.764299
+Kwt_5loc_residuals,0.00886,0,0.646238,0,0.634973,100 Kernel weight,0.655098
+nlb_residuals,0,0,0.846453,0,0.827395,Northern Leaf Blight,0.846453
+nphavg,0.003623,0,0.784404,0,0.763136,Nodes per plant,0.788027
+nteavg,0.005448,0,0.762885,0,0.753739,Nodes to ear,0.768333
+nttavg,0,0,0.778847,0,0.771914,Nodes above ear,0.778847
+phtavg,0.011415,0.002635,0.794688,0,0.808737,Plant height,0.808738
+phtdivdtravg,0.003838,0.006871,0.760393,0,0.771102,Height per day (until flowering),0.771102
+phtdivnphavg,0.001081,0,0.770194,0,0.770296,Average internode length (whole plant),0.771275
+ppgddta_pop,0.007068,0,0.639253,0,0.624506,Photoperiod growing-degree days to anthesis,0.646321
+ppgddts_pop,0,0,0.745395,0,0.649884,Photoperiod Growing-degree days to silk,0.745395
+Residual_leaf_length_noIBM,0.004544,0,0.80215,0,0.788364,Leaf length,0.806694
+Residual_leaf_width_noIBM,0,0.000603,0.797828,0,0.798293,Leaf width,0.798431
+residuals_distancebased_for_d2a,0.000821,0,0.803968,0,0.788758,Days to anthesis,0.804789
+residuals_distancebased_for_d2s,0,0,0.823834,0,0.811001,Days to silk,0.823834
+residuals_distancebased_for_slbv2,0,0,0.765133,0,0.752118,Southern leaf blight,0.765133
+rpravg,0,0,0.182123,0,0.148403,Stalk strength,0.182123
+sf_residuals_nopop,0.005773,0.005928,0.790474,0,0.802175,Cob diameter,0.802175
+so_residuals_nopop,0,0,0.831698,0,0.812964,Ear row number,0.831698
+tassel_branches,0.008047,0,0.831726,0,0.827636,Tassel branch number,0.839773
+tassel_length,0,0,0.800278,0,0.780722,Tassel length,0.800278
+thtavg,0,0,0.754297,0,0.74701,Height above ear,0.754297
+thtdivnttavg,0.006974,0.005708,0.674255,0,0.686937,Average internode length (above ear),0.686937
