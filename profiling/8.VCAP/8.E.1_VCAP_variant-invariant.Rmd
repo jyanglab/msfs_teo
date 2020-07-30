@@ -15,6 +15,7 @@ library("huskeR")
 # /common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-05-2019
 run_batch_vcap <- function(
   input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
+  out_dir="/",
   dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize")){
   
   # setup file system and find the dmr pattern
@@ -27,7 +28,7 @@ run_batch_vcap <- function(
     idx <- grep(dmr_patterns[i], df$f)
     temdf <- df[idx, ]
     
-    output_dir <- paste0("largedata/revise_VCAP/sweep-DMR/", dmr_patterns[i])
+    output_dir <- paste0(out_dir, dmr_patterns[i])
     # copy the files to the new folder
     dir.create(output_dir, showWarnings = FALSE)
     dir.create(paste0(output_dir, "/bedfile"), showWarnings = FALSE)
@@ -61,8 +62,9 @@ run_batch_vcap <- function(
 
 # results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
 run_batch_vcap(
-  input_dir = "data/Sweep_Non_sweep_DMR",
-  dmr_patterns = c("CG-Landrace_Maize",  "CG-Teosinte_Landrace",  "CG-Teosinte_Maize") )
+  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CG-Teosinte_Landrace/DMR_interaction_non_interaction",
+  out_dir="largedata/revise_VCAP/CG-invariant",
+  dmr_patterns = c("CG_TEO_LR") )
 
 run_batch_vcap(
   input_dir = "data/Sweep_Non_sweep_DMR",
