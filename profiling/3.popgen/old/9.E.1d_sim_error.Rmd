@@ -1,0 +1,174 @@
+---
+title: "Run interpop MCMC BC"
+output: NULL
+author: Jinliang Yang
+date: 07-03-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../../')) 
+#library(tidyverse)
+```
+
+
+```{r}
+sfs_err <- function(df, err1, err2){
+  df$newsfs <- 0
+  
+  # get methylated sites
+  sites <- rbinom(n=df$sfs[1], size=88, prob=err1)
+  df1 <- as.data.frame(table(sites))
+  
+  df <- merge(df, df1, by="sites", all.x=TRUE)
+  df[is.na(df$Freq),]$Freq <- 0
+  df$newsfs <- df$newsfs + df$Freq
+  df <- df[, 1:3]
+  
+  for(i in 2:88){
+    # for unmethylated sites n, how many of them wrongly chariterized as methylated sites
+    a0 <- rbinom(n=df$sfs[i], size=88-df$sites[i], prob=err1)
+    df0 <- as.data.frame(table(a0))
+    df0$a0 <- as.numeric(as.character(df0$a0)) + df$sites[i]
+    df <- merge(df, df0, by.x="sites", by.y="a0", all.x=TRUE)
+    df[is.na(df$Freq),]$Freq <- 0
+    df$newsfs <- df$newsfs + df$Freq
+    df <- df[, 1:3]
+    
+    # for methylated sites n, how many of them wrongly chariterized as unmethylated sites
+    a1 <- rbinom(n=df$sfs[i], size=df$sites[i], prob=err2)
+    df1 <- as.data.frame(table(a1))
+    df1$a1 <- abs(as.numeric(as.character(df1$a1)) - df$sites[i])
+    df <- merge(df, df1, by.x="sites", by.y="a1", all.x=TRUE)
+    df[is.na(df$Freq),]$Freq <- 0
+    df$newsfs <- df$newsfs + df$Freq
+    df <- df[, 1:3]
+  }
+  
+   # for methylated sites n, how many of them wrongly chariterized as unmethylated sites
+    a1 <- rbinom(n=df$sfs[89], size=88, prob=err2)
+    df1 <- as.data.frame(table(a1))
+    df1$a1 <- abs(as.numeric(as.character(df1$a1)) - 88)
+    df <- merge(df, df1, by.x="sites", by.y="a1", all.x=TRUE)
+    df[is.na(df$Freq),]$Freq <- 0
+    df$newsfs <- df$newsfs + df$Freq
+    df <- df[, 1:3]
+    df$newsfs <- df$newsfs/sum(df$newsfs)*sum(df$sfs)
+  return(df)
+}
+
+
+```
+
+
+```{r, eval=FALSE}
+ob <- load("cache/revise_fig1/new_msfs_CG_pops_50000_ft.RData")
+names(res)
+sfs <- res$post_sfs
+df <- data.frame(sites=0:88, sfs=sfs)
+
+# methylated sites incorrectly genotyped as unmethylated sites
+err1 <- 0.01
+# unmethylated sites incorrectly genotyped as methylated sites
+err2 <- 0.01
+
+out1 <- sfs_err(df, err1=0.0001, err2=0.0001)
+library(tidyr)
+outdf1 <- gather(out1, key="type", value="sfs", 2:3)
+outdf1$type <- factor(outdf1$type, levels = c("newsfs", "sfs"), labels =c("Observed", "Draw"))
+write.table(outdf1, "cache/CG_draw_post.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+## plot barplot
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+outdf1 <- read.csv("cache/CG_draw_post.csv")
+fsize=18
+p1 <- ggplot(outdf1, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          ggtitle("CG") +
+          labs(y="Number of Titles", x=NULL) + 
+          theme(legend.position="none") +
+          # https://www.color-hex.com/color-palette/73961
+    scale_fill_manual(values=c("#999999","#E69F00"), # "#56B4E9"
+                      name=c("")) +
+                      #labels=c("Teo Hypo", "Teo Hyper")) +
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63")) +
+    #labs(fill = "Dose (mg)") +
+    #scale_x_discrete(labels=c("-log10(mu)","-log10(nu)", "Ne*s")) +
+    theme_classic() +
+    theme(legend.position = c(0.2,0.8), plot.title = element_text(size=20,hjust = 0.5), 
+          axis.text=element_text(size=12, face="bold"),
+          strip.text.x = element_text(size = 20, face = "bold"),
+          #strip.text.y = element_text(size = 15, face = "bold"),
+          axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize)) 
+p1
+
+```
+
+```{r, eval=FALSE}
+ob <- load("cache/revise_fig1/new_msfs_CHG_pops_50000_ft.RData")
+names(res)
+sfs <- res$post_sfs
+df <- data.frame(sites=0:88, sfs=sfs)
+
+# methylated sites incorrectly genotyped as unmethylated sites
+#err1 <- 0.002
+# unmethylated sites incorrectly genotyped as methylated sites
+#err2 <- 0.0001
+
+out2 <- sfs_err(df, err1=0.001, err2=0.001)
+
+library(tidyr)
+outdf2 <- gather(out2, key="type", value="sfs", 2:3)
+outdf2$type <- factor(outdf2$type, levels = c("newsfs", "sfs"), labels =c("Observed", "Draw"))
+write.table(outdf2, "cache/CHG_draw_post.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+
+```{r}
+outdf2 <- gather(out2, key="type", value="sfs", 2:3)
+outdf2$type <- factor(outdf2$type, levels = c("newsfs", "sfs"), labels =c("Simulated", "Posterior"))
+p2 <- ggplot(outdf2, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          labs(y="Number of Titles", x=NULL) + 
+          ggtitle("CHG") +
+          theme(legend.position="none") +
+          # https://www.color-hex.com/color-palette/73961
+    scale_fill_manual(values=c("#999999","#56B4E9"), # "#56B4E9"
+                      name=c("")) +
+                      #labels=c("Teo Hypo", "Teo Hyper")) +
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63")) +
+    #labs(fill = "Dose (mg)") +
+    #scale_x_discrete(labels=c("-log10(mu)","-log10(nu)", "Ne*s")) +
+    theme_classic() +
+    theme(legend.position = c(0.2,0.8), plot.title = element_text(size=20,hjust = 0.5), 
+          axis.text=element_text(size=12, face="bold"),
+          strip.text.x = element_text(size = 20, face = "bold"),
+          #strip.text.y = element_text(size = 15, face = "bold"),
+          axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize)) 
+p2
+
+```
+
+
+```{r}
+library("cowplot")
+pdf("graphs/SFig_sfs_error.pdf", width=8, height=6)
+plot_grid(p1, p2, ncol=1, labels = "AUTO", label_size = 26)
+dev.off()
+
+```

@@ -54,3 +54,24 @@ write.table(df, "cache/table_msfs_par_interpop.csv", sep=",", row.names=FALSE, q
 ```
 
 
+
+```{r}
+source("lib/mcmcbc.R")
+ob <- load("cache/interpop_CpG.RData")
+
+post.nu <- res$samples$nu[10000]
+post.mu <- res$samples$mu[10000]
+post.s <- res$samples$s[10000]
+k=0:102
+n=max(k)
+Ne=100000
+my_sfs <- res$my_sfs
+  
+post_sfs=sapply(k,function(K){
+     log(choose(n,K))+(f1(mean(post.nu)*4*Ne+K,mean(post.mu)*4*Ne+mean(post.nu)*4*Ne+n,mean(post.s)*4*Ne)+proch(mean(post.nu)*4*Ne,K)+proch(mean(post.mu)*4*Ne,n-K))-(f1(mean(post.nu)*4*Ne,mean(post.mu)*4*Ne+mean(post.nu)*4*Ne,mean(post.s)*4*Ne)+proch(mean(post.mu)*4*Ne+mean(post.nu)*4*Ne,n))})
+post_sfs=post_sfs-max(post_sfs)
+    post_sfs=exp(post_sfs)/sum(exp(post_sfs))*sum(my_sfs)
+
+```
+
+
