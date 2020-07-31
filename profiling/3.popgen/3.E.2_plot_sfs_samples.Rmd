@@ -98,3 +98,12 @@ p2 <- ggplot(outdf2, aes(x=sites, y=sfs, fill=factor(type))) +
 p2
 
 ```
+
+
+```{r}
+library("cowplot")
+pdf("graphs/SFig_sfs_draw.pdf", width=8, height=6)
+plot_grid(p1, p2, ncol=1, labels = "AUTO", label_size = 26)
+dev.off()
+```
+
