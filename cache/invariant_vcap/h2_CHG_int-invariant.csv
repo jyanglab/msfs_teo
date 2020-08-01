@@ -1,0 +1,28 @@
+trait,Her_K1,Her_K2,Her_K3,Her_Top,Her_ALL,pretty_name,h2
+asiavg,0.005904,0.001258,0.718199,0,0.72536,Anthesis-silking interval,0.725361
+dtaavg,0,0,0.814508,0,0.79684,NA,0.814508
+dtsavg,0,0,0.824113,0,0.815097,NA,0.824113
+ehtavg,0.006455,0,0.796772,0,0.797831,Ear height,0.803227
+ehtdivphtavg,0,0,0.759635,0,0.745156,Ratio of ear height to total height,0.759635
+Kwt_5loc_residuals,0.003981,0,0.646908,0,0.637214,100 Kernel weight,0.650889
+nlb_residuals,0,0,0.8418,0,0.827439,Northern Leaf Blight,0.8418
+nphavg,0,0,0.785914,0,0.712136,Nodes per plant,0.785914
+nteavg,0.002656,0,0.761917,0,0.753963,Nodes to ear,0.764573
+nttavg,0,0.001485,0.772691,0,0.771551,Nodes above ear,0.774176
+phtavg,0.012553,0.002348,0.793777,0,0.808679,Plant height,0.808678
+phtdivdtravg,0.009171,0.006544,0.756315,0,0.77203,Height per day (until flowering),0.77203
+phtdivnphavg,0.005704,0.003215,0.762507,0,0.771426,Average internode length (whole plant),0.771426
+ppgddta_pop,0.005803,0,0.768269,0,0.68371,Photoperiod growing-degree days to anthesis,0.774072
+ppgddts_pop,0.013323,0,0.635903,0,0.630988,Photoperiod Growing-degree days to silk,0.649226
+Residual_leaf_length_noIBM,0,0,0.802812,0,0.788328,Leaf length,0.802812
+Residual_leaf_width_noIBM,0,0.002863,0.796707,0,0.798424,Leaf width,0.79957
+residuals_distancebased_for_d2a,0,0,0.801548,0,0.789121,Days to anthesis,0.801548
+residuals_distancebased_for_d2s,0,0,0.821972,0,0.811237,Days to silk,0.821972
+residuals_distancebased_for_slbv2,0.000198,0,0.75707,0,0.753577,Southern leaf blight,0.757268
+rpravg,0,0,0.255875,0,0.246456,Stalk strength,0.255875
+sf_residuals_nopop,0.004171,0.001064,0.796193,0,0.801428,Cob diameter,0.801428
+so_residuals_nopop,0,0,0.870263,0,0.839765,Ear row number,0.870263
+tassel_branches,0.005987,0,0.836647,0,0.83011,Tassel branch number,0.842634
+tassel_length,0,0,0.795965,0,0.781556,Tassel length,0.795965
+thtavg,0.004479,0,0.745664,0,0.747967,Height above ear,0.750143
+thtdivnttavg,0.008496,0.003657,0.674821,0,0.686975,Average internode length (above ear),0.686974
