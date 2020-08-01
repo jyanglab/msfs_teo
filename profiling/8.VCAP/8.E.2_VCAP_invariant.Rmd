@@ -28,8 +28,8 @@ run_batch_vcap <- function(
     idx <- grep(dmr_patterns[i], df$f)
     temdf <- df[idx, ]
     
-    #output_dir <- paste0(out_dir, dmr_patterns[i])
-    output_dir <- out_dir
+    output_dir <- paste0(out_dir, dmr_patterns[i])
+    #output_dir <- out_dir
     # copy the files to the new folder
     dir.create(output_dir, showWarnings = FALSE)
     dir.create(paste0(output_dir, "/bedfile"), showWarnings = FALSE)
@@ -41,8 +41,8 @@ run_batch_vcap <- function(
                  bedfile2=temdf$files[2],
                  bedfile3=temdf$files[3],
                  bedfile4=temdf$files[4],
-                 bedfile5=temdf$files[5],
-                 bedfile6=temdf$files[6],
+                 #bedfile5=temdf$files[5],
+                 #bedfile6=temdf$files[6],
                  res = paste0(output_dir, "/bedfile/rest_geno"))
     outdf <- rbind(outdf, temp)
   }
@@ -53,8 +53,8 @@ run_batch_vcap <- function(
                  bedfile2=outdf$bedfile2,
                  bedfile3=outdf$bedfile3,
                  bedfile4=outdf$bedfile4,
-                 bedfile5=outdf$bedfile5,
-                 bedfile6=outdf$bedfile6,
+                 #bedfile5=outdf$bedfile5,
+                 #bedfile6=outdf$bedfile6,
                  gz.lix="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/genotypes/NAM/namrils_projected_hmp31_MAF02mnCnt2500.hmp.txt.gz.lix",
                  genome_kinship="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/kinship/NAM_HM31_MAF02mnCnt2500_WholeGenomeCentered_IBS_SqrMatrix.txt",
                  res_kinship=outdf$res
@@ -65,27 +65,10 @@ run_batch_vcap <- function(
 
 # results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
 run_batch_vcap(
-  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CG-Teosinte_Landrace/DMR_interaction_non_interaction",
-  out_dir="largedata/revise_VCAP/CG-int-invariant/",
-  dmr_patterns = c("CG_TEO_LR") )
+  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo",
+  out_dir="largedata/revise_VCAP/invariant/",
+  dmr_patterns = c("CG_TEO_LR", "CHG_TEO_LR") )
 
-# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
-run_batch_vcap(
-  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CHG-Teosinte_Landrace/DMR_interaction_non_interaction",
-  out_dir="largedata/revise_VCAP/CHG-int-invariant/",
-  dmr_patterns = c("CHG_TEO_LR") )
-
-# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
-run_batch_vcap(
-  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CG-Teosinte_Landrace/DMR_Sweep_non_sweep/",
-  out_dir="largedata/revise_VCAP/CG-sweep-invariant/",
-  dmr_patterns = c("CG_TEO_LR") )
-
-# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
-run_batch_vcap(
-  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CHG-Teosinte_Landrace/DMR_Sweep_non_sweep",
-  out_dir="largedata/revise_VCAP/CHG-sweep-invariant/",
-  dmr_patterns = c("CHG_TEO_LR") )
 ```
 
 ### Run LDAK
@@ -108,7 +91,7 @@ run_batch_ldak <- function(
     pheno <- list.files(path="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected", pattern="NAM", full.names=TRUE)
     
     ### write out kinship list file
-    kinship_dir <- paste0("largedata/revise_VCAP/", dmr_patterns[i], "/bedfile")
+    kinship_dir <- paste0("largedata/revise_VCAP/invariant/", dmr_patterns[i], "/bedfile")
     kfile <- list.files(path=kinship_dir, pattern="N.bin", full.names=TRUE)
     d <- data.frame(kin=gsub(".grm.N.bin", "", kfile))
     write.table(d, paste0(kinship_dir, "/kinlist.txt"), sep="\t", 
@@ -126,8 +109,7 @@ run_batch_ldak <- function(
 }
 
 
-run_batch_ldak(dmr_patterns = c("CG-int-invariant",  "CHG-int-invariant",  
-                                "CG-sweep-invariant", "CHG-sweep-invariant"))
+run_batch_ldak(dmr_patterns = c("CG_TEO_LR", "CHG_TEO_LR"))
 
 ```
 

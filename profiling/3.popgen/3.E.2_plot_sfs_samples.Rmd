@@ -1,0 +1,109 @@
+---
+title: "get posteriors from MCMC BC"
+output: NULL
+author: Jinliang Yang
+date: 07-03-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+
+
+```{r}
+files <- list.files("largedata/revise_fig1", pattern="ft.RData", full.names = T)
+
+source("lib/mcmcbc.R")
+ob <- load("cache/revise_fig1/new_msfs_CG_pops_50000_ft.RData")
+
+post.nu <- res$samples$nu[10000]
+post.mu <- res$samples$mu[10000]
+post.s <- res$samples$s[10000]
+k=0:88
+n=max(k)
+Ne=50000
+
+my_sfs <- res$my_sfs
+  
+post_sfs=sapply(k,function(K){
+     log(choose(n,K))+(f1(mean(post.nu)*4*Ne+K,mean(post.mu)*4*Ne+mean(post.nu)*4*Ne+n,mean(post.s)*4*Ne)+proch(mean(post.nu)*4*Ne,K)+proch(mean(post.mu)*4*Ne,n-K))-(f1(mean(post.nu)*4*Ne,mean(post.mu)*4*Ne+mean(post.nu)*4*Ne,mean(post.s)*4*Ne)+proch(mean(post.mu)*4*Ne+mean(post.nu)*4*Ne,n))})
+post_sfs=post_sfs-max(post_sfs)
+post_sfs=exp(post_sfs)/sum(exp(post_sfs))*sum(my_sfs)
+
+diff = post_sfs - my_sfs    
+```
+
+
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+outdf1 <- read.csv("cache/CG_draw_post.csv")
+p1 <- ggplot(outdf1, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          ggtitle("CG") +
+          labs(y="Number of Titles", x=NULL) + 
+          theme(legend.position="none") +
+          # https://www.color-hex.com/color-palette/73961
+    scale_fill_manual(values=c("#999999","#E69F00"), # "#56B4E9"
+                      name=c("")) +
+                      #labels=c("Teo Hypo", "Teo Hyper")) +
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63")) +
+    #labs(fill = "Dose (mg)") +
+    #scale_x_discrete(labels=c("-log10(mu)","-log10(nu)", "Ne*s")) +
+    theme_classic() +
+    theme(legend.position = c(0.2,0.8), plot.title = element_text(size=20,hjust = 0.5), 
+          axis.text=element_text(size=12, face="bold"),
+          strip.text.x = element_text(size = 20, face = "bold"),
+          #strip.text.y = element_text(size = 15, face = "bold"),
+          axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize)) 
+p1
+
+```
+
+```{r}
+outdf2 <- read.csv("cache/CHG_draw_post.csv")
+p2 <- ggplot(outdf2, aes(x=sites, y=sfs, fill=factor(type))) +
+          #geom_point() +
+          geom_bar(stat = "identity", position = "dodge") +
+          #scale_size_manual(values=c(2.5, 1.5)) +
+          labs(y="Number of Titles", x=NULL) + 
+          ggtitle("CHG") +
+          theme(legend.position="none") +
+          # https://www.color-hex.com/color-palette/73961
+    scale_fill_manual(values=c("#999999","#56B4E9"), # "#56B4E9"
+                      name=c("")) +
+                      #labels=c("Teo Hypo", "Teo Hyper")) +
+    #scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07", "#5f9057", "#114c63")) +
+    #labs(fill = "Dose (mg)") +
+    #scale_x_discrete(labels=c("-log10(mu)","-log10(nu)", "Ne*s")) +
+    theme_classic() +
+    theme(legend.position = c(0.2,0.8), plot.title = element_text(size=20,hjust = 0.5), 
+          axis.text=element_text(size=12, face="bold"),
+          strip.text.x = element_text(size = 20, face = "bold"),
+          #strip.text.y = element_text(size = 15, face = "bold"),
+          axis.title=element_text(size=fsize, face="bold"),
+                legend.title = element_text(size=fsize, face="bold"),
+                legend.text = element_text(size=fsize)) 
+p2
+
+```
+
+
+```{r}
+library("cowplot")
+pdf("graphs/SFig_sfs_draw.pdf", width=8, height=6)
+plot_grid(p1, p2, ncol=1, labels = "AUTO", label_size = 26)
+dev.off()
+```
+

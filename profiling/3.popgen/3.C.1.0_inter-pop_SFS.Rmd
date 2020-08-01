@@ -89,6 +89,9 @@ get_inter_sfs(pop1="largedata/mr_100bp/teosinte_CHG_matrix_imp.csv",
 ```
 
 
+
+
+
 -----------------
 
 ### CHH need to be modified:
