@@ -1,2 +1,28 @@
-trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_Top,pretty_name,h2
-asiavg,0.008927,0.012652,0,0.577855,0.149074, 0.000000,Anthesis-silking interval,0.021579
+trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_ALL,pretty_name
+asiavg, 0.008927, 0.012652,-0.045948, 0.577855, 0.149074, 0.702560,Anthesis-silking interval
+dtaavg,-0.008549,-0.027928, 0.061076, 0.592205, 0.155785, 0.772590,NA
+dtsavg,-0.005296,-0.011636, 0.162850, 0.350981, 0.268985, 0.765883,NA
+ehtavg, 0.002960, 0.005041,-0.229513, 0.618676, 0.378611, 0.775776,Ear height
+ehtdivphtavg,-0.012271,-0.004502,-0.243392, 0.591892, 0.388380, 0.720108,Ratio of ear height to total height
+Kwt_5loc_residuals,-0.025222,-0.063067, 0.374460, 0.339692,-0.040472, 0.585390,100 Kernel weight
+nlb_residuals, 0.000679,-0.011635,-0.325194, 0.915618, 0.217595, 0.797063,Northern Leaf Blight
+nphavg,-0.010308,-0.030578, 0.170333, 0.562407, 0.056991, 0.748844,Nodes per plant
+nteavg,-0.014600,-0.032592,-0.278404, 0.547762, 0.540258, 0.762424,Nodes to ear
+nttavg,-0.005387,-0.007158,-0.111881, 0.677784, 0.188185, 0.741543,Nodes above ear
+phtavg, 0.003475, 0.003488,-0.160229, 0.599061, 0.340334, 0.786130,Plant height
+phtdivdtravg,-0.001796, 0.003374,-0.075663, 0.591958, 0.228329, 0.746203,Height per day (until flowering)
+phtdivnphavg,-0.004642,-0.002077,-0.108994, 0.565589, 0.298041, 0.747917,Average internode length (whole plant)
+ppgddta_pop,-0.008251,-0.034651, 0.596271, 0.187772,-0.129227, 0.611914,Photoperiod growing-degree days to anthesis
+ppgddts_pop,-0.009405,-0.006093, 0.576356, 0.205505,-0.143291, 0.623073,Photoperiod Growing-degree days to silk
+Residual_leaf_length_noIBM,-0.009020,-0.001897,-0.056441, 0.719731, 0.111273, 0.763646,Leaf length
+Residual_leaf_width_noIBM, 0.002686, 0.000611,-0.211331, 0.779774, 0.210258, 0.781998,Leaf width
+residuals_distancebased_for_d2a,-0.009624,-0.049768, 0.475645, 0.423816,-0.086436, 0.753633,Days to anthesis
+residuals_distancebased_for_d2s,-0.022711,-0.036239, 0.106147, 0.634454, 0.090546, 0.772195,Days to silk
+residuals_distancebased_for_slbv2, 0.000924,-0.028054,-0.073813, 0.363594, 0.480078, 0.742729,Southern leaf blight
+rpravg,-0.019657, 0.002235,-0.112423, 0.433292,-0.009704, 0.293743,Stalk strength
+sf_residuals_nopop, 0.019989, 0.003221,-0.277496, 0.856601, 0.180939, 0.783254,Cob diameter
+so_residuals_nopop, 0.000014,-0.001216,-0.326686, 0.720089, 0.402766, 0.794967,Ear row number
+tassel_branches,-0.000555,-0.001292,-0.283323, 0.792753, 0.290346, 0.797928,Tassel branch number
+tassel_length, 0.004666,-0.006012,-0.102125, 0.713139, 0.138464, 0.748131,Tassel length
+thtavg,-0.008044,-0.008440,-0.092446, 0.560103, 0.279158, 0.730331,Height above ear
+thtdivnttavg, 0.005349,-0.008192,-0.049258, 0.624581, 0.096485, 0.668965,Average internode length (above ear)
