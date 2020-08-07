@@ -17,7 +17,14 @@ knitr::opts_knit$set(root.dir=normalizePath('../../'))
 
 ```{r}
 files <- list.files("largedata/revise_fig1", pattern="ft.RData", full.names = T)
+sfs <- res$my_sfs
+tot <- sum(res$my_sfs)
+sfs[1]/tot #1.9
+sfs[length(sfs)]/tot # 6.9
+```
 
+
+```{r}
 source("lib/mcmcbc.R")
 ob <- load("cache/revise_fig1/new_msfs_CG_pops_50000_ft.RData")
 
