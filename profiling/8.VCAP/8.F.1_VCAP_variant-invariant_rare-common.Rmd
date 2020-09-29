@@ -57,17 +57,17 @@ d1[,2]=d1[,2]-1
 fwrite(d1, file="CG_Completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef ==1, completely methylated tiles
-d2=na.omit(meth[mef==1, 1:3])
+d2=na.omit(meth[meth$mef==1, 1:3])
 d2[,2]=d2[,2]-1
 fwrite(d2, file="CG_Completely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0.9 or mef < 0.1, rare epialleles
-d3=na.omit(meth[mef>0.9 | mef<0.1, 1:3])
+d3=na.omit(meth[meth$mef>0.9 | meth$mef<0.1, 1:3])
 d3[,2]=d3[,2]-1
 fwrite(d3, file="CG_Rare_epi.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0.1 and mef < 0.8, common epialleles
-d4=na.omit(meth[mef>0.1 & mef<0.8, 1:3])
+d4=na.omit(meth[meth$mef>0.1 & meth$mef<0.8, 1:3])
 d4[,2]=d4[,2]-1
 fwrite(d4, file="CG_Common_epi.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
