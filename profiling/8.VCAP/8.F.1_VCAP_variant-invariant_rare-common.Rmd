@@ -43,8 +43,9 @@ meth$mef <- apply(meth[,-c(1:3)], 1, mef)
 
 nrow(meth[meth$mef==0,]) # 8109078
 nrow(meth[meth$mef==1,]) # 3460536
-nrow(meth[meth$mef >= 0.95 | meth$mef <= 0.05,])
-nrow(meth[meth$mef > 0.05 & meth$mef < 0.95,])
+nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) #3454158
+nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) #16160395
+nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) #3695842
 
 ```
 
