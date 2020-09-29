@@ -1,28 +1,24 @@
 trait,Her_K1,Her_K2,Her_K3,Her_K4,Her_K5,Her_ALL,pretty_name,h2
-asiavg,0.009362,0,0,0.545945,0.358289,0.706853,Anthesis-silking interval,0.904234
-dtaavg,0,0,0,0.39744,0.494988,0.782869,NA,0.892428
-dtsavg,0,0.004449,0,0.474319,0.48287,0.79936,NA,0.957189
-ehtavg,0.003207,0.016512,0,0.594884,0.604288,0.778032,Ear height,1.199172
-ehtdivphtavg,0,0,0,0.337924,1.111563,0.715012,Ratio of ear height to total height,1.449487
-Kwt_5loc_residuals,0,0,0,0.525386,0.422642,0.623016,100 Kernel weight,0.948028
-nlb_residuals,0,0,0,0.755651,0.786843,0.794314,Northern Leaf Blight,1.542494
-nphavg,0,0.003209,0,0.488027,0.432705,0.75271,Nodes per plant,0.920732
-nteavg,0,0.012792,0,0.420984,0.604138,0.746319,Nodes to ear,1.025122
-nttavg,0,0,0,0.807802,0.114108,0.738602,Nodes above ear,0.92191
-phtavg,0.019753,0.004276,0,0.603581,0.538037,0.787565,Plant height,1.141618
-phtdivdtravg,0.023121,0.00067,0,0.613749,0.383312,0.74894,Height per day (until flowering),0.997061
-phtdivnphavg,0.017502,0,0,0.371297,0.856093,0.743587,Average internode length (whole plant),1.22739
-ppgddta_pop,0,0,0.586674,0.37262,0,0.621606,Photoperiod growing-degree days to anthesis,0.959294
-ppgddts_pop,0.00237,0,0.510856,0.265171,0,0.62548,Photoperiod Growing-degree days to silk,0.776027
-Residual_leaf_length_noIBM,0,0,0,0.6654,0.436794,0.763829,Leaf length,1.102194
-Residual_leaf_width_noIBM,0.000362,0,0,0.696294,0.52079,0.783546,Leaf width,1.217084
-residuals_distancebased_for_d2a,0,0.004247,0,0.484495,0.299182,0.772741,Days to anthesis,0.783677
-residuals_distancebased_for_d2s,0,0.003415,0,0.479666,0.395447,0.795157,Days to silk,0.875113
-residuals_distancebased_for_slbv2,0,0,0.147337,0.391206,0.26396,0.750446,Southern leaf blight,0.802503
-rpravg,0,0,0,0.433954,0.046341,0.298723,Stalk strength,0.480295
-sf_residuals_nopop,0.00342,0.007072,0,0.855716,0.425832,0.783249,Cob diameter,1.281548
-so_residuals_nopop,0,0,0,0.622879,0.756788,0.792609,Ear row number,1.379667
-tassel_branches,0,0,0,0.769692,0.440507,0.796265,Tassel branch number,1.210199
-tassel_length,0,0,0,0.713109,0.403262,0.758172,Tassel length,1.116371
-thtavg,0.004097,0,0,0.559505,0.480311,0.725635,Height above ear,1.039816
-thtdivnttavg,0.015242,0.003265,0,0.620226,0.222921,0.661142,Average internode length (above ear),0.843147
+asiavg,0.008927,0.012652,0,0.577855,0.149074,0.70256,Anthesis-silking interval,0.726929
+dtaavg,0,0,0.061076,0.592205,0.155785,0.77259,Days to anthesis,0.809066
+dtsavg,0,0,0.16285,0.350981,0.268985,0.765883,Days to silk,0.782816
+ehtavg,0.00296,0.005041,0,0.618676,0.378611,0.775776,Ear height,0.997287
+ehtdivphtavg,0,0,0,0.591892,0.38838,0.720108,Ratio of ear height to total height,0.980272
+Kwt_5loc_residuals,0,0,0.37446,0.339692,0,0.58539,100 Kernel weight,0.714152
+nlb_residuals,0.000679,0,0,0.807984024,0.192015976,0.797063,Northern Leaf Blight,1
+nphavg,0,0,0.170333,0.562407,0.056991,0.748844,Nodes per plant,0.789731
+nteavg,0,0,0,0.503448466,0.496551534,0.762424,Nodes to ear,1
+nttavg,0,0,0,0.677784,0.188185,0.741543,Nodes above ear,0.865969
+phtavg,0.003475,0.003488,0,0.599061,0.340334,0.78613,Plant height,0.939395
+phtdivdtravg,0,0.003374,0,0.591958,0.228329,0.746203,Height per day (until flowering),0.820287
+phtdivnphavg,0,0,0,0.565589,0.298041,0.747917,Average internode length (whole plant),0.86363
+Residual_leaf_length_noIBM,0,0,0,0.719731,0.111273,0.763646,Leaf length,0.831004
+Residual_leaf_width_noIBM,0.002686,0.000611,0,0.779774,0.210258,0.781998,Leaf width,0.990032
+residuals_distancebased_for_slbv2,0.000924,0,0,0.363594,0.480078,0.742729,Southern leaf blight,0.843672
+rpravg,0,0.002235,0,0.433292,0,0.293743,Stalk strength,0.433292
+sf_residuals_nopop,0.019989,0.003221,0,0.825607687,0.174392313,0.783254,Cob diameter,1
+so_residuals_nopop,1.40E-05,0,0,0.64130186,0.35869814,0.794967,Ear row number,1
+tassel_branches,0,0,0,0.731930322,0.268069678,0.797928,Tassel branch number,1
+tassel_length,0.004666,0,0,0.713139,0.138464,0.748131,Tassel length,0.851603
+thtavg,0,0,0,0.560103,0.279158,0.730331,Height above ear,0.839261
+thtdivnttavg,0.005349,0,0,0.624581,0.096485,0.668965,Average internode length (above ear),0.721066

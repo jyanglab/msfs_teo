@@ -22,8 +22,8 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
   out <- data.frame()
   for(i in 1:length(files)){
     h2 <- read.table(files[i], skip=13, header=TRUE)
-    th2 <- as.data.frame(t(h2[-7, 1:2]))
-    names(th2) <- as.character(h2$Component[-7])
+    th2 <- as.data.frame(t(h2[-6, 1:2]))
+    names(th2) <- as.character(h2$Component[-6])
     th2$trait <- files[i]
     out <- rbind(out, th2[-1, ])
   }
@@ -35,12 +35,12 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
   out$trait <- as.character(out$trait)
   out <- subset(out, !(trait %in% "Residual_boxcox_noIBM"))
   
-  for(j in 2:6){
+  for(j in 2:7){
     out[, j] <- as.numeric(as.character(out[,j]))
     out[out[,j] < 0, j] <- 0
   }
   
-  out$h2 <- out$Her_K1 + out$Her_K2 + out$Her_K3 
+  out$h2 <- out$Her_K3 + out$Her_K4 + out$Her_K5 
   
   #return(out)
   write.table(out, outfile, sep=",", row.names=FALSE, quote=FALSE)
@@ -53,7 +53,7 @@ get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2",
 
 ```{r}
 get_h2(pwd="largedata/revise_VCAP/invariant/CG_TEO_LR/h2", outfile="cache/invariant_vcap/h2_CG_teo_lr.csv")
-get_h2(pwd="largedata/revise_VCAP/invariant/CG_TEO_LR/h2", outfile="cache/invariant_vcap/h2_CHG_teo_lr.csv")
+get_h2(pwd="largedata/revise_VCAP/invariant/CHG_TEO_LR/h2", outfile="cache/invariant_vcap/h2_CHG_teo_lr.csv")
 #get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
 
 ```
@@ -69,10 +69,10 @@ get_h2(pwd="largedata/revise_VCAP/CHG-int-invariant/h2", outfile="cache/invarian
 
 ## Sweep
 ```{r}
-get_h2(pwd="largedata/revise_VCAP/CG-sweep-invariant/h2", outfile="cache/h2-interact-dmr/h2_CG_sweep-invariant.csv")
+get_h2(pwd="largedata/revise_VCAP/CG-sweep-invariant/h2", outfile="cache/invariant_vcap/h2_CG_sweep-invariant.csv")
 #get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
 
-get_h2(pwd="largedata/revise_VCAP/CHG-sweep-invariant/h2", outfile="cache/h2-interact-dmr/h2_CHG_sweep-invariant.csv")
+get_h2(pwd="largedata/revise_VCAP/CHG-sweep-invariant/h2", outfile="cache/invariant_vcap/h2_CHG_sweep-invariant.csv")
 #get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
 
 ```

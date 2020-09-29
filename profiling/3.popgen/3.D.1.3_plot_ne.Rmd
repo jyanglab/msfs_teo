@@ -39,6 +39,10 @@ get_numus <- function(obfile="cache/mcmc_res/new_msfs_CG_pops.RData", burnin=0.2
     nu.samples=nu.samples[(length(nu.samples)*burnin+1):length(nu.samples)]
     mu.samples=mu.samples[(length(mu.samples)*burnin+1):length(mu.samples)]
     
+    # tem1 <- data.frame(mn=mean(Ne*s.samples), sd=sd(Ne*s.samples), med=median(Ne*s.samples), type="s")
+    # tem2 <- data.frame(mn=mean(-log10(nu.samples)), sd=sd(-log10(nu.samples)), med=median(-log10(nu.samples)), type="nu")
+    # tem3 <- data.frame(mn=mean(-log10(mu.samples)), sd=sd(-log10(mu.samples)), med=median(-log10(mu.samples)), type="mu")
+    
     tem1 <- data.frame(mn=mean(Ne*s.samples), sd=sd(Ne*s.samples), med=median(Ne*s.samples), type="s")
     tem2 <- data.frame(mn=mean(-log10(nu.samples)), sd=sd(-log10(nu.samples)), med=median(-log10(nu.samples)), type="nu")
     tem3 <- data.frame(mn=mean(-log10(mu.samples)), sd=sd(-log10(mu.samples)), med=median(-log10(mu.samples)), type="mu")
