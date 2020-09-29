@@ -1,0 +1,162 @@
+---
+title: "Run VCAP to seperate rare and common epialleles"
+output: NULL
+date: 09-29-2020
+author: "Jinliang Yang"
+---
+
+
+```{r}
+library(data.table)
+meth=fread("/common/jyanglab/shared/Gen_Xu/07-08-2019-mr_100bptile/CG_meth.txt",head=T,data.table=F)
+d=meth[,1:3]
+for(i in 4:ncol(meth))
+{
+  meth[which(meth[,i]<0.3),i]=0
+  meth[which(meth[,i]>0.7),i]=2
+  meth[which(meth[,i]>=0.3 & meth[,i]<=0.7),i]=1
+  cat(i,"\n")
+}
+write.table(meth,file="CG_meth_012.txt",row.names = F,col.names = T,sep="\t",quote=F)
+msfs=function(x)
+{
+  x=x[which(x>0)]
+  f0=length(which(x==0))
+  f1=length(which(x==1))
+  f2=length(which(x==2))
+  (f1+2*f2)/(2*length(x)) ###need to check the formula.
+}
+d1=meth[,-c(1:3)]
+m=apply(d1, 1,msfs)
+res=cbind(meth,m)
+colnames(res[ncol(res)])="mSFS"
+write.table(res,file="CG_meth_012_mSFS.txt",row.names = F,col.names = T,sep="\t",quote=F)
+
+
+```
+
+
+```{r, eval=FALSE}
+
+
+#library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
+library("huskeR")
+# /common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-05-2019
+run_batch_vcap <- function(
+  input_dir = "/common/jyanglab/shared/Gen_Xu/DMR_Features_Overlap_02192022",
+  out_dir="/",
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", "CHH_teosinte_maize")){
+  
+  # setup file system and find the dmr pattern
+  files <- list.files(input_dir, full.names = TRUE, pattern="bed")
+  df <- data.frame(f=files, pop="1")
+  
+  ### loop over patterns
+  outdf <- data.frame()
+  for(i in 1:length(dmr_patterns)){
+    idx <- grep(dmr_patterns[i], df$f)
+    temdf <- df[idx, ]
+    
+    #output_dir <- paste0(out_dir, dmr_patterns[i])
+    output_dir <- out_dir
+    # copy the files to the new folder
+    dir.create(output_dir, showWarnings = FALSE)
+    dir.create(paste0(output_dir, "/bedfile"), showWarnings = FALSE)
+    file.copy(as.character(temdf$f), paste0(output_dir, "/bedfile"))
+    temdf$files <- gsub(".*\\/", "", temdf$f)
+    temdf$files <- paste0(output_dir, "/bedfile/", temdf$files)
+    
+    temp <- data.frame(bedfile1=temdf$files[1],
+                 bedfile2=temdf$files[2],
+                 bedfile3=temdf$files[3],
+                 bedfile4=temdf$files[4],
+                 bedfile5=temdf$files[5],
+                 bedfile6=temdf$files[6],
+                 res = paste0(output_dir, "/bedfile/rest_geno"))
+    outdf <- rbind(outdf, temp)
+  }
+  
+  
+  ### df for batch job input:
+  df <- data.frame(bedfile1=outdf$bedfile1,
+                 bedfile2=outdf$bedfile2,
+                 bedfile3=outdf$bedfile3,
+                 bedfile4=outdf$bedfile4,
+                 bedfile5=outdf$bedfile5,
+                 bedfile6=outdf$bedfile6,
+                 gz.lix="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/genotypes/NAM/namrils_projected_hmp31_MAF02mnCnt2500.hmp.txt.gz.lix",
+                 genome_kinship="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/kinship/NAM_HM31_MAF02mnCnt2500_WholeGenomeCentered_IBS_SqrMatrix.txt",
+                 res_kinship=outdf$res
+                 )
+  message(sprintf("###>>> results will be in %s", outdf$res[1]))
+  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "vcap", runinfo = c(TRUE, "jyanglab", "4", "30G", "48:00:00"))
+}
+
+# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
+run_batch_vcap(
+  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CG-Teosinte_Landrace/DMR_interaction_non_interaction",
+  out_dir="largedata/revise_VCAP/CG-int-invariant/",
+  dmr_patterns = c("CG_TEO_LR") )
+
+# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
+run_batch_vcap(
+  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CHG-Teosinte_Landrace/DMR_interaction_non_interaction",
+  out_dir="largedata/revise_VCAP/CHG-int-invariant/",
+  dmr_patterns = c("CHG_TEO_LR") )
+
+# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
+run_batch_vcap(
+  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CG-Teosinte_Landrace/DMR_Sweep_non_sweep/",
+  out_dir="largedata/revise_VCAP/CG-sweep-invariant/",
+  dmr_patterns = c("CG_TEO_LR") )
+
+# results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
+run_batch_vcap(
+  input_dir = "data/TEO_LR_invariant_region_DMR_hyper_hypo_SWEEP_Interaction/CHG-Teosinte_Landrace/DMR_Sweep_non_sweep",
+  out_dir="largedata/revise_VCAP/CHG-sweep-invariant/",
+  dmr_patterns = c("CHG_TEO_LR") )
+```
+
+### Run LDAK
+
+Using R package `huskeR`:
+
+```{r, eval=FALSE}
+library("huskeR")
+
+run_batch_ldak <- function(
+  dmr_patterns = c("CG_teosinte_maize", "CHG_teosinte_maize", 
+                  "CG_landrace_maize", "CHG_landrace_maize", 
+                  "CG_teosinte_landrace", "CHG_teosinte_landrace")
+  ){
+  
+  df <- data.frame()
+  ### get kinship list
+  for(i in 1:length(dmr_patterns)){
+    ###
+    pheno <- list.files(path="/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected", pattern="NAM", full.names=TRUE)
+    
+    ### write out kinship list file
+    kinship_dir <- paste0("largedata/revise_VCAP/", dmr_patterns[i], "/bedfile")
+    kfile <- list.files(path=kinship_dir, pattern="N.bin", full.names=TRUE)
+    d <- data.frame(kin=gsub(".grm.N.bin", "", kfile))
+    write.table(d, paste0(kinship_dir, "/kinlist.txt"), sep="\t", 
+            row.names=FALSE, col.names=FALSE, quote=FALSE)
+    
+    output_h2 <- gsub("bedfile", "h2/", kinship_dir)
+    #unlink(gsub("bedfile", "h2/", kinship_dir))
+    dir.create(output_h2, showWarnings = FALSE)
+    tem <- data.frame(output=output_h2, klist=paste0(kinship_dir, "/kinlist.txt"), pheno=pheno)
+    tem$output <- paste0(tem$output, gsub(".*\\/|.txt", "", tem$pheno))
+    df <- rbind(df, tem)
+  }
+  
+  run_ldak(df, email="yangjl0930@gmail.com", runinfo=c(TRUE, "jyanglab", "2", "10G", "24:00:00"))
+}
+
+
+run_batch_ldak(dmr_patterns = c("CG-int-invariant",  "CHG-int-invariant",  
+                                "CG-sweep-invariant", "CHG-sweep-invariant"))
+
+```
+
