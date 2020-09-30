@@ -1,0 +1,204 @@
+---
+title: "get data for figures"
+output: NULL
+author: Jinliang Yang
+date: 09-20-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../')) 
+#library(tidyverse)
+```
+
+
+
+
+```{r}
+source("lib/mplots.R")
+source("lib/mcmcbc.R")
+
+get_numus <- function(obfile="cache/mcmc_res/new_msfs_CG_pops.RData", burnin=0.2, Ne=150000){
+    
+    ob <- load(obfile)
+    
+    s.samples <- res[['samples']]$s
+    nu.samples <- res[['samples']]$nu
+    mu.samples <- res[['samples']]$mu
+    l.samples <- res[['samples']]$l
+    mu.acc <- res[['acc']]$mu
+    nu.acc <- res[['acc']]$nu
+    s.acc <- res[['acc']]$s
+    
+    s.samples=s.samples[(length(s.samples)*burnin+1):length(s.samples)]
+    nu.samples=nu.samples[(length(nu.samples)*burnin+1):length(nu.samples)]
+    mu.samples=mu.samples[(length(mu.samples)*burnin+1):length(mu.samples)]
+    
+    
+    tem1 <- data.frame(value=Ne*s.samples, type="s")
+    tem2 <- data.frame(value=-log10(nu.samples), type="nu")
+    tem3 <- data.frame(value=-log10(mu.samples), type="mu")
+    
+    out <- rbind(tem1, tem2, tem3)
+    return(out)
+}
+```
+
+### Figure 1a
+```{r}
+files <- list.files("cache/mcmc_revise", pattern="ne.RData", full.names = T)
+out <- data.frame()
+for(i in 1:length(files)){
+  ne <- as.numeric(as.character(gsub(".*pops_|_ne.*", "", files[i])))
+  df11 <- get_numus(obfile=files[i], burnin=0.2, Ne=ne)
+  df11$par <- files[i]
+  df11$ne <- ne
+  out <- rbind(out, df11)
+}
+write.table(out, "cache/fig_data/figure1a_ne_all_values.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+### Figure 1b
+```{r}
+### files
+files <- list.files("largedata/revise_features", pattern="RData", full.names = T)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  ne <- gsub("_ft.*", "", files[i])
+  ne <- as.numeric(as.character(gsub(".*_", "", ne)))
+  df11 <- get_numus(obfile=files[i], burnin=0.2, Ne=ne)
+  df11$par <- files[i]
+  df11$ne <- ne
+  out <- rbind(out, df11)
+}
+
+out$class <- gsub(".*\\/|_pop3.*", "", out$par)
+
+
+out$context <- gsub(".*pop3_|.*gf_", "", out$par)
+out$ft <- gsub(".*G_", "", out$context)
+out$context <- gsub("_.*", "", out$context)
+out$ft <- gsub("_[0-9].*_ft.RData", "", out$ft)
+
+write.table(out, "cache/fig_data/figure1b_ne_features_all_values.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+### Figure 1c
+```{r}
+### files
+files <- list.files("largedata/revise_ft_sep", pattern="RData", full.names = T)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  ne <- gsub("_ft.RData", "", files[i])
+  ne <- as.numeric(as.character(gsub(".*_", "", ne)))
+  df11 <- get_numus(obfile=files[i], burnin=0.2, Ne=ne)
+  df11$par <- files[i]
+  df11$ne <- ne
+  out <- rbind(out, df11)
+}
+
+out$class <- gsub(".*\\/|_pop3.*", "", out$par)
+out$teo <- gsub(".*teo-", "", out$par)
+out$teo <- gsub("_.*", "", out$teo)
+
+out$context <- gsub(".*pop3_|.*gf_", "", out$par)
+out$ft <- gsub(".*G_", "", out$context)
+out$context <- gsub("_.*", "", out$context)
+out$ft <- gsub("_teo.*", "", out$ft)
+
+write.table(out, "cache/fig_data/figure1c_dsfs_features_all_values.csv", sep=",", row.names=FALSE, quote=FALSE)
+```
+
+------------------------
+
+### Figure S8a and S8b
+
+```{r}
+### files
+files <- list.files("cache/mcmc_revise", pattern="RData", full.names = T)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  df11 <- get_numus(obfile=files[i], burnin=0.2, Ne=150000)
+  df11$par <- files[i]
+  out <- rbind(out, df11)
+}
+out$rates <- gsub(".*pops_", "", out$par)
+out$psd <- gsub(".*_", "", out$rates)
+out$rates <- gsub("_.*", "", out$rates)
+out$psd <- gsub(".RData", "", out$psd)
+
+df1 <- subset(out, psd == 0.05)  
+write.table(df1, "cache/fig_data/figure_s8a_prior.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+df2 <- subset(out, rates == 1e+06)  
+write.table(df2, "cache/fig_data/figure_s8b_lambda.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+------------------------
+
+### Figure S8a and S8b
+
+```{r}
+### files
+files <- list.files("cache/mcmc_revise", pattern="RData", full.names = T)
+
+out <- data.frame()
+for(i in 1:length(files)){
+  df11 <- get_numus(obfile=files[i], burnin=0.2, Ne=150000)
+  df11$par <- files[i]
+  out <- rbind(out, df11)
+}
+out$rates <- gsub(".*pops_", "", out$par)
+out$psd <- gsub(".*_", "", out$rates)
+out$rates <- gsub("_.*", "", out$rates)
+out$psd <- gsub(".RData", "", out$psd)
+
+df1 <- subset(out, psd == 0.05)  
+write.table(df1, "cache/fig_data/figure_s8a_prior.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+df2 <- subset(out, rates == 1e+06)  
+write.table(df2, "cache/fig_data/figure_s8b_lambda.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+
+-----------------------
+
+### Figure 9
+
+```{r}
+
+df11 <- get_numus(obfile="cache/sfs_landrace_CpG.RData", burnin=0.2, Ne=150000)
+df11$pop <- "LR"
+
+df12 <- get_numus(obfile="cache/sfs_maize_CpG.RData", burnin=0.2, Ne=150000)
+df12$pop <- "MZ"
+
+df13 <- get_numus(obfile="cache/sfs_teosinte_CpG.RData", burnin=0.2, Ne=150000)
+df13$pop <- "TEO"
+
+df1 <- rbind(df11, df12, df13)
+df1$context <- "CG"
+
+df21 <- get_numus(obfile="cache/sfs_landrace_CHG.RData", burnin=0.2, Ne=150000)
+df21$pop <- "LR"
+
+df22 <- get_numus(obfile="cache/sfs_maize_CHG.RData", burnin=0.2, Ne=150000)
+df22$pop <- "MZ"
+
+df23 <- get_numus(obfile="cache/sfs_teosinte_CHG.RData", burnin=0.2, Ne=150000)
+df23$pop <- "TEO"
+
+df2 <- rbind(df21, df22, df23)
+df2$context <- "CHG"
+
+df <- rbind(df1, df2)  
+write.table(df, "cache/fig_data/figure_s9_3pops.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
