@@ -136,8 +136,8 @@ cdata <- function(df){
     message(sprintf("###>>> chr [%s]: total [%s] segments, total length [ %s ]", i, sum(df1$sta==0), sum(sub$dis) ))
     outdf <- rbind(outdf, sub[, c("chr", "newstart", "newend")])
   }
-  outdf$newstart <- format(outdf$newstart, scientific=FALSE)
-  outdf$newend <- format(outdf$newend, scientific=FALSE)
+  #outdf$newstart <- format(outdf$newstart, scientific=FALSE)
+  #outdf$newend <- format(outdf$newend, scientific=FALSE)
   return(outdf)
 }
 ```
@@ -154,7 +154,7 @@ nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 11143699/15582194 0.70
 nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 379423/15582194 0.02
 nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 3101555/15582194 0.20
 
-
+options(scipen=500)
 ## mef ==0, completely methylated tiles
 out <- cdata(df=d[d$mef==0, c("chr", "start", "end")])
 sum(out$newend - out$newstart)
@@ -200,7 +200,7 @@ nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 4256668/16319002 0.26
 nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 600309/16319002 0.04
 nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 10774706/16319002 0.66
 
-
+options(scipen=500)
 ## mef ==0, completely methylated tiles
 out <- cdata(df=d[d$mef==0, c("chr", "start", "end")])
 sum(out$newend - out$newstart)
