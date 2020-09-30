@@ -8,6 +8,7 @@ author: "Jinliang Yang"
 
 1. Recoding the methylation data to 0,1,2
 
+CG
 ```{r}
 library(data.table)
 meth=fread("largedata/mr_100bp/pop3_CpG_matrix_imp.csv",head=T,data.table=F)
@@ -20,6 +21,21 @@ for(i in 4:ncol(meth))
   cat(i,"\n")
 }
 fwrite(meth,file="largedata/mr_100bp/pop3_CpG_matrix_imp_012.txt",row.names = F,col.names = T,sep="\t",quote=F)
+```
+
+CHG
+```{r}
+library(data.table)
+meth=fread("largedata/mr_100bp/pop3_CHG_matrix_imp.csv",head=T,data.table=F)
+d=meth[,1:3]
+for(i in 4:ncol(meth))
+{
+  meth[which(meth[,i]<0.3),i]=0
+  meth[which(meth[,i]>0.7),i]=2
+  meth[which(meth[,i]>=0.3 & meth[,i]<=0.7),i]=1
+  cat(i,"\n")
+}
+fwrite(meth,file="largedata/mr_100bp/pop3_CHG_matrix_imp_012.txt",row.names = F,col.names = T,sep="\t",quote=F)
 ```
 
 2. calculate methylation epiallele frequency
@@ -44,8 +60,33 @@ nrow(meth[meth$mef==1,]) # 665094
 nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) #11143699
 nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) #379423
 nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) #3101555
-
 ```
+
+
+CHG
+
+```{r}
+library("data.table")
+meth <- fread("largedata/mr_100bp/pop3_CHG_matrix_imp_012.txt", data.table=FALSE)
+# methylation epiallele frequency
+mef=function(x)
+{
+  x=x[which(!is.na(x))]
+  f0=length(which(x==0))
+  f1=length(which(x==1))
+  f2=length(which(x==2))
+  (f1+2*f2)/(2*length(x)) ###need to check the formula.
+}
+
+meth$mef <- apply(meth[,-c(1:3)], 1, mef)
+
+nrow(meth[meth$mef==0,]) # 625321
+nrow(meth[meth$mef==1,]) # 61998
+nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 4256668
+nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 600309
+nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 10774706
+```
+
 
 3. Convert to bed format
 
@@ -60,6 +101,7 @@ df$start <- format(df$start, scientific = FALSE)
 df$end <- format(df$end, scientific = FALSE)
 
 ## mef ==0, completely methylated tiles
+
 fwrite(df[df$mef==0, c("chr", "start", "end")], file="largedata/revise2_vcap/CG_completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef ==1, completely methylated tiles
@@ -76,4 +118,71 @@ fwrite(df[df$mef > 0.1 & df$mef < 0.9, c("chr", "start", "end")], file="largedat
 
 ```
 
+CHG
 
+```{r}
+
+df <-  meth[, c("uid", "chr", "pos", "mef")]
+df$start <- df$pos - 100
+df$end <- df$pos
+
+df <- df[order(df$chr, df$start),]
+df$start <- format(df$start, scientific = FALSE)
+df$end <- format(df$end, scientific = FALSE)
+
+## mef ==0, completely methylated tiles
+f
+fwrite(df[df$mef==0, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+
+## mef ==1, completely methylated tiles
+fwrite(df[df$mef==1, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_completely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+
+## mef > 0.9 or mef < 1, rarely unmethylated epialleles
+fwrite(df[df$mef >= 0.9 & df$mef < 1, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_rarely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+
+## mef > 0 or mef <= 0.1, rarely methylated epialleles
+fwrite(df[df$mef > 0 & df$mef <= 0.1, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_rarely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+
+## mef > 0 or mef <= 0.1, rarely methylated epialleles
+fwrite(df[df$mef > 0.1 & df$mef < 0.9, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_common_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+
+```
+
+
+----------------
+
+```{r}
+df <- read.table("largedata/revise2_vcap/CG_completely_unmeth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CG_completely_unmeth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CG_completely_meth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CG_completely_meth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CG_rarely_unmeth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CG_rarely_unmeth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CG_rarely_meth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CG_rarely_meth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CG_common_meth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CG_common_meth.bed", col.names = F, sep="\t", quote=F)
+
+```
+
+```{r}
+df <- read.table("largedata/revise2_vcap/CHG_completely_unmeth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CHG_completely_unmeth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CHG_completely_meth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CHG_completely_meth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CHG_rarely_unmeth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CHG_rarely_unmeth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CHG_rarely_meth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CHG_rarely_meth.bed", col.names = F, sep="\t", quote=F)
+
+df <- read.delim("largedata/revise2_vcap/CHG_common_meth.bed", header=FALSE)
+write.table(df, file="largedata/revise2_vcap/CHG_common_meth.bed", col.names = F, sep="\t", quote=F)
+
+```

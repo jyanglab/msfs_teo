@@ -1,0 +1,78 @@
+---
+title: "plot results"
+output: NULL
+date: 07-16-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+### Bar plot
+
+CHG teosinte and landrace
+```{r}
+
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+
+
+mybarplot <- function(df=cg){
+  cg1 <- df
+  cg1$trait <- as.character(cg1$trait)
+  cg1$pretty_name <- as.character(cg1$pretty_name)
+  cg1[is.na(cg1$pretty_name), ]$pretty_name <- cg1[is.na(cg1$pretty_name), ]$trait
+  subcg1 <- cg1[, c("pretty_name", "Her_K1", "Her_K2", "Her_K3", "Her_K4", "Her_K5")]
+  subcg1$h2 <- subcg1$Her_K1 + subcg1$Her_K4 + subcg1$Her_K5
+  subcg1 <- subcg1[order(subcg1$h2, decreasing = F),]
+  subcg1$od <- 1:nrow(subcg1)
+
+  subcg1$pretty_name <- factor(subcg1$pretty_name,  levels=subcg1$pretty_name)
+  df <- gather(data=subcg1, key=k, value="var", 3:5)
+  
+  p <- ggplot(df, aes(x=pretty_name, y=var, fill=k), position = position_stack(reverse = TRUE)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    theme_bw() +
+    xlab("") +
+    ylab("") +
+    geom_hline(yintercept=0.1, linetype="dotted") +
+    scale_x_discrete(position = "top") +
+    geom_vline(xintercept=0.1, linetype="dotted") +
+    # https://www.color-hex.com/color-palette/73961
+    scale_fill_manual(values=c("#cc4141", "#72114b", "#e1cd07"),
+                      name=c(""),
+                      labels=c("Hyper", "Hypo", "Variale")) +
+    #scale_fill_discrete(name="", labels=c("Exon", "Intron")) +
+    theme(legend.position="top", axis.text=element_text(size=12), axis.title=element_text(size=15) )
+  #########
+  return(p)
+}
+
+
+
+cg <- read.csv("cache/rare_common_h2_CG.csv")
+cg <- subset(cg, Her_ALL >0)
+pdf("graphs/barplot_CG_teo-lr.pdf", width = 8, height=8)
+mybarplot(df=cg)
+dev.off()  
+
+chg <- read.csv("cache/rare_common_h2_CHG.csv")
+pdf("graphs/barplot_CHG_teo-lr.pdf", width = 8, height=8)
+mybarplot(df=chg)
+dev.off()  
+
+
+```
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+---
+title: "Obtain results"
+output: NULL
+date: 07-16-2020
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('../../')) 
+#library(tidyverse)
+```
+
+
+```{r, eval=FALSE}
+
+get_h2 <- function(pwd="largedata/VCAP/CG_teosinte_maize/h2", 
+                   outfile="cache/h2_CG_teosinte_maize.csv"){
+  files <- list.files(path=pwd, pattern="reml", full.names=TRUE)
+
+  #klist <- read.table("largedata/VCAP/CG_landrace_maize/bedfile/kinlist.txt", header=F)
+  out <- data.frame()
+  for(i in 1:length(files)){
+    h2 <- read.table(files[i], skip=13, header=TRUE)
+    th2 <- as.data.frame(t(h2[-7, 1:2]))
+    names(th2) <- as.character(h2$Component[-7])
+    th2$trait <- files[i]
+    out <- rbind(out, th2[-1, ])
+  }
+
+  out$trait <- gsub(".*NAM_|_famC.*", "", out$trait)
+  tkey <- read.delim("/common/jyanglab/shared/dbcenter/RareAlleles/genomeAnnos/VCAP/phenotypes/NAM/familyCorrected/trait_name_key.txt", header=T)
+  
+  out <- merge(out, tkey, by.x="trait", by.y="raw_name", all.x=TRUE)
+  out$trait <- as.character(out$trait)
+  out <- subset(out, !(trait %in% "Residual_boxcox_noIBM"))
+  
+  for(j in 2:7){
+    out[, j] <- as.numeric(as.character(out[,j]))
+    out[out[,j] < 0, j] <- 0
+  }
+  
+  #out$h2 <- out$Her_K3 + out$Her_K4 + out$Her_K5 
+  
+  #return(out)
+  write.table(out, outfile, sep=",", row.names=FALSE, quote=FALSE)
+}
+
+
+```
+
+## Sweep-DMR results
+
+```{r}
+get_h2(pwd="largedata/revise2_vcap/rare_common/CG/h2", outfile="cache/rare_common_h2_CG.csv")
+get_h2(pwd="largedata/revise2_vcap/rare_common/CHG/h2", outfile="cache/rare_common_h2_CHG.csv")
+#get_h2(pwd="largedata/VCAP/CHH_teosinte_maize/h2", outfile="cache/h2_CHH_teosinte_maize.csv")
+
+```
+
+
+
