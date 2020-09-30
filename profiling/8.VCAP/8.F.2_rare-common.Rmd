@@ -8,8 +8,6 @@ author: "Jinliang Yang"
 
 
 ```{r, eval=FALSE}
-
-
 #library("huskeR", lib.loc = "~/R/x86_64-pc-linux-gnu-library/3.5")
 library("huskeR")
 # /common/jyanglab/shared/Gen_Xu/VCAP_Inputfile_09-05-2019

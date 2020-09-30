@@ -6,7 +6,7 @@ author: "Jinliang Yang"
 ---
 
 
-1. Recoding the methylation data to 0,1,2
+# 1. Recoding the methylation data to 0,1,2
 
 CG
 ```{r}
@@ -38,7 +38,8 @@ for(i in 4:ncol(meth))
 fwrite(meth,file="largedata/mr_100bp/pop3_CHG_matrix_imp_012.txt",row.names = F,col.names = T,sep="\t",quote=F)
 ```
 
-2. calculate methylation epiallele frequency
+
+# 2. calculate methylation epiallele frequency
 
 ```{r}
 library("data.table")
@@ -46,20 +47,31 @@ meth <- fread("largedata/mr_100bp/pop3_CpG_matrix_imp_012.txt", data.table=FALSE
 # methylation epiallele frequency
 mef=function(x)
 {
-  x=x[which(!is.na(x))]
+  #x=x[which(!is.na(x))]
   f0=length(which(x==0))
   f1=length(which(x==1))
   f2=length(which(x==2))
-  (f1+2*f2)/(2*length(x)) ###need to check the formula.
+  return((f1+2*f2)/102) ###need to check the formula.
 }
 
 meth$mef <- apply(meth[,-c(1:3)], 1, mef)
 
-nrow(meth[meth$mef==0,]) # 292423
-nrow(meth[meth$mef==1,]) # 665094
-nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) #11143699
-nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) #379423
-nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) #3101555
+nrow(meth[meth$mef==0,]) # 292423/15582194 0.02
+nrow(meth[meth$mef==1,]) # 665094/15582194 0.04
+nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 11143699/15582194 0.70
+nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 379423/15582194 0.02
+nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 3101555/15582194 0.20
+
+df <-  meth[, c("uid", "chr", "pos", "mef")]
+df$start <- df$pos - 100
+df$end <- df$pos
+
+df <- df[order(df$chr, df$start),]
+df$start <- format(df$start, scientific = FALSE)
+df$end <- format(df$end, scientific = FALSE)
+
+write.table(df, "largedata/CG_mef.csv", sep=",", row.names=FALSE, quote=FALSE)
+
 ```
 
 
@@ -71,118 +83,153 @@ meth <- fread("largedata/mr_100bp/pop3_CHG_matrix_imp_012.txt", data.table=FALSE
 # methylation epiallele frequency
 mef=function(x)
 {
-  x=x[which(!is.na(x))]
+  #x=x[which(!is.na(x))]
   f0=length(which(x==0))
   f1=length(which(x==1))
   f2=length(which(x==2))
-  (f1+2*f2)/(2*length(x)) ###need to check the formula.
+  return((f1+2*f2)/102) ###need to check the formula.
 }
 
 meth$mef <- apply(meth[,-c(1:3)], 1, mef)
 
-nrow(meth[meth$mef==0,]) # 625321
-nrow(meth[meth$mef==1,]) # 61998
-nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 4256668
-nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 600309
-nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 10774706
-```
-
-
-3. Convert to bed format
-
-```{r}
+nrow(meth[meth$mef==0,]) # 625321/16319002 0.04
+nrow(meth[meth$mef==1,]) # 61998/16319002 0.004
+nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 4256668/16319002 0.26
+nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 600309/16319002 0.04
+nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 10774706/16319002 0.66
 
 df <-  meth[, c("uid", "chr", "pos", "mef")]
 df$start <- df$pos - 100
 df$end <- df$pos
 
 df <- df[order(df$chr, df$start),]
-df$start <- format(df$start, scientific = FALSE)
-df$end <- format(df$end, scientific = FALSE)
+#df$start <- format(df$start, scientific = FALSE)
+#df$end <- format(df$end, scientific = FALSE)
+
+write.table(df, "largedata/CHG_mef.csv", sep=",", row.names=FALSE, quote=FALSE)
+
+```
+
+
+# 3. Convert to bed format
+
+```{r}
+## combine data
+cdata <- function(df){
+  df <- df[order(df$chr, df$start), ]
+  
+  outdf <- data.frame()
+  for(i in 1:10){
+    df1 <- subset(df, chr == i)
+    
+    df1$s2 <- c(df1$start[-1], 0)
+    df1$sta <- 0
+    df1[df1$end == df1$s2, ]$sta <- 1
+  
+    ## find new end
+    df1$newend <- -9
+    df1[df1$sta == 0, ]$newend <- df1[df1$sta == 0, ]$end
+    sub <- subset(df1, sta == 0)
+    sub$newstart <- c(df1$start[1], sub$s2[-nrow(sub)])
+    
+    sub$dis <- as.numeric(as.character(sub$newend)) - as.numeric(as.character(sub$newstart))
+    message(sprintf("###>>> chr [%s]: total [%s] segments, total length [ %s ]", i, sum(df1$sta==0), sum(sub$dis) ))
+    outdf <- rbind(outdf, sub[, c("chr", "newstart", "newend")])
+  }
+  outdf$newstart <- format(outdf$newstart, scientific=FALSE)
+  outdf$newend <- format(outdf$newend, scientific=FALSE)
+  return(outdf)
+}
+```
+
+### CG
+
+```{r}
+library("data.table")
+d <- fread("largedata/CG_mef.csv", sep=",", data.table=FALSE)
+
+nrow(meth[meth$mef==0,]) # 292423/15582194 0.02
+nrow(meth[meth$mef==1,]) # 665094/15582194 0.04
+nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 11143699/15582194 0.70
+nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 379423/15582194 0.02
+nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 3101555/15582194 0.20
+
 
 ## mef ==0, completely methylated tiles
-
-fwrite(df[df$mef==0, c("chr", "start", "end")], file="largedata/revise2_vcap/CG_completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(df=d[d$mef==0, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 29242300
+write.table(out, file="largedata/revise2_vcap/CG_K1_completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef ==1, completely methylated tiles
-fwrite(df[df$mef==1, c("chr", "start", "end")], file="largedata/revise2_vcap/CG_completely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(df=d[d$mef==1, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 66509400
+write.table(out, file="largedata/revise2_vcap/CG_K2_completely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0.9 or mef < 1, rarely unmethylated epialleles
-fwrite(df[df$mef >= 0.9 & df$mef < 1, c("chr", "start", "end")], file="largedata/revise2_vcap/CG_rarely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+## mef ==1, completely methylated tiles
+out <- cdata(d[d$mef >= 0.9 & d$mef < 1, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 1114369900
+write.table(out, file="largedata/revise2_vcap/CG_K3_rarely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0 or mef <= 0.1, rarely methylated epialleles
-fwrite(df[df$mef > 0 & df$mef <= 0.1, c("chr", "start", "end")], file="largedata/revise2_vcap/CG_rarely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(d[d$mef > 0 & d$mef <= 0.1, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 37942300
+write.table(out, file="largedata/revise2_vcap/CG_K4_rarely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0 or mef <= 0.1, rarely methylated epialleles
-fwrite(df[df$mef > 0.1 & df$mef < 0.9, c("chr", "start", "end")], file="largedata/revise2_vcap/CG_common_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(d[d$mef > 0.1 & d$mef < 0.9, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 310155500
+write.table(out, file="largedata/revise2_vcap/CG_K5_common_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ```
 
-CHG
+### CHG
 
 ```{r}
+library("data.table")
+d <- fread("largedata/CHG_mef.csv", sep=",", data.table=FALSE)
 
-df <-  meth[, c("uid", "chr", "pos", "mef")]
-df$start <- df$pos - 100
-df$end <- df$pos
+nrow(meth[meth$mef==0,]) # 625321/16319002 0.04
+nrow(meth[meth$mef==1,]) # 61998/16319002 0.004
+nrow(meth[meth$mef >= 0.90 & meth$mef < 1,]) # 4256668/16319002 0.26
+nrow(meth[meth$mef <= 0.10 & meth$mef > 0,]) # 600309/16319002 0.04
+nrow(meth[meth$mef > 0.10 & meth$mef < 0.90,]) # 10774706/16319002 0.66
 
-df <- df[order(df$chr, df$start),]
-df$start <- format(df$start, scientific = FALSE)
-df$end <- format(df$end, scientific = FALSE)
 
 ## mef ==0, completely methylated tiles
-f
-fwrite(df[df$mef==0, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(df=d[d$mef==0, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 62532100
+write.table(out, file="largedata/revise2_vcap/CHG_K1_completely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef ==1, completely methylated tiles
-fwrite(df[df$mef==1, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_completely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(df=d[d$mef==1, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 6199800
+write.table(out, file="largedata/revise2_vcap/CHG_K2_completely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0.9 or mef < 1, rarely unmethylated epialleles
-fwrite(df[df$mef >= 0.9 & df$mef < 1, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_rarely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(d[d$mef >= 0.9 & d$mef < 1, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 425666800
+write.table(out, file="largedata/revise2_vcap/CHG_K3_rarely_unmeth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0 or mef <= 0.1, rarely methylated epialleles
-fwrite(df[df$mef > 0 & df$mef <= 0.1, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_rarely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(d[d$mef > 0 & d$mef <= 0.1, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 60030900
+write.table(out, file="largedata/revise2_vcap/CHG_K4_rarely_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ## mef > 0 or mef <= 0.1, rarely methylated epialleles
-fwrite(df[df$mef > 0.1 & df$mef < 0.9, c("chr", "start", "end")], file="largedata/revise2_vcap/CHG_common_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
+out <- cdata(d[d$mef > 0.1 & d$mef < 0.9, c("chr", "start", "end")])
+sum(out$newend - out$newstart)
+# 1077470600
+write.table(out, file="largedata/revise2_vcap/CHG_K5_common_meth.bed", row.names = F, col.names = F, sep="\t", quote=F)
 
 ```
 
-
-----------------
-
-```{r}
-df <- read.table("largedata/revise2_vcap/CG_completely_unmeth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CG_completely_unmeth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CG_completely_meth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CG_completely_meth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CG_rarely_unmeth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CG_rarely_unmeth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CG_rarely_meth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CG_rarely_meth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CG_common_meth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CG_common_meth.bed", col.names = F, sep="\t", quote=F)
-
-```
-
-```{r}
-df <- read.table("largedata/revise2_vcap/CHG_completely_unmeth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CHG_completely_unmeth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CHG_completely_meth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CHG_completely_meth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CHG_rarely_unmeth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CHG_rarely_unmeth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CHG_rarely_meth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CHG_rarely_meth.bed", col.names = F, sep="\t", quote=F)
-
-df <- read.delim("largedata/revise2_vcap/CHG_common_meth.bed", header=FALSE)
-write.table(df, file="largedata/revise2_vcap/CHG_common_meth.bed", col.names = F, sep="\t", quote=F)
-
-```
