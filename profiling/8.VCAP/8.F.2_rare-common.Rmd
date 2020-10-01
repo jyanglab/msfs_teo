@@ -59,7 +59,7 @@ run_batch_vcap <- function(
                  res_kinship=outdf$res
                  )
   message(sprintf("###>>> results will be in %s", outdf$res[1]))
-  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "vcap", runinfo = c(TRUE, "jyanglab", 4, "30G", "8:00:00"))
+  run_VCAP(df, email = "yangjl0930@gmail.com", jobid = "vcap", runinfo = c(TRUE, "jyanglab", 8, "60G", "48:00:00"))
 }
 
 # results will be in largedata/VCAP/CHG_teosinte_maize/bedfile/rest_geno
