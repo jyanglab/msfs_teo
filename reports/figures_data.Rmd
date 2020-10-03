@@ -162,7 +162,7 @@ df1 <- subset(out, psd == 0.05)
 write.table(df1, "cache/fig_data/figure_s8a_prior.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 df2 <- subset(out, rates == 1e+06)  
-write.table(df2, "cache/fig_data/figure_s8b_lambda.csv", sep=",", row.names=FALSE, quote=FALSE)
+write.table(df2, "largedata/fig_data/figure_s8b_lambda.csv", sep=",", row.names=FALSE, quote=FALSE)
 
 ```
 
